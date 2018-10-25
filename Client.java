@@ -10,14 +10,7 @@ public class Client {
         BufferedReader in = getBufferedReader(socket);
         PrintWriter out = getPrintWriter(socket);
 
-        String msgFromServer = null;
-        try {
-            msgFromServer = in.readLine();
-        }
-        catch (IOException e) {
-            System.out.println("Error reading message from server");
-        }
-        System.out.println(msgFromServer);
+        System.out.println(getMessageFromServer(in));
 
         for (int x = 0; x < 2; x++) {
             out.println("CMD01"+Integer.toString(x*2));
@@ -87,6 +80,17 @@ public class Client {
         }
         catch (IOException e) {
             throw new RuntimeException("Error getting new BufferedReader");
+        }
+    }
+
+    // idk why we need to catch an exception when reading
+    // in server file we can read without having to do error handling
+    private static String getMessageFromServer(BufferedReader b) {
+        try {
+            return b.readLine();
+        }
+        catch (IOException e) {
+            throw new RuntimeException("Error reading message from server");
         }
     }
 }
