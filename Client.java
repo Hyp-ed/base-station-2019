@@ -4,8 +4,8 @@ import java.net.Socket;
 
 public class Client {
     public static void main(String[] args) {
-        Socket clientSocket = getClientSocket();
-        PrintWriter out = getPrintWriter(clientSocket);
+        Socket socket = getSocket();
+        PrintWriter out = getPrintWriter(socket);
 
         for (int x = 0; x < 2; x++) {
             out.println("CMD01"+Integer.toString(x*2));
@@ -44,14 +44,14 @@ public class Client {
 
         try {
             out.close();
-            clientSocket.close();
+            socket.close();
         }
         catch (IOException e) {
-            System.out.println("Error closing PrintWriter/clientSocket");
+            System.out.println("Error closing PrintWriter/socket");
         }
     }
 
-    private static Socket getClientSocket() {
+    private static Socket getSocket() {
         try {
             return new Socket("localhost", 9090);
         }
