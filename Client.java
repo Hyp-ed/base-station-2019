@@ -1,11 +1,23 @@
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
 public class Client {
     public static void main(String[] args) {
         Socket socket = getSocket();
+        BufferedReader in = getBufferedReader(socket);
         PrintWriter out = getPrintWriter(socket);
+
+        String msgFromServer = null;
+        try {
+            msgFromServer = in.readLine();
+        }
+        catch (IOException e) {
+            System.out.println("Error reading message from server");
+        }
+        System.out.println(msgFromServer);
 
         for (int x = 0; x < 2; x++) {
             out.println("CMD01"+Integer.toString(x*2));
@@ -60,12 +72,21 @@ public class Client {
         }
     }
 
-    private static PrintWriter getPrintWriter(Socket cs) {
+    private static PrintWriter getPrintWriter(Socket s) {
         try {
-            return new PrintWriter(cs.getOutputStream(), true);
+            return new PrintWriter(s.getOutputStream(), true);
         }
         catch (IOException e) {
             throw new RuntimeException("Failed getting PrintWriter");
+        }
+    }
+
+    private static BufferedReader getBufferedReader(Socket s) {
+        try {
+            return new BufferedReader(new InputStreamReader(s.getInputStream()));
+        }
+        catch (IOException e) {
+            throw new RuntimeException("Error getting new BufferedReader");
         }
     }
 }

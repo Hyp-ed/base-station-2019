@@ -1,6 +1,7 @@
-import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -15,6 +16,9 @@ public class Server {
         try {
             Socket client = getClientServerFromListener(listener);
             BufferedReader in = getBufferedReader(client);
+            PrintWriter out = getPrintWriter(client);
+
+            out.println("Hello from Server!");
 
             while (true) {
                 String input = in.readLine();
@@ -51,6 +55,15 @@ public class Server {
         }
         catch (IOException e) {
             throw new RuntimeException("Failed to get new client socket");
+        }
+    }
+
+    private static PrintWriter getPrintWriter(Socket clientSocket) {
+        try {
+            return new PrintWriter(clientSocket.getOutputStream(), true);
+        }
+        catch (IOException e) {
+            throw new RuntimeException("Failed getting PrintWriter");
         }
     }
 
