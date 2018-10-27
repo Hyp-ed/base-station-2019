@@ -16,9 +16,11 @@ public class Server {
         try {
             Socket client = getClientServerFromListener(listener);
             BufferedReader in = getBufferedReader(client);
+            BufferedReader consoleIn = getBufferedReader();
             PrintWriter out = getPrintWriter(client);
 
-            out.println("Hello from Server!");
+            System.out.print("Enter message to be sent to client: ");
+            out.println(consoleIn.readLine());
 
             while (true) {
                 String input = in.readLine();
@@ -72,8 +74,12 @@ public class Server {
             return new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         }
         catch (IOException e) {
-            throw new RuntimeException("Error getting new BufferedReader");
+            throw new RuntimeException("Error getting new BufferedReader for client socket");
         }
+    }
+
+    private static BufferedReader getBufferedReader() {
+        return new BufferedReader(new InputStreamReader(System.in));
     }
 
     private static void closeClient(Socket clientSocket) {

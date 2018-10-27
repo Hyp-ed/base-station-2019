@@ -87,7 +87,7 @@ public class Client {
     // in server file we can read without having to do error handling
     private static String getMessageFromServer(BufferedReader b) {
         try {
-            return b.readLine();
+            return "FROM SERVER: " + b.readLine();
         }
         catch (IOException e) {
             throw new RuntimeException("Error reading message from server");
