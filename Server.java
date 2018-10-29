@@ -24,6 +24,7 @@ public class Server extends Application {
 
         try {
             Socket client = getClientServerFromListener(listener);
+            System.out.println("Connected to client");
             BufferedReader in = getBufferedReader(client);
             BufferedReader consoleIn = getBufferedReader();
             out = getPrintWriter(client);
