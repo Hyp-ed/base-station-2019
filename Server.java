@@ -1,3 +1,11 @@
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -5,8 +13,9 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Server {
+public class Server extends Application {
     private static final int PORT = 9090;
+    private static PrintWriter out = null;
 
     public static void main(String[] args) {
         ServerSocket listener = getServerSocket(PORT);
@@ -17,10 +26,11 @@ public class Server {
             Socket client = getClientServerFromListener(listener);
             BufferedReader in = getBufferedReader(client);
             BufferedReader consoleIn = getBufferedReader();
-            PrintWriter out = getPrintWriter(client);
+            out = getPrintWriter(client);
+            Application.launch(args);
 
-            System.out.print("Enter message to be sent to client: ");
-            out.println(consoleIn.readLine());
+            // System.out.print("Enter message to be sent to client: ");
+            // out.println(consoleIn.readLine());
 
             while (true) {
                 String input = in.readLine();
@@ -40,6 +50,26 @@ public class Server {
         finally  {
             closeServer(listener);
         }
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Server");
+        Button btn = new Button();
+        btn.setText("Send 'Hello World'");
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+                // out.println(consoleIn.readLine());
+                out.println("Hello world");
+            }
+        });
+
+        StackPane root = new StackPane();
+        root.getChildren().add(btn);
+        primaryStage.setScene(new Scene(root, 300, 250));
+        primaryStage.show();
     }
 
     private static ServerSocket getServerSocket(int portNum) {
