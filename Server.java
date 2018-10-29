@@ -15,6 +15,7 @@ public class Server {
 
         try {
             Socket client = getClientServerFromListener(listener);
+            System.out.println("Connected to client");
             BufferedReader in = getBufferedReader(client);
             BufferedReader consoleIn = getBufferedReader();
             PrintWriter out = getPrintWriter(client);
