@@ -55,8 +55,11 @@ public class Client {
             out.close();
             socket.close();
         }
-        catch (IOException | InterruptedException e) {
+        catch (IOException e) {
             System.out.println("Error closing PrintWriter/socket");
+        }
+        catch (InterruptedException e) {
+            System.out.println("Error joing thread");
         }
     }
 
@@ -76,7 +79,7 @@ public class Client {
                 }
             }
             catch (IOException e) {
-                System.out.println("Something went wrong");
+                System.out.println("Something went wrong reading message");
             }
         }
     }

@@ -27,7 +27,7 @@ public class Server {
                 sendWorker.join();
             }
             catch (InterruptedException e) {
-                System.out.println("idk man");
+                System.out.println("Problem joining threads");
             }
 
             closeClient(client);
@@ -52,6 +52,7 @@ public class Server {
                 while (true) {
                     System.out.println("\nEnter <1> to send message to client");
                     String userInput = consoleIn.readLine();
+
                     if (userInput.equals("1")) {
                         out.println("TEST MESSAGE FROM SERVER!!!!!!!");
                         System.out.println("Sent message to client");
@@ -62,7 +63,7 @@ public class Server {
                 }
             }
             catch (IOException e) {
-                System.out.println("Something went wrong");
+                System.out.println("Something went wrong while sending message");
             }
         }
     }
@@ -88,7 +89,7 @@ public class Server {
                 }
             }
             catch (IOException e) {
-                System.out.println("Something went wrong");
+                System.out.println("Something went wrong while reading message");
             }
         }
     }
