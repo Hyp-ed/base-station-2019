@@ -4,6 +4,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class Server {
     private static final int PORT = 9090;
@@ -16,30 +19,88 @@ public class Server {
         try {
             Socket client = getClientServerFromListener(listener);
             System.out.println("Connected to client");
-            BufferedReader in = getBufferedReader(client);
-            BufferedReader consoleIn = getBufferedReader();
-            PrintWriter out = getPrintWriter(client);
 
-            System.out.print("Enter message to be sent to client: ");
-            out.println(consoleIn.readLine());
+            Thread readWorker = new Thread(new MessageReader(client));
+            readWorker.start();
+            Thread sendWorker = new Thread(new MessageSender(client));
+            sendWorker.start();
 
-            while (true) {
-                String input = in.readLine();
-                if (input == null || input.equals(".")) {
-                    System.out.println("Client decided to end connection");
-                    break;
-                }
-
-                System.out.println("FROM CLIENT: " + input);
+            try {
+                readWorker.join();
+                sendWorker.join();
+            }
+            catch (InterruptedException e) {
+                System.out.println("Problem joining threads");
             }
 
             closeClient(client);
         }
-        catch (IOException e) {
-            System.out.println("Something went wrong");
-        }
         finally  {
             closeServer(listener);
+        }
+    }
+
+    private static class MessageSender implements Runnable {
+        private PrintWriter out = null;
+        private BufferedReader consoleIn = null;
+
+        public MessageSender(Socket client) {
+            out = getPrintWriter(client);
+            consoleIn = getBufferedReader();
+        }
+
+        @Override
+        public void run() {
+            try {
+                while (true) {
+                    System.out.println("\nEnter <1> to send message to client");
+                    String userInput = consoleIn.readLine();
+
+                    if (userInput.equals("1")) {
+                        out.println("TEST MESSAGE FROM SERVER!!!!!!!");
+                        System.out.println("Sent message to client");
+                    }
+                    else {
+                        System.out.println("Message was not sent");
+                    }
+                }
+            }
+            catch (IOException e) {
+                System.out.println("Something went wrong while sending message");
+            }
+        }
+    }
+
+    private static class MessageReader implements Runnable {
+        private BufferedReader in = null;
+        private Logger logger = null;
+
+        public MessageReader(Socket client) {
+            in = getBufferedReader(client);
+        }
+
+        @Override
+        public void run() {
+            try {
+                logger = Logger.getLogger(Server.class.getName());
+                FileHandler fh = new FileHandler("%h/Documents/University/HypED/Telemetry-prototype/temp/server_log.log");
+                fh.setFormatter(new SimpleFormatter());
+                logger.addHandler(fh);
+                logger.setUseParentHandlers(false);
+
+                while (true) {
+                    String input = in.readLine();
+                    if (input == null || input.equals(".")) {
+                        System.out.println("Client decided to end connection");
+                        break;
+                    }
+
+                    logger.info("FROM CLIENT: " + input);
+                }
+            }
+            catch (IOException e) {
+                System.out.println("Something went wrong while reading message");
+            }
         }
     }
 
