@@ -83,7 +83,7 @@ public class Server {
         public void run() {
             try {
                 logger = Logger.getLogger(Server.class.getName());
-                FileHandler fh = new FileHandler("%h/Documents/University/HypED/Telemetry-prototype/temp/server_log.log");
+                FileHandler fh = new FileHandler(System.getProperty("user.dir") + "/temp/server_log.log"); // make sure temp dir exists in current dir before running
                 fh.setFormatter(new SimpleFormatter());
                 logger.addHandler(fh);
                 logger.setUseParentHandlers(false);
