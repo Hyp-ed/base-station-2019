@@ -17,8 +17,6 @@ public class Server {
             Socket client = getClientServerFromListener(listener);
             System.out.println("Connected to client");
 
-            // System.out.print("Enter message to be sent to client: ");
-            // out.println(consoleIn.readLine());
             Thread readWorker = new Thread(new MessageReader(client));
             readWorker.start();
             Thread sendWorker = new Thread(new MessageSender(client));
@@ -28,7 +26,7 @@ public class Server {
                 readWorker.join();
                 sendWorker.join();
             }
-            catch (java.lang.InterruptedException e) {
+            catch (InterruptedException e) {
                 System.out.println("idk man");
             }
 
@@ -52,11 +50,14 @@ public class Server {
         public void run() {
             try {
                 while (true) {
-                    System.out.println("Enter <1> to send message to client");
+                    System.out.println("\nEnter <1> to send message to client");
                     String userInput = consoleIn.readLine();
                     if (userInput.equals("1")) {
                         out.println("TEST MESSAGE FROM SERVER!!!!!!!");
                         System.out.println("Sent message to client");
+                    }
+                    else {
+                        System.out.println("Message was not sent");
                     }
                 }
             }
