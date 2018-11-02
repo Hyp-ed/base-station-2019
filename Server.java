@@ -1,11 +1,3 @@
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,7 +5,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Server extends Application {
+public class Server {
     private static final int PORT = 9090;
     private static PrintWriter out = null;
 
@@ -25,52 +17,53 @@ public class Server extends Application {
         try {
             Socket client = getClientServerFromListener(listener);
             System.out.println("Connected to client");
-            BufferedReader in = getBufferedReader(client);
             BufferedReader consoleIn = getBufferedReader();
             out = getPrintWriter(client);
-            Application.launch(args);
 
             // System.out.print("Enter message to be sent to client: ");
             // out.println(consoleIn.readLine());
+            Runnable read = new MessageReader(client);
+            Thread readWorker = new Thread(read);
+            readWorker.start();
 
-            while (true) {
-                String input = in.readLine();
-                if (input == null || input.equals(".")) {
-                    System.out.println("Client decided to end connection");
-                    break;
-                }
-
-                System.out.println("FROM CLIENT: " + input);
+            try {
+                readWorker.join();
+            }
+            catch (java.lang.InterruptedException e) {
+                System.out.println("idk man");
             }
 
             closeClient(client);
-        }
-        catch (IOException e) {
-            System.out.println("Something went wrong");
         }
         finally  {
             closeServer(listener);
         }
     }
 
-    @Override
-    public void start(Stage primaryStage) {
-        primaryStage.setTitle("Server");
-        Button btn = new Button();
-        btn.setText("Send 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
- 
-            @Override
-            public void handle(ActionEvent event) {
-                // out.println(consoleIn.readLine());
-                out.println("Hello world");
-            }
-        });
+    private static class MessageReader implements Runnable {
+        private BufferedReader in = null;
 
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        primaryStage.setScene(new Scene(root, 300, 250));
-        primaryStage.show();
+        public MessageReader(Socket client) {
+            in = getBufferedReader(client);
+        }
+
+        @Override
+        public void run() {
+            try {
+                while (true) {
+                    String input = in.readLine();
+                    if (input == null || input.equals(".")) {
+                        System.out.println("Client decided to end connection");
+                        break;
+                    }
+
+                    System.out.println("FROM CLIENT: " + input);
+                }
+            }
+            catch (IOException e) {
+                System.out.println("Something went wrong");
+            }
+        }
     }
 
     private static ServerSocket getServerSocket(int portNum) {

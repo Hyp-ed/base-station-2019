@@ -12,7 +12,7 @@ public class Client {
         BufferedReader in = getBufferedReader(socket);
         PrintWriter out = getPrintWriter(socket);
 
-        System.out.println(getMessageFromServer(in));
+        // System.out.println(getMessageFromServer(in));
 
         for (int x = 0; x < 2; x++) {
             out.println("CMD01"+Integer.toString(x*2));
