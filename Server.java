@@ -7,7 +7,6 @@ import java.net.Socket;
 
 public class Server {
     private static final int PORT = 9090;
-    private static PrintWriter out = null;
 
     public static void main(String[] args) {
         ServerSocket listener = getServerSocket(PORT);
@@ -17,17 +16,17 @@ public class Server {
         try {
             Socket client = getClientServerFromListener(listener);
             System.out.println("Connected to client");
-            BufferedReader consoleIn = getBufferedReader();
-            out = getPrintWriter(client);
 
             // System.out.print("Enter message to be sent to client: ");
             // out.println(consoleIn.readLine());
-            Runnable read = new MessageReader(client);
-            Thread readWorker = new Thread(read);
+            Thread readWorker = new Thread(new MessageReader(client));
             readWorker.start();
+            Thread sendWorker = new Thread(new MessageSender(client));
+            sendWorker.start();
 
             try {
                 readWorker.join();
+                sendWorker.join();
             }
             catch (java.lang.InterruptedException e) {
                 System.out.println("idk man");
@@ -37,6 +36,33 @@ public class Server {
         }
         finally  {
             closeServer(listener);
+        }
+    }
+
+    private static class MessageSender implements Runnable {
+        private PrintWriter out = null;
+        private BufferedReader consoleIn = null;
+
+        public MessageSender(Socket client) {
+            out = getPrintWriter(client);
+            consoleIn = getBufferedReader();
+        }
+
+        @Override
+        public void run() {
+            try {
+                while (true) {
+                    System.out.println("Enter <1> to send message to client");
+                    String userInput = consoleIn.readLine();
+                    if (userInput.equals("1")) {
+                        out.println("TEST MESSAGE FROM SERVER!!!!!!!");
+                        System.out.println("Sent message to client");
+                    }
+                }
+            }
+            catch (IOException e) {
+                System.out.println("Something went wrong");
+            }
         }
     }
 
@@ -57,7 +83,7 @@ public class Server {
                         break;
                     }
 
-                    System.out.println("FROM CLIENT: " + input);
+                    // System.out.println("FROM CLIENT: " + input);
                 }
             }
             catch (IOException e) {

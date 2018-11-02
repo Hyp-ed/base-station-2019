@@ -12,9 +12,10 @@ public class Client {
         BufferedReader in = getBufferedReader(socket);
         PrintWriter out = getPrintWriter(socket);
 
-        // System.out.println(getMessageFromServer(in));
+        Thread readWorker = new Thread(new MessageReader(socket));
+        readWorker.start();
 
-        for (int x = 0; x < 2; x++) {
+        for (int x = 0; x < 100000000; x++) {
             out.println("CMD01"+Integer.toString(x*2));
             out.println("CMD02"+Integer.toString(x));
             out.println("CMD03-2");
@@ -50,11 +51,33 @@ public class Client {
         out.println("."); //end connection
 
         try {
+            readWorker.join();
             out.close();
             socket.close();
         }
-        catch (IOException e) {
+        catch (IOException | InterruptedException e) {
             System.out.println("Error closing PrintWriter/socket");
+        }
+    }
+
+    private static class MessageReader implements Runnable {
+        private BufferedReader in = null;
+
+        public MessageReader(Socket s) {
+            in = getBufferedReader(s);
+        }
+
+        @Override
+        public void run() {
+            try {
+                while (true) {
+                    String input = in.readLine();
+                    System.out.println("FROM SERVER: " + input);
+                }
+            }
+            catch (IOException e) {
+                System.out.println("Something went wrong");
+            }
         }
     }
 
