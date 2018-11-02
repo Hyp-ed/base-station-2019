@@ -4,6 +4,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class Server {
     private static final int PORT = 9090;
@@ -70,6 +73,7 @@ public class Server {
 
     private static class MessageReader implements Runnable {
         private BufferedReader in = null;
+        private Logger logger = null;
 
         public MessageReader(Socket client) {
             in = getBufferedReader(client);
@@ -78,6 +82,12 @@ public class Server {
         @Override
         public void run() {
             try {
+                logger = Logger.getLogger(Server.class.getName());
+                FileHandler fh = new FileHandler("%h/Documents/University/HypED/Telemetry-prototype/temp/server_log.log");
+                fh.setFormatter(new SimpleFormatter());
+                logger.addHandler(fh);
+                logger.setUseParentHandlers(false);
+
                 while (true) {
                     String input = in.readLine();
                     if (input == null || input.equals(".")) {
@@ -85,7 +95,7 @@ public class Server {
                         break;
                     }
 
-                    // System.out.println("FROM CLIENT: " + input);
+                    logger.info("FROM CLIENT: " + input);
                 }
             }
             catch (IOException e) {
