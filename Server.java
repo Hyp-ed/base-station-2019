@@ -92,7 +92,7 @@ public class Server {
                     String input = in.readLine();
                     if (input == null || input.equals(".")) {
                         System.out.println("Client decided to end connection");
-                        break;
+                        System.exit(0);
                     }
 
                     logger.info("FROM CLIENT: " + input);
