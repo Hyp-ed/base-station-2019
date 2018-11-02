@@ -9,7 +9,6 @@ public class Client {
         System.out.println("Waiting to connect to server...");
         Socket socket = getSocket();
         System.out.println("Connected to server");
-        BufferedReader in = getBufferedReader(socket);
         PrintWriter out = getPrintWriter(socket);
 
         Thread readWorker = new Thread(new MessageReader(socket));
@@ -75,7 +74,13 @@ public class Client {
             try {
                 while (true) {
                     String input = in.readLine();
-                    System.out.println("FROM SERVER: " + input);
+                    if (input == null) {
+                        System.out.println("Server decided to end connection");
+                        System.exit(0); // terminate program
+                    }
+                    else {
+                        System.out.println("FROM SERVER: " + input);
+                    }
                 }
             }
             catch (IOException e) {
@@ -108,17 +113,6 @@ public class Client {
         }
         catch (IOException e) {
             throw new RuntimeException("Error getting new BufferedReader");
-        }
-    }
-
-    // idk why we need to catch an exception when reading
-    // in server file we can read without having to do error handling
-    private static String getMessageFromServer(BufferedReader b) {
-        try {
-            return "FROM SERVER: " + b.readLine();
-        }
-        catch (IOException e) {
-            throw new RuntimeException("Error reading message from server");
         }
     }
 }
