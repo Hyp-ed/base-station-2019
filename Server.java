@@ -8,10 +8,40 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-public class Server {
+public class Server implements Runnable {
     private static final int PORT = 9090;
 
     public static void main(String[] args) {
+        ServerSocket listener = getServerSocket(PORT);
+        System.out.println("Server now listening on port " + PORT);
+        System.out.println("Waiting to connect to client...");
+
+        try {
+            Socket client = getClientServerFromListener(listener);
+            System.out.println("Connected to client");
+
+            Thread readWorker = new Thread(new MessageReader(client));
+            readWorker.start();
+            Thread sendWorker = new Thread(new MessageSender(client));
+            sendWorker.start();
+
+            try {
+                readWorker.join();
+                sendWorker.join();
+            }
+            catch (InterruptedException e) {
+                System.out.println("Problem joining threads");
+            }
+
+            closeClient(client);
+        }
+        finally  {
+            closeServer(listener);
+        }
+    }
+
+    @Override
+    public void run() {
         ServerSocket listener = getServerSocket(PORT);
         System.out.println("Server now listening on port " + PORT);
         System.out.println("Waiting to connect to client...");
