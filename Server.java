@@ -22,14 +22,11 @@ public class Server implements Runnable {
             client = getClientServerFromListener(listener);
             System.out.println("Connected to client");
 
-            Thread readWorker = new Thread(new MessageReader(client));
+            Thread readWorker = new Thread(new MessageReader());
             readWorker.start();
-            // Thread sendWorker = new Thread(new MessageSender(client));
-            // sendWorker.start();
 
             try {
                 readWorker.join();
-                // sendWorker.join();
             }
             catch (InterruptedException e) {
                 System.out.println("Problem joining threads");
@@ -44,53 +41,46 @@ public class Server implements Runnable {
 
     public void sendMessage() {
         try {
-            PrintWriter out = getPrintWriter(this.client);
-            out.println("hello client!");
-            System.out.println("Sent message to client");
+            Thread sendWorker = new Thread(new MessageSender("hello client!"));
+            sendWorker.start();
         }
         catch (NullPointerException e) {
             System.out.println("Could not send message, client probably not running");
         }
     }
 
-    // don't really need this anymore
-    private static class MessageSender implements Runnable {
-        private PrintWriter out = null;
-        private BufferedReader consoleIn = null;
+    public void sendSecondMessage() {
+        try {
+            Thread sendWorker = new Thread(new MessageSender("hello client again!"));
+            sendWorker.start();
+        }
+        catch (NullPointerException e) {
+            System.out.println("Could not send message, client probably not running");
+        }
+    }
 
-        public MessageSender(Socket client) {
-            out = getPrintWriter(client);
-            consoleIn = getBufferedReader();
+    private class MessageSender implements Runnable {
+        private PrintWriter out = null;
+        private String message;
+
+        public MessageSender(String m) {
+            out = getPrintWriter(Server.this.client);
+            message = m;
         }
 
         @Override
         public void run() {
-            try {
-                while (true) {
-                    System.out.println("\nEnter <1> to send message to client");
-                    String userInput = consoleIn.readLine();
-
-                    if (userInput.equals("1")) {
-                        out.println("TEST MESSAGE FROM SERVER!!!!!!!");
-                        System.out.println("Sent message to client");
-                    }
-                    else {
-                        System.out.println("Message was not sent");
-                    }
-                }
-            }
-            catch (IOException e) {
-                System.out.println("Something went wrong while sending message");
-            }
+            out.println(message);
+            System.out.println("Sent message to client");
         }
     }
 
-    private static class MessageReader implements Runnable {
+    private class MessageReader implements Runnable {
         private BufferedReader in = null;
         private Logger logger = null;
 
-        public MessageReader(Socket client) {
-            in = getBufferedReader(client);
+        public MessageReader() {
+            in = getBufferedReader(Server.this.client);
         }
 
         @Override
@@ -152,10 +142,6 @@ public class Server implements Runnable {
         catch (IOException e) {
             throw new RuntimeException("Error getting new BufferedReader for client socket");
         }
-    }
-
-    private static BufferedReader getBufferedReader() {
-        return new BufferedReader(new InputStreamReader(System.in));
     }
 
     private static void closeClient(Socket clientSocket) {
