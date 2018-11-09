@@ -26,6 +26,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 server.sendMessage();
+                server.sendSecondMessage();
             }
         });
 
