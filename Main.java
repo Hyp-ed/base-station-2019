@@ -21,13 +21,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         Button btn = new Button();
         btn.setText("Send \"hello client!\" to client");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                server.sendMessage();
-                server.sendSecondMessage();
-            }
+        btn.setOnAction((ActionEvent e) -> {
+            server.sendMessage();
+            server.sendSecondMessage();
         });
 
         StackPane root = new StackPane();
