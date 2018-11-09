@@ -10,7 +10,7 @@ import java.util.logging.SimpleFormatter;
 
 public class Server implements Runnable {
     private static final int PORT = 9090;
-    private static Socket client = null;
+    private Socket client = null;
 
     @Override
     public void run() {
@@ -22,7 +22,7 @@ public class Server implements Runnable {
             client = getClientServerFromListener(listener);
             System.out.println("Connected to client");
 
-            Thread readWorker = new Thread(new MessageReader(client));
+            Thread readWorker = new Thread(new MessageReader());
             readWorker.start();
             // Thread sendWorker = new Thread(new MessageSender(client));
             // sendWorker.start();
@@ -62,12 +62,12 @@ public class Server implements Runnable {
         }
     }
 
-    private static class MessageSender implements Runnable {
+    private class MessageSender implements Runnable {
         private PrintWriter out = null;
         private String message;
 
         public MessageSender(String m) {
-            out = getPrintWriter(Server.client);
+            out = getPrintWriter(Server.this.client);
             message = m;
         }
 
@@ -78,12 +78,12 @@ public class Server implements Runnable {
         }
     }
 
-    private static class MessageReader implements Runnable {
+    private class MessageReader implements Runnable {
         private BufferedReader in = null;
         private Logger logger = null;
 
-        public MessageReader(Socket client) {
-            in = getBufferedReader(client);
+        public MessageReader() {
+            in = getBufferedReader(Server.this.client);
         }
 
         @Override
