@@ -24,12 +24,9 @@ public class Server implements Runnable {
 
             Thread readWorker = new Thread(new MessageReader());
             readWorker.start();
-            // Thread sendWorker = new Thread(new MessageSender(client));
-            // sendWorker.start();
 
             try {
                 readWorker.join();
-                // sendWorker.join();
             }
             catch (InterruptedException e) {
                 System.out.println("Problem joining threads");
@@ -145,10 +142,6 @@ public class Server implements Runnable {
         catch (IOException e) {
             throw new RuntimeException("Error getting new BufferedReader for client socket");
         }
-    }
-
-    private static BufferedReader getBufferedReader() {
-        return new BufferedReader(new InputStreamReader(System.in));
     }
 
     private static void closeClient(Socket clientSocket) {
