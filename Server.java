@@ -10,35 +10,7 @@ import java.util.logging.SimpleFormatter;
 
 public class Server implements Runnable {
     private static final int PORT = 9090;
-
-    public static void main(String[] args) {
-        ServerSocket listener = getServerSocket(PORT);
-        System.out.println("Server now listening on port " + PORT);
-        System.out.println("Waiting to connect to client...");
-
-        try {
-            Socket client = getClientServerFromListener(listener);
-            System.out.println("Connected to client");
-
-            Thread readWorker = new Thread(new MessageReader(client));
-            readWorker.start();
-            Thread sendWorker = new Thread(new MessageSender(client));
-            sendWorker.start();
-
-            try {
-                readWorker.join();
-                sendWorker.join();
-            }
-            catch (InterruptedException e) {
-                System.out.println("Problem joining threads");
-            }
-
-            closeClient(client);
-        }
-        finally  {
-            closeServer(listener);
-        }
-    }
+    private Socket client = null;
 
     @Override
     public void run() {
@@ -47,17 +19,17 @@ public class Server implements Runnable {
         System.out.println("Waiting to connect to client...");
 
         try {
-            Socket client = getClientServerFromListener(listener);
+            client = getClientServerFromListener(listener);
             System.out.println("Connected to client");
 
             Thread readWorker = new Thread(new MessageReader(client));
             readWorker.start();
-            Thread sendWorker = new Thread(new MessageSender(client));
-            sendWorker.start();
+            // Thread sendWorker = new Thread(new MessageSender(client));
+            // sendWorker.start();
 
             try {
                 readWorker.join();
-                sendWorker.join();
+                // sendWorker.join();
             }
             catch (InterruptedException e) {
                 System.out.println("Problem joining threads");
@@ -70,6 +42,18 @@ public class Server implements Runnable {
         }
     }
 
+    public void sendMessage() {
+        try {
+            PrintWriter out = getPrintWriter(this.client);
+            out.println("hello client!");
+            System.out.println("Sent message to client");
+        }
+        catch (NullPointerException e) {
+            System.out.println("Could not send message, client probably not running");
+        }
+    }
+
+    // don't really need this anymore
     private static class MessageSender implements Runnable {
         private PrintWriter out = null;
         private BufferedReader consoleIn = null;

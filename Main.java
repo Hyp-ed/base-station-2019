@@ -20,12 +20,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         Button btn = new Button();
-        btn.setText("Send message to client");
+        btn.setText("Send \"hello client!\" to client");
         btn.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("THIS IS WHERE WE'LL SEND MESSAGE");
+                server.sendMessage();
             }
         });
 
@@ -34,7 +34,7 @@ public class Main extends Application {
 
         Scene scene = new Scene(root, 400, 400);
 
-        primaryStage.setTitle("hello world");
+        primaryStage.setTitle("HypED Base Station");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
