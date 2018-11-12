@@ -1,8 +1,9 @@
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
@@ -19,17 +20,25 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Send \"hello client!\" to client");
-        btn.setOnAction((ActionEvent e) -> {
-            server.sendMessage();
-            server.sendSecondMessage();
+        Button btn1 = new Button();
+        btn1.setText("Send \"message 1\"");
+        btn1.setOnAction((ActionEvent e) -> {
+            server.sendMessage("message 1");
         });
 
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
+        Button btn2 = new Button();
+        btn2.setText("Send \"message 2\"");
+        btn2.setOnAction((ActionEvent e) -> {
+            server.sendMessage("message 2");
+        });
 
-        Scene scene = new Scene(root, 400, 400);
+        VBox vbox = new VBox(10, btn1, btn2);
+        vbox.setAlignment(Pos.CENTER);
+
+        StackPane root = new StackPane();
+        root.getChildren().add(vbox);
+
+        Scene scene = new Scene(root, 300, 200);
 
         primaryStage.setTitle("HypED Base Station");
         primaryStage.setScene(scene);

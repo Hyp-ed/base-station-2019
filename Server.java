@@ -39,19 +39,9 @@ public class Server implements Runnable {
         }
     }
 
-    public void sendMessage() {
+    public void sendMessage(String message) {
         try {
-            Thread sendWorker = new Thread(new MessageSender("hello client!"));
-            sendWorker.start();
-        }
-        catch (NullPointerException e) {
-            System.out.println("Could not send message, client probably not running");
-        }
-    }
-
-    public void sendSecondMessage() {
-        try {
-            Thread sendWorker = new Thread(new MessageSender("hello client again!"));
+            Thread sendWorker = new Thread(new MessageSender(message));
             sendWorker.start();
         }
         catch (NullPointerException e) {
