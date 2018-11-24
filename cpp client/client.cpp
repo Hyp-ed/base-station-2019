@@ -5,9 +5,25 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include <unistd.h>
+#include <thread>
 
 #define PORT 9090
 #define SERVER_IP "localhost"
+#define BUFFER_SIZE 8192
+
+void Read(int sockfd) {
+    char buffer[BUFFER_SIZE];
+
+    while (true) {
+        std::memset(&buffer, 0, sizeof(buffer));
+        if (recv(sockfd, buffer, BUFFER_SIZE, 0) < 0) {
+            std::cerr << "Error: " << strerror(errno) << std::endl;
+            exit(5);
+        }
+
+        std::cout << "FROM SERVER: " << buffer;
+    }
+}
 
 int main(int argc, char *argv[]) {
     int sockfd;
@@ -40,6 +56,8 @@ int main(int argc, char *argv[]) {
         exit(3);
     }
 
+    std::thread threadObj(Read, sockfd);
+
     // send messages
     char *msg = "hello from client\n";
     int len = strlen(msg);
@@ -52,6 +70,8 @@ int main(int argc, char *argv[]) {
 
     send(sockfd, "END", 3, 0);
     send(sockfd, ".", 1, 0); // signify end of messaging
+
+    threadObj.join();
 
     close(sockfd);
     return 0;
