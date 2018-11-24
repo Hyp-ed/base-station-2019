@@ -7,6 +7,7 @@
 #include <unistd.h>
 
 #define PORT 9090
+#define SERVER_IP "localhost"
 
 int main(int argc, char *argv[]) {
     int sockfd;
@@ -21,7 +22,7 @@ int main(int argc, char *argv[]) {
     }
 
     // resolve host address (convert from symbolic name to IP)
-    server = gethostbyname("localhost");
+    server = gethostbyname(SERVER_IP);
     if (server == NULL) {
         std::cerr << "Error: " << strerror(errno) << std::endl;
         exit(2);
