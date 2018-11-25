@@ -56,6 +56,7 @@ int main(int argc, char *argv[]) {
         exit(3);
     }
 
+    // start message reading thread to run in background
     std::thread threadObj(Read, sockfd);
 
     // send messages
@@ -68,9 +69,11 @@ int main(int argc, char *argv[]) {
         }
     }
 
+    // signify end of messaging
     send(sockfd, "END", 3, 0);
-    send(sockfd, ".", 1, 0); // signify end of messaging
+    send(sockfd, ".", 1, 0);
 
+    // wait for message reading thread to finish
     threadObj.join();
 
     close(sockfd);
