@@ -51,11 +51,15 @@ int main(int argc, char *argv[]) {
     serv_addr.sin_port = htons(PORT);
     std::memcpy(&serv_addr.sin_addr.s_addr, server->h_addr_list[0], server->h_length);
 
+    std::cout << "Waiting to connect to server..." << std::endl;
+
     // connect to the server
     if (connect(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
         std::cerr << "Error: " << strerror(errno) << std::endl;
         exit(3);
     }
+
+    std::cout << "Connected to server" << std::endl;
 
     // start message reading thread to run in background
     std::thread threadObj(Read, sockfd);

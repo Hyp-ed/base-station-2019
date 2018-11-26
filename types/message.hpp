@@ -13,8 +13,8 @@ namespace types {
             }
 
             int send(int socket) {
-                const char *cmd = command.c_str();
-                const char *d = data.c_str();
+                const char *cmd = (this->command).c_str();
+                const char *d = (this->data).c_str();
 
                 int sent_cmd = ::send(socket, cmd, strlen(cmd), 0); // send command
                 int sent_d = ::send(socket, d, strlen(d), 0); // send data
