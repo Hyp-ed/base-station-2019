@@ -2,8 +2,6 @@ package types;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class Message {
     public String command;
@@ -21,7 +19,7 @@ public class Message {
             this.data = in.readLine();
         }
         catch (IOException e) {
-            throw new RuntimeException("error man");
+            throw new RuntimeException("Error reading message data/command");
         }
     }
 }
