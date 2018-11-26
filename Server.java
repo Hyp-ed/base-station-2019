@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+import types.*;
 
 public class Server implements Runnable {
     private static final int PORT = 9090;
@@ -82,14 +83,20 @@ public class Server implements Runnable {
                 logger.addHandler(fh);
                 logger.setUseParentHandlers(false);
 
+                logger.info("******BEGIN******");
+
                 while (true) {
-                    String input = in.readLine();
-                    if (input == null || input.equals(".")) {
+                    // String input = in.readLine();
+                    Message msg = new Message(in);
+
+                    if (msg == null || msg.equals(".")) {
                         System.out.println("Client decided to end connection");
                         System.exit(0);
                     }
 
-                    logger.info("FROM CLIENT: " + input);
+                    // logger.info("FROM CLIENT: " + input);
+                    logger.info("COMMAND: " + msg.command);
+                    logger.info("DATA: " + msg.data);
                 }
             }
             catch (IOException e) {

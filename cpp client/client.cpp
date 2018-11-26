@@ -6,6 +6,7 @@
 #include <netdb.h>
 #include <unistd.h>
 #include <thread>
+#include "../types/message.hpp" // don't like this relative path, change in future
 
 #define PORT 9090
 #define SERVER_IP "localhost"
@@ -16,7 +17,7 @@ void Read(int sockfd) {
 
     while (true) {
         std::memset(&buffer, 0, sizeof(buffer));
-        if (recv(sockfd, buffer, BUFFER_SIZE, 0) < 0) {
+        if (recv(sockfd, buffer, BUFFER_SIZE, 0) <= 0) {
             std::cerr << "Error: " << strerror(errno) << std::endl;
             exit(5);
         }
@@ -60,13 +61,24 @@ int main(int argc, char *argv[]) {
     std::thread threadObj(Read, sockfd);
 
     // send messages
-    char *msg = "hello from client\n";
-    int len = strlen(msg);
-    for (int i = 0; i < 10000000; i++) {
-        if (send(sockfd, msg, len, 0) < 0) {
-            std::cerr << "Error: " << strerror(errno) << std::endl;
-            exit(4);
-        }
+    // char *msg = "hello from client\n";
+    // int len = strlen(msg);
+    // for (int i = 0; i < 10000000; i++) {
+        // if (send(sockfd, msg, len, 0) < 0) {
+            // std::cerr << "Error: " << strerror(errno) << std::endl;
+            // exit(4);
+        // }
+    // }
+
+    for (int i = 0; i < 1; i++) {
+        types::message test(1, 777);
+        test.send(sockfd);
+
+        test = types::message(2, 888);
+        test.send(sockfd);
+
+        test = types::message(3, 999);
+        test.send(sockfd);
     }
 
     // signify end of messaging
