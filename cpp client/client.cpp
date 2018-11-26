@@ -9,7 +9,7 @@
 
 #define PORT 9090
 #define SERVER_IP "localhost"
-#define BUFFER_SIZE 8192
+#define BUFFER_SIZE 1024
 
 void Read(int sockfd) {
     char buffer[BUFFER_SIZE];
