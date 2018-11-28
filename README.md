@@ -12,4 +12,4 @@ and in another terminal window
 ```
 java Client
 ```
-Also be sure to make a directory `working_directory/temp` this is where the log is stored.
+Also be sure to make a directory `working_directory/temp` , as this is where the log is stored.
