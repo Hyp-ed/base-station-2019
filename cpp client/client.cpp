@@ -86,8 +86,8 @@ int main(int argc, char *argv[]) {
     }
 
     // signify end of messaging
-    send(sockfd, "END", 3, 0);
-    send(sockfd, ".", 1, 0);
+    types::message end_msg("END");
+    end_msg.send(sockfd);
 
     // wait for message reading thread to finish
     threadObj.join();

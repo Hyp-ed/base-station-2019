@@ -7,6 +7,11 @@ namespace types {
             std::string command;
             std::string data;
 
+            message(std::string d) {
+                this->command = std::string("REMOVE") + '\n'; // unused command header, idk remove this
+                this->data = d + '\n';
+            }
+
             message(int c, int d) {
                 this->command = std::to_string(c) += '\n';
                 this->data = std::to_string(d) += '\n';

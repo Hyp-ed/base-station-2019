@@ -8,6 +8,13 @@ public class Message {
     private String command;
     private String data;
 
+    public Message() {
+        this.command = null;
+        this.data = null;
+    }
+
+    // we set command to null when we just want to send messages without a command prepended
+    // e.g. when we send from server to client no need for command header
     public Message(String d) {
         this.command = null;
         this.data = d;
@@ -18,7 +25,7 @@ public class Message {
         this.data = d;
     }
 
-    public Message(BufferedReader in) {
+    public void read(BufferedReader in) throws RuntimeException {
         try {
             // Data should be sent with newspaces to delimit
             this.command = in.readLine();

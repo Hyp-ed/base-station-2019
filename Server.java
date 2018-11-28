@@ -86,9 +86,20 @@ public class Server implements Runnable {
                 logger.info("******BEGIN******");
 
                 while (true) {
-                    Message msg = new Message(in);
+                    Message msg = new Message();
 
-                    if (msg == null || msg.equals(".")) {
+                    try {
+                        msg.read(in);
+                        System.out.println("msg.command: " + msg.getCommand());
+                        System.out.println("msg.data: " + msg.getData());
+                    }
+                    catch (RuntimeException e) {
+                        System.out.println("Error reading message data/command, client probably ended connection");
+                        System.exit(0);
+                    }
+
+                    // if (msg == null || msg.equals(".")) {
+                    if (msg.getData().equals("END")) {
                         System.out.println("Client decided to end connection");
                         System.exit(0);
                     }
