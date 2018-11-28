@@ -95,8 +95,8 @@ public class Server implements Runnable {
                     }
 
                     // logger.info("FROM CLIENT: " + input);
-                    logger.info("COMMAND: " + msg.command);
-                    logger.info("DATA: " + msg.data);
+                    logger.info("COMMAND: " + msg.getCommand());
+                    logger.info("DATA: " + msg.getData());
                 }
             }
             catch (IOException e) {

@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 public class Message {
-    public String command;
-    public String data;
+    private String command;
+    private String data;
 
     public Message(String c, String d) {
         this.command = c;
@@ -21,5 +21,13 @@ public class Message {
         catch (IOException e) {
             throw new RuntimeException("Error reading message data/command");
         }
+    }
+
+    public String getCommand() {
+        return this.command;
+    }
+
+    public String getData() {
+        return this.data;
     }
 }
