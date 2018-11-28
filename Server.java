@@ -52,16 +52,16 @@ public class Server implements Runnable {
 
     private class MessageSender implements Runnable {
         private PrintWriter out = null;
-        private String message;
+        private Message msg;
 
-        public MessageSender(String m) {
+        public MessageSender(String msgContent) {
             out = getPrintWriter(Server.this.client);
-            message = m;
+            msg = new Message(msgContent);
         }
 
         @Override
         public void run() {
-            out.println(message);
+            msg.send(this.out);
             System.out.println("Sent message to client");
         }
     }

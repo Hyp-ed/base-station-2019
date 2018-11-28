@@ -2,10 +2,16 @@ package types;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Message {
     private String command;
     private String data;
+
+    public Message(String d) {
+        this.command = null;
+        this.data = d;
+    }
 
     public Message(String c, String d) {
         this.command = c;
@@ -20,6 +26,16 @@ public class Message {
         }
         catch (IOException e) {
             throw new RuntimeException("Error reading message data/command");
+        }
+    }
+
+    public void send(PrintWriter out) {
+        if (this.command != null) {
+            out.println(this.command);
+        }
+
+        if (this.data != null) {
+            out.println(this.data);
         }
     }
 
