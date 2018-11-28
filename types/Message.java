@@ -25,7 +25,7 @@ public class Message {
         this.data = d;
     }
 
-    public void read(BufferedReader in) throws RuntimeException {
+    public void read(BufferedReader in) {
         try {
             // Data should be sent with newspaces to delimit
             this.command = in.readLine();
