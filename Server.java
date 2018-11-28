@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+import types.*;
 
 public class Server implements Runnable {
     private static final int PORT = 9090;
@@ -51,16 +52,16 @@ public class Server implements Runnable {
 
     private class MessageSender implements Runnable {
         private PrintWriter out = null;
-        private String message;
+        private Message msg;
 
-        public MessageSender(String m) {
+        public MessageSender(String msgContent) {
             out = getPrintWriter(Server.this.client);
-            message = m;
+            msg = new Message(msgContent);
         }
 
         @Override
         public void run() {
-            out.println(message);
+            msg.send(this.out);
             System.out.println("Sent message to client");
         }
     }
@@ -82,14 +83,18 @@ public class Server implements Runnable {
                 logger.addHandler(fh);
                 logger.setUseParentHandlers(false);
 
+                logger.info("******BEGIN******");
+
                 while (true) {
-                    String input = in.readLine();
-                    if (input == null || input.equals(".")) {
+                    Message msg = new Message(in);
+
+                    if (msg == null || msg.equals(".")) {
                         System.out.println("Client decided to end connection");
                         System.exit(0);
                     }
 
-                    logger.info("FROM CLIENT: " + input);
+                    logger.info("COMMAND: " + msg.getCommand());
+                    logger.info("DATA: " + msg.getData());
                 }
             }
             catch (IOException e) {
