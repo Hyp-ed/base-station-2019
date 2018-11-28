@@ -86,7 +86,6 @@ public class Server implements Runnable {
                 logger.info("******BEGIN******");
 
                 while (true) {
-                    // String input = in.readLine();
                     Message msg = new Message(in);
 
                     if (msg == null || msg.equals(".")) {
@@ -94,7 +93,6 @@ public class Server implements Runnable {
                         System.exit(0);
                     }
 
-                    // logger.info("FROM CLIENT: " + input);
                     logger.info("COMMAND: " + msg.getCommand());
                     logger.info("DATA: " + msg.getData());
                 }
