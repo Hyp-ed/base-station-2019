@@ -7,11 +7,14 @@ import java.net.Socket;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+import javafx.beans.property.SimpleStringProperty;
 import types.*;
 
 public class Server implements Runnable {
     private static final int PORT = 9090;
     private Socket client = null;
+    private SimpleStringProperty cmd = new SimpleStringProperty(this, "cmd", "COMMAND");
+    private SimpleStringProperty data = new SimpleStringProperty(this, "data", "DATA");
 
     @Override
     public void run() {
@@ -87,13 +90,15 @@ public class Server implements Runnable {
 
                 while (true) {
                     Message msg = new Message();
-
                     msg.read(in);
-                    System.out.println("msg.command: " + msg.getCommand());
-                    System.out.println("msg.data: " + msg.getData());
 
                     logger.info("COMMAND: " + msg.getCommand());
                     logger.info("DATA: " + msg.getData());
+
+                    Server.this.cmd.set(msg.getCommand());
+                    Server.this.data.set(msg.getData());
+                    System.out.println("msg.command: " + Server.this.cmd.getValue());
+                    System.out.println("msg.data: " + Server.this.data.getValue());
 
                     if (msg.getData().equals("END")) {
                         System.out.println("Client decided to end connection");
@@ -105,6 +110,10 @@ public class Server implements Runnable {
                 System.out.println("Something went wrong while reading message");
             }
         }
+    }
+
+    public SimpleStringProperty dataProperty() {
+        return this.data;
     }
 
     private static ServerSocket getServerSocket(int portNum) {
