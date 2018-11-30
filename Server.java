@@ -95,6 +95,11 @@ public class Server implements Runnable {
                     String rawCommand = msg.getCommand();
                     String rawData = msg.getData();
 
+                    if (rawData == null || rawData.equals("END")) {
+                        System.out.println("Client decided to end connection");
+                        System.exit(0);
+                    }
+
                     switch (rawCommand) {
                         case "1": // velocity
                             Server.this.velocity.set(rawData);
@@ -111,11 +116,6 @@ public class Server implements Runnable {
                         default:
                             logger.info("ERROR: we should never reach this state");
                             throw new RuntimeException("UNREACHABLE");
-                    }
-
-                    if (rawData.equals("END")) {
-                        System.out.println("Client decided to end connection");
-                        System.exit(0);
                     }
                 }
             }

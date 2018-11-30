@@ -15,39 +15,27 @@ public class Client {
         readWorker.start();
 
         for (int x = 0; x < 100000000; x++) {
-            out.println("CMD01"+Integer.toString(x*2));
-            out.println("CMD02"+Integer.toString(x));
-            out.println("CMD03-2");
-            out.println("CMD04"+Integer.toString(x));
-            out.println("CMD05"+Integer.toString(x));
-            out.println("CMD06"+Integer.toString(x));
-            out.println("CMD07"+Integer.toString(x));
-            out.println("CMD0803");
-            out.println("CMD091111");
-            out.println("CMD1011111111");
-            out.println("CMD1111111111");
-            out.println("CMD1211");
-            out.println("CMD13"+Integer.toString(x));
-            out.println("CMD14"+Integer.toString(x));
-            out.println("CMD15"+Integer.toString(x));
-            out.println("CMD16"+Integer.toString(x));
-            out.println("CMD17"+Integer.toString(x));
-            out.println("CMD18"+Integer.toString(x));
-            out.println("CMD19"+Integer.toString(x));
-            out.println("CMD20"+Integer.toString(x));
-            out.println("CMD21"+Integer.toString(x));
-            out.println("CMD22"+Integer.toString(x));
-            out.println("CMD23"+Integer.toString(x));
-            out.println("CMD24"+Integer.toString(x));
-            out.println("CMD25"+Integer.toString(x));
-            out.println("CMD26"+Integer.toString(x));
-            out.println("CMD27"+Integer.toString(x));
-            out.println("CMD28"+Integer.toString(x));
-            out.println("CMD29"+Integer.toString(x));
-            out.println("CMD30"+Integer.toString(x));
+            out.println("1"); // velocity
+            out.println("123");
+
+            out.println("2"); // acceleration
+            out.println("234");
+
+            out.println("3"); // brake temp
+            out.println("345");
+
+            out.println("1"); // velocity
+            out.println("124");
+
+            out.println("2"); // acceleration
+            out.println("235");
+
+            out.println("3"); // brake temp
+            out.println("346");
         }
 
-        out.println("."); //end connection
+        out.println("UNUSED COMMAND"); // doesn't matter, as we're sending END below anyways
+        out.println("END");
 
         try {
             readWorker.join();
