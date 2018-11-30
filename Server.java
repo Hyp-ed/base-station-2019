@@ -66,7 +66,7 @@ public class Server implements Runnable {
         @Override
         public void run() {
             msg.send(this.out);
-            System.out.println("Sent message to client");
+            System.out.println("Sent \"" + msg.getData() + "\" to client");
         }
     }
 
