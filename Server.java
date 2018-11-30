@@ -95,23 +95,21 @@ public class Server implements Runnable {
                     String rawCommand = msg.getCommand();
                     String rawData = msg.getData();
 
-                    logger.info("COMMAND: " + rawCommand);
-                    logger.info("DATA: " + rawData);
-
                     switch (rawCommand) {
                         case "1": // velocity
                             Server.this.velocity.set(rawData);
-                            System.out.println("VELOCITY: " + rawData);
+                            logger.info("VELOCITY: " + rawData);
                             break;
                         case "2": // acceleration
                             Server.this.acceleration.set(rawData);
-                            System.out.println("ACCELERATION: " + rawData);
+                            logger.info("ACCELERATION: " + rawData);
                             break;
                         case "3": // brake temp
                             Server.this.brakeTemp.set(rawData);
-                            System.out.println("BRAKE_TEMP: " + rawData);
+                            logger.info("BRAKE_TEMP: " + rawData);
                             break;
                         default:
+                            logger.info("ERROR: we should never reach this state");
                             throw new RuntimeException("UNREACHABLE");
                     }
 
