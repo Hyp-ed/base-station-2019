@@ -101,6 +101,7 @@ public class Main extends Application {
         HBox dataHBox = new HBox(20, velocityLabel, accelerationLabel, brakeTempLabel);
         dataHBox.setAlignment(Pos.CENTER);
 
+        // hbox with text to describe labels
         Label velocityText = new Label("Velocity");
         Label accelerationText = new Label("Acceleration");
         Label brakeTempText = new Label("Brake Temp");

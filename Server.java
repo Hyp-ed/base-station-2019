@@ -70,7 +70,6 @@ public class Server implements Runnable {
         }
     }
 
-    // TODO: this method is too long, gotta break up into smaller methods
     private class MessageReader implements Runnable {
         private BufferedReader in = null;
         private Logger logger = null;
@@ -192,7 +191,7 @@ public class Server implements Runnable {
             return logger;
         }
         catch (IOException e) {
-            System.out.println("Error creatnew logger");
+            System.out.println("Error creating new logger");
             return null;
         }
     }
