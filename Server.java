@@ -81,47 +81,37 @@ public class Server implements Runnable {
 
         @Override
         public void run() {
-            try {
-                // logger stuff
-                logger = Logger.getLogger(Server.class.getName());
-                FileHandler fh = new FileHandler(System.getProperty("user.dir") + "/temp/server_log.log"); // make sure temp dir exists in current dir before running
-                fh.setFormatter(new SimpleFormatter());
-                logger.addHandler(fh);
-                logger.setUseParentHandlers(false);
-                logger.info("******BEGIN******");
+            logger = Server.getLogger(Server.class.getName());
+            logger.info("******BEGIN******");
 
-                while (true) {
-                    Message msg = new Message();
-                    msg.read(in);
-                    String rawCommand = msg.getCommand();
-                    String rawData = msg.getData();
+            while (true) {
+                Message msg = new Message();
+                msg.read(in);
+                String rawCommand = msg.getCommand();
+                String rawData = msg.getData();
 
-                    if (rawData == null || rawData.equals("END")) {
-                        System.out.println("Client decided to end connection");
-                        System.exit(0);
-                    }
-
-                    switch (rawCommand) {
-                        case "1": // velocity
-                            Server.this.velocity.set(rawData);
-                            logger.info("VELOCITY: " + rawData);
-                            break;
-                        case "2": // acceleration
-                            Server.this.acceleration.set(rawData);
-                            logger.info("ACCELERATION: " + rawData);
-                            break;
-                        case "3": // brake temp
-                            Server.this.brakeTemp.set(rawData);
-                            logger.info("BRAKE_TEMP: " + rawData);
-                            break;
-                        default:
-                            logger.info("ERROR: we should never reach this state");
-                            throw new RuntimeException("UNREACHABLE");
-                    }
+                if (rawData == null || rawData.equals("END")) {
+                    System.out.println("Client decided to end connection");
+                    System.exit(0);
                 }
-            }
-            catch (IOException e) {
-                System.out.println("Something went wrong while reading message");
+
+                switch (rawCommand) {
+                    case "1": // velocity
+                        Server.this.velocity.set(rawData);
+                        logger.info("VELOCITY: " + rawData);
+                        break;
+                    case "2": // acceleration
+                        Server.this.acceleration.set(rawData);
+                        logger.info("ACCELERATION: " + rawData);
+                        break;
+                    case "3": // brake temp
+                        Server.this.brakeTemp.set(rawData);
+                        logger.info("BRAKE_TEMP: " + rawData);
+                        break;
+                    default:
+                        logger.info("ERROR: we should never reach this state");
+                        throw new RuntimeException("UNREACHABLE");
+                }
             }
         }
     }
@@ -189,6 +179,21 @@ public class Server implements Runnable {
         }
         catch (IOException e) {
             throw new RuntimeException("Error closing server socket");
+        }
+    }
+
+    private static Logger getLogger(String name) {
+        try {
+            Logger logger = Logger.getLogger(name);
+            FileHandler fh = new FileHandler(System.getProperty("user.dir") + "/temp/server_log.log"); // make sure temp dir exists in current dir before running
+            fh.setFormatter(new SimpleFormatter());
+            logger.addHandler(fh);
+            logger.setUseParentHandlers(false);
+            return logger;
+        }
+        catch (IOException e) {
+            System.out.println("Error creatnew logger");
+            return null;
         }
     }
 }
