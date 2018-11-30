@@ -80,20 +80,22 @@ public class Server implements Runnable {
         @Override
         public void run() {
             try {
+                // logger stuff
                 logger = Logger.getLogger(Server.class.getName());
                 FileHandler fh = new FileHandler(System.getProperty("user.dir") + "/temp/server_log.log"); // make sure temp dir exists in current dir before running
                 fh.setFormatter(new SimpleFormatter());
                 logger.addHandler(fh);
                 logger.setUseParentHandlers(false);
-
                 logger.info("******BEGIN******");
 
                 while (true) {
                     Message msg = new Message();
                     msg.read(in);
+                    String rawCommand = msg.getCommand();
+                    String rawData = msg.getData();
 
-                    logger.info("COMMAND: " + msg.getCommand());
-                    logger.info("DATA: " + msg.getData());
+                    logger.info("COMMAND: " + rawCommand);
+                    logger.info("DATA: " + rawData);
 
                     Server.this.cmd.set(msg.getCommand());
                     Server.this.data.set(msg.getData());
