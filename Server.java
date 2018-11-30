@@ -7,11 +7,15 @@ import java.net.Socket;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+import javafx.beans.property.SimpleStringProperty;
 import types.*;
 
 public class Server implements Runnable {
     private static final int PORT = 9090;
     private Socket client = null;
+    private SimpleStringProperty velocity = new SimpleStringProperty(this, "velocity", "0");
+    private SimpleStringProperty acceleration = new SimpleStringProperty(this, "acceleration", "0");
+    private SimpleStringProperty brakeTemp = new SimpleStringProperty(this, "brakeTemp", "25");
 
     @Override
     public void run() {
@@ -77,25 +81,41 @@ public class Server implements Runnable {
         @Override
         public void run() {
             try {
+                // logger stuff
                 logger = Logger.getLogger(Server.class.getName());
                 FileHandler fh = new FileHandler(System.getProperty("user.dir") + "/temp/server_log.log"); // make sure temp dir exists in current dir before running
                 fh.setFormatter(new SimpleFormatter());
                 logger.addHandler(fh);
                 logger.setUseParentHandlers(false);
-
                 logger.info("******BEGIN******");
 
                 while (true) {
                     Message msg = new Message();
-
                     msg.read(in);
-                    System.out.println("msg.command: " + msg.getCommand());
-                    System.out.println("msg.data: " + msg.getData());
+                    String rawCommand = msg.getCommand();
+                    String rawData = msg.getData();
 
-                    logger.info("COMMAND: " + msg.getCommand());
-                    logger.info("DATA: " + msg.getData());
+                    logger.info("COMMAND: " + rawCommand);
+                    logger.info("DATA: " + rawData);
 
-                    if (msg.getData().equals("END")) {
+                    switch (rawCommand) {
+                        case "1": // velocity
+                            Server.this.velocity.set(rawData);
+                            System.out.println("VELOCITY: " + rawData);
+                            break;
+                        case "2": // acceleration
+                            Server.this.acceleration.set(rawData);
+                            System.out.println("ACCELERATION: " + rawData);
+                            break;
+                        case "3": // brake temp
+                            Server.this.brakeTemp.set(rawData);
+                            System.out.println("BRAKE_TEMP: " + rawData);
+                            break;
+                        default:
+                            throw new RuntimeException("UNREACHABLE");
+                    }
+
+                    if (rawData.equals("END")) {
                         System.out.println("Client decided to end connection");
                         System.exit(0);
                     }
@@ -105,6 +125,18 @@ public class Server implements Runnable {
                 System.out.println("Something went wrong while reading message");
             }
         }
+    }
+
+    public SimpleStringProperty getVelocityProperty() {
+        return this.velocity;
+    }
+
+    public SimpleStringProperty getAccelerationProperty() {
+        return this.acceleration;
+    }
+
+    public SimpleStringProperty getBrakeTempProperty() {
+        return this.brakeTemp;
     }
 
     private static ServerSocket getServerSocket(int portNum) {
