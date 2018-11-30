@@ -75,10 +75,19 @@ int main(int argc, char *argv[]) {
     // }
 
     for (int i = 0; i < 1000000; i++) {
-        types::message test(1, 777);
+        types::message test(1, 222);
         test.send(sockfd);
 
-        test = types::message(2, 888);
+        test = types::message(2, 444);
+        test.send(sockfd);
+
+        test = types::message(3, 888);
+        test.send(sockfd);
+
+        test = types::message(1, 333);
+        test.send(sockfd);
+
+        test = types::message(2, 555);
         test.send(sockfd);
 
         test = types::message(3, 999);

@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -36,13 +37,13 @@ public class Main extends Application {
             server.sendMessage("message 2");
         });
 
-        // label
-        Label testLabel = new Label("LABEL HERE");
-        Task labelTask = new Task<Void>() {
+        // velocity label
+        Label velocityLabel = new Label("VELOCITY");
+        Task velocityTask = new Task<Void>() {
             @Override
             protected Void call() {
                 while (true) {
-                    updateMessage(Main.server.dataProperty().getValue());
+                    updateMessage(Main.server.getVelocityProperty().getValue());
                     try {
                         Thread.sleep(100);
                     }
@@ -53,13 +54,55 @@ public class Main extends Application {
                 return null;
             }
         };
-        testLabel.textProperty().bind(labelTask.messageProperty());
-        Thread t2 = new Thread(labelTask);
-        t2.start();
+        velocityLabel.textProperty().bind(velocityTask.messageProperty());
+        new Thread(velocityTask).start();
+
+        // acceleration label
+        Label accelerationLabel = new Label("ACCELERATION");
+        Task accelerationTask = new Task<Void>() {
+            @Override
+            protected Void call() {
+                while (true) {
+                    updateMessage(Main.server.getAccelerationProperty().getValue());
+                    try {
+                        Thread.sleep(100);
+                    }
+                    catch (InterruptedException e) {
+                        break;
+                    }
+                }
+                return null;
+            }
+        };
+        accelerationLabel.textProperty().bind(accelerationTask.messageProperty());
+        new Thread(accelerationTask).start();
+
+        // brakeTemp label
+        Label brakeTempLabel = new Label("BRAKETEMP");
+        Task brakeTempTask = new Task<Void>() {
+            @Override
+            protected Void call() {
+                while (true) {
+                    updateMessage(Main.server.getBrakeTempProperty().getValue());
+                    try {
+                        Thread.sleep(100);
+                    }
+                    catch (InterruptedException e) {
+                        break;
+                    }
+                }
+                return null;
+            }
+        };
+        brakeTempLabel.textProperty().bind(brakeTempTask.messageProperty());
+        new Thread(brakeTempTask).start();
+
+        // label hbox
+        HBox hbox = new HBox(20, velocityLabel, accelerationLabel, brakeTempLabel);
 
         // vbox
         VBox vbox = new VBox(10);
-        vbox.getChildren().addAll(btn1, btn2, testLabel);
+        vbox.getChildren().addAll(btn1, btn2, hbox);
         vbox.setAlignment(Pos.CENTER);
 
         // stackpane

@@ -13,8 +13,9 @@ import types.*;
 public class Server implements Runnable {
     private static final int PORT = 9090;
     private Socket client = null;
-    private SimpleStringProperty cmd = new SimpleStringProperty(this, "cmd", "COMMAND");
-    private SimpleStringProperty data = new SimpleStringProperty(this, "data", "DATA");
+    private SimpleStringProperty velocity = new SimpleStringProperty(this, "velocity", "0");
+    private SimpleStringProperty acceleration = new SimpleStringProperty(this, "acceleration", "0");
+    private SimpleStringProperty brakeTemp = new SimpleStringProperty(this, "brakeTemp", "25");
 
     @Override
     public void run() {
@@ -97,12 +98,24 @@ public class Server implements Runnable {
                     logger.info("COMMAND: " + rawCommand);
                     logger.info("DATA: " + rawData);
 
-                    Server.this.cmd.set(msg.getCommand());
-                    Server.this.data.set(msg.getData());
-                    System.out.println("msg.command: " + Server.this.cmd.getValue());
-                    System.out.println("msg.data: " + Server.this.data.getValue());
+                    switch (rawCommand) {
+                        case "1": // velocity
+                            Server.this.velocity.set(rawData);
+                            System.out.println("VELOCITY: " + rawData);
+                            break;
+                        case "2": // acceleration
+                            Server.this.acceleration.set(rawData);
+                            System.out.println("ACCELERATION: " + rawData);
+                            break;
+                        case "3": // brake temp
+                            Server.this.brakeTemp.set(rawData);
+                            System.out.println("BRAKE_TEMP: " + rawData);
+                            break;
+                        default:
+                            throw new RuntimeException("UNREACHABLE");
+                    }
 
-                    if (msg.getData().equals("END")) {
+                    if (rawData.equals("END")) {
                         System.out.println("Client decided to end connection");
                         System.exit(0);
                     }
@@ -114,8 +127,16 @@ public class Server implements Runnable {
         }
     }
 
-    public SimpleStringProperty dataProperty() {
-        return this.data;
+    public SimpleStringProperty getVelocityProperty() {
+        return this.velocity;
+    }
+
+    public SimpleStringProperty getAccelerationProperty() {
+        return this.acceleration;
+    }
+
+    public SimpleStringProperty getBrakeTempProperty() {
+        return this.brakeTemp;
     }
 
     private static ServerSocket getServerSocket(int portNum) {
