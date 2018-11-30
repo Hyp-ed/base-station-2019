@@ -97,12 +97,19 @@ public class Main extends Application {
         brakeTempLabel.textProperty().bind(brakeTempTask.messageProperty());
         new Thread(brakeTempTask).start();
 
-        // label hbox
-        HBox hbox = new HBox(20, velocityLabel, accelerationLabel, brakeTempLabel);
+        // hbox with above labels
+        HBox dataHBox = new HBox(20, velocityLabel, accelerationLabel, brakeTempLabel);
+        dataHBox.setAlignment(Pos.CENTER);
+
+        Label velocityText = new Label("Velocity");
+        Label accelerationText = new Label("Acceleration");
+        Label brakeTempText = new Label("Brake Temp");
+        HBox textHBox = new HBox(10, velocityText, accelerationText, brakeTempText);
+        textHBox.setAlignment(Pos.CENTER);
 
         // vbox
         VBox vbox = new VBox(10);
-        vbox.getChildren().addAll(btn1, btn2, hbox);
+        vbox.getChildren().addAll(btn1, btn2, textHBox, dataHBox);
         vbox.setAlignment(Pos.CENTER);
 
         // stackpane
