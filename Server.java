@@ -70,6 +70,7 @@ public class Server implements Runnable {
         }
     }
 
+    // TODO: this method is too long, gotta break up into smaller methods
     private class MessageReader implements Runnable {
         private BufferedReader in = null;
         private Logger logger = null;
