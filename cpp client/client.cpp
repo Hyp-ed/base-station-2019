@@ -84,13 +84,13 @@ int main(int argc, char *argv[]) {
         test = types::message(3, 888);
         test.send(sockfd);
 
-        test = types::message(1, 333);
+        test = types::message(1, 223);
         test.send(sockfd);
 
-        test = types::message(2, 555);
+        test = types::message(2, 445);
         test.send(sockfd);
 
-        test = types::message(3, 999);
+        test = types::message(3, 889);
         test.send(sockfd);
     }
 
