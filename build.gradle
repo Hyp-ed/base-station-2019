@@ -1,0 +1,27 @@
+apply plugin: 'java'
+apply plugin: 'cpp'
+
+task runApp(type: JavaExec) {
+    main="-jar"
+    args jar.archivePath
+}
+
+model {
+    components {
+        main(NativeExecutableSpec)
+    }
+
+    toolChains {
+        idkmytoolchain(Clang) {
+            eachPlatform {
+                cppCompiler.withArguments { args ->
+                    args << "-std=c++11"
+                }
+            }
+        }
+    }
+}
+
+jar {
+    manifest.attributes "Main-Class": "app.Main"
+}

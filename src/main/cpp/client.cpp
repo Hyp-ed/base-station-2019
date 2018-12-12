@@ -6,7 +6,7 @@
 #include <netdb.h>
 #include <unistd.h>
 #include <thread>
-#include "../types/message.hpp" // don't like this relative path, change in future
+#include "types/message.hpp"
 
 #define PORT 9090
 #define SERVER_IP "localhost"
