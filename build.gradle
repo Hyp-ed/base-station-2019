@@ -1,11 +1,18 @@
 apply plugin: 'java'
 apply plugin: 'cpp'
 
-task runApp(type: JavaExec) {
+// run this task to start the server
+task runServer(type: JavaExec) {
     main="-jar"
     args jar.archivePath
 }
 
+// run this task to start the c++ client
+task runClient(type: Exec) {
+    commandLine './build/exe/main/main'
+}
+
+// honestly not really sure how this works, but basically this is for compiling the c++ stuff
 model {
     components {
         main(NativeExecutableSpec)
@@ -22,6 +29,7 @@ model {
     }
 }
 
+// idk why this doesn't happen automatically, but here we specify some manifest stuff in our jar
 jar {
     manifest.attributes "Main-Class": "app.Main"
 }
