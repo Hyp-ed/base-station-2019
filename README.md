@@ -16,8 +16,7 @@ Run server side:
 ./gradle run
 ```
 
-Run client side:
-In another terminal window,
+Run client side: In another terminal window,
 ```
 ./build/exe/main/main
 ```
