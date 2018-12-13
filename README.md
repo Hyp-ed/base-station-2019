@@ -3,25 +3,24 @@
 Prototype that connects a server and a client over a tcp connection
 
 ## How to run
-Compile and run server side:
-```
-javac Main.java Client.java
-java Main
-```
-and in another terminal window
+This project uses gradle as its build system. The gradle wrapper is already checked into this repo, so no need to explicitly download gradle (unless you want to).
 
+Build project:
 ```
-java Client
+./gradlew build
 ```
-Also be sure to make a directory `working_directory/temp` , as this is where the log is stored. Read log with `tail -F server_log.log`
+(If on windows use `gradlew.bat` instead of `./gradlew`)
 
----
+Run server side:
+```
+./gradle run
+```
 
-Or to run with the C++ client, compile `cpp\ client/client.cpp` with
+Run client side:
+In another terminal window,
 ```
-g++ -o client -std=c++11 client.cpp
+./build/exe/main/main
 ```
-and run with
-```
-./client
-```
+(there's a `runClient` task in `build.gradle` but for some reason doing this only prints client output once the program ends, which isn't so useful)
+
+Also be sure to make a directory `/temp` in your root directory, as this is where the log is stored. Read log with `tail -F server_log.log`
