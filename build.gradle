@@ -3,7 +3,7 @@ apply plugin: 'cpp'
 
 // run this task to start the server
 task runServer(type: JavaExec) {
-    main="-jar"
+    main = "-jar"
     args jar.archivePath
 }
 
@@ -31,5 +31,5 @@ model {
 
 // idk why this doesn't happen automatically, but here we specify some manifest stuff in our jar
 jar {
-    manifest.attributes "Main-Class": "app.Main"
+    manifest.attributes "Main-Class": "server.Main"
 }
