@@ -1,11 +1,9 @@
 apply plugin: 'java'
 apply plugin: 'cpp'
+apply plugin: 'application'
 
-// run this task to start the server
-task runServer(type: JavaExec) {
-    main = "-jar"
-    args jar.archivePath
-}
+// specify application entry point (which main method to run)
+mainClassName = 'server.Main'
 
 // run this task to start the c++ client
 task runClient(type: Exec) {
