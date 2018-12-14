@@ -22,4 +22,4 @@ Run client side: In another terminal window,
 ```
 (there's a `runClient` task in `build.gradle` but for some reason doing this only prints client output once the program ends, which isn't so useful)
 
-Also be sure to make a directory `/temp` in your root directory, as this is where the log is stored. Read log with `tail -F server_log.log`
+Also be sure to make a `/temp` directory in your project's root directory, as this is where the log is stored. Read log with `tail -F temp/server_log.log`
