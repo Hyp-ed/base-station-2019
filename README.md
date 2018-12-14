@@ -13,10 +13,10 @@ Build project:
 
 Run server side:
 ```
-./gradle run
+./gradlew run
 ```
 
-Run client side: In another terminal window,
+Run client side: In another terminal window, run
 ```
 ./build/exe/main/main
 ```
