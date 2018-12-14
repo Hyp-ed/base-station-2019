@@ -27,6 +27,14 @@ model {
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.google.protobuf:protobuf-java:3.6.1'
+}
+
 // idk why this doesn't happen automatically, but here we specify some manifest stuff in our jar
 jar {
     manifest.attributes "Main-Class": "server.Main"
