@@ -7,22 +7,41 @@
 #include <unistd.h>
 #include <thread>
 #include "types/message.hpp"
+#include "types/message.pb.h"
 
 #define PORT 9090
 #define SERVER_IP "localhost"
 #define BUFFER_SIZE 1024
 
 void Read(int sockfd) {
-    char buffer[BUFFER_SIZE];
+    // char buffer[BUFFER_SIZE];
+//
+    // while (true) {
+        // std::memset(&buffer, 0, sizeof(buffer));
+        // if (recv(sockfd, buffer, BUFFER_SIZE, 0) <= 0) {
+            // std::cerr << "Error: " << strerror(errno) << std::endl;
+            // exit(5);
+        // }
+//
+        // std::cout << "FROM SERVER: " << buffer;
+    // }
+
+
+
+    char buffer[4]; // 32 bit size
+    int bytecount = 0;
+
+    std::memset(buffer, 0, sizeof(buffer));
 
     while (true) {
-        std::memset(&buffer, 0, sizeof(buffer));
-        if (recv(sockfd, buffer, BUFFER_SIZE, 0) <= 0) {
-            std::cerr << "Error: " << strerror(errno) << std::endl;
-            exit(5);
+        if ((bytecount = recv(sockfd, buffer, 4, MSG_PEEK)) == -1) { // error
+            std::cerr << "Error receiving data" << std::endl;
+        }
+        else if (bytecount == 0) { // empty/nothing/probs connection closed
+            break;
         }
 
-        std::cout << "FROM SERVER: " << buffer;
+        std::cout << "First read byte count is: " << bytecount << std::endl;
     }
 }
 

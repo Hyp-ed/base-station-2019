@@ -10,6 +10,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 import javafx.beans.property.SimpleStringProperty;
+import protoTypes.MessageProtos.*;
 import types.*;
 
 public class Server implements Runnable {
@@ -57,18 +58,31 @@ public class Server implements Runnable {
     }
 
     private class MessageSender implements Runnable {
-        private PrintWriter out = null;
-        private Message msg;
+        // private PrintWriter out = null;
+        // private Message msg;
+        private TestMessage.Builder msg;
 
         public MessageSender(String msgContent) {
-            out = getPrintWriter(Server.this.client);
-            msg = new Message(msgContent);
+            // Neil neil = new Neil();
+            // System.out.println("Swag: " + neil.getSwag());
+            // System.out.println("Age: " + Neil.getAge());
+
+            // out = getPrintWriter(Server.this.client);
+            // msg = new Message(msgContent);
+            msg = TestMessage.newBuilder().setData(123);
         }
 
         @Override
         public void run() {
-            msg.send(this.out);
-            System.out.println("Sent \"" + msg.getData() + "\" to client");
+            // msg.send(this.out);
+            try {
+                msg.build().writeDelimitedTo(Server.this.client.getOutputStream());
+                System.out.println("Sent message to client");
+            }
+            catch (IOException e) {
+                System.out.println("rip my g");
+            }
+            // System.out.println("Sent \"" + msg.getData() + "\" to client");
         }
     }
 
