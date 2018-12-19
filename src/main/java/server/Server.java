@@ -63,10 +63,6 @@ public class Server implements Runnable {
         private TestMessage.Builder msg;
 
         public MessageSender(String msgContent) {
-            // Neil neil = new Neil();
-            // System.out.println("Swag: " + neil.getSwag());
-            // System.out.println("Age: " + Neil.getAge());
-
             // out = getPrintWriter(Server.this.client);
             // msg = new Message(msgContent);
             msg = TestMessage.newBuilder().setData(123);
