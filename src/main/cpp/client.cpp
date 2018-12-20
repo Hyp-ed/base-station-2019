@@ -8,32 +8,34 @@
 #include <thread>
 #include "types/message.hpp"
 #include "types/message.pb.h"
+#include <google/protobuf/io/coded_stream.h>
+#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
 
 #define PORT 9090
 #define SERVER_IP "localhost"
 #define BUFFER_SIZE 1024
 
+google::protobuf::uint32 readHeader(char *buf) {
+    using namespace google::protobuf::io;
+
+    google::protobuf::uint32 size;
+    ArrayInputStream ais(buf, 4); // create raw stream containing buffer of varint
+    CodedInputStream* coded_input = new CodedInputStream(&ais); // create CodedInput wrapper
+    coded_input->ReadVarint32(&size); // read size as varint
+
+    std::cout << "size of message: " << size << std::endl;
+    delete coded_input;
+    return size;
+}
+
 void Read(int sockfd) {
-    // char buffer[BUFFER_SIZE];
-//
-    // while (true) {
-        // std::memset(&buffer, 0, sizeof(buffer));
-        // if (recv(sockfd, buffer, BUFFER_SIZE, 0) <= 0) {
-            // std::cerr << "Error: " << strerror(errno) << std::endl;
-            // exit(5);
-        // }
-//
-        // std::cout << "FROM SERVER: " << buffer;
-    // }
-
-
-
     char buffer[4]; // 32 bit size
-    int bytecount = 0;
+    int bytecount = 0; // we use this so we can see if we are sent nothing/empty or an error occurs
 
     std::memset(buffer, 0, sizeof(buffer));
 
     while (true) {
+        // below we read first four bytes of message into buffer, buffer should contain size varint
         if ((bytecount = recv(sockfd, buffer, 4, MSG_PEEK)) == -1) { // error
             std::cerr << "Error receiving data" << std::endl;
         }
@@ -42,6 +44,8 @@ void Read(int sockfd) {
         }
 
         std::cout << "First read byte count is: " << bytecount << std::endl;
+        // std::cout << readHeader(buffer) << std::endl;
+        readHeader(buffer);
     }
 }
 
