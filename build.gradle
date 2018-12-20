@@ -23,7 +23,7 @@ model {
                 def incs = 'pkg-config --cflags protobuf'.execute()
                     incs.waitFor()
                     def incsFlags = incs.in.text.trim()
-                    cppCompiler.args "-std=c++11"
+                    cppCompiler.args "-std=c++11", "-g"
                     cppCompiler.args.addAll(incsFlags.tokenize(' '))
 
                 //linker flags

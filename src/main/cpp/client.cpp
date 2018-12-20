@@ -11,16 +11,19 @@
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/io/zero_copy_stream_impl_lite.h>
 
+#include <google/protobuf/message_lite.h>
+
 #define PORT 9090
 #define SERVER_IP "localhost"
 #define BUFFER_SIZE 1024
 
-google::protobuf::uint32 readHeader(char *buf) {
+// reads header containing size encoded as varint, returns this size
+google::protobuf::uint32 readHeader(char *buffer) {
     using namespace google::protobuf::io;
 
     google::protobuf::uint32 size;
-    ArrayInputStream ais(buf, 4); // create raw stream containing buffer of varint
-    CodedInputStream* coded_input = new CodedInputStream(&ais); // create CodedInput wrapper
+    ArrayInputStream raw_input(buffer, 4); // create raw stream containing buffer of varint
+    CodedInputStream* coded_input = new CodedInputStream(&raw_input); // create CodedInput wrapper
     coded_input->ReadVarint32(&size); // read size as varint
 
     std::cout << "size of message: " << size << std::endl;
@@ -28,24 +31,49 @@ google::protobuf::uint32 readHeader(char *buf) {
     return size;
 }
 
+protoTypes::TestMessage readBody(int sockfd, google::protobuf::uint32 size) {
+    using namespace google::protobuf::io;
+
+    int bytes_received;
+    char buffer[size + 4];
+
+    // read whole message (header + body) into buffer
+    if ((bytes_received = recv(sockfd, (void *) buffer, size + 4, 0)) == -1) {
+        std::cerr << "Error receiving data (reading body)" << std::endl;
+    }
+
+    ArrayInputStream raw_input(buffer, size + 4); // raw input stream
+    CodedInputStream* coded_input = new CodedInputStream(&raw_input); // CodedInput wrapper
+
+    coded_input->ReadVarint32(&size); // we have to read size of message again bc buffer contains header + body, shouldn't change value of uint32 size variable we were passed in
+
+    CodedInputStream::Limit msg_limit = coded_input->PushLimit(size);
+    protoTypes::TestMessage msg;
+    msg.ParseFromCodedStream(coded_input);
+    coded_input->PopLimit(msg_limit);
+
+    std::cout << "BODY: " << msg.data() << std::endl;
+
+    delete coded_input;
+    return msg;
+}
+
 void Read(int sockfd) {
     char buffer[4]; // 32 bit size
-    int bytecount = 0; // we use this so we can see if we are sent nothing/empty or an error occurs
+    int bytes_received = 0; // we use this so we can see if we are sent nothing/empty or an error occurs
 
     std::memset(buffer, 0, sizeof(buffer));
 
     while (true) {
         // below we read first four bytes of message into buffer, buffer should contain size varint
-        if ((bytecount = recv(sockfd, buffer, 4, MSG_PEEK)) == -1) { // error
-            std::cerr << "Error receiving data" << std::endl;
+        if ((bytes_received = recv(sockfd, buffer, 4, MSG_PEEK)) == -1) { // error
+            std::cerr << "Error receiving data (reading header)" << std::endl;
         }
-        else if (bytecount == 0) { // empty/nothing/probs connection closed
+        else if (bytes_received == 0) { // empty/nothing/probs connection closed
             break;
         }
 
-        std::cout << "First read byte count is: " << bytecount << std::endl;
-        // std::cout << readHeader(buffer) << std::endl;
-        readHeader(buffer);
+        readBody(sockfd, readHeader(buffer));
     }
 }
 
