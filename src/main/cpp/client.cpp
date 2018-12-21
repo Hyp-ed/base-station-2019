@@ -21,12 +21,12 @@
 google::protobuf::uint32 readHeader(char *buffer) {
     using namespace google::protobuf::io;
 
-    google::protobuf::uint32 size;
+    google::protobuf::uint32 size; // this will hold the size of our message body in bytes
     ArrayInputStream raw_input(buffer, 4); // create raw stream containing buffer of varint
     CodedInputStream* coded_input_ptr = new CodedInputStream(&raw_input); // create CodedInput wrapper
     coded_input_ptr->ReadVarint32(&size); // read size as varint
-
     std::cout << "size of message: " << size << std::endl;
+
     delete coded_input_ptr;
     return size;
 }
@@ -45,12 +45,12 @@ protoTypes::TestMessage readBody(int sockfd, google::protobuf::uint32 size) {
     ArrayInputStream raw_input(buffer, size + 4); // raw input stream
     CodedInputStream* coded_input_ptr = new CodedInputStream(&raw_input); // CodedInput wrapper
 
-    coded_input_ptr->ReadVarint32(&size); // we have to read size of message again bc buffer contains header + body, shouldn't change value of uint32 size variable we were passed in
+    coded_input_ptr->ReadVarint32(&size); // we have to read size of message again bc buffer contains header + body (move file position indicator), shouldn't change value of uint32 size variable we were passed in
 
-    CodedInputStream::Limit msg_limit = coded_input_ptr->PushLimit(size);
+    CodedInputStream::Limit msg_limit = coded_input_ptr->PushLimit(size); // add limit to prevent reading beyond message length
     protoTypes::TestMessage msg;
-    msg.ParseFromCodedStream(coded_input_ptr);
-    coded_input_ptr->PopLimit(msg_limit);
+    msg.ParseFromCodedStream(coded_input_ptr); // deserialize
+    coded_input_ptr->PopLimit(msg_limit); // remove limit
 
     std::cout << "BODY: " << msg.data() << std::endl;
 
