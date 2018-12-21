@@ -21,15 +21,16 @@ google::protobuf::uint32 readHeader(char *buffer) {
 
     google::protobuf::uint32 size; // this will hold the size of our message body in bytes
     ArrayInputStream raw_input(buffer, 4); // create raw stream containing buffer of varint
-    CodedInputStream* coded_input_ptr = new CodedInputStream(&raw_input); // create CodedInput wrapper
-    coded_input_ptr->ReadVarint32(&size); // read size as varint
+    CodedInputStream coded_input_ptr(&raw_input); // create CodedInput wrapper
+
+    coded_input_ptr.ReadVarint32(&size); // read size as varint
     std::cout << "size of message: " << size << std::endl;
 
-    delete coded_input_ptr;
     return size;
 }
 
-protoTypes::TestMessage readBody(int sockfd, google::protobuf::uint32 size) {
+// read body of a message, and print out the contents of this body
+void readBody(int sockfd, google::protobuf::uint32 size) {
     using namespace google::protobuf::io;
 
     int bytes_received;
@@ -41,19 +42,18 @@ protoTypes::TestMessage readBody(int sockfd, google::protobuf::uint32 size) {
     }
 
     ArrayInputStream raw_input(buffer, size + 4); // raw input stream
-    CodedInputStream* coded_input_ptr = new CodedInputStream(&raw_input); // CodedInput wrapper
+    CodedInputStream coded_input_ptr(&raw_input); // CodedInput wrapper
 
-    coded_input_ptr->ReadVarint32(&size); // we have to read size of message again bc buffer contains header + body (move file position indicator), shouldn't change value of uint32 size variable we were passed in
+    // we have to read size of message again bc buffer contains header + body (move file position indicator)
+    // shouldn't change value of uint32 size variable we were passed in
+    coded_input_ptr.ReadVarint32(&size); 
 
-    CodedInputStream::Limit msg_limit = coded_input_ptr->PushLimit(size); // add limit to prevent reading beyond message length
+    CodedInputStream::Limit msg_limit = coded_input_ptr.PushLimit(size); // add limit to prevent reading beyond message length
     protoTypes::TestMessage msg;
-    msg.ParseFromCodedStream(coded_input_ptr); // deserialize
-    coded_input_ptr->PopLimit(msg_limit); // remove limit
+    msg.ParseFromCodedStream(&coded_input_ptr); // deserialize
+    coded_input_ptr.PopLimit(msg_limit); // remove limit
 
     std::cout << "FROM SERVER: " << msg.data() << std::endl;
-
-    delete coded_input_ptr;
-    return msg;
 }
 
 void Read(int sockfd) {
@@ -112,16 +112,6 @@ int main(int argc, char *argv[]) {
 
     // start message reading thread to run in background
     std::thread threadObj(Read, sockfd);
-
-    // send messages
-    // char *msg = "hello from client\n";
-    // int len = strlen(msg);
-    // for (int i = 0; i < 10000000; i++) {
-        // if (send(sockfd, msg, len, 0) < 0) {
-            // std::cerr << "Error: " << strerror(errno) << std::endl;
-            // exit(4);
-        // }
-    // }
 
     for (int i = 0; i < 1000000; i++) {
         types::message test(1, 222);
