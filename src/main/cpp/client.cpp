@@ -51,7 +51,7 @@ protoTypes::TestMessage readBody(int sockfd, google::protobuf::uint32 size) {
     msg.ParseFromCodedStream(coded_input_ptr); // deserialize
     coded_input_ptr->PopLimit(msg_limit); // remove limit
 
-    std::cout << "BODY: " << msg.data() << std::endl;
+    std::cout << "FROM SERVER: " << msg.data() << std::endl;
 
     delete coded_input_ptr;
     return msg;

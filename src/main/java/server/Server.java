@@ -47,7 +47,7 @@ public class Server implements Runnable {
         }
     }
 
-    public void sendMessage(String message) {
+    public void sendMessage(int message) {
         try {
             Thread sendWorker = new Thread(new MessageSender(message));
             sendWorker.start();
@@ -60,20 +60,21 @@ public class Server implements Runnable {
     private class MessageSender implements Runnable {
         // private PrintWriter out = null;
         // private Message msg;
-        private TestMessage.Builder msg;
+        private TestMessage.Builder msgBuilder;
 
-        public MessageSender(String msgContent) {
+        public MessageSender(int content) {
             // out = getPrintWriter(Server.this.client);
             // msg = new Message(msgContent);
-            msg = TestMessage.newBuilder().setData(123);
+            msgBuilder = TestMessage.newBuilder().setData(content);
         }
 
         @Override
         public void run() {
             // msg.send(this.out);
             try {
-                msg.build().writeDelimitedTo(Server.this.client.getOutputStream());
-                System.out.println("Sent message to client");
+                TestMessage msg = msgBuilder.build();
+                msg.writeDelimitedTo(Server.this.client.getOutputStream());
+                System.out.println("Sent \"" + msg.getData() + "\" to client");
             }
             catch (IOException e) {
                 System.out.println("rip my g");
