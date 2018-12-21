@@ -6,12 +6,11 @@
 #include <netdb.h>
 #include <unistd.h>
 #include <thread>
-#include "types/message.hpp"
-#include "types/message.pb.h"
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/io/zero_copy_stream_impl_lite.h>
-
 #include <google/protobuf/message_lite.h>
+#include "types/message.hpp"
+#include "types/message.pb.h"
 
 #define PORT 9090
 #define SERVER_IP "localhost"
