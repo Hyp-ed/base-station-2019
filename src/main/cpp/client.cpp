@@ -14,7 +14,6 @@
 
 #define PORT 9090
 #define SERVER_IP "localhost"
-#define BUFFER_SIZE 1024
 
 // reads header containing size encoded as varint, returns this size
 google::protobuf::uint32 readHeader(char *buffer) {
