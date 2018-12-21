@@ -58,28 +58,22 @@ public class Server implements Runnable {
     }
 
     private class MessageSender implements Runnable {
-        // private PrintWriter out = null;
-        // private Message msg;
         private TestMessage.Builder msgBuilder;
 
         public MessageSender(int content) {
-            // out = getPrintWriter(Server.this.client);
-            // msg = new Message(msgContent);
             msgBuilder = TestMessage.newBuilder().setData(content);
         }
 
         @Override
         public void run() {
-            // msg.send(this.out);
             try {
                 TestMessage msg = msgBuilder.build();
                 msg.writeDelimitedTo(Server.this.client.getOutputStream());
                 System.out.println("Sent \"" + msg.getData() + "\" to client");
             }
             catch (IOException e) {
-                System.out.println("rip my g");
+                System.out.println("Error sending message to client");
             }
-            // System.out.println("Sent \"" + msg.getData() + "\" to client");
         }
     }
 
