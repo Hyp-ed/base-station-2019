@@ -14,14 +14,16 @@
 
 void Read(int sockfd) {
     char buffer[BUFFER_SIZE];
+    int bytes_received = 0;
 
     while (true) {
         std::memset(&buffer, 0, sizeof(buffer));
-        if (recv(sockfd, buffer, BUFFER_SIZE, 0) <= 0) {
+        if ((bytes_received = recv(sockfd, buffer, BUFFER_SIZE, 0)) <= 0) {
             std::cerr << "Error: " << strerror(errno) << std::endl;
             exit(5);
         }
 
+        std::cout << "bytes_received:" << bytes_received << std::endl;
         std::cout << "FROM SERVER: " << buffer;
     }
 }
