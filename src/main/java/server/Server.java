@@ -106,9 +106,10 @@ public class Server implements Runnable {
                     // msg = TestMessage.parseFrom(new byte[]{0x08, 0x01, 0x10, (byte) 0xF8, 0x06}); // this works!
 
                     // System.out.println(msg);
-                    cmd = msg.getCommand(); // DON'T DELETE THIS LINE
-                    data = msg.getData(); // DON'T DELETE THIS LINE
                     // System.out.println("MADE IT");
+
+                    cmd = msg.getCommand();
+                    data = msg.getData();
                 }
                 catch (IOException e) {
                     System.out.println("Exception: " + e);
