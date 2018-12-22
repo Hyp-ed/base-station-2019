@@ -26,7 +26,6 @@ google::protobuf::uint32 readHeader(char *buffer) {
     CodedInputStream coded_input_ptr(&raw_input); // create CodedInput wrapper
 
     coded_input_ptr.ReadVarint32(&size); // read size as varint
-    std::cout << "\nsize of message: " << size << std::endl;
 
     return size;
 }
@@ -36,25 +35,24 @@ void readBody(int sockfd, google::protobuf::uint32 body_size) {
     using namespace google::protobuf::io;
 
     int bytes_received;
-    std::cout << "HEADER BYTE SIZE: " << CodedOutputStream::VarintSize32(body_size) << std::endl;
-    char buffer[body_size + 4];
+    int header_size = CodedOutputStream::VarintSize32(body_size); // literal amount of bytes that header takes up
+    char buffer[body_size + header_size];
 
     // read whole message (header + body) into buffer
-    if ((bytes_received = recv(sockfd, (void *) buffer, body_size + 4, 0)) == -1) {
+    if ((bytes_received = recv(sockfd, buffer, header_size + body_size, 0)) == -1) {
         std::cerr << "Error receiving data (reading body)" << std::endl;
     }
-    // if for some reason the bytes we read in don't add up to headersize + bodysize
-    if (CodedOutputStream::VarintSize32(body_size) + body_size != bytes_received) {
-        std::cerr << "Messed up somewhere" << std::endl;
-        return;
+    // if for some reason the bytes we read in don't add up to header_size + bodysize
+    // for some reason the bytes we received got messed up somehow and can't be deserialized
+    if (header_size + body_size != bytes_received) {
+        std::cerr << "Error receiving data (corrupt message)" << std::endl;
+        return; // skip this message
     }
 
-    std::cout << "bytes_received: " << bytes_received << std::endl;
-
-    ArrayInputStream raw_input(buffer, body_size + 4); // raw input stream
+    ArrayInputStream raw_input(buffer, body_size + header_size); // raw input stream
     CodedInputStream coded_input(&raw_input); // CodedInput wrapper
 
-    // we have to read body size of message again bc buffer contains header + body (move file position indicator)
+    // we have to read body size of message again bc buffer contains header + body (move file position indicator to begin of body)
     // shouldn't change value of uint32 body_size variable we were passed in
     coded_input.ReadVarint32(&body_size);
 
@@ -67,17 +65,21 @@ void readBody(int sockfd, google::protobuf::uint32 body_size) {
 }
 
 void Read(int sockfd) {
-    char buffer[4]; // 32 bit size
+    char buffer[4]; // 4 since our varint is highly unlikely to be over 4 bytes (size of message can be up to 2^28 bits)
     int bytes_received = 0; // we use this so we can see if we are sent nothing/empty or an error occurs
 
     std::memset(buffer, 0, sizeof(buffer));
 
     while (true) {
-        // below we read first four bytes of message into buffer, buffer should contain size varint
+        // below we read first four bytes of message into buffer, buffer should contain varint of body size
+        // we only peek into our socket queue bc if the size of our body is less than 2^21 bits
+        // this means our varint takes up less than 4 bytes, which means the remaining bytes are actually
+        // the beginning of the message body, which we need to process later
         if ((bytes_received = recv(sockfd, buffer, 4, MSG_PEEK)) == -1) { // error
             std::cerr << "Error receiving data (reading header)" << std::endl;
         }
         else if (bytes_received == 0) { // empty/nothing/probs connection closed
+            std::cerr << "Didn't receive anything, connection probably closed" << std::endl;
             break;
         }
 
@@ -94,7 +96,6 @@ void Send(int sockfd) {
     msg.set_data(888);
 
     int msg_size = msg.ByteSizeLong();
-    std::cout << "msg_size: " << msg_size << std::endl;
     char buffer[1 + msg_size]; // 1 because WriteVarint32 only puts in a varint one byte long
     std::memset(buffer, 0, sizeof(buffer)); // just in case; overwrite garbage data
 
