@@ -12,6 +12,8 @@
 #include "types/message.hpp"
 #include "types/message.pb.h"
 
+#include <string>
+
 #define PORT 9090
 #define SERVER_IP "localhost"
 
@@ -42,16 +44,16 @@ void readBody(int sockfd, google::protobuf::uint32 size) {
     }
 
     ArrayInputStream raw_input(buffer, size + 4); // raw input stream
-    CodedInputStream coded_input_ptr(&raw_input); // CodedInput wrapper
+    CodedInputStream coded_input(&raw_input); // CodedInput wrapper
 
     // we have to read size of message again bc buffer contains header + body (move file position indicator)
     // shouldn't change value of uint32 size variable we were passed in
-    coded_input_ptr.ReadVarint32(&size); 
+    coded_input.ReadVarint32(&size);
 
-    CodedInputStream::Limit msg_limit = coded_input_ptr.PushLimit(size); // add limit to prevent reading beyond message length
+    CodedInputStream::Limit msg_limit = coded_input.PushLimit(size); // add limit to prevent reading beyond message length
     protoTypes::TestMessage msg;
-    msg.ParseFromCodedStream(&coded_input_ptr); // deserialize
-    coded_input_ptr.PopLimit(msg_limit); // remove limit
+    msg.ParseFromCodedStream(&coded_input); // deserialize
+    coded_input.PopLimit(msg_limit); // remove limit
 
     std::cout << "FROM SERVER: " << msg.data() << std::endl;
 }
@@ -72,6 +74,39 @@ void Read(int sockfd) {
         }
 
         readBody(sockfd, readHeader(buffer));
+    }
+}
+
+void Send(int sockfd) {
+    using namespace google::protobuf::io;
+
+    // build message
+    protoTypes::TestMessage msg;
+    msg.set_command(protoTypes::TestMessage::VELOCITY);
+    msg.set_data(888);
+
+    int msg_size = msg.ByteSizeLong();
+    std::cout << "msg_size: " << msg_size << std::endl;
+    char buffer[1 + msg_size]; // 1 because WriteVarint32 only puts in a varint one byte long
+    std::memset(buffer, 0, sizeof(buffer)); // just in case; overwrite garbage data
+
+
+
+    // figure out better way than just to hardcode 1
+
+
+
+    // create streams that write to our buffer
+    ArrayOutputStream raw_output(buffer, 1 + msg_size);
+    CodedOutputStream *coded_output = new CodedOutputStream(&raw_output);
+
+    // write message size and actual message to buffer
+    coded_output->WriteVarint32(msg_size);
+    msg.SerializeToCodedStream(coded_output);
+
+    while (true) {
+        send(sockfd, buffer, 1 + msg_size, 0);
+        // sleep(1);
     }
 }
 
@@ -112,33 +147,35 @@ int main(int argc, char *argv[]) {
 
     // start message reading thread to run in background
     std::thread threadObj(Read, sockfd);
+    std::thread threadObj2(Send, sockfd);
 
-    for (int i = 0; i < 1000000; i++) {
-        types::message test(1, 222);
-        test.send(sockfd);
-
-        test = types::message(2, 444);
-        test.send(sockfd);
-
-        test = types::message(3, 888);
-        test.send(sockfd);
-
-        test = types::message(1, 223);
-        test.send(sockfd);
-
-        test = types::message(2, 445);
-        test.send(sockfd);
-
-        test = types::message(3, 889);
-        test.send(sockfd);
-    }
+    // for (int i = 0; i < 1000000; i++) {
+        // types::message test(1, 222);
+        // test.send(sockfd);
+// 
+        // test = types::message(2, 444);
+        // test.send(sockfd);
+// 
+        // test = types::message(3, 888);
+        // test.send(sockfd);
+// 
+        // test = types::message(1, 223);
+        // test.send(sockfd);
+// 
+        // test = types::message(2, 445);
+        // test.send(sockfd);
+// 
+        // test = types::message(3, 889);
+        // test.send(sockfd);
+    // }
 
     // signify end of messaging
-    types::message end_msg("END");
-    end_msg.send(sockfd);
+    // types::message end_msg("END");
+    // end_msg.send(sockfd);
 
     // wait for message reading thread to finish
     threadObj.join();
+    threadObj2.join();
 
     close(sockfd);
     return 0;

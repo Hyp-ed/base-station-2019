@@ -13,6 +13,8 @@ import javafx.beans.property.SimpleStringProperty;
 import protoTypes.MessageProtos.*;
 import types.*;
 
+import java.io.DataInputStream;
+
 public class Server implements Runnable {
     private static final int PORT = 9090;
     private Socket client = null;
@@ -78,41 +80,60 @@ public class Server implements Runnable {
     }
 
     private class MessageReader implements Runnable {
-        private BufferedReader in = null;
+        // private BufferedReader in = null;
         private Logger logger = null;
 
         public MessageReader() {
-            in = getBufferedReader(Server.this.client);
+            logger = Server.getLogger(Server.class.getName());
         }
 
         @Override
         public void run() {
-            logger = Server.getLogger(Server.class.getName());
+            TestMessage msg;
+            TestMessage.Command cmd = TestMessage.Command.ERROR; // default value
+            int data = 0; // default value
+
             logger.info("******BEGIN******");
 
             while (true) {
-                Message msg = new Message();
-                msg.read(in);
-                String rawCommand = msg.getCommand();
-                String rawData = msg.getData();
+                try {
+                    msg = TestMessage.parseDelimitedFrom(Server.this.client.getInputStream());
+                    // DataInputStream in = new DataInputStream(Server.this.client.getInputStream());
+                    // byte[] buffer = new byte[24];
+                    // in.read(buffer, 0, 24);
 
-                if (rawData == null || rawData.equals("END")) {
-                    System.out.println("Client decided to end connection");
-                    System.exit(0);
+                    // System.out.println("BUFFER: " + Server.bytesToHex(buffer));
+                    // msg = TestMessage.parseFrom(new byte[]{0x08, 0x01, 0x10, (byte) 0xF8, 0x06}); // this works!
+
+                    // System.out.println(msg);
+                    cmd = msg.getCommand(); // DON'T DELETE THIS LINE
+                    data = msg.getData(); // DON'T DELETE THIS LINE
+                    // System.out.println("MADE IT");
+                }
+                catch (IOException e) {
+                    System.out.println("Exception: " + e);
+                    System.out.println("Broooooo");
+                    break;
                 }
 
-                switch (rawCommand) {
-                    case "1": // velocity
-                        Server.this.velocity.set(rawData);
-                        logger.info("VELOCITY: " + rawData);
+                // if (rawData == null || rawData.equals("END")) {
+                    // System.out.println("Client decided to end connection");
+                    // System.exit(0);
+                // }
+
+                // System.out.println("cmd: " + cmd);
+                switch (cmd) {
+                    case VELOCITY:
+                        Server.this.velocity.set(String.valueOf(data));
+                        logger.info("VELOCITY: " + data);
                         break;
-                    case "2": // acceleration
-                        Server.this.acceleration.set(rawData);
-                        logger.info("ACCELERATION: " + rawData);
+                    case ACCELERATION:
+                        Server.this.acceleration.set(String.valueOf(data));
+                        logger.info("ACCELERATION: " + data);
                         break;
-                    case "3": // brake temp
-                        Server.this.brakeTemp.set(rawData);
-                        logger.info("BRAKE_TEMP: " + rawData);
+                    case BRAKE_TEMP:
+                        Server.this.brakeTemp.set(String.valueOf(data));
+                        logger.info("BRAKE_TEMP: " + data);
                         break;
                     default:
                         logger.info("ERROR: we should never reach this state");
@@ -120,6 +141,17 @@ public class Server implements Runnable {
                 }
             }
         }
+    }
+
+    private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
+    public static String bytesToHex(byte[] bytes) {
+        char[] hexChars = new char[bytes.length * 2];
+        for ( int j = 0; j < bytes.length; j++ ) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = hexArray[v >>> 4];
+            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+        }
+        return new String(hexChars);
     }
 
     public SimpleStringProperty getVelocityProperty() {
