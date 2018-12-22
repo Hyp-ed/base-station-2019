@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 import javafx.beans.property.SimpleStringProperty;
 import protoTypes.MessageProtos.*;
-import types.*;
 
 import java.io.DataInputStream;
 
