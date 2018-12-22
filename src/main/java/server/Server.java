@@ -70,6 +70,8 @@ public class Server implements Runnable {
             try {
                 TestMessage msg = msgBuilder.build();
                 msg.writeDelimitedTo(Server.this.client.getOutputStream());
+                System.out.println("SIZE: " + msg.getSerializedSize());
+                System.out.println("BYTES: " + Server.bytesToHex(msg.toByteArray()));
                 System.out.println("Sent \"" + msg.getData() + "\" to client");
             }
             catch (IOException e) {
@@ -184,6 +186,7 @@ public class Server implements Runnable {
         }
     }
 
+    // can probably remove
     private static PrintWriter getPrintWriter(Socket clientSocket) {
         try {
             return new PrintWriter(clientSocket.getOutputStream(), true);
@@ -193,6 +196,7 @@ public class Server implements Runnable {
         }
     }
 
+    // can probably remove
     private static BufferedReader getBufferedReader(Socket clientSocket) {
         try {
             return new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));

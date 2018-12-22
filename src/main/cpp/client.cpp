@@ -26,31 +26,39 @@ google::protobuf::uint32 readHeader(char *buffer) {
     CodedInputStream coded_input_ptr(&raw_input); // create CodedInput wrapper
 
     coded_input_ptr.ReadVarint32(&size); // read size as varint
-    std::cout << "size of message: " << size << std::endl;
+    std::cout << "\nsize of message: " << size << std::endl;
 
     return size;
 }
 
 // read body of a message, and print out the contents of this body
-void readBody(int sockfd, google::protobuf::uint32 size) {
+void readBody(int sockfd, google::protobuf::uint32 body_size) {
     using namespace google::protobuf::io;
 
     int bytes_received;
-    char buffer[size + 4];
+    std::cout << "HEADER BYTE SIZE: " << CodedOutputStream::VarintSize32(body_size) << std::endl;
+    char buffer[body_size + 4];
 
     // read whole message (header + body) into buffer
-    if ((bytes_received = recv(sockfd, (void *) buffer, size + 4, 0)) == -1) {
+    if ((bytes_received = recv(sockfd, (void *) buffer, body_size + 4, 0)) == -1) {
         std::cerr << "Error receiving data (reading body)" << std::endl;
     }
+    // if for some reason the bytes we read in don't add up to headersize + bodysize
+    if (CodedOutputStream::VarintSize32(body_size) + body_size != bytes_received) {
+        std::cerr << "Messed up somewhere" << std::endl;
+        return;
+    }
 
-    ArrayInputStream raw_input(buffer, size + 4); // raw input stream
+    std::cout << "bytes_received: " << bytes_received << std::endl;
+
+    ArrayInputStream raw_input(buffer, body_size + 4); // raw input stream
     CodedInputStream coded_input(&raw_input); // CodedInput wrapper
 
-    // we have to read size of message again bc buffer contains header + body (move file position indicator)
-    // shouldn't change value of uint32 size variable we were passed in
-    coded_input.ReadVarint32(&size);
+    // we have to read body_size of message again bc buffer contains header + body (move file position indicator)
+    // shouldn't change value of uint32 body_size variable we were passed in
+    coded_input.ReadVarint32(&body_size);
 
-    CodedInputStream::Limit msg_limit = coded_input.PushLimit(size); // add limit to prevent reading beyond message length
+    CodedInputStream::Limit msg_limit = coded_input.PushLimit(body_size); // add limit to prevent reading beyond message length
     protoTypes::TestMessage msg;
     msg.ParseFromCodedStream(&coded_input); // deserialize
     coded_input.PopLimit(msg_limit); // remove limit
