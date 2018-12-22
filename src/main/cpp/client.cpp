@@ -54,7 +54,7 @@ void readBody(int sockfd, google::protobuf::uint32 body_size) {
     ArrayInputStream raw_input(buffer, body_size + 4); // raw input stream
     CodedInputStream coded_input(&raw_input); // CodedInput wrapper
 
-    // we have to read body_size of message again bc buffer contains header + body (move file position indicator)
+    // we have to read body size of message again bc buffer contains header + body (move file position indicator)
     // shouldn't change value of uint32 body_size variable we were passed in
     coded_input.ReadVarint32(&body_size);
 
