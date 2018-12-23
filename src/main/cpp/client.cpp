@@ -9,10 +9,7 @@
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/io/zero_copy_stream_impl_lite.h>
 #include <google/protobuf/message_lite.h>
-#include "types/message.hpp"
 #include "types/message.pb.h"
-
-#include <string>
 
 #define PORT 9090
 #define SERVER_IP "localhost"
@@ -159,10 +156,6 @@ int main(int argc, char *argv[]) {
         Send(sockfd, protoTypes::TestMessage::ACCELERATION, 445);
         Send(sockfd, protoTypes::TestMessage::BRAKE_TEMP, 889);
     }
-
-    // signify end of messaging
-    // types::message end_msg("END");
-    // end_msg.send(sockfd);
 
     // wait for message reading thread to finish
     threadObj.join();

@@ -100,17 +100,12 @@ public class Server implements Runnable {
                 catch (NullPointerException e) {
                     System.out.println("Exception: " + e);
                     System.out.println("Client probably disconnected");
-                    break;
+                    System.exit(0);
                 }
                 catch (IOException e) {
                     System.out.println("Exception: " + e);
                     break;
                 }
-
-                // if (rawData == null || rawData.equals("END")) {
-                    // System.out.println("Client decided to end connection");
-                    // System.exit(0);
-                // }
 
                 switch (cmd) {
                     case VELOCITY:
