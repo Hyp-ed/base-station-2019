@@ -85,7 +85,7 @@ void Read(int sockfd) {
     }
 }
 
-void Send(int sockfd, protoTypes::TestMessage::Command cmd, int data) {
+void send(int sockfd, protoTypes::TestMessage::Command cmd, int data) {
     using namespace google::protobuf::io;
 
     // build message
@@ -148,13 +148,13 @@ int main(int argc, char *argv[]) {
     std::thread threadObj(Read, sockfd);
 
     for (int i = 0; i < 1000000; i++) {
-        Send(sockfd, protoTypes::TestMessage::VELOCITY, 222);
-        Send(sockfd, protoTypes::TestMessage::ACCELERATION, 444);
-        Send(sockfd, protoTypes::TestMessage::BRAKE_TEMP, 888);
+        send(sockfd, protoTypes::TestMessage::VELOCITY, 222);
+        send(sockfd, protoTypes::TestMessage::ACCELERATION, 444);
+        send(sockfd, protoTypes::TestMessage::BRAKE_TEMP, 888);
 
-        Send(sockfd, protoTypes::TestMessage::VELOCITY, 223);
-        Send(sockfd, protoTypes::TestMessage::ACCELERATION, 445);
-        Send(sockfd, protoTypes::TestMessage::BRAKE_TEMP, 889);
+        send(sockfd, protoTypes::TestMessage::VELOCITY, 223);
+        send(sockfd, protoTypes::TestMessage::ACCELERATION, 445);
+        send(sockfd, protoTypes::TestMessage::BRAKE_TEMP, 889);
     }
 
     // wait for message reading thread to finish
