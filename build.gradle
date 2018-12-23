@@ -16,12 +16,21 @@ model {
         main(NativeExecutableSpec)
     }
 
-    toolChains {
-        idkmytoolchain(Clang) {
-            eachPlatform {
-                cppCompiler.withArguments { args ->
-                    args << "-std=c++11"
-                }
+    binaries {
+        all {
+            if (toolChain in Clang) {
+                // compiler flags
+                def incs = 'pkg-config --cflags protobuf'.execute()
+                    incs.waitFor()
+                    def incsFlags = incs.in.text.trim()
+                    cppCompiler.args "-std=c++11", "-g"
+                    cppCompiler.args.addAll(incsFlags.tokenize(' '))
+
+                //linker flags
+                def libs = 'pkg-config --libs protobuf'.execute()
+                    libs.waitFor()
+                    def libsFlags = libs.in.text.trim()
+                    linker.args.addAll(libsFlags.tokenize(' '))
             }
         }
     }
@@ -39,3 +48,9 @@ dependencies {
 jar {
     manifest.attributes "Main-Class": "server.Main"
 }
+
+// for C++
+// protoc --cpp_out=src/main/cpp/types/ src/main/proto_types/message.proto
+
+// for Java
+// protoc --java_out=src/main/java/server/ src/main/proto_types/message.proto

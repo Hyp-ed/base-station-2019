@@ -10,7 +10,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 import javafx.beans.property.SimpleStringProperty;
-import types.*;
+import protoTypes.MessageProtos.*;
 
 public class Server implements Runnable {
     private static final int PORT = 9090;
@@ -46,7 +46,7 @@ public class Server implements Runnable {
         }
     }
 
-    public void sendMessage(String message) {
+    public void sendMessage(int message) {
         try {
             Thread sendWorker = new Thread(new MessageSender(message));
             sendWorker.start();
@@ -57,57 +57,73 @@ public class Server implements Runnable {
     }
 
     private class MessageSender implements Runnable {
-        private PrintWriter out = null;
-        private Message msg;
+        private TestMessage.Builder msgBuilder;
 
-        public MessageSender(String msgContent) {
-            out = getPrintWriter(Server.this.client);
-            msg = new Message(msgContent);
+        public MessageSender(int content) {
+            msgBuilder = TestMessage.newBuilder().setData(content);
         }
 
         @Override
         public void run() {
-            msg.send(this.out);
-            System.out.println("Sent \"" + msg.getData() + "\" to client");
+            try {
+                TestMessage msg = msgBuilder.build();
+                msg.writeDelimitedTo(Server.this.client.getOutputStream());
+                System.out.println("Sent \"" + msg.getData() + "\" to client");
+            }
+            catch (IOException e) {
+                System.out.println("Error sending message to client");
+            }
         }
     }
 
     private class MessageReader implements Runnable {
-        private BufferedReader in = null;
         private Logger logger = null;
 
         public MessageReader() {
-            in = getBufferedReader(Server.this.client);
+            logger = Server.getLogger(Server.class.getName());
         }
 
         @Override
         public void run() {
-            logger = Server.getLogger(Server.class.getName());
+            TestMessage msg;
+            TestMessage.Command cmd = TestMessage.Command.ERROR; // default value
+            int data = 0; // default value
+
             logger.info("******BEGIN******");
 
             while (true) {
-                Message msg = new Message();
-                msg.read(in);
-                String rawCommand = msg.getCommand();
-                String rawData = msg.getData();
-
-                if (rawData == null || rawData.equals("END")) {
-                    System.out.println("Client decided to end connection");
-                    System.exit(0);
+                try {
+                    msg = TestMessage.parseDelimitedFrom(Server.this.client.getInputStream());
+                    cmd = msg.getCommand();
+                    data = msg.getData();
+                }
+                catch (NullPointerException e) {
+                    System.out.println("Exception: " + e);
+                    System.out.println("Client probably disconnected");
+                    break;
+                }
+                catch (IOException e) {
+                    System.out.println("Exception: " + e);
+                    break;
                 }
 
-                switch (rawCommand) {
-                    case "1": // velocity
-                        Server.this.velocity.set(rawData);
-                        logger.info("VELOCITY: " + rawData);
+                // if (rawData == null || rawData.equals("END")) {
+                    // System.out.println("Client decided to end connection");
+                    // System.exit(0);
+                // }
+
+                switch (cmd) {
+                    case VELOCITY:
+                        Server.this.velocity.set(String.valueOf(data));
+                        logger.info("VELOCITY: " + data);
                         break;
-                    case "2": // acceleration
-                        Server.this.acceleration.set(rawData);
-                        logger.info("ACCELERATION: " + rawData);
+                    case ACCELERATION:
+                        Server.this.acceleration.set(String.valueOf(data));
+                        logger.info("ACCELERATION: " + data);
                         break;
-                    case "3": // brake temp
-                        Server.this.brakeTemp.set(rawData);
-                        logger.info("BRAKE_TEMP: " + rawData);
+                    case BRAKE_TEMP:
+                        Server.this.brakeTemp.set(String.valueOf(data));
+                        logger.info("BRAKE_TEMP: " + data);
                         break;
                     default:
                         logger.info("ERROR: we should never reach this state");
@@ -144,24 +160,6 @@ public class Server implements Runnable {
         }
         catch (IOException e) {
             throw new RuntimeException("Failed to get new client socket");
-        }
-    }
-
-    private static PrintWriter getPrintWriter(Socket clientSocket) {
-        try {
-            return new PrintWriter(clientSocket.getOutputStream(), true);
-        }
-        catch (IOException e) {
-            throw new RuntimeException("Failed getting PrintWriter");
-        }
-    }
-
-    private static BufferedReader getBufferedReader(Socket clientSocket) {
-        try {
-            return new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        }
-        catch (IOException e) {
-            throw new RuntimeException("Error getting new BufferedReader for client socket");
         }
     }
 

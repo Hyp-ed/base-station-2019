@@ -27,16 +27,16 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         // button 1
         Button btn1 = new Button();
-        btn1.setText("Send \"message 1\"");
+        btn1.setText("Send \"111\"");
         btn1.setOnAction((ActionEvent e) -> {
-            server.sendMessage("message 1");
+            server.sendMessage(111);
         });
 
         // button 2
         Button btn2 = new Button();
-        btn2.setText("Send \"message 2\"");
+        btn2.setText("Send \"222\"");
         btn2.setOnAction((ActionEvent e) -> {
-            server.sendMessage("message 2");
+            server.sendMessage(222);
         });
 
         // velocity label
