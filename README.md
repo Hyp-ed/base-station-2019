@@ -1,6 +1,6 @@
 # Telemetry Prototype
 
-Prototype that connects a server and a client over a tcp connection
+Prototype for the University of Edinburgh Hyperloop team that connects a server and a client over a TCP connection
 
 ## How to run
 This project uses gradle as its build system. The gradle wrapper is already checked into this repo, so no need to explicitly download gradle (unless you want to).
