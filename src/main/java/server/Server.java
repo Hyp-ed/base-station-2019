@@ -97,9 +97,13 @@ public class Server implements Runnable {
                     cmd = msg.getCommand();
                     data = msg.getData();
                 }
+                catch (NullPointerException e) {
+                    System.out.println("Exception: " + e);
+                    System.out.println("Client probably disconnected");
+                    break;
+                }
                 catch (IOException e) {
                     System.out.println("Exception: " + e);
-                    System.out.println("Broooooo");
                     break;
                 }
 
