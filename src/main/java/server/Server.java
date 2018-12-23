@@ -12,8 +12,6 @@ import java.util.logging.SimpleFormatter;
 import javafx.beans.property.SimpleStringProperty;
 import protoTypes.MessageProtos.*;
 
-import java.io.DataInputStream;
-
 public class Server implements Runnable {
     private static final int PORT = 9090;
     private Socket client = null;
@@ -70,8 +68,6 @@ public class Server implements Runnable {
             try {
                 TestMessage msg = msgBuilder.build();
                 msg.writeDelimitedTo(Server.this.client.getOutputStream());
-                System.out.println("SIZE: " + msg.getSerializedSize());
-                System.out.println("BYTES: " + Server.bytesToHex(msg.toByteArray()));
                 System.out.println("Sent \"" + msg.getData() + "\" to client");
             }
             catch (IOException e) {
@@ -81,7 +77,6 @@ public class Server implements Runnable {
     }
 
     private class MessageReader implements Runnable {
-        // private BufferedReader in = null;
         private Logger logger = null;
 
         public MessageReader() {
@@ -99,16 +94,6 @@ public class Server implements Runnable {
             while (true) {
                 try {
                     msg = TestMessage.parseDelimitedFrom(Server.this.client.getInputStream());
-                    // DataInputStream in = new DataInputStream(Server.this.client.getInputStream());
-                    // byte[] buffer = new byte[24];
-                    // in.read(buffer, 0, 24);
-
-                    // System.out.println("BUFFER: " + Server.bytesToHex(buffer));
-                    // msg = TestMessage.parseFrom(new byte[]{0x08, 0x01, 0x10, (byte) 0xF8, 0x06}); // this works!
-
-                    // System.out.println(msg);
-                    // System.out.println("MADE IT");
-
                     cmd = msg.getCommand();
                     data = msg.getData();
                 }
@@ -123,7 +108,6 @@ public class Server implements Runnable {
                     // System.exit(0);
                 // }
 
-                // System.out.println("cmd: " + cmd);
                 switch (cmd) {
                     case VELOCITY:
                         Server.this.velocity.set(String.valueOf(data));
@@ -143,17 +127,6 @@ public class Server implements Runnable {
                 }
             }
         }
-    }
-
-    private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
-    public static String bytesToHex(byte[] bytes) {
-        char[] hexChars = new char[bytes.length * 2];
-        for ( int j = 0; j < bytes.length; j++ ) {
-            int v = bytes[j] & 0xFF;
-            hexChars[j * 2] = hexArray[v >>> 4];
-            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
-        }
-        return new String(hexChars);
     }
 
     public SimpleStringProperty getVelocityProperty() {
@@ -183,26 +156,6 @@ public class Server implements Runnable {
         }
         catch (IOException e) {
             throw new RuntimeException("Failed to get new client socket");
-        }
-    }
-
-    // can probably remove
-    private static PrintWriter getPrintWriter(Socket clientSocket) {
-        try {
-            return new PrintWriter(clientSocket.getOutputStream(), true);
-        }
-        catch (IOException e) {
-            throw new RuntimeException("Failed getting PrintWriter");
-        }
-    }
-
-    // can probably remove
-    private static BufferedReader getBufferedReader(Socket clientSocket) {
-        try {
-            return new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        }
-        catch (IOException e) {
-            throw new RuntimeException("Error getting new BufferedReader for client socket");
         }
     }
 
