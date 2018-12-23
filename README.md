@@ -22,4 +22,12 @@ Run client side: In another terminal window, run
 ```
 (there's a `runClient` task in `build.gradle` but for some reason doing this only prints client output once the program ends, which isn't so useful)
 
-Also be sure to make a `/temp` directory in your project's root directory, as this is where the log is stored. Read log with `tail -F temp/server_log.log`
+---
+
+Be sure to make a `/temp` directory in your project's root directory, as this is where the log is stored. Read log with `tail -F temp/server_log.log`
+
+Also don't forget to compile the protobuf files:
+```
+protoc --cpp_out=src/main/cpp/types/ src/main/proto_types/message.proto
+protoc --java_out=src/main/java/server/ src/main/proto_types/message.proto
+```
