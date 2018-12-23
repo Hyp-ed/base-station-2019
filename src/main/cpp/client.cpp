@@ -88,13 +88,13 @@ void Read(int sockfd) {
     }
 }
 
-void Send(int sockfd) {
+void Send(int sockfd, protoTypes::TestMessage::Command cmd, int data) {
     using namespace google::protobuf::io;
 
     // build message
     protoTypes::TestMessage msg;
-    msg.set_command(protoTypes::TestMessage::VELOCITY);
-    msg.set_data(888);
+    msg.set_command(cmd);
+    msg.set_data(data);
 
     int body_size = msg.ByteSizeLong();
     int header_size = CodedOutputStream::VarintSize32(body_size); // literal amount of bytes that header takes up
@@ -109,9 +109,7 @@ void Send(int sockfd) {
     coded_output->WriteVarint32(body_size);
     msg.SerializeToCodedStream(coded_output);
 
-    while (true) {
-        send(sockfd, buffer, header_size + body_size, 0);
-    }
+    send(sockfd, buffer, header_size + body_size, 0);
 }
 
 int main(int argc, char *argv[]) {
@@ -151,27 +149,16 @@ int main(int argc, char *argv[]) {
 
     // start message reading thread to run in background
     std::thread threadObj(Read, sockfd);
-    std::thread threadObj2(Send, sockfd);
 
-    // for (int i = 0; i < 1000000; i++) {
-        // types::message test(1, 222);
-        // test.send(sockfd);
-// 
-        // test = types::message(2, 444);
-        // test.send(sockfd);
-// 
-        // test = types::message(3, 888);
-        // test.send(sockfd);
-// 
-        // test = types::message(1, 223);
-        // test.send(sockfd);
-// 
-        // test = types::message(2, 445);
-        // test.send(sockfd);
-// 
-        // test = types::message(3, 889);
-        // test.send(sockfd);
-    // }
+    for (int i = 0; i < 1000000; i++) {
+        Send(sockfd, protoTypes::TestMessage::VELOCITY, 222);
+        Send(sockfd, protoTypes::TestMessage::ACCELERATION, 444);
+        Send(sockfd, protoTypes::TestMessage::BRAKE_TEMP, 888);
+
+        Send(sockfd, protoTypes::TestMessage::VELOCITY, 223);
+        Send(sockfd, protoTypes::TestMessage::ACCELERATION, 445);
+        Send(sockfd, protoTypes::TestMessage::BRAKE_TEMP, 889);
+    }
 
     // signify end of messaging
     // types::message end_msg("END");
@@ -179,7 +166,6 @@ int main(int argc, char *argv[]) {
 
     // wait for message reading thread to finish
     threadObj.join();
-    threadObj2.join();
 
     close(sockfd);
     return 0;
