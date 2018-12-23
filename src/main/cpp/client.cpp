@@ -37,6 +37,7 @@ void readBody(int sockfd, google::protobuf::uint32 body_size) {
     int bytes_received;
     int header_size = CodedOutputStream::VarintSize32(body_size); // literal amount of bytes that header takes up
     char buffer[body_size + header_size];
+    std::cout << "header_size: " << header_size << std::endl; // if we don't print this we run into a lot of corrupt messages, really strange; must fix
 
     // read whole message (header + body) into buffer
     if ((bytes_received = recv(sockfd, buffer, header_size + body_size, 0)) == -1) {
@@ -95,27 +96,21 @@ void Send(int sockfd) {
     msg.set_command(protoTypes::TestMessage::VELOCITY);
     msg.set_data(888);
 
-    int msg_size = msg.ByteSizeLong();
-    char buffer[1 + msg_size]; // 1 because WriteVarint32 only puts in a varint one byte long
+    int body_size = msg.ByteSizeLong();
+    int header_size = CodedOutputStream::VarintSize32(body_size); // literal amount of bytes that header takes up
+    char buffer[header_size + body_size];
     std::memset(buffer, 0, sizeof(buffer)); // just in case; overwrite garbage data
 
-
-
-    // figure out better way than just to hardcode 1
-
-
-
     // create streams that write to our buffer
-    ArrayOutputStream raw_output(buffer, 1 + msg_size);
+    ArrayOutputStream raw_output(buffer, header_size + body_size);
     CodedOutputStream *coded_output = new CodedOutputStream(&raw_output);
 
     // write message size and actual message to buffer
-    coded_output->WriteVarint32(msg_size);
+    coded_output->WriteVarint32(body_size);
     msg.SerializeToCodedStream(coded_output);
 
     while (true) {
-        send(sockfd, buffer, 1 + msg_size, 0);
-        // sleep(1);
+        send(sockfd, buffer, header_size + body_size, 0);
     }
 }
 
