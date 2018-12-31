@@ -1,6 +1,17 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.1.RELEASE")
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'cpp'
 apply plugin: 'application'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 // specify application entry point (which main method to run)
 mainClassName = 'server.Main'
@@ -42,6 +53,8 @@ repositories {
 
 dependencies {
     compile 'com.google.protobuf:protobuf-java:3.6.1'
+    compile("org.springframework.boot:spring-boot-starter-web")
+    testCompile("junit:junit")
 }
 
 // idk why this doesn't happen automatically, but here we specify some manifest stuff in our jar
