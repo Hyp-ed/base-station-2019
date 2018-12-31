@@ -9,12 +9,12 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'cpp'
-apply plugin: 'application'
+// apply plugin: 'application'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 // specify application entry point (which main method to run)
-mainClassName = 'server.Main'
+// mainClassName = 'server.Main'
 
 // run this task to start the c++ client
 task runClient(type: Exec) {
