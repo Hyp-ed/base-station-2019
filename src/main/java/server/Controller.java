@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 public class Controller {
-
     private Server server;
     private boolean serverRunning = false;
 
@@ -15,7 +14,7 @@ public class Controller {
         return "HOMEPAGE!!!";
     }
 
-    @RequestMapping(path="/server", method=RequestMethod.POST)
+    @RequestMapping(path = "/server", method = RequestMethod.POST)
     public boolean initiateServer() {
         if (!serverRunning) {
             server = new Server();
