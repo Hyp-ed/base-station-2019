@@ -15,7 +15,7 @@ public class Controller {
     }
 
     @RequestMapping(path = "/server", method = RequestMethod.POST)
-    public boolean initiateServer() {
+    public boolean postServer() {
         if (!serverRunning) {
             server = new Server();
             Thread serverThread = new Thread(server);
@@ -24,5 +24,10 @@ public class Controller {
         }
 
         return serverRunning;
+    }
+
+    @RequestMapping(path = "/server", method = RequestMethod.GET)
+    public String getServer() {
+        return server.getCmd() + " --- " + server.getData();
     }
 }

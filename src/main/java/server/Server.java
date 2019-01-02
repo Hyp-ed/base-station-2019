@@ -18,6 +18,7 @@ public class Server implements Runnable {
     private SimpleStringProperty velocity = new SimpleStringProperty(this, "velocity", "0");
     private SimpleStringProperty acceleration = new SimpleStringProperty(this, "acceleration", "0");
     private SimpleStringProperty brakeTemp = new SimpleStringProperty(this, "brakeTemp", "25");
+    private TestMessage msg;
 
     @Override
     public void run() {
@@ -85,7 +86,6 @@ public class Server implements Runnable {
 
         @Override
         public void run() {
-            TestMessage msg;
             TestMessage.Command cmd = TestMessage.Command.ERROR; // default value
             int data = 0; // default value
 
@@ -189,5 +189,13 @@ public class Server implements Runnable {
             System.out.println("Error creating new logger");
             return null;
         }
+    }
+
+    public String getCmd() {
+        return String.valueOf(msg.getCommand());
+    }
+
+    public int getData() {
+        return msg.getData();
     }
 }
