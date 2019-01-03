@@ -52,9 +52,9 @@ repositories {
 }
 
 dependencies {
-    compile 'com.google.protobuf:protobuf-java:3.6.1'
-    compile("org.springframework.boot:spring-boot-starter-web")
-    testCompile("junit:junit")
+    implementation 'com.google.protobuf:protobuf-java:3.6.1'
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    testImplementation("junit:junit")
 }
 
 // idk why this doesn't happen automatically, but here we specify some manifest stuff in our jar
