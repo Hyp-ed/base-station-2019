@@ -29,7 +29,6 @@ public class Controller {
     @RequestMapping(path = "/server", method = RequestMethod.GET)
     public ResponseEntity<String> getServer() {
         if (server != null && server.isConnected()) {
-            // return server.getCmd() + " --- " + server.getData();
             return ResponseEntity.ok(server.getCmd() + " --- " + server.getData());
         }
 
