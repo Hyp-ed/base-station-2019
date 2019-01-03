@@ -3,31 +3,36 @@ package server;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 public class Controller {
     private Server server;
-    private boolean serverRunning = false;
 
     @RequestMapping("/")
     public String index() {
         return "HOMEPAGE!!!";
     }
 
+    // returns true if server has connected, false if not/server isn't even running
     @RequestMapping(path = "/server", method = RequestMethod.POST)
-    public boolean postServer() {
-        if (!serverRunning) {
+    public String postServer() {
+        if (server == null) {
             server = new Server();
             Thread serverThread = new Thread(server);
             serverThread.start();
-            serverRunning = true;
         }
 
-        return serverRunning;
+        return String.valueOf(server.isConnected());
     }
 
     @RequestMapping(path = "/server", method = RequestMethod.GET)
-    public String getServer() {
-        return server.getCmd() + " --- " + server.getData();
+    public ResponseEntity<String> getServer() {
+        if (server != null && server.isConnected()) {
+            // return server.getCmd() + " --- " + server.getData();
+            return ResponseEntity.ok(server.getCmd() + " --- " + server.getData());
+        }
+
+        return ResponseEntity.badRequest().body(null);
     }
 }

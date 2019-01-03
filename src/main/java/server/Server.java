@@ -19,6 +19,7 @@ public class Server implements Runnable {
     private SimpleStringProperty acceleration = new SimpleStringProperty(this, "acceleration", "0");
     private SimpleStringProperty brakeTemp = new SimpleStringProperty(this, "brakeTemp", "25");
     private TestMessage msg;
+    private boolean connected = false;
 
     @Override
     public void run() {
@@ -28,6 +29,7 @@ public class Server implements Runnable {
 
         try {
             client = getClientServerFromListener(listener);
+            connected = true;
             System.out.println("Connected to client");
 
             Thread readWorker = new Thread(new MessageReader());
@@ -100,6 +102,7 @@ public class Server implements Runnable {
                 catch (NullPointerException e) {
                     System.out.println("Exception: " + e);
                     System.out.println("Client probably disconnected");
+                    connected = false;
                     System.exit(0);
                 }
                 catch (IOException e) {
@@ -197,5 +200,9 @@ public class Server implements Runnable {
 
     public int getData() {
         return msg.getData();
+    }
+
+    public boolean isConnected() {
+        return connected;
     }
 }
