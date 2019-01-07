@@ -12,6 +12,13 @@ function setConnected(connected) {
 }
 
 function connect() {
+    var request = new XMLHttpRequest;
+    request.onload = function() {
+        console.log("SERVER CONNECTED TO POD CLIENT: " + request.responseText);
+    };
+    request.open("POST", "http://localhost:8080/server");
+    request.send();
+
     var socket = new SockJS('/connecthere');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
@@ -19,7 +26,7 @@ function connect() {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/pod_stats', function (data) {
             showData(data.body);
-            console.log('data: ' + data)
+            console.log('data: ' + data);
         });
     });
 }
@@ -37,7 +44,7 @@ function pullData() {
 }
 
 function showData(message) {
-    $("#data").append("<tr><td>" + message + "</td></tr>");
+    document.getElementById("data2").innerHTML = message;
 }
 
 $(function () {
