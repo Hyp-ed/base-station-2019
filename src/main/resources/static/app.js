@@ -48,7 +48,20 @@ function pullData() {
 }
 
 function showData(message) {
-    document.getElementById("data").innerHTML = message;
+    var jsonData = JSON.parse(message);
+    switch (jsonData.cmd) {
+        case "VELOCITY":
+            document.getElementById("velocity").innerHTML = jsonData.data;
+            break;
+        case "ACCELERATION":
+            document.getElementById("acceleration").innerHTML = jsonData.data;
+            break;
+        case "BRAKE_TEMP":
+            document.getElementById("brake_temp").innerHTML = jsonData.data;
+            break;
+        default:
+            console.log("Got some weird JSON data");
+    }
 }
 
 $(function () {

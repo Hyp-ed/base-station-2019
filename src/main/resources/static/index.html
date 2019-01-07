@@ -22,8 +22,8 @@
                 <form class="form-inline">
                     <div class="form-group">
                         <label for="connect">Server:</label>
-                        <button id="connect" class="btn btn-default" type="submit">Connect</button>
-                        <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect</button>
+                        <button id="connect" class="btn btn-light btn-sm ml-3 mr-1" type="submit">Connect</button>
+                        <button id="disconnect" class="btn btn-light btn-sm mx-1" type="submit" disabled="disabled">Disconnect</button>
                     </div>
                 </form>
             </div>
@@ -34,11 +34,26 @@
             </div>
         </div>
 
-        <hr>
+        <br>
 
         <div class="row">
-            <div class="col-md-12">
-                <p id="data"></p>
+            <div class="col">
+                <table id="data" class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Velocity</th>
+                            <td id="velocity" class="text-right">888</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Acceleration</th>
+                            <td id="acceleration" class="text-right">222</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Brake Temperature</th>
+                            <td id="brake_temp" class="text-right">333</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
