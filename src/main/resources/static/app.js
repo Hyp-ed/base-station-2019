@@ -11,13 +11,17 @@ function setConnected(connected) {
     }
 }
 
-function connect() {
+function startBaseStationServer() {
     var request = new XMLHttpRequest;
     request.onload = function() {
         console.log("SERVER CONNECTED TO POD CLIENT: " + request.responseText);
     };
     request.open("POST", "http://localhost:8080/server");
     request.send();
+}
+
+function connect() {
+    startBaseStationServer();
 
     var socket = new SockJS('/connecthere');
     stompClient = Stomp.over(socket);
