@@ -59,5 +59,3 @@ $(function () {
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#pull" ).click(function() { pullData(); });
 });
-
-
