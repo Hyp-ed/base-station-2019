@@ -9,7 +9,6 @@ function setConnected(connected) {
     else {
         $("#conversation").hide();
     }
-    $("#greetings").html("");
 }
 
 function connect() {
@@ -33,8 +32,8 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-function sendName() {
-    stompClient.send("/app/data", {}, "adsf");
+function pullData() {
+    stompClient.send("/app/data");
 }
 
 function showData(message) {
@@ -47,7 +46,7 @@ $(function () {
     });
     $( "#connect" ).click(function() { connect(); });
     $( "#disconnect" ).click(function() { disconnect(); });
-    $( "#pull" ).click(function() { sendName(); });
+    $( "#pull" ).click(function() { pullData(); });
 });
 
 

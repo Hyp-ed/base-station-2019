@@ -39,7 +39,7 @@ public class Controller {
 
     @MessageMapping("/data")
     @SendTo("/topic/pod_stats")
-    public String podStats(String whatever) {
+    public String podStats() {
         if (server != null && server.isConnected()) {
             return server.getCmd() + " --- " + server.getData();
         }
