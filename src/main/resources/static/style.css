@@ -1,0 +1,11 @@
+body {
+    background-color: #13424c;
+}
+
+label, p {
+    color: #ffffff;
+}
+
+hr {
+    border: 0.5px solid gray;
+}

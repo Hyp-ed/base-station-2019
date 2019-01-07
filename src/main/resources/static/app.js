@@ -4,10 +4,10 @@ function setConnected(connected) {
     $("#connect").prop("disabled", connected);
     $("#disconnect").prop("disabled", !connected);
     if (connected) {
-        $("#conversation").show();
+        $("#data").show();
     }
     else {
-        $("#conversation").hide();
+        $("#data").hide();
     }
 }
 
@@ -48,7 +48,7 @@ function pullData() {
 }
 
 function showData(message) {
-    document.getElementById("data2").innerHTML = message;
+    document.getElementById("data").innerHTML = message;
 }
 
 $(function () {
