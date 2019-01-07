@@ -30,7 +30,6 @@ function connect() {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/pod_stats', function (data) {
             showData(data.body);
-            console.log('data: ' + data);
         });
     });
 }
