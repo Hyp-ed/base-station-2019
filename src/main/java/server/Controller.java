@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.json.*;
 
 @RestController
 public class Controller {
@@ -41,7 +42,11 @@ public class Controller {
     @SendTo("/topic/pod_stats")
     public String podStats() {
         if (server != null && server.isConnected()) {
-            return server.getCmd() + " --- " + server.getData();
+            JSONObject data = new JSONObject();
+            data.put("cmd", server.getCmd());
+            data.put("data", server.getData());
+
+            return data.toString();
         }
 
         return "server not started or summin";
