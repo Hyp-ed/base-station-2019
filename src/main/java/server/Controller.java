@@ -17,7 +17,7 @@ public class Controller {
         // return "HOMEPAGE!!!";
     // }
 
-    // returns true if server has connected, false if not/server isn't even running
+    // starts base station server, and returns if it has connected to pod client or not
     @RequestMapping(path = "/server", method = RequestMethod.POST)
     public String postServer() {
         if (server == null) {
@@ -27,15 +27,6 @@ public class Controller {
         }
 
         return String.valueOf(server.isConnected());
-    }
-
-    @RequestMapping(path = "/server", method = RequestMethod.GET)
-    public ResponseEntity<String> getServer() {
-        if (server != null && server.isConnected()) {
-            return ResponseEntity.ok(server.getCmd() + " --- " + server.getData());
-        }
-
-        return ResponseEntity.badRequest().body(null);
     }
 
     @MessageMapping("/data")
