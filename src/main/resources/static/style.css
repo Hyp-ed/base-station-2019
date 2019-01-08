@@ -17,10 +17,7 @@ th, td, label, p {
     align: right;
 }
 
+/* table hover color */
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color: #1d2d47;
-}
-
-hr {
-    border: 0.5px solid gray;
 }
