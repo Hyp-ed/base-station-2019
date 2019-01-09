@@ -31,8 +31,8 @@ public class Controller {
     @Autowired
     private TaskScheduler scheduler;
 
-    @MessageMapping("/data")
-    @SendTo("/topic/pod_stats")
+    @MessageMapping("/pullData")
+    @SendTo("/topic/podStats")
     public String podStats() {
         if (server != null && server.isConnected()) {
             ScheduledFuture scheduledFuture = scheduler.scheduleAtFixedRate(() -> pingData(), 100); // don't really need this ScheduledFuture object, maybe to cancel() or something
@@ -51,6 +51,6 @@ public class Controller {
         data.put("cmd", server.getCmd());
         data.put("data", server.getData());
 
-        template.convertAndSend("/topic/pod_stats", data.toString());
+        template.convertAndSend("/topic/podStats", data.toString());
     }
 }

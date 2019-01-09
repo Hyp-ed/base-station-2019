@@ -28,7 +28,7 @@ function connect() {
     stompClient.connect({}, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/pod_stats', function (data) {
+        stompClient.subscribe('/topic/podStats', function (data) {
             showData(data.body);
         });
     });
@@ -43,7 +43,7 @@ function disconnect() {
 }
 
 function pullData() {
-    stompClient.send("/app/data");
+    stompClient.send("/app/pullData");
 }
 
 function showData(message) {
@@ -69,5 +69,5 @@ $(function () {
     });
     $( "#connect" ).click(function() { connect(); });
     $( "#disconnect" ).click(function() { disconnect(); });
-    $( "#pull" ).click(function() { pullData(); });
+    $( "#pullData" ).click(function() { pullData(); });
 });
