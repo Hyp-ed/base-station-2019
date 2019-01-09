@@ -58,8 +58,13 @@ function showData(message) {
         case "BRAKE_TEMP":
             document.getElementById("brake_temp").innerHTML = jsonData.data;
             break;
-        default:
-            console.log("Got some weird JSON data");
+        default: // probably an received an error
+            if (jsonData.status == "error") {
+                $( "#alert_placeholder" ).html('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + jsonData.errorMessage + '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button></div>');
+            }
+            else {
+                console.log("Got some weird JSON data");
+            }
     }
 }
 

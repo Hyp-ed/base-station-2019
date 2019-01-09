@@ -39,7 +39,7 @@ public class Controller {
             return "{\"status\":\"should be working\"}";
         }
 
-        return "{\"status\":\"error: base-station server probably not connected to pod (pod not started)\"}";
+        return "{\"status\":\"error\", \"errorMessage\":\"error: base-station server probably not connected to pod (pod not started)\"}";
     }
 
     @Autowired
