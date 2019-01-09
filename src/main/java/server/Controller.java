@@ -3,10 +3,8 @@ package server;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
-
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.TaskScheduler;
@@ -17,11 +15,6 @@ import org.json.*;
 @RestController
 public class Controller {
     private Server server;
-
-    // @RequestMapping("/")
-    // public String index() {
-        // return "HOMEPAGE!!!";
-    // }
 
     // starts base station server, and returns if it has connected to pod client or not
     @RequestMapping(path = "/server", method = RequestMethod.POST)
@@ -43,11 +36,10 @@ public class Controller {
     public String podStats() {
         if (server != null && server.isConnected()) {
             ScheduledFuture scheduledFuture = scheduler.scheduleAtFixedRate(() -> pingData(), 100); // don't really need this ScheduledFuture object, maybe to cancel() or something
-
-            return "hopefully this works :)";
+            return "{\"status\":\"should be working\"}";
         }
 
-        return "server not started or summin";
+        return "{\"status\":\"error: base-station server probably not connected to pod (pod not started)\"}";
     }
 
     @Autowired
