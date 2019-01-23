@@ -15,9 +15,6 @@ import protoTypes.MessageProtos.*;
 public class Server implements Runnable {
     private static final int PORT = 9090;
     private Socket client = null;
-    private SimpleStringProperty velocity = new SimpleStringProperty(this, "velocity", "0");
-    private SimpleStringProperty acceleration = new SimpleStringProperty(this, "acceleration", "0");
-    private SimpleStringProperty brakeTemp = new SimpleStringProperty(this, "brakeTemp", "25");
     private TestMessage msg;
     private boolean connected = false;
 
@@ -112,15 +109,12 @@ public class Server implements Runnable {
 
                 switch (cmd) {
                     case VELOCITY:
-                        Server.this.velocity.set(String.valueOf(data));
                         logger.info("VELOCITY: " + data);
                         break;
                     case ACCELERATION:
-                        Server.this.acceleration.set(String.valueOf(data));
                         logger.info("ACCELERATION: " + data);
                         break;
                     case BRAKE_TEMP:
-                        Server.this.brakeTemp.set(String.valueOf(data));
                         logger.info("BRAKE_TEMP: " + data);
                         break;
                     default:
@@ -129,18 +123,6 @@ public class Server implements Runnable {
                 }
             }
         }
-    }
-
-    public SimpleStringProperty getVelocityProperty() {
-        return this.velocity;
-    }
-
-    public SimpleStringProperty getAccelerationProperty() {
-        return this.acceleration;
-    }
-
-    public SimpleStringProperty getBrakeTempProperty() {
-        return this.brakeTemp;
     }
 
     private static ServerSocket getServerSocket(int portNum) {
