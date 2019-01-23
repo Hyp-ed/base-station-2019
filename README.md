@@ -5,25 +5,26 @@ Prototype for the University of Edinburgh Hyperloop team that connects a server 
 ## How to run
 This project uses gradle as its build system. The gradle wrapper is already checked into this repo, so no need to explicitly download gradle (unless you want to).
 
-Build project:
+#### Build project:
 ```
 ./gradlew build
 ```
 (If on windows use `gradlew.bat` instead of `./gradlew`)
 
-Start up spring server:
+#### Start up spring server:
 ```
 ./gradlew bootRun
 ```
 
 Go to `localhost:8080` and click the 'connect' button to start the websocket connection between the browser and the spring server.
 
-Run client side: In another terminal window, run
+#### Run client side: In another terminal window, run
 ```
 ./build/exe/main/main
 ```
 (there's a `runClient` task in `build.gradle` but for some reason doing this only prints client output once the program ends, which isn't so useful)
 
+#### Start data communication:
 Now click 'start pulling data' back on the frontend to start the data communication.
 
 ---
