@@ -11,16 +11,20 @@ Build project:
 ```
 (If on windows use `gradlew.bat` instead of `./gradlew`)
 
-Run server side:
+Start up spring server:
 ```
-./gradlew run
+./gradlew bootRun
 ```
+
+Go to `localhost:8080` and click the 'connect' button to start the websocket connection between the browser and the spring server.
 
 Run client side: In another terminal window, run
 ```
 ./build/exe/main/main
 ```
 (there's a `runClient` task in `build.gradle` but for some reason doing this only prints client output once the program ends, which isn't so useful)
+
+Now click 'start pulling data' back on the frontend to start the data communication.
 
 ---
 
