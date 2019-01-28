@@ -2,8 +2,15 @@ body {
     background-color: #0F1D3A;
 }
 
-th, td, label, p {
+label, p {
     color: #ffffff;
+    font-family: "Helvetica Neue";
+}
+
+th,td {
+    color: grey;
+    font-family: "Helvetica Neue";
+    font-weight: lighter;
 }
 
 /* remove top border line over table */
@@ -17,7 +24,72 @@ th, td, label, p {
     align: right;
 }
 
-/* table hover color */
-.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-  background-color: #1d2d47;
+#progressBatteryHp1Battery,
+#progressBatteryHp1Voltage,
+#progressBatteryHp1Temperature,
+#progressBatteryHp1Current,
+#progressBatteryHp2Battery,
+#progressBatteryHp2Voltage,
+#progressBatteryHp2Temperature,
+#progressBatteryHp2Current,
+#progressBatteryLp1Battery,
+#progressBatteryLp1Voltage,
+#progressBatteryLp1Current,
+#progressBatteryLp2Battery,
+#progressBatteryLp2Voltage,
+#progressBatteryLp2Current {
+    width: 100%;
+    background-color: #707070;
+}
+
+#progressBarBatteryHp1Battery,
+#progressBarBatteryHp1Voltage,
+#progressBarBatteryHp1Temperature,
+#progressBarBatteryHp1Current,
+#progressBarBatteryHp2Battery,
+#progressBarBatteryHp2Voltage,
+#progressBarBatteryHp2Temperature,
+#progressBarBatteryHp2Current,
+#progressBarBatteryLp1Battery,
+#progressBarBatteryLp1Voltage,
+#progressBarBatteryLp1Current,
+#progressBarBatteryLp2Battery,
+#progressBarBatteryLp2Voltage,
+#progressBarBatteryLp2Current{
+    width: 1%;
+    height: 20px;
+    background-color: #FFFFFF;
+}
+
+#batteryHp1,#batteryHp2 {
+    width: 100%;
+}
+
+th.variable {
+    width: 15%;
+}
+
+.button {
+    background-color: #DE062D;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.PullingButton {
+    background-color: #DE062D;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
 }
