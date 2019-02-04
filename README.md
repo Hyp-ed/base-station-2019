@@ -7,26 +7,26 @@ This project uses gradle as its build system. The gradle wrapper is already chec
 
 #### Build project:
 ```
-./gradlew build
+$ ./gradlew build
 ```
 (If on windows use `gradlew.bat` instead of `./gradlew`)
 
 Also compile protobuf files (can't run without generating these files):
 ```
-protoc --cpp_out=src/main/cpp/types/ src/main/proto_types/message.proto
-protoc --java_out=src/main/java/server/ src/main/proto_types/message.proto
+$ protoc --cpp_out=src/main/cpp/types/ src/main/proto_types/message.proto
+$ protoc --java_out=src/main/java/server/ src/main/proto_types/message.proto
 ```
 
 #### Start up spring server:
 ```
-./gradlew bootRun
+$ ./gradlew bootRun
 ```
 
 Go to `localhost:8080` and click the 'connect' button to start the websocket connection between the browser and the spring server.
 
 #### Run client side: In another terminal window, run
 ```
-./build/exe/main/main
+$ ./build/exe/main/main
 ```
 (there's a `runClient` task in `build.gradle` but for some reason doing this only prints client output once the program ends, which isn't so useful)
 
