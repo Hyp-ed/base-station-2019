@@ -3,13 +3,19 @@
 Prototype for the University of Edinburgh Hyperloop team that connects a server and a client over a TCP connection
 
 ## How to run
-This project uses gradle as its build system. The gradle wrapper is already checked into this repo, so no need to explicitly download gradle (unless you want to).
+This project uses gradle as its build system. The gradle wrapper is already checked into this repo, so no need to explicitly download gradle (unless you want to). Also make sure you install the [protobufs](https://github.com/protocolbuffers/protobuf) library!! 
 
 #### Build project:
 ```
 ./gradlew build
 ```
 (If on windows use `gradlew.bat` instead of `./gradlew`)
+
+Also compile protobuf files (can't run without generating these files):
+```
+protoc --cpp_out=src/main/cpp/types/ src/main/proto_types/message.proto
+protoc --java_out=src/main/java/server/ src/main/proto_types/message.proto
+```
 
 #### Start up spring server:
 ```
@@ -30,9 +36,3 @@ Now click 'start pulling data' back on the frontend to start the data communicat
 ---
 
 Be sure to make a `/temp` directory in your project's root directory, as this is where the log is stored. Read log with `tail -F temp/server_log.log`
-
-Also don't forget to compile the protobuf files:
-```
-protoc --cpp_out=src/main/cpp/types/ src/main/proto_types/message.proto
-protoc --java_out=src/main/java/server/ src/main/proto_types/message.proto
-```
