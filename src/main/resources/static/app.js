@@ -46,8 +46,8 @@ function pullData() {
     stompClient.send("/app/pullData");
 }
 
-function sendMessage() {
-    stompClient.send("/app/sendMessage", {}, "*****TEST MESSAGE*****");
+function sendMessage(msg) {
+    stompClient.send("/app/sendMessage", {}, msg);
 }
 
 function showData(message) {
@@ -79,5 +79,6 @@ $(function () {
     $( "#connect" ).click(function() { connect(); });
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#pullData" ).click(function() { pullData(); });
-    $( "#sendMessage" ).click(function() { sendMessage(); });
+    $( "#send1" ).click(function() { sendMessage(1); });
+    $( "#send2" ).click(function() { sendMessage(2); });
 });
