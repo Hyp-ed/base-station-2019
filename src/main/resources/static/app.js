@@ -46,6 +46,10 @@ function pullData() {
     stompClient.send("/app/pullData");
 }
 
+function sendMessage() {
+    stompClient.send("/app/sendMessage", {}, "*****TEST MESSAGE*****");
+}
+
 function showData(message) {
     var jsonData = JSON.parse(message);
     switch (jsonData.cmd) {
@@ -75,4 +79,5 @@ $(function () {
     $( "#connect" ).click(function() { connect(); });
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#pullData" ).click(function() { pullData(); });
+    $( "#sendMessage" ).click(function() { sendMessage(); });
 });

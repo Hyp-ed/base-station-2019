@@ -42,6 +42,17 @@ public class Controller {
         return "{\"status\":\"error\", \"errorMessage\":\"error: base-station server probably not connected to pod (pod not started)\"}";
     }
 
+    @MessageMapping("/sendMessage")
+    @SendTo("/topic/podStats") // error messages get sent to same destination as pod stats do, probably should change this
+    public String sendMessage(String msg) {
+        if (server != null && server.isConnected()) {
+            server.sendMessage(1);
+            return "{\"status\":\"sent message to server\"}";
+        }
+
+        return "{\"status\":\"error\", \"errorMessage\":\"could not send message\"}";
+    }
+
     @Autowired
     private SimpMessagingTemplate template;
 
