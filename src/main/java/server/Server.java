@@ -97,7 +97,6 @@ public class Server implements Runnable {
                     data = msg.getData();
                 }
                 catch (NullPointerException e) {
-                    System.out.println("Exception: " + e);
                     System.out.println("Client probably disconnected");
                     connected = false;
                     System.exit(0);
