@@ -11,7 +11,7 @@ $ ./gradlew build
 ```
 (If on windows use `gradlew.bat` instead of `./gradlew`)
 
-Also compile protobuf files (can't run without generating these files):
+Also compile protobuf files (can't run backend without generating these files):
 ```
 $ protoc --cpp_out=src/main/cpp/types/ src/main/proto_types/message.proto
 $ protoc --java_out=src/main/java/server/ src/main/proto_types/message.proto
