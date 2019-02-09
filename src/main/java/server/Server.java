@@ -32,7 +32,7 @@ public class Server implements Runnable {
                 readWorker.join();
             }
             catch (InterruptedException e) {
-                System.out.println("Problem joining threads");
+                System.out.println("Problem joining readWorker thread");
             }
 
             closeClient(client);
@@ -46,6 +46,10 @@ public class Server implements Runnable {
         try {
             Thread sendWorker = new Thread(new MessageSender(message));
             sendWorker.start();
+            sendWorker.join();
+        }
+        catch (InterruptedException e) {
+            System.out.println("Problem joining sendWorker thread");
         }
         catch (NullPointerException e) {
             System.out.println("Could not send message, client probably not running");
