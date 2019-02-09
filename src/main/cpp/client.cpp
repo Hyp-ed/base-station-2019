@@ -158,12 +158,16 @@ int main(int argc, char *argv[]) {
 
     for (int i = 0; i < 1000000; i++) {
         send(sockfd, protoTypes::TestMessage::VELOCITY, 222);
+        send(sockfd, protoTypes::TestMessage::ACCELERATION, 333);
+        send(sockfd, protoTypes::TestMessage::BRAKE_TEMP, 777);
+
+        send(sockfd, protoTypes::TestMessage::VELOCITY, 333);
         send(sockfd, protoTypes::TestMessage::ACCELERATION, 444);
         send(sockfd, protoTypes::TestMessage::BRAKE_TEMP, 888);
 
-        send(sockfd, protoTypes::TestMessage::VELOCITY, 223);
-        send(sockfd, protoTypes::TestMessage::ACCELERATION, 445);
-        send(sockfd, protoTypes::TestMessage::BRAKE_TEMP, 889);
+        send(sockfd, protoTypes::TestMessage::VELOCITY, 444);
+        send(sockfd, protoTypes::TestMessage::ACCELERATION, 555);
+        send(sockfd, protoTypes::TestMessage::BRAKE_TEMP, 999);
     }
 
     // wait for message reading thread to finish

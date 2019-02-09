@@ -52,15 +52,17 @@ function sendMessage(msg) {
 
 function showData(message) {
     var jsonData = JSON.parse(message);
+    var percentage = (jsonData.data / 1000) * 100; // pretend value we receive is out of 1000
+
     switch (jsonData.cmd) {
         case "VELOCITY":
-            document.getElementById("velocity").innerHTML = jsonData.data;
+            document.getElementById("progressBarBatteryHp1Battery").style.width = percentage + "%";
             break;
         case "ACCELERATION":
-            document.getElementById("acceleration").innerHTML = jsonData.data;
+            document.getElementById("progressBarBatteryHp1Voltage").style.width = percentage + "%";
             break;
         case "BRAKE_TEMP":
-            document.getElementById("brake_temp").innerHTML = jsonData.data;
+            document.getElementById("progressBarBatteryHp1Temperature").style.width = percentage + "%";
             break;
         default: // probably an received an error
             if (jsonData.status == "error") {
