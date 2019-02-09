@@ -1,15 +1,11 @@
 package server;
 
 import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
-import javafx.beans.property.SimpleStringProperty;
 import protoTypes.MessageProtos.*;
 
 public class Server implements Runnable {
