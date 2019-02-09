@@ -60,7 +60,15 @@ public class Server implements Runnable {
         private TestMessage.Builder msgBuilder;
 
         public MessageSender(int content) {
-            msgBuilder = TestMessage.newBuilder().setData(content);
+            switch (content) {
+                case 4:
+                    msgBuilder = TestMessage.newBuilder().setCommand(TestMessage.Command.FINISH);
+                    break;
+                case 5:
+                    msgBuilder = TestMessage.newBuilder().setCommand(TestMessage.Command.EM_STOP);
+                    break;
+                // IMPLEMENT DEFAULT CASE, honestly idk what to do here since we can't "cancel" this runnable from here
+            }
         }
 
         @Override
@@ -68,7 +76,7 @@ public class Server implements Runnable {
             try {
                 TestMessage msg = msgBuilder.build();
                 msg.writeDelimitedTo(Server.this.client.getOutputStream());
-                System.out.println("Sent \"" + msg.getData() + "\" to client");
+                System.out.println("Sent \"" + msg.getCommand() + "\" to client");
             }
             catch (IOException e) {
                 System.out.println("Error sending message to client");

@@ -79,6 +79,6 @@ $(function () {
     $( "#connect" ).click(function() { connect(); });
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#pullData" ).click(function() { pullData(); });
-    $( "#send1" ).click(function() { sendMessage(1); });
-    $( "#send2" ).click(function() { sendMessage(2); });
+    $( "#send4" ).click(function() { sendMessage(4); });
+    $( "#send5" ).click(function() { sendMessage(5); });
 });

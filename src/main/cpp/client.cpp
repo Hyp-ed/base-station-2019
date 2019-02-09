@@ -59,7 +59,16 @@ void readBody(int sockfd, google::protobuf::uint32 body_size) {
     msg.ParseFromCodedStream(&coded_input); // deserialize
     coded_input.PopLimit(msg_limit); // remove limit
 
-    std::cout << "FROM SERVER: " << msg.data() << std::endl;
+    switch (msg.command()) {
+        case protoTypes::TestMessage::FINISH:
+            std::cout << "FROM SERVER: " << "FINISH" << std::endl;
+            break;
+        case protoTypes::TestMessage::EM_STOP:
+            std::cout << "FROM SERVER: " << "EM_STOP" << std::endl;
+            break;
+        default:
+            std::cout << "UNRECOGNIZED INPUT FROM SERVER" << std::endl;
+    }
 }
 
 void Read(int sockfd) {
