@@ -30,12 +30,14 @@ public class Controller {
 
     @Autowired
     private TaskScheduler scheduler;
+    private ScheduledFuture scheduledFuture;
 
     @MessageMapping("/pullData")
     @SendTo("/topic/podStats")
     public String podStats() {
-        if (server != null && server.isConnected()) {
-            ScheduledFuture scheduledFuture = scheduler.scheduleAtFixedRate(() -> pingData(), 100); // don't really need this ScheduledFuture object, maybe to cancel() or something
+        // check if scheduledFuture is null bc we don't want to schedule pingData more than once per 100 ms
+        if (server != null && server.isConnected() && scheduledFuture == null) {
+            scheduledFuture = scheduler.scheduleAtFixedRate(() -> pingData(), 100); // don't really need this ScheduledFuture object, maybe to cancel() or something
             return "{\"status\":\"should be working\"}";
         }
 
