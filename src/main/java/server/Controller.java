@@ -41,6 +41,10 @@ public class Controller {
             return "{\"status\":\"should be working\"}";
         }
 
+        if (scheduledFuture != null) {
+            return "{\"status\":\"ScheduledFuture already running\"}";
+        }
+
         return "{\"status\":\"error\", \"errorMessage\":\"error: base-station server probably not connected to pod (pod not started)\"}";
     }
 
