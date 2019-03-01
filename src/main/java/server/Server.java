@@ -1,8 +1,7 @@
 package server;
 
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
@@ -10,9 +9,27 @@ import protoTypes.MessageProtos.*;
 
 public class Server implements Runnable {
     private static final int PORT = 9090;
-    private Socket client = null;
+    private static final String SPACE_X_IP = "localhost"; // change to actual ip
+
+    private Socket client; // TCP socket to pod
+    private DatagramSocket spaceXSocket; // UDP socket to SpaceX
+    private InetAddress spaceXAddress;
+
     private TestMessage msg;
     private boolean connected = false;
+
+    public Server() {
+        try {
+            spaceXSocket = new DatagramSocket();
+            spaceXAddress = InetAddress.getByName(SPACE_X_IP);
+        }
+        catch (SocketException e) {
+            System.out.println("SpaceX socket initialization failed");
+        }
+        catch (UnknownHostException e) {
+            System.out.println("Couldn't resolve SpaceX hostname");
+        }
+    }
 
     @Override
     public void run() {
