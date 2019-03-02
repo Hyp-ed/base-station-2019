@@ -2,6 +2,8 @@ package server;
 
 import java.io.IOException;
 import java.net.*;
+import java.nio.ByteBuffer;
+import java.util.Date;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
@@ -9,6 +11,7 @@ import protoTypes.MessageProtos.*;
 
 public class Server implements Runnable {
     private static final int PORT = 9090;
+    private static final int SPACE_X_PORT = 3000;
     private static final String SPACE_X_IP = "localhost"; // change to actual ip
 
     private Socket client; // TCP socket to pod
@@ -43,13 +46,17 @@ public class Server implements Runnable {
             System.out.println("Connected to client");
 
             Thread readWorker = new Thread(new MessageReader());
+            Thread udpWorker = new Thread(new SpaceXSender());
+
             readWorker.start();
+            udpWorker.start();
 
             try {
                 readWorker.join();
+                udpWorker.join();
             }
             catch (InterruptedException e) {
-                System.out.println("Problem joining readWorker thread");
+                System.out.println("Problem joining readWorker/udpWorker threads");
             }
 
             closeClient(client);
@@ -145,6 +152,48 @@ public class Server implements Runnable {
                         logger.info("ERROR: we should never reach this state");
                         throw new RuntimeException("UNREACHABLE");
                 }
+            }
+        }
+    }
+
+    private class SpaceXSender implements Runnable {
+        private ByteBuffer buffer;
+
+        public SpaceXSender() {
+            buffer = ByteBuffer.allocate(34); // 34 bytes as specified by SpaceX
+        }
+
+        @Override
+        public void run() {
+            while (connected) { // need to make sure packets sent between 10Hz and 50Hz
+                byte teamID = 0;
+                byte status = 1;
+
+                buffer.put(teamID);
+                buffer.put(status);
+                buffer.putInt(0);
+                buffer.putInt(1);
+                buffer.putInt(0);
+                buffer.putInt(1);
+                buffer.putInt(0);
+                buffer.putInt(1);
+                buffer.putInt(0);
+                buffer.putInt(1);
+
+                byte[] bufferArray = buffer.array();
+                byte[] test = new Date().toString().getBytes();
+                // DatagramPacket packet = new DatagramPacket(bufferArray, bufferArray.length, spaceXAddress, SPACE_X_PORT);
+                DatagramPacket packet = new DatagramPacket(test, test.length, spaceXAddress, SPACE_X_PORT);
+
+                try {
+                    spaceXSocket.send(packet);
+                    System.out.println("Sending UDP datagram to " + packet.getSocketAddress());
+                }
+                catch (IOException e) {
+                    System.out.println("Failure sending to SpaceX socket");
+                }
+
+                buffer.clear();
             }
         }
     }
