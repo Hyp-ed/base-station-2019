@@ -3,7 +3,6 @@ package server;
 import java.io.IOException;
 import java.net.*;
 import java.nio.ByteBuffer;
-import java.util.Date;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
@@ -25,6 +24,7 @@ public class Server implements Runnable {
         try {
             spaceXSocket = new DatagramSocket();
             spaceXAddress = InetAddress.getByName(SPACE_X_IP);
+            System.out.println("SPACEX ADDRESS: " + spaceXAddress);
         }
         catch (SocketException e) {
             System.out.println("SpaceX socket initialization failed");
@@ -166,24 +166,22 @@ public class Server implements Runnable {
         @Override
         public void run() {
             while (connected) { // need to make sure packets sent between 10Hz and 50Hz
-                byte teamID = 0;
+                byte teamID = 2;
                 byte status = 1;
 
                 buffer.put(teamID);
                 buffer.put(status);
-                buffer.putInt(0);
+                buffer.putInt(2);
                 buffer.putInt(1);
-                buffer.putInt(0);
+                buffer.putInt(2);
                 buffer.putInt(1);
-                buffer.putInt(0);
+                buffer.putInt(2);
                 buffer.putInt(1);
-                buffer.putInt(0);
+                buffer.putInt(2);
                 buffer.putInt(1);
 
                 byte[] bufferArray = buffer.array();
-                byte[] test = new Date().toString().getBytes();
-                // DatagramPacket packet = new DatagramPacket(bufferArray, bufferArray.length, spaceXAddress, SPACE_X_PORT);
-                DatagramPacket packet = new DatagramPacket(test, test.length, spaceXAddress, SPACE_X_PORT);
+                DatagramPacket packet = new DatagramPacket(bufferArray, bufferArray.length, spaceXAddress, SPACE_X_PORT);
 
                 try {
                     spaceXSocket.send(packet);
