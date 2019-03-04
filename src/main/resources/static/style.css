@@ -5,12 +5,21 @@ body {
 label, p {
     color: #ffffff;
     font-family: "Helvetica Neue";
+    font-weight: lighter;
 }
 
 th,td {
     color: grey;
     font-family: "Helvetica Neue";
     font-weight: lighter;
+}
+
+tr.spaceUnder>td {
+    padding-bottom: 1em;
+}
+
+td.spaceRight {
+    padding-right: 1em;
 }
 
 #progressBatteryHp1Battery,
@@ -81,4 +90,274 @@ th.variable {
     position: absolute;
     right: 15px;
     bottom: 15px;
+}
+
+.batteries {
+     width: 100%;
+     float:left;
+     position: relative;
+     right: 50px;
+     bottom: 435px;
+}
+
+.modules {
+     width: 100%;
+     float:left;
+     position: relative;
+     right: -500px;
+     bottom: 400px;
+}
+
+.imu {
+    width: 100%;
+    float:left;
+    position: relative;
+    right: -720px;
+    bottom: 495px;
+}
+
+.emergencyBrakes{
+    width: 100%;
+    float:left;
+    position: relative;
+    right: -820px;
+    bottom: 590px;
+}
+
+
+
+@import url(https://fonts.googleapis.com/css?family=Lato:700);
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.set-size {
+    font-size: 10em;
+}
+
+.charts-container:after {
+    display: inline-block;
+    clear: both;
+    content: "";
+    display: table;
+}
+
+/* velocity indicator*/
+.pie-wrapper {
+    height: 1em;
+    width: 1em;
+    float: left;
+    margin: 15px;
+    position: relative;
+}
+
+/* acceleration indicator */
+.pie-wrapper-acceleration {
+    height: 0.9em;
+    width: 0.9em;
+    float: left;
+    margin: 15px;
+    position: relative;
+}
+
+/* motor indicator */
+.pie-wrapper-motors {
+    height: 0.6em;
+    width: 0.6em;
+    float: left;
+    margin: 15px;
+    position: relative;
+}
+
+.pie-wrapper .pie {
+    height: 100%;
+    width: 100%;
+    clip: rect(0em, 1em, 1em, 0.5em);
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.pie-wrapper-acceleration .pie {
+    height: 100%;
+    width: 100%;
+    clip: rect(0em, .9em, .9em, 0.45em);
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.pie-wrapper-motors .pie {
+    height: 100%;
+    width: 100%;
+    clip: rect(0em, .6em, .6em, 0.3em);
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.pie-wrapper .pie .half-circle,
+.pie-wrapper-acceleration .pie .half-circle {
+    height: 100%;
+    width: 100%;
+    border: 0.1em solid #3498db;
+    border-radius: 50%;
+    clip: rect(0, 0.5em, 1em, 0);
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.pie-wrapper-motors .pie .half-circle{
+    height: 100%;
+    width: 100%;
+    border: 0.08em solid #3498db;
+    border-radius: 50%;
+    clip: rect(0, 0.5em, 1em, 0);
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+
+.pie-wrapper .label,
+.pie-wrapper-acceleration .label {
+    background: #34495e;
+    border-radius: 50%;
+    bottom: 0.4em;
+    color: #ecf0f1;
+    cursor: default;
+    display: block;
+    font-size: 0.25em;
+    left: 0.4em;
+    line-height: 2.6em;
+    position: absolute;
+    right: 0.4em;
+    text-align: center;
+    top: 0.4em;
+}
+
+.pie-wrapper-motors .label{
+    background: #34495e;
+    border-radius: 50%;
+    bottom: 0.4em;
+    color: #ecf0f1;
+    cursor: default;
+    display: block;
+    font-size: 0.25em;
+    left: 0.4em;
+    line-height: 2.6em;
+    position: absolute;
+    right: 0.4em;
+    text-align: center;
+    top: 0em;
+}
+
+.pie-wrapper .label .smaller,
+.pie-wrapper-acceleration .label .smaller,
+.pie-wrapper-motors .label .smaller{
+    color: grey;
+    font-family: "Helvetica Neue";
+    font-weight: lighter;
+    font-size: .45em;
+    padding-bottom: 20px;
+    vertical-align: super;
+}
+
+.pie-wrapper .shadow,
+.pie-wrapper-acceleration .shadow {
+    height: 100%;
+    width: 100%;
+    border: 0.1em solid #707070;
+    border-radius: 50%;
+}
+
+.pie-wrapper-motors .shadow {
+    height: 100%;
+    width: 100%;
+    border: 0.08em solid #707070;
+    border-radius: 50%;
+}
+
+.pie-wrapper.style-2 .label,
+.pie-wrapper-acceleration.style-2 .label,
+.pie-wrapper-motors.style-2 .label  {
+    background: none;
+    color: grey;
+    font-family: "Helvetica Neue";
+    font-weight: lighter;
+}
+
+.pie-wrapper.style-2 .label .smaller,
+.pie-wrapper-acceleration.style-2 .label .smaller,
+.pie-wrapper-motors.style-2 .label .smaller  {
+    color: #bdc3c7;
+}
+
+
+.pie-wrapper.progress-45 .pie .right-side,
+.pie-wrapper-acceleration.progress-45 .pie .right-side,
+.pie-wrapper-motors.progress-45 .pie .right-side{
+    display: none;
+}
+
+.pie-wrapper.progress-45 .pie .half-circle,
+.pie-wrapper-acceleration.progress-45 .pie .half-circle,
+.pie-wrapper-motors.progress-45 .pie .half-circle {
+    border-color: #FFFFFF;
+}
+
+.pie-wrapper.progress-45 .pie .left-side,
+.pie-wrapper-acceleration.progress-45 .pie .left-side,
+.pie-wrapper-motors.progress-45 .pie .left-side{
+    -webkit-transform: rotate(162deg);
+    transform: rotate(162deg);
+}
+
+.pie-wrapper--solid,
+.pie-wrapper-acceleration--solid,
+.pie-wrapper-motors--solid {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.pie-wrapper--solid:before,
+.pie-wrapper-acceleration--solid:before,
+.pie-wrapper-motors--solid:before {
+    border-radius: 0 100% 100% 0%;
+    content: '';
+    display: block;
+    height: 100%;
+    margin-left: 50%;
+    -webkit-transform-origin: left;
+    transform-origin: left;
+}
+
+.pie-wrapper--solid .label,
+.pie-wrapper-acceleration--solid .label,
+.pie-wrapper-motors--solid .label {
+    background: transparent;
+}
+
+.square {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.red {
+    background: #DE062D;
+}
+
+.white {
+    background: #FFFFFF;
+}
+
+.grey {
+    background: #707070;
 }
