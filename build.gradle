@@ -8,44 +8,8 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'cpp'
-// apply plugin: 'application'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-
-// specify application entry point (which main method to run)
-// mainClassName = 'server.Main'
-
-// run this task to start the c++ client
-task runClient(type: Exec) {
-    commandLine './build/exe/main/main'
-}
-
-// honestly not really sure how this works, but basically this is for compiling the c++ stuff
-model {
-    components {
-        main(NativeExecutableSpec)
-    }
-
-    binaries {
-        all {
-            if (toolChain in Clang) {
-                // compiler flags
-                def incs = 'pkg-config --cflags protobuf'.execute()
-                    incs.waitFor()
-                    def incsFlags = incs.in.text.trim()
-                    cppCompiler.args "-std=c++11", "-g"
-                    cppCompiler.args.addAll(incsFlags.tokenize(' '))
-
-                //linker flags
-                def libs = 'pkg-config --libs protobuf'.execute()
-                    libs.waitFor()
-                    def libsFlags = libs.in.text.trim()
-                    linker.args.addAll(libsFlags.tokenize(' '))
-            }
-        }
-    }
-}
 
 repositories {
     mavenCentral()
