@@ -185,7 +185,6 @@ public class Server implements Runnable {
 
                 try {
                     spaceXSocket.send(packet);
-                    System.out.println("Sending UDP datagram to " + packet.getSocketAddress());
                 }
                 catch (IOException e) {
                     System.out.println("Failure sending to SpaceX socket");
