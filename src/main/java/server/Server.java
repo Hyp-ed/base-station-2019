@@ -81,15 +81,16 @@ public class Server implements Runnable {
     }
 
     private class MessageSender implements Runnable {
-        private TestMessage.Builder msgBuilder;
+        private ServerToClient.Builder msgBuilder;
 
         public MessageSender(int content) {
             switch (content) {
                 case 4:
-                    msgBuilder = TestMessage.newBuilder().setCommand(TestMessage.Command.FINISH);
+                    msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.LAUNCH);
                     break;
                 case 5:
-                    msgBuilder = TestMessage.newBuilder().setCommand(TestMessage.Command.EM_STOP);
+                    msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.TRACKLENGTH)
+                                                            .setTrackLength(150.5f);
                     break;
                 // IMPLEMENT DEFAULT CASE, honestly idk what to do here since we can't "cancel" this runnable from here
             }
@@ -98,7 +99,7 @@ public class Server implements Runnable {
         @Override
         public void run() {
             try {
-                TestMessage msg = msgBuilder.build();
+                ServerToClient msg = msgBuilder.build();
                 msg.writeDelimitedTo(Server.this.client.getOutputStream());
                 System.out.println("Sent \"" + msg.getCommand() + "\" to client");
             }
