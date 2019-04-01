@@ -33,8 +33,5 @@ jar {
     manifest.attributes "Main-Class": "server.Main"
 }
 
-// for C++
-// protoc --cpp_out=src/main/cpp/types/ src/main/proto_types/message.proto
-
 // for Java
-// protoc --java_out=src/main/java/server/ src/main/proto_types/message.proto
+// protoc -I=src/main/proto_types/ --java_out=src/main/java/server/ message.proto

@@ -6,7 +6,7 @@ import java.nio.ByteBuffer;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
-import protoTypes.MessageProtos.*;
+import telemetrydata.TelemetryData.*;
 
 public class Server implements Runnable {
     private static final int PORT = 9090;
