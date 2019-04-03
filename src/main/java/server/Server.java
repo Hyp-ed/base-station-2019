@@ -85,8 +85,12 @@ public class Server implements Runnable {
 
         public MessageSender(int content) {
             switch (content) {
+                // case 4:
+                    // msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.LAUNCH);
+                    // break;
                 case 4:
-                    msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.LAUNCH);
+                    msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.TRACKLENGTH)
+                                                            .setTrackLength(25.9f);
                     break;
                 case 5:
                     msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.TRACKLENGTH)
@@ -126,6 +130,8 @@ public class Server implements Runnable {
             while (true) {
                 try {
                     msg = TestMessage.parseDelimitedFrom(Server.this.client.getInputStream());
+                    System.out.println("Recvd msg: ");
+                    System.out.println(msg);
                     cmd = msg.getCommand();
                     data = msg.getData();
                 }
@@ -248,6 +254,8 @@ public class Server implements Runnable {
     }
 
     public String getCmd() {
+        System.out.println("Current msg: ");
+        System.out.println(msg);
         return String.valueOf(msg.getCommand());
     }
 

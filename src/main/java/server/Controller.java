@@ -65,8 +65,15 @@ public class Controller {
     // this method gets scheduled to run every 100ms (resposible for sending data to frontend)
     public void pingData() {
         JSONObject data = new JSONObject();
-        data.put("cmd", server.getCmd());
-        data.put("data", server.getData());
+
+        String cmd = server.getCmd();
+        int dataInt = server.getData();
+
+        data.put("cmd", cmd);
+        data.put("data", dataInt);
+
+        System.out.println("server.getCmd(): " + cmd);
+        System.out.println("server.getData(): " + dataInt);
 
         template.convertAndSend("/topic/podStats", data.toString());
     }
