@@ -89,12 +89,12 @@ public class Server implements Runnable {
                     // msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.LAUNCH);
                     // break;
                 case 4:
-                    msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.TRACKLENGTH)
-                                                            .setTrackLength(25.9f);
+                    msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.RUN_LENGTH)
+                                                            .setRunLength(25.9f);
                     break;
                 case 5:
-                    msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.TRACKLENGTH)
-                                                            .setTrackLength(150.5f);
+                    msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.RUN_LENGTH)
+                                                            .setRunLength(150.5f);
                     break;
                 // IMPLEMENT DEFAULT CASE, honestly idk what to do here since we can't "cancel" this runnable from here
             }

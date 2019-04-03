@@ -740,14 +740,14 @@ public final class TelemetryData {
     telemetrydata.TelemetryData.ServerToClient.Command getCommand();
 
     /**
-     * <code>float track_length = 2;</code>
+     * <code>float run_length = 2;</code>
      */
-    float getTrackLength();
+    float getRunLength();
 
     /**
-     * <code>bool serv_prop_go = 3;</code>
+     * <code>bool service_propulsion = 3;</code>
      */
-    boolean getServPropGo();
+    boolean getServicePropulsion();
   }
   /**
    * Protobuf type {@code telemetry_data.ServerToClient}
@@ -763,8 +763,8 @@ public final class TelemetryData {
     }
     private ServerToClient() {
       command_ = 0;
-      trackLength_ = 0F;
-      servPropGo_ = false;
+      runLength_ = 0F;
+      servicePropulsion_ = false;
     }
 
     @java.lang.Override
@@ -799,12 +799,12 @@ public final class TelemetryData {
             }
             case 21: {
 
-              trackLength_ = input.readFloat();
+              runLength_ = input.readFloat();
               break;
             }
             case 24: {
 
-              servPropGo_ = input.readBool();
+              servicePropulsion_ = input.readBool();
               break;
             }
             default: {
@@ -861,13 +861,13 @@ public final class TelemetryData {
        */
       RESET(3),
       /**
-       * <code>TRACKLENGTH = 4;</code>
+       * <code>RUN_LENGTH = 4;</code>
        */
-      TRACKLENGTH(4),
+      RUN_LENGTH(4),
       /**
-       * <code>SERV_PROP_GO = 5;</code>
+       * <code>SERVICE_PROPULSION = 5;</code>
        */
-      SERV_PROP_GO(5),
+      SERVICE_PROPULSION(5),
       UNRECOGNIZED(-1),
       ;
 
@@ -888,13 +888,13 @@ public final class TelemetryData {
        */
       public static final int RESET_VALUE = 3;
       /**
-       * <code>TRACKLENGTH = 4;</code>
+       * <code>RUN_LENGTH = 4;</code>
        */
-      public static final int TRACKLENGTH_VALUE = 4;
+      public static final int RUN_LENGTH_VALUE = 4;
       /**
-       * <code>SERV_PROP_GO = 5;</code>
+       * <code>SERVICE_PROPULSION = 5;</code>
        */
-      public static final int SERV_PROP_GO_VALUE = 5;
+      public static final int SERVICE_PROPULSION_VALUE = 5;
 
 
       public final int getNumber() {
@@ -919,8 +919,8 @@ public final class TelemetryData {
           case 1: return STOP;
           case 2: return LAUNCH;
           case 3: return RESET;
-          case 4: return TRACKLENGTH;
-          case 5: return SERV_PROP_GO;
+          case 4: return RUN_LENGTH;
+          case 5: return SERVICE_PROPULSION;
           default: return null;
         }
       }
@@ -990,22 +990,22 @@ public final class TelemetryData {
       return result == null ? telemetrydata.TelemetryData.ServerToClient.Command.UNRECOGNIZED : result;
     }
 
-    public static final int TRACK_LENGTH_FIELD_NUMBER = 2;
-    private float trackLength_;
+    public static final int RUN_LENGTH_FIELD_NUMBER = 2;
+    private float runLength_;
     /**
-     * <code>float track_length = 2;</code>
+     * <code>float run_length = 2;</code>
      */
-    public float getTrackLength() {
-      return trackLength_;
+    public float getRunLength() {
+      return runLength_;
     }
 
-    public static final int SERV_PROP_GO_FIELD_NUMBER = 3;
-    private boolean servPropGo_;
+    public static final int SERVICE_PROPULSION_FIELD_NUMBER = 3;
+    private boolean servicePropulsion_;
     /**
-     * <code>bool serv_prop_go = 3;</code>
+     * <code>bool service_propulsion = 3;</code>
      */
-    public boolean getServPropGo() {
-      return servPropGo_;
+    public boolean getServicePropulsion() {
+      return servicePropulsion_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1025,11 +1025,11 @@ public final class TelemetryData {
       if (command_ != telemetrydata.TelemetryData.ServerToClient.Command.ACK.getNumber()) {
         output.writeEnum(1, command_);
       }
-      if (trackLength_ != 0F) {
-        output.writeFloat(2, trackLength_);
+      if (runLength_ != 0F) {
+        output.writeFloat(2, runLength_);
       }
-      if (servPropGo_ != false) {
-        output.writeBool(3, servPropGo_);
+      if (servicePropulsion_ != false) {
+        output.writeBool(3, servicePropulsion_);
       }
       unknownFields.writeTo(output);
     }
@@ -1044,13 +1044,13 @@ public final class TelemetryData {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, command_);
       }
-      if (trackLength_ != 0F) {
+      if (runLength_ != 0F) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(2, trackLength_);
+          .computeFloatSize(2, runLength_);
       }
-      if (servPropGo_ != false) {
+      if (servicePropulsion_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(3, servPropGo_);
+          .computeBoolSize(3, servicePropulsion_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1070,11 +1070,11 @@ public final class TelemetryData {
       boolean result = true;
       result = result && command_ == other.command_;
       result = result && (
-          java.lang.Float.floatToIntBits(getTrackLength())
+          java.lang.Float.floatToIntBits(getRunLength())
           == java.lang.Float.floatToIntBits(
-              other.getTrackLength()));
-      result = result && (getServPropGo()
-          == other.getServPropGo());
+              other.getRunLength()));
+      result = result && (getServicePropulsion()
+          == other.getServicePropulsion());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -1088,12 +1088,12 @@ public final class TelemetryData {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + COMMAND_FIELD_NUMBER;
       hash = (53 * hash) + command_;
-      hash = (37 * hash) + TRACK_LENGTH_FIELD_NUMBER;
+      hash = (37 * hash) + RUN_LENGTH_FIELD_NUMBER;
       hash = (53 * hash) + java.lang.Float.floatToIntBits(
-          getTrackLength());
-      hash = (37 * hash) + SERV_PROP_GO_FIELD_NUMBER;
+          getRunLength());
+      hash = (37 * hash) + SERVICE_PROPULSION_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getServPropGo());
+          getServicePropulsion());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1229,9 +1229,9 @@ public final class TelemetryData {
         super.clear();
         command_ = 0;
 
-        trackLength_ = 0F;
+        runLength_ = 0F;
 
-        servPropGo_ = false;
+        servicePropulsion_ = false;
 
         return this;
       }
@@ -1260,8 +1260,8 @@ public final class TelemetryData {
       public telemetrydata.TelemetryData.ServerToClient buildPartial() {
         telemetrydata.TelemetryData.ServerToClient result = new telemetrydata.TelemetryData.ServerToClient(this);
         result.command_ = command_;
-        result.trackLength_ = trackLength_;
-        result.servPropGo_ = servPropGo_;
+        result.runLength_ = runLength_;
+        result.servicePropulsion_ = servicePropulsion_;
         onBuilt();
         return result;
       }
@@ -1313,11 +1313,11 @@ public final class TelemetryData {
         if (other.command_ != 0) {
           setCommandValue(other.getCommandValue());
         }
-        if (other.getTrackLength() != 0F) {
-          setTrackLength(other.getTrackLength());
+        if (other.getRunLength() != 0F) {
+          setRunLength(other.getRunLength());
         }
-        if (other.getServPropGo() != false) {
-          setServPropGo(other.getServPropGo());
+        if (other.getServicePropulsion() != false) {
+          setServicePropulsion(other.getServicePropulsion());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1393,54 +1393,54 @@ public final class TelemetryData {
         return this;
       }
 
-      private float trackLength_ ;
+      private float runLength_ ;
       /**
-       * <code>float track_length = 2;</code>
+       * <code>float run_length = 2;</code>
        */
-      public float getTrackLength() {
-        return trackLength_;
+      public float getRunLength() {
+        return runLength_;
       }
       /**
-       * <code>float track_length = 2;</code>
+       * <code>float run_length = 2;</code>
        */
-      public Builder setTrackLength(float value) {
+      public Builder setRunLength(float value) {
         
-        trackLength_ = value;
+        runLength_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>float track_length = 2;</code>
+       * <code>float run_length = 2;</code>
        */
-      public Builder clearTrackLength() {
+      public Builder clearRunLength() {
         
-        trackLength_ = 0F;
+        runLength_ = 0F;
         onChanged();
         return this;
       }
 
-      private boolean servPropGo_ ;
+      private boolean servicePropulsion_ ;
       /**
-       * <code>bool serv_prop_go = 3;</code>
+       * <code>bool service_propulsion = 3;</code>
        */
-      public boolean getServPropGo() {
-        return servPropGo_;
+      public boolean getServicePropulsion() {
+        return servicePropulsion_;
       }
       /**
-       * <code>bool serv_prop_go = 3;</code>
+       * <code>bool service_propulsion = 3;</code>
        */
-      public Builder setServPropGo(boolean value) {
+      public Builder setServicePropulsion(boolean value) {
         
-        servPropGo_ = value;
+        servicePropulsion_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>bool serv_prop_go = 3;</code>
+       * <code>bool service_propulsion = 3;</code>
        */
-      public Builder clearServPropGo() {
+      public Builder clearServicePropulsion() {
         
-        servPropGo_ = false;
+        servicePropulsion_ = false;
         onChanged();
         return this;
       }
@@ -1521,13 +1521,13 @@ public final class TelemetryData {
       "a.TestMessage.Command\022\014\n\004data\030\002 \001(\005\"]\n\007C" +
       "ommand\022\t\n\005ERROR\020\000\022\014\n\010VELOCITY\020\001\022\020\n\014ACCEL" +
       "ERATION\020\002\022\016\n\nBRAKE_TEMP\020\003\022\n\n\006FINISH\020\004\022\013\n" +
-      "\007EM_STOP\020\005\"\315\001\n\016ServerToClient\0227\n\007command" +
+      "\007EM_STOP\020\005\"\326\001\n\016ServerToClient\0227\n\007command" +
       "\030\001 \001(\0162&.telemetry_data.ServerToClient.C" +
-      "ommand\022\024\n\014track_length\030\002 \001(\002\022\024\n\014serv_pro" +
-      "p_go\030\003 \001(\010\"V\n\007Command\022\007\n\003ACK\020\000\022\010\n\004STOP\020\001" +
-      "\022\n\n\006LAUNCH\020\002\022\t\n\005RESET\020\003\022\017\n\013TRACKLENGTH\020\004" +
-      "\022\020\n\014SERV_PROP_GO\020\005B\036\n\rtelemetrydataB\rTel" +
-      "emetryDatab\006proto3"
+      "ommand\022\022\n\nrun_length\030\002 \001(\002\022\032\n\022service_pr" +
+      "opulsion\030\003 \001(\010\"[\n\007Command\022\007\n\003ACK\020\000\022\010\n\004ST" +
+      "OP\020\001\022\n\n\006LAUNCH\020\002\022\t\n\005RESET\020\003\022\016\n\nRUN_LENGT" +
+      "H\020\004\022\026\n\022SERVICE_PROPULSION\020\005B\036\n\rtelemetry" +
+      "dataB\rTelemetryDatab\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1552,7 +1552,7 @@ public final class TelemetryData {
     internal_static_telemetry_data_ServerToClient_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ServerToClient_descriptor,
-        new java.lang.String[] { "Command", "TrackLength", "ServPropGo", });
+        new java.lang.String[] { "Command", "RunLength", "ServicePropulsion", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
