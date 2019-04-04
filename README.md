@@ -1,6 +1,6 @@
-# Telemetry Prototype
+# Base-Station 2019
 
-Prototype for the University of Edinburgh Hyperloop team that connects a server and a client over a TCP connection
+This project is responsible for communicating with the hyperloop pod and sending relevant commands and information back and forth. The web interface is also included in here.
 
 ## How to run
 This project uses gradle as its build system. The gradle wrapper is already checked into this repo, so no need to explicitly download gradle (unless you want to). Also make sure you install the [protobufs](https://github.com/protocolbuffers/protobuf) library!! 
