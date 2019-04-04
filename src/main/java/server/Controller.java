@@ -72,8 +72,8 @@ public class Controller {
         data.put("cmd", cmd);
         data.put("data", dataInt);
 
-        System.out.println("server.getCmd(): " + cmd);
-        System.out.println("server.getData(): " + dataInt);
+        // System.out.println("server.getCmd(): " + cmd);
+        // System.out.println("server.getData(): " + dataInt);
 
         template.convertAndSend("/topic/podStats", data.toString());
     }

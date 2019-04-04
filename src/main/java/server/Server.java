@@ -83,18 +83,15 @@ public class Server implements Runnable {
     private class MessageSender implements Runnable {
         private ServerToClient.Builder msgBuilder;
 
-        public MessageSender(int content) {
-            switch (content) {
-                // case 4:
-                    // msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.LAUNCH);
-                    // break;
-                case 4:
-                    msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.RUN_LENGTH)
-                                                            .setRunLength(25.9f);
+        public MessageSender(int command) {
+            msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.values()[command]);
+
+            switch (command) {
+                case 4:  // RUN_LENGTH
+                    msgBuilder.setRunLength(25.9f);
                     break;
-                case 5:
-                    msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.RUN_LENGTH)
-                                                            .setRunLength(150.5f);
+                case 5:  // SERVICE_PROPULSION
+                    msgBuilder.setServicePropulsion(true);
                     break;
                 // IMPLEMENT DEFAULT CASE, honestly idk what to do here since we can't "cancel" this runnable from here
             }
@@ -130,8 +127,8 @@ public class Server implements Runnable {
             while (true) {
                 try {
                     msg = TestMessage.parseDelimitedFrom(Server.this.client.getInputStream());
-                    System.out.println("Recvd msg: ");
-                    System.out.println(msg);
+                    // System.out.println("Recvd msg: ");
+                    // System.out.println(msg);
                     cmd = msg.getCommand();
                     data = msg.getData();
                 }

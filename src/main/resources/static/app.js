@@ -81,6 +81,11 @@ $(function () {
     $( "#connect" ).click(function() { connect(); });
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#pullData" ).click(function() { pullData(); });
-    $( "#send4" ).click(function() { sendMessage(4); });
-    $( "#send5" ).click(function() { sendMessage(5); });
+
+    $( "#stop" ).click(function() { sendMessage(1); });
+    $( "#launch" ).click(function() { sendMessage(2); });
+    $( "#reset" ).click(function() { sendMessage(3); });
+    $( "#run_length" ).click(function() { sendMessage(4); });
+    $( "#svp_go" ).click(function() { sendMessage(5); });
+    $( "#svp_stop" ).click(function() { sendMessage(6); });
 });
