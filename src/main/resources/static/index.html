@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello WebSocket</title>
+    <title>Base-Station</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
@@ -29,7 +29,7 @@
             <div class="col-sm-6 col-md">
                 <form class="form-inline">
                     <div class="form-group">
-                        <label for="connect">Websocket:</label>
+                        <label for="connect">Server:</label>
                         <button id="connect" class="btn btn-light btn-sm ml-3 mr-1" type="submit">Connect</button>
                         <button id="disconnect" class="btn btn-light btn-sm mx-1" type="submit" disabled="disabled">Disconnect</button>
                     </div>
@@ -48,6 +48,7 @@
                     <button id="stop" class="btn btn-danger mx-2" type="submit">STOP</button>
                     <button id="launch" class="btn btn-danger mx-2" type="submit">LAUNCH</button>
                     <button id="reset" class="btn btn-danger mx-2" type="submit">RESET</button>
+                    <input id="run_length_value" type="text" class="ml-5" size="5"/>
                     <button id="run_length" class="btn btn-danger mx-2" type="submit">RUN LENGTH</button>
                     <button id="svp_go" class="btn btn-danger mx-2" type="submit">SERVICE PROPULSION GO</button>
                     <button id="svp_stop" class="btn btn-danger mx-2" type="submit">SERVICE PROPULSION STOP</button>

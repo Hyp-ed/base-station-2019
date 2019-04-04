@@ -82,10 +82,10 @@ $(function () {
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#pullData" ).click(function() { pullData(); });
 
-    $( "#stop" ).click(function() { sendMessage(1); });
-    $( "#launch" ).click(function() { sendMessage(2); });
-    $( "#reset" ).click(function() { sendMessage(3); });
-    $( "#run_length" ).click(function() { sendMessage(4); });
-    $( "#svp_go" ).click(function() { sendMessage(5); });
-    $( "#svp_stop" ).click(function() { sendMessage(6); });
+    $( "#stop" ).click(function() { sendMessage('{"command":"STOP"}'); });
+    $( "#launch" ).click(function() { sendMessage('{"command":"LAUNCH"}'); });
+    $( "#reset" ).click(function() { sendMessage('{"command":"RESET"}'); });
+    $( "#run_length" ).click(function() { sendMessage('{"command":"RUN_LENGTH", "run_length":25}'); });
+    $( "#svp_go" ).click(function() { sendMessage('{"command":"SERVICE_PROPULSION", "state":true}'); });
+    $( "#svp_stop" ).click(function() { sendMessage('{"command":"SERVICE_PROPULSION", "state":false}'); });
 });
