@@ -1497,6 +1497,3899 @@ public final class TelemetryData {
 
   }
 
+  public interface ClientToServerOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:telemetry_data.ClientToServer)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.telemetry_data.ClientToServer.Navigation navigation = 1;</code>
+     */
+    boolean hasNavigation();
+    /**
+     * <code>.telemetry_data.ClientToServer.Navigation navigation = 1;</code>
+     */
+    telemetrydata.TelemetryData.ClientToServer.Navigation getNavigation();
+    /**
+     * <code>.telemetry_data.ClientToServer.Navigation navigation = 1;</code>
+     */
+    telemetrydata.TelemetryData.ClientToServer.NavigationOrBuilder getNavigationOrBuilder();
+
+    /**
+     * <code>.telemetry_data.ClientToServer.StateMachine state_machine = 2;</code>
+     */
+    boolean hasStateMachine();
+    /**
+     * <code>.telemetry_data.ClientToServer.StateMachine state_machine = 2;</code>
+     */
+    telemetrydata.TelemetryData.ClientToServer.StateMachine getStateMachine();
+    /**
+     * <code>.telemetry_data.ClientToServer.StateMachine state_machine = 2;</code>
+     */
+    telemetrydata.TelemetryData.ClientToServer.StateMachineOrBuilder getStateMachineOrBuilder();
+
+    /**
+     * <code>.telemetry_data.ClientToServer.Motors motors = 3;</code>
+     */
+    boolean hasMotors();
+    /**
+     * <code>.telemetry_data.ClientToServer.Motors motors = 3;</code>
+     */
+    telemetrydata.TelemetryData.ClientToServer.Motors getMotors();
+    /**
+     * <code>.telemetry_data.ClientToServer.Motors motors = 3;</code>
+     */
+    telemetrydata.TelemetryData.ClientToServer.MotorsOrBuilder getMotorsOrBuilder();
+
+    /**
+     * <pre>
+     * Batteries batteries = 4;
+     * Sensors sensors = 5;
+     * </pre>
+     *
+     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+     */
+    boolean hasEmergencyBrakes();
+    /**
+     * <pre>
+     * Batteries batteries = 4;
+     * Sensors sensors = 5;
+     * </pre>
+     *
+     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+     */
+    telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes getEmergencyBrakes();
+    /**
+     * <pre>
+     * Batteries batteries = 4;
+     * Sensors sensors = 5;
+     * </pre>
+     *
+     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+     */
+    telemetrydata.TelemetryData.ClientToServer.EmergencyBrakesOrBuilder getEmergencyBrakesOrBuilder();
+  }
+  /**
+   * Protobuf type {@code telemetry_data.ClientToServer}
+   */
+  public  static final class ClientToServer extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:telemetry_data.ClientToServer)
+      ClientToServerOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ClientToServer.newBuilder() to construct.
+    private ClientToServer(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ClientToServer() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ClientToServer(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              telemetrydata.TelemetryData.ClientToServer.Navigation.Builder subBuilder = null;
+              if (navigation_ != null) {
+                subBuilder = navigation_.toBuilder();
+              }
+              navigation_ = input.readMessage(telemetrydata.TelemetryData.ClientToServer.Navigation.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(navigation_);
+                navigation_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 18: {
+              telemetrydata.TelemetryData.ClientToServer.StateMachine.Builder subBuilder = null;
+              if (stateMachine_ != null) {
+                subBuilder = stateMachine_.toBuilder();
+              }
+              stateMachine_ = input.readMessage(telemetrydata.TelemetryData.ClientToServer.StateMachine.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(stateMachine_);
+                stateMachine_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 26: {
+              telemetrydata.TelemetryData.ClientToServer.Motors.Builder subBuilder = null;
+              if (motors_ != null) {
+                subBuilder = motors_.toBuilder();
+              }
+              motors_ = input.readMessage(telemetrydata.TelemetryData.ClientToServer.Motors.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(motors_);
+                motors_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 50: {
+              telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.Builder subBuilder = null;
+              if (emergencyBrakes_ != null) {
+                subBuilder = emergencyBrakes_.toBuilder();
+              }
+              emergencyBrakes_ = input.readMessage(telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(emergencyBrakes_);
+                emergencyBrakes_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              telemetrydata.TelemetryData.ClientToServer.class, telemetrydata.TelemetryData.ClientToServer.Builder.class);
+    }
+
+    public interface NavigationOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:telemetry_data.ClientToServer.Navigation)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>float distance = 1;</code>
+       */
+      float getDistance();
+
+      /**
+       * <code>float velocity = 2;</code>
+       */
+      float getVelocity();
+
+      /**
+       * <code>float acceleration = 3;</code>
+       */
+      float getAcceleration();
+    }
+    /**
+     * Protobuf type {@code telemetry_data.ClientToServer.Navigation}
+     */
+    public  static final class Navigation extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:telemetry_data.ClientToServer.Navigation)
+        NavigationOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use Navigation.newBuilder() to construct.
+      private Navigation(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private Navigation() {
+        distance_ = 0F;
+        velocity_ = 0F;
+        acceleration_ = 0F;
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Navigation(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 13: {
+
+                distance_ = input.readFloat();
+                break;
+              }
+              case 21: {
+
+                velocity_ = input.readFloat();
+                break;
+              }
+              case 29: {
+
+                acceleration_ = input.readFloat();
+                break;
+              }
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Navigation_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Navigation_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                telemetrydata.TelemetryData.ClientToServer.Navigation.class, telemetrydata.TelemetryData.ClientToServer.Navigation.Builder.class);
+      }
+
+      public static final int DISTANCE_FIELD_NUMBER = 1;
+      private float distance_;
+      /**
+       * <code>float distance = 1;</code>
+       */
+      public float getDistance() {
+        return distance_;
+      }
+
+      public static final int VELOCITY_FIELD_NUMBER = 2;
+      private float velocity_;
+      /**
+       * <code>float velocity = 2;</code>
+       */
+      public float getVelocity() {
+        return velocity_;
+      }
+
+      public static final int ACCELERATION_FIELD_NUMBER = 3;
+      private float acceleration_;
+      /**
+       * <code>float acceleration = 3;</code>
+       */
+      public float getAcceleration() {
+        return acceleration_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      @java.lang.Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (distance_ != 0F) {
+          output.writeFloat(1, distance_);
+        }
+        if (velocity_ != 0F) {
+          output.writeFloat(2, velocity_);
+        }
+        if (acceleration_ != 0F) {
+          output.writeFloat(3, acceleration_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      @java.lang.Override
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (distance_ != 0F) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeFloatSize(1, distance_);
+        }
+        if (velocity_ != 0F) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeFloatSize(2, velocity_);
+        }
+        if (acceleration_ != 0F) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeFloatSize(3, acceleration_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof telemetrydata.TelemetryData.ClientToServer.Navigation)) {
+          return super.equals(obj);
+        }
+        telemetrydata.TelemetryData.ClientToServer.Navigation other = (telemetrydata.TelemetryData.ClientToServer.Navigation) obj;
+
+        boolean result = true;
+        result = result && (
+            java.lang.Float.floatToIntBits(getDistance())
+            == java.lang.Float.floatToIntBits(
+                other.getDistance()));
+        result = result && (
+            java.lang.Float.floatToIntBits(getVelocity())
+            == java.lang.Float.floatToIntBits(
+                other.getVelocity()));
+        result = result && (
+            java.lang.Float.floatToIntBits(getAcceleration())
+            == java.lang.Float.floatToIntBits(
+                other.getAcceleration()));
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + DISTANCE_FIELD_NUMBER;
+        hash = (53 * hash) + java.lang.Float.floatToIntBits(
+            getDistance());
+        hash = (37 * hash) + VELOCITY_FIELD_NUMBER;
+        hash = (53 * hash) + java.lang.Float.floatToIntBits(
+            getVelocity());
+        hash = (37 * hash) + ACCELERATION_FIELD_NUMBER;
+        hash = (53 * hash) + java.lang.Float.floatToIntBits(
+            getAcceleration());
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static telemetrydata.TelemetryData.ClientToServer.Navigation parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Navigation parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Navigation parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Navigation parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Navigation parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Navigation parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Navigation parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Navigation parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Navigation parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Navigation parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Navigation parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Navigation parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(telemetrydata.TelemetryData.ClientToServer.Navigation prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code telemetry_data.ClientToServer.Navigation}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:telemetry_data.ClientToServer.Navigation)
+          telemetrydata.TelemetryData.ClientToServer.NavigationOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Navigation_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Navigation_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  telemetrydata.TelemetryData.ClientToServer.Navigation.class, telemetrydata.TelemetryData.ClientToServer.Navigation.Builder.class);
+        }
+
+        // Construct using telemetrydata.TelemetryData.ClientToServer.Navigation.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          distance_ = 0F;
+
+          velocity_ = 0F;
+
+          acceleration_ = 0F;
+
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Navigation_descriptor;
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.Navigation getDefaultInstanceForType() {
+          return telemetrydata.TelemetryData.ClientToServer.Navigation.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.Navigation build() {
+          telemetrydata.TelemetryData.ClientToServer.Navigation result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.Navigation buildPartial() {
+          telemetrydata.TelemetryData.ClientToServer.Navigation result = new telemetrydata.TelemetryData.ClientToServer.Navigation(this);
+          result.distance_ = distance_;
+          result.velocity_ = velocity_;
+          result.acceleration_ = acceleration_;
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof telemetrydata.TelemetryData.ClientToServer.Navigation) {
+            return mergeFrom((telemetrydata.TelemetryData.ClientToServer.Navigation)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(telemetrydata.TelemetryData.ClientToServer.Navigation other) {
+          if (other == telemetrydata.TelemetryData.ClientToServer.Navigation.getDefaultInstance()) return this;
+          if (other.getDistance() != 0F) {
+            setDistance(other.getDistance());
+          }
+          if (other.getVelocity() != 0F) {
+            setVelocity(other.getVelocity());
+          }
+          if (other.getAcceleration() != 0F) {
+            setAcceleration(other.getAcceleration());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          telemetrydata.TelemetryData.ClientToServer.Navigation parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (telemetrydata.TelemetryData.ClientToServer.Navigation) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private float distance_ ;
+        /**
+         * <code>float distance = 1;</code>
+         */
+        public float getDistance() {
+          return distance_;
+        }
+        /**
+         * <code>float distance = 1;</code>
+         */
+        public Builder setDistance(float value) {
+          
+          distance_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>float distance = 1;</code>
+         */
+        public Builder clearDistance() {
+          
+          distance_ = 0F;
+          onChanged();
+          return this;
+        }
+
+        private float velocity_ ;
+        /**
+         * <code>float velocity = 2;</code>
+         */
+        public float getVelocity() {
+          return velocity_;
+        }
+        /**
+         * <code>float velocity = 2;</code>
+         */
+        public Builder setVelocity(float value) {
+          
+          velocity_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>float velocity = 2;</code>
+         */
+        public Builder clearVelocity() {
+          
+          velocity_ = 0F;
+          onChanged();
+          return this;
+        }
+
+        private float acceleration_ ;
+        /**
+         * <code>float acceleration = 3;</code>
+         */
+        public float getAcceleration() {
+          return acceleration_;
+        }
+        /**
+         * <code>float acceleration = 3;</code>
+         */
+        public Builder setAcceleration(float value) {
+          
+          acceleration_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>float acceleration = 3;</code>
+         */
+        public Builder clearAcceleration() {
+          
+          acceleration_ = 0F;
+          onChanged();
+          return this;
+        }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:telemetry_data.ClientToServer.Navigation)
+      }
+
+      // @@protoc_insertion_point(class_scope:telemetry_data.ClientToServer.Navigation)
+      private static final telemetrydata.TelemetryData.ClientToServer.Navigation DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new telemetrydata.TelemetryData.ClientToServer.Navigation();
+      }
+
+      public static telemetrydata.TelemetryData.ClientToServer.Navigation getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<Navigation>
+          PARSER = new com.google.protobuf.AbstractParser<Navigation>() {
+        @java.lang.Override
+        public Navigation parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Navigation(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<Navigation> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Navigation> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public telemetrydata.TelemetryData.ClientToServer.Navigation getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public interface StateMachineOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:telemetry_data.ClientToServer.StateMachine)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+       */
+      int getStateValue();
+      /**
+       * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+       */
+      telemetrydata.TelemetryData.ClientToServer.StateMachine.State getState();
+    }
+    /**
+     * Protobuf type {@code telemetry_data.ClientToServer.StateMachine}
+     */
+    public  static final class StateMachine extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:telemetry_data.ClientToServer.StateMachine)
+        StateMachineOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use StateMachine.newBuilder() to construct.
+      private StateMachine(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private StateMachine() {
+        state_ = 0;
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private StateMachine(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                int rawValue = input.readEnum();
+
+                state_ = rawValue;
+                break;
+              }
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_StateMachine_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_StateMachine_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                telemetrydata.TelemetryData.ClientToServer.StateMachine.class, telemetrydata.TelemetryData.ClientToServer.StateMachine.Builder.class);
+      }
+
+      /**
+       * Protobuf enum {@code telemetry_data.ClientToServer.StateMachine.State}
+       */
+      public enum State
+          implements com.google.protobuf.ProtocolMessageEnum {
+        /**
+         * <code>IDLE = 0;</code>
+         */
+        IDLE(0),
+        /**
+         * <code>CALIBRATING = 1;</code>
+         */
+        CALIBRATING(1),
+        /**
+         * <code>READY = 2;</code>
+         */
+        READY(2),
+        /**
+         * <code>ACCELERATING = 3;</code>
+         */
+        ACCELERATING(3),
+        /**
+         * <code>NOMINAL_BRAKING = 4;</code>
+         */
+        NOMINAL_BRAKING(4),
+        /**
+         * <code>EMERGENCY_BRAKING = 5;</code>
+         */
+        EMERGENCY_BRAKING(5),
+        /**
+         * <code>RUN_COMPLETE = 6;</code>
+         */
+        RUN_COMPLETE(6),
+        /**
+         * <code>FAILURE_STOPPED = 7;</code>
+         */
+        FAILURE_STOPPED(7),
+        /**
+         * <code>EXITING = 8;</code>
+         */
+        EXITING(8),
+        /**
+         * <code>FINISHED = 9;</code>
+         */
+        FINISHED(9),
+        /**
+         * <code>INVALID = 10;</code>
+         */
+        INVALID(10),
+        UNRECOGNIZED(-1),
+        ;
+
+        /**
+         * <code>IDLE = 0;</code>
+         */
+        public static final int IDLE_VALUE = 0;
+        /**
+         * <code>CALIBRATING = 1;</code>
+         */
+        public static final int CALIBRATING_VALUE = 1;
+        /**
+         * <code>READY = 2;</code>
+         */
+        public static final int READY_VALUE = 2;
+        /**
+         * <code>ACCELERATING = 3;</code>
+         */
+        public static final int ACCELERATING_VALUE = 3;
+        /**
+         * <code>NOMINAL_BRAKING = 4;</code>
+         */
+        public static final int NOMINAL_BRAKING_VALUE = 4;
+        /**
+         * <code>EMERGENCY_BRAKING = 5;</code>
+         */
+        public static final int EMERGENCY_BRAKING_VALUE = 5;
+        /**
+         * <code>RUN_COMPLETE = 6;</code>
+         */
+        public static final int RUN_COMPLETE_VALUE = 6;
+        /**
+         * <code>FAILURE_STOPPED = 7;</code>
+         */
+        public static final int FAILURE_STOPPED_VALUE = 7;
+        /**
+         * <code>EXITING = 8;</code>
+         */
+        public static final int EXITING_VALUE = 8;
+        /**
+         * <code>FINISHED = 9;</code>
+         */
+        public static final int FINISHED_VALUE = 9;
+        /**
+         * <code>INVALID = 10;</code>
+         */
+        public static final int INVALID_VALUE = 10;
+
+
+        public final int getNumber() {
+          if (this == UNRECOGNIZED) {
+            throw new java.lang.IllegalArgumentException(
+                "Can't get the number of an unknown enum value.");
+          }
+          return value;
+        }
+
+        /**
+         * @deprecated Use {@link #forNumber(int)} instead.
+         */
+        @java.lang.Deprecated
+        public static State valueOf(int value) {
+          return forNumber(value);
+        }
+
+        public static State forNumber(int value) {
+          switch (value) {
+            case 0: return IDLE;
+            case 1: return CALIBRATING;
+            case 2: return READY;
+            case 3: return ACCELERATING;
+            case 4: return NOMINAL_BRAKING;
+            case 5: return EMERGENCY_BRAKING;
+            case 6: return RUN_COMPLETE;
+            case 7: return FAILURE_STOPPED;
+            case 8: return EXITING;
+            case 9: return FINISHED;
+            case 10: return INVALID;
+            default: return null;
+          }
+        }
+
+        public static com.google.protobuf.Internal.EnumLiteMap<State>
+            internalGetValueMap() {
+          return internalValueMap;
+        }
+        private static final com.google.protobuf.Internal.EnumLiteMap<
+            State> internalValueMap =
+              new com.google.protobuf.Internal.EnumLiteMap<State>() {
+                public State findValueByNumber(int number) {
+                  return State.forNumber(number);
+                }
+              };
+
+        public final com.google.protobuf.Descriptors.EnumValueDescriptor
+            getValueDescriptor() {
+          return getDescriptor().getValues().get(ordinal());
+        }
+        public final com.google.protobuf.Descriptors.EnumDescriptor
+            getDescriptorForType() {
+          return getDescriptor();
+        }
+        public static final com.google.protobuf.Descriptors.EnumDescriptor
+            getDescriptor() {
+          return telemetrydata.TelemetryData.ClientToServer.StateMachine.getDescriptor().getEnumTypes().get(0);
+        }
+
+        private static final State[] VALUES = values();
+
+        public static State valueOf(
+            com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+          if (desc.getType() != getDescriptor()) {
+            throw new java.lang.IllegalArgumentException(
+              "EnumValueDescriptor is not for this type.");
+          }
+          if (desc.getIndex() == -1) {
+            return UNRECOGNIZED;
+          }
+          return VALUES[desc.getIndex()];
+        }
+
+        private final int value;
+
+        private State(int value) {
+          this.value = value;
+        }
+
+        // @@protoc_insertion_point(enum_scope:telemetry_data.ClientToServer.StateMachine.State)
+      }
+
+      public static final int STATE_FIELD_NUMBER = 1;
+      private int state_;
+      /**
+       * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+       */
+      public int getStateValue() {
+        return state_;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.StateMachine.State getState() {
+        @SuppressWarnings("deprecation")
+        telemetrydata.TelemetryData.ClientToServer.StateMachine.State result = telemetrydata.TelemetryData.ClientToServer.StateMachine.State.valueOf(state_);
+        return result == null ? telemetrydata.TelemetryData.ClientToServer.StateMachine.State.UNRECOGNIZED : result;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      @java.lang.Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (state_ != telemetrydata.TelemetryData.ClientToServer.StateMachine.State.IDLE.getNumber()) {
+          output.writeEnum(1, state_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      @java.lang.Override
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (state_ != telemetrydata.TelemetryData.ClientToServer.StateMachine.State.IDLE.getNumber()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeEnumSize(1, state_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof telemetrydata.TelemetryData.ClientToServer.StateMachine)) {
+          return super.equals(obj);
+        }
+        telemetrydata.TelemetryData.ClientToServer.StateMachine other = (telemetrydata.TelemetryData.ClientToServer.StateMachine) obj;
+
+        boolean result = true;
+        result = result && state_ == other.state_;
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + STATE_FIELD_NUMBER;
+        hash = (53 * hash) + state_;
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static telemetrydata.TelemetryData.ClientToServer.StateMachine parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.StateMachine parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.StateMachine parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.StateMachine parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.StateMachine parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.StateMachine parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.StateMachine parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.StateMachine parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.StateMachine parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.StateMachine parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.StateMachine parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.StateMachine parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(telemetrydata.TelemetryData.ClientToServer.StateMachine prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code telemetry_data.ClientToServer.StateMachine}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:telemetry_data.ClientToServer.StateMachine)
+          telemetrydata.TelemetryData.ClientToServer.StateMachineOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_StateMachine_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_StateMachine_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  telemetrydata.TelemetryData.ClientToServer.StateMachine.class, telemetrydata.TelemetryData.ClientToServer.StateMachine.Builder.class);
+        }
+
+        // Construct using telemetrydata.TelemetryData.ClientToServer.StateMachine.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          state_ = 0;
+
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_StateMachine_descriptor;
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.StateMachine getDefaultInstanceForType() {
+          return telemetrydata.TelemetryData.ClientToServer.StateMachine.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.StateMachine build() {
+          telemetrydata.TelemetryData.ClientToServer.StateMachine result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.StateMachine buildPartial() {
+          telemetrydata.TelemetryData.ClientToServer.StateMachine result = new telemetrydata.TelemetryData.ClientToServer.StateMachine(this);
+          result.state_ = state_;
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof telemetrydata.TelemetryData.ClientToServer.StateMachine) {
+            return mergeFrom((telemetrydata.TelemetryData.ClientToServer.StateMachine)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(telemetrydata.TelemetryData.ClientToServer.StateMachine other) {
+          if (other == telemetrydata.TelemetryData.ClientToServer.StateMachine.getDefaultInstance()) return this;
+          if (other.state_ != 0) {
+            setStateValue(other.getStateValue());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          telemetrydata.TelemetryData.ClientToServer.StateMachine parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (telemetrydata.TelemetryData.ClientToServer.StateMachine) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private int state_ = 0;
+        /**
+         * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+         */
+        public int getStateValue() {
+          return state_;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+         */
+        public Builder setStateValue(int value) {
+          state_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.StateMachine.State getState() {
+          @SuppressWarnings("deprecation")
+          telemetrydata.TelemetryData.ClientToServer.StateMachine.State result = telemetrydata.TelemetryData.ClientToServer.StateMachine.State.valueOf(state_);
+          return result == null ? telemetrydata.TelemetryData.ClientToServer.StateMachine.State.UNRECOGNIZED : result;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+         */
+        public Builder setState(telemetrydata.TelemetryData.ClientToServer.StateMachine.State value) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          
+          state_ = value.getNumber();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+         */
+        public Builder clearState() {
+          
+          state_ = 0;
+          onChanged();
+          return this;
+        }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:telemetry_data.ClientToServer.StateMachine)
+      }
+
+      // @@protoc_insertion_point(class_scope:telemetry_data.ClientToServer.StateMachine)
+      private static final telemetrydata.TelemetryData.ClientToServer.StateMachine DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new telemetrydata.TelemetryData.ClientToServer.StateMachine();
+      }
+
+      public static telemetrydata.TelemetryData.ClientToServer.StateMachine getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<StateMachine>
+          PARSER = new com.google.protobuf.AbstractParser<StateMachine>() {
+        @java.lang.Override
+        public StateMachine parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new StateMachine(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<StateMachine> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<StateMachine> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public telemetrydata.TelemetryData.ClientToServer.StateMachine getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public interface MotorsOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:telemetry_data.ClientToServer.Motors)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>sint32 velocity_1 = 1;</code>
+       */
+      int getVelocity1();
+
+      /**
+       * <code>sint32 velocity_2 = 2;</code>
+       */
+      int getVelocity2();
+
+      /**
+       * <code>sint32 velocity_3 = 3;</code>
+       */
+      int getVelocity3();
+
+      /**
+       * <code>sint32 velocity_4 = 4;</code>
+       */
+      int getVelocity4();
+
+      /**
+       * <code>sint32 velocity_5 = 5;</code>
+       */
+      int getVelocity5();
+
+      /**
+       * <code>sint32 velocity_6 = 6;</code>
+       */
+      int getVelocity6();
+    }
+    /**
+     * Protobuf type {@code telemetry_data.ClientToServer.Motors}
+     */
+    public  static final class Motors extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:telemetry_data.ClientToServer.Motors)
+        MotorsOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use Motors.newBuilder() to construct.
+      private Motors(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private Motors() {
+        velocity1_ = 0;
+        velocity2_ = 0;
+        velocity3_ = 0;
+        velocity4_ = 0;
+        velocity5_ = 0;
+        velocity6_ = 0;
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Motors(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+
+                velocity1_ = input.readSInt32();
+                break;
+              }
+              case 16: {
+
+                velocity2_ = input.readSInt32();
+                break;
+              }
+              case 24: {
+
+                velocity3_ = input.readSInt32();
+                break;
+              }
+              case 32: {
+
+                velocity4_ = input.readSInt32();
+                break;
+              }
+              case 40: {
+
+                velocity5_ = input.readSInt32();
+                break;
+              }
+              case 48: {
+
+                velocity6_ = input.readSInt32();
+                break;
+              }
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Motors_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Motors_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                telemetrydata.TelemetryData.ClientToServer.Motors.class, telemetrydata.TelemetryData.ClientToServer.Motors.Builder.class);
+      }
+
+      public static final int VELOCITY_1_FIELD_NUMBER = 1;
+      private int velocity1_;
+      /**
+       * <code>sint32 velocity_1 = 1;</code>
+       */
+      public int getVelocity1() {
+        return velocity1_;
+      }
+
+      public static final int VELOCITY_2_FIELD_NUMBER = 2;
+      private int velocity2_;
+      /**
+       * <code>sint32 velocity_2 = 2;</code>
+       */
+      public int getVelocity2() {
+        return velocity2_;
+      }
+
+      public static final int VELOCITY_3_FIELD_NUMBER = 3;
+      private int velocity3_;
+      /**
+       * <code>sint32 velocity_3 = 3;</code>
+       */
+      public int getVelocity3() {
+        return velocity3_;
+      }
+
+      public static final int VELOCITY_4_FIELD_NUMBER = 4;
+      private int velocity4_;
+      /**
+       * <code>sint32 velocity_4 = 4;</code>
+       */
+      public int getVelocity4() {
+        return velocity4_;
+      }
+
+      public static final int VELOCITY_5_FIELD_NUMBER = 5;
+      private int velocity5_;
+      /**
+       * <code>sint32 velocity_5 = 5;</code>
+       */
+      public int getVelocity5() {
+        return velocity5_;
+      }
+
+      public static final int VELOCITY_6_FIELD_NUMBER = 6;
+      private int velocity6_;
+      /**
+       * <code>sint32 velocity_6 = 6;</code>
+       */
+      public int getVelocity6() {
+        return velocity6_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      @java.lang.Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (velocity1_ != 0) {
+          output.writeSInt32(1, velocity1_);
+        }
+        if (velocity2_ != 0) {
+          output.writeSInt32(2, velocity2_);
+        }
+        if (velocity3_ != 0) {
+          output.writeSInt32(3, velocity3_);
+        }
+        if (velocity4_ != 0) {
+          output.writeSInt32(4, velocity4_);
+        }
+        if (velocity5_ != 0) {
+          output.writeSInt32(5, velocity5_);
+        }
+        if (velocity6_ != 0) {
+          output.writeSInt32(6, velocity6_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      @java.lang.Override
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (velocity1_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeSInt32Size(1, velocity1_);
+        }
+        if (velocity2_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeSInt32Size(2, velocity2_);
+        }
+        if (velocity3_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeSInt32Size(3, velocity3_);
+        }
+        if (velocity4_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeSInt32Size(4, velocity4_);
+        }
+        if (velocity5_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeSInt32Size(5, velocity5_);
+        }
+        if (velocity6_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeSInt32Size(6, velocity6_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof telemetrydata.TelemetryData.ClientToServer.Motors)) {
+          return super.equals(obj);
+        }
+        telemetrydata.TelemetryData.ClientToServer.Motors other = (telemetrydata.TelemetryData.ClientToServer.Motors) obj;
+
+        boolean result = true;
+        result = result && (getVelocity1()
+            == other.getVelocity1());
+        result = result && (getVelocity2()
+            == other.getVelocity2());
+        result = result && (getVelocity3()
+            == other.getVelocity3());
+        result = result && (getVelocity4()
+            == other.getVelocity4());
+        result = result && (getVelocity5()
+            == other.getVelocity5());
+        result = result && (getVelocity6()
+            == other.getVelocity6());
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + VELOCITY_1_FIELD_NUMBER;
+        hash = (53 * hash) + getVelocity1();
+        hash = (37 * hash) + VELOCITY_2_FIELD_NUMBER;
+        hash = (53 * hash) + getVelocity2();
+        hash = (37 * hash) + VELOCITY_3_FIELD_NUMBER;
+        hash = (53 * hash) + getVelocity3();
+        hash = (37 * hash) + VELOCITY_4_FIELD_NUMBER;
+        hash = (53 * hash) + getVelocity4();
+        hash = (37 * hash) + VELOCITY_5_FIELD_NUMBER;
+        hash = (53 * hash) + getVelocity5();
+        hash = (37 * hash) + VELOCITY_6_FIELD_NUMBER;
+        hash = (53 * hash) + getVelocity6();
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static telemetrydata.TelemetryData.ClientToServer.Motors parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Motors parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Motors parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Motors parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Motors parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Motors parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Motors parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Motors parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Motors parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Motors parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Motors parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Motors parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(telemetrydata.TelemetryData.ClientToServer.Motors prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code telemetry_data.ClientToServer.Motors}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:telemetry_data.ClientToServer.Motors)
+          telemetrydata.TelemetryData.ClientToServer.MotorsOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Motors_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Motors_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  telemetrydata.TelemetryData.ClientToServer.Motors.class, telemetrydata.TelemetryData.ClientToServer.Motors.Builder.class);
+        }
+
+        // Construct using telemetrydata.TelemetryData.ClientToServer.Motors.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          velocity1_ = 0;
+
+          velocity2_ = 0;
+
+          velocity3_ = 0;
+
+          velocity4_ = 0;
+
+          velocity5_ = 0;
+
+          velocity6_ = 0;
+
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Motors_descriptor;
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.Motors getDefaultInstanceForType() {
+          return telemetrydata.TelemetryData.ClientToServer.Motors.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.Motors build() {
+          telemetrydata.TelemetryData.ClientToServer.Motors result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.Motors buildPartial() {
+          telemetrydata.TelemetryData.ClientToServer.Motors result = new telemetrydata.TelemetryData.ClientToServer.Motors(this);
+          result.velocity1_ = velocity1_;
+          result.velocity2_ = velocity2_;
+          result.velocity3_ = velocity3_;
+          result.velocity4_ = velocity4_;
+          result.velocity5_ = velocity5_;
+          result.velocity6_ = velocity6_;
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof telemetrydata.TelemetryData.ClientToServer.Motors) {
+            return mergeFrom((telemetrydata.TelemetryData.ClientToServer.Motors)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(telemetrydata.TelemetryData.ClientToServer.Motors other) {
+          if (other == telemetrydata.TelemetryData.ClientToServer.Motors.getDefaultInstance()) return this;
+          if (other.getVelocity1() != 0) {
+            setVelocity1(other.getVelocity1());
+          }
+          if (other.getVelocity2() != 0) {
+            setVelocity2(other.getVelocity2());
+          }
+          if (other.getVelocity3() != 0) {
+            setVelocity3(other.getVelocity3());
+          }
+          if (other.getVelocity4() != 0) {
+            setVelocity4(other.getVelocity4());
+          }
+          if (other.getVelocity5() != 0) {
+            setVelocity5(other.getVelocity5());
+          }
+          if (other.getVelocity6() != 0) {
+            setVelocity6(other.getVelocity6());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          telemetrydata.TelemetryData.ClientToServer.Motors parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (telemetrydata.TelemetryData.ClientToServer.Motors) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private int velocity1_ ;
+        /**
+         * <code>sint32 velocity_1 = 1;</code>
+         */
+        public int getVelocity1() {
+          return velocity1_;
+        }
+        /**
+         * <code>sint32 velocity_1 = 1;</code>
+         */
+        public Builder setVelocity1(int value) {
+          
+          velocity1_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>sint32 velocity_1 = 1;</code>
+         */
+        public Builder clearVelocity1() {
+          
+          velocity1_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int velocity2_ ;
+        /**
+         * <code>sint32 velocity_2 = 2;</code>
+         */
+        public int getVelocity2() {
+          return velocity2_;
+        }
+        /**
+         * <code>sint32 velocity_2 = 2;</code>
+         */
+        public Builder setVelocity2(int value) {
+          
+          velocity2_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>sint32 velocity_2 = 2;</code>
+         */
+        public Builder clearVelocity2() {
+          
+          velocity2_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int velocity3_ ;
+        /**
+         * <code>sint32 velocity_3 = 3;</code>
+         */
+        public int getVelocity3() {
+          return velocity3_;
+        }
+        /**
+         * <code>sint32 velocity_3 = 3;</code>
+         */
+        public Builder setVelocity3(int value) {
+          
+          velocity3_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>sint32 velocity_3 = 3;</code>
+         */
+        public Builder clearVelocity3() {
+          
+          velocity3_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int velocity4_ ;
+        /**
+         * <code>sint32 velocity_4 = 4;</code>
+         */
+        public int getVelocity4() {
+          return velocity4_;
+        }
+        /**
+         * <code>sint32 velocity_4 = 4;</code>
+         */
+        public Builder setVelocity4(int value) {
+          
+          velocity4_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>sint32 velocity_4 = 4;</code>
+         */
+        public Builder clearVelocity4() {
+          
+          velocity4_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int velocity5_ ;
+        /**
+         * <code>sint32 velocity_5 = 5;</code>
+         */
+        public int getVelocity5() {
+          return velocity5_;
+        }
+        /**
+         * <code>sint32 velocity_5 = 5;</code>
+         */
+        public Builder setVelocity5(int value) {
+          
+          velocity5_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>sint32 velocity_5 = 5;</code>
+         */
+        public Builder clearVelocity5() {
+          
+          velocity5_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int velocity6_ ;
+        /**
+         * <code>sint32 velocity_6 = 6;</code>
+         */
+        public int getVelocity6() {
+          return velocity6_;
+        }
+        /**
+         * <code>sint32 velocity_6 = 6;</code>
+         */
+        public Builder setVelocity6(int value) {
+          
+          velocity6_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>sint32 velocity_6 = 6;</code>
+         */
+        public Builder clearVelocity6() {
+          
+          velocity6_ = 0;
+          onChanged();
+          return this;
+        }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:telemetry_data.ClientToServer.Motors)
+      }
+
+      // @@protoc_insertion_point(class_scope:telemetry_data.ClientToServer.Motors)
+      private static final telemetrydata.TelemetryData.ClientToServer.Motors DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new telemetrydata.TelemetryData.ClientToServer.Motors();
+      }
+
+      public static telemetrydata.TelemetryData.ClientToServer.Motors getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<Motors>
+          PARSER = new com.google.protobuf.AbstractParser<Motors>() {
+        @java.lang.Override
+        public Motors parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Motors(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<Motors> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Motors> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public telemetrydata.TelemetryData.ClientToServer.Motors getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public interface EmergencyBrakesOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:telemetry_data.ClientToServer.EmergencyBrakes)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>bool front_brakes = 1;</code>
+       */
+      boolean getFrontBrakes();
+
+      /**
+       * <code>bool rear_brakes = 2;</code>
+       */
+      boolean getRearBrakes();
+    }
+    /**
+     * Protobuf type {@code telemetry_data.ClientToServer.EmergencyBrakes}
+     */
+    public  static final class EmergencyBrakes extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:telemetry_data.ClientToServer.EmergencyBrakes)
+        EmergencyBrakesOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use EmergencyBrakes.newBuilder() to construct.
+      private EmergencyBrakes(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private EmergencyBrakes() {
+        frontBrakes_ = false;
+        rearBrakes_ = false;
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private EmergencyBrakes(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+
+                frontBrakes_ = input.readBool();
+                break;
+              }
+              case 16: {
+
+                rearBrakes_ = input.readBool();
+                break;
+              }
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_EmergencyBrakes_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.class, telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.Builder.class);
+      }
+
+      public static final int FRONT_BRAKES_FIELD_NUMBER = 1;
+      private boolean frontBrakes_;
+      /**
+       * <code>bool front_brakes = 1;</code>
+       */
+      public boolean getFrontBrakes() {
+        return frontBrakes_;
+      }
+
+      public static final int REAR_BRAKES_FIELD_NUMBER = 2;
+      private boolean rearBrakes_;
+      /**
+       * <code>bool rear_brakes = 2;</code>
+       */
+      public boolean getRearBrakes() {
+        return rearBrakes_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      @java.lang.Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (frontBrakes_ != false) {
+          output.writeBool(1, frontBrakes_);
+        }
+        if (rearBrakes_ != false) {
+          output.writeBool(2, rearBrakes_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      @java.lang.Override
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (frontBrakes_ != false) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBoolSize(1, frontBrakes_);
+        }
+        if (rearBrakes_ != false) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBoolSize(2, rearBrakes_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes)) {
+          return super.equals(obj);
+        }
+        telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes other = (telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes) obj;
+
+        boolean result = true;
+        result = result && (getFrontBrakes()
+            == other.getFrontBrakes());
+        result = result && (getRearBrakes()
+            == other.getRearBrakes());
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + FRONT_BRAKES_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getFrontBrakes());
+        hash = (37 * hash) + REAR_BRAKES_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getRearBrakes());
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code telemetry_data.ClientToServer.EmergencyBrakes}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:telemetry_data.ClientToServer.EmergencyBrakes)
+          telemetrydata.TelemetryData.ClientToServer.EmergencyBrakesOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_EmergencyBrakes_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.class, telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.Builder.class);
+        }
+
+        // Construct using telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          frontBrakes_ = false;
+
+          rearBrakes_ = false;
+
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor;
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes getDefaultInstanceForType() {
+          return telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes build() {
+          telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes buildPartial() {
+          telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes result = new telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes(this);
+          result.frontBrakes_ = frontBrakes_;
+          result.rearBrakes_ = rearBrakes_;
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes) {
+            return mergeFrom((telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes other) {
+          if (other == telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.getDefaultInstance()) return this;
+          if (other.getFrontBrakes() != false) {
+            setFrontBrakes(other.getFrontBrakes());
+          }
+          if (other.getRearBrakes() != false) {
+            setRearBrakes(other.getRearBrakes());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private boolean frontBrakes_ ;
+        /**
+         * <code>bool front_brakes = 1;</code>
+         */
+        public boolean getFrontBrakes() {
+          return frontBrakes_;
+        }
+        /**
+         * <code>bool front_brakes = 1;</code>
+         */
+        public Builder setFrontBrakes(boolean value) {
+          
+          frontBrakes_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>bool front_brakes = 1;</code>
+         */
+        public Builder clearFrontBrakes() {
+          
+          frontBrakes_ = false;
+          onChanged();
+          return this;
+        }
+
+        private boolean rearBrakes_ ;
+        /**
+         * <code>bool rear_brakes = 2;</code>
+         */
+        public boolean getRearBrakes() {
+          return rearBrakes_;
+        }
+        /**
+         * <code>bool rear_brakes = 2;</code>
+         */
+        public Builder setRearBrakes(boolean value) {
+          
+          rearBrakes_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>bool rear_brakes = 2;</code>
+         */
+        public Builder clearRearBrakes() {
+          
+          rearBrakes_ = false;
+          onChanged();
+          return this;
+        }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:telemetry_data.ClientToServer.EmergencyBrakes)
+      }
+
+      // @@protoc_insertion_point(class_scope:telemetry_data.ClientToServer.EmergencyBrakes)
+      private static final telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes();
+      }
+
+      public static telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<EmergencyBrakes>
+          PARSER = new com.google.protobuf.AbstractParser<EmergencyBrakes>() {
+        @java.lang.Override
+        public EmergencyBrakes parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new EmergencyBrakes(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<EmergencyBrakes> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<EmergencyBrakes> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public static final int NAVIGATION_FIELD_NUMBER = 1;
+    private telemetrydata.TelemetryData.ClientToServer.Navigation navigation_;
+    /**
+     * <code>.telemetry_data.ClientToServer.Navigation navigation = 1;</code>
+     */
+    public boolean hasNavigation() {
+      return navigation_ != null;
+    }
+    /**
+     * <code>.telemetry_data.ClientToServer.Navigation navigation = 1;</code>
+     */
+    public telemetrydata.TelemetryData.ClientToServer.Navigation getNavigation() {
+      return navigation_ == null ? telemetrydata.TelemetryData.ClientToServer.Navigation.getDefaultInstance() : navigation_;
+    }
+    /**
+     * <code>.telemetry_data.ClientToServer.Navigation navigation = 1;</code>
+     */
+    public telemetrydata.TelemetryData.ClientToServer.NavigationOrBuilder getNavigationOrBuilder() {
+      return getNavigation();
+    }
+
+    public static final int STATE_MACHINE_FIELD_NUMBER = 2;
+    private telemetrydata.TelemetryData.ClientToServer.StateMachine stateMachine_;
+    /**
+     * <code>.telemetry_data.ClientToServer.StateMachine state_machine = 2;</code>
+     */
+    public boolean hasStateMachine() {
+      return stateMachine_ != null;
+    }
+    /**
+     * <code>.telemetry_data.ClientToServer.StateMachine state_machine = 2;</code>
+     */
+    public telemetrydata.TelemetryData.ClientToServer.StateMachine getStateMachine() {
+      return stateMachine_ == null ? telemetrydata.TelemetryData.ClientToServer.StateMachine.getDefaultInstance() : stateMachine_;
+    }
+    /**
+     * <code>.telemetry_data.ClientToServer.StateMachine state_machine = 2;</code>
+     */
+    public telemetrydata.TelemetryData.ClientToServer.StateMachineOrBuilder getStateMachineOrBuilder() {
+      return getStateMachine();
+    }
+
+    public static final int MOTORS_FIELD_NUMBER = 3;
+    private telemetrydata.TelemetryData.ClientToServer.Motors motors_;
+    /**
+     * <code>.telemetry_data.ClientToServer.Motors motors = 3;</code>
+     */
+    public boolean hasMotors() {
+      return motors_ != null;
+    }
+    /**
+     * <code>.telemetry_data.ClientToServer.Motors motors = 3;</code>
+     */
+    public telemetrydata.TelemetryData.ClientToServer.Motors getMotors() {
+      return motors_ == null ? telemetrydata.TelemetryData.ClientToServer.Motors.getDefaultInstance() : motors_;
+    }
+    /**
+     * <code>.telemetry_data.ClientToServer.Motors motors = 3;</code>
+     */
+    public telemetrydata.TelemetryData.ClientToServer.MotorsOrBuilder getMotorsOrBuilder() {
+      return getMotors();
+    }
+
+    public static final int EMERGENCY_BRAKES_FIELD_NUMBER = 6;
+    private telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes emergencyBrakes_;
+    /**
+     * <pre>
+     * Batteries batteries = 4;
+     * Sensors sensors = 5;
+     * </pre>
+     *
+     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+     */
+    public boolean hasEmergencyBrakes() {
+      return emergencyBrakes_ != null;
+    }
+    /**
+     * <pre>
+     * Batteries batteries = 4;
+     * Sensors sensors = 5;
+     * </pre>
+     *
+     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+     */
+    public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes getEmergencyBrakes() {
+      return emergencyBrakes_ == null ? telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.getDefaultInstance() : emergencyBrakes_;
+    }
+    /**
+     * <pre>
+     * Batteries batteries = 4;
+     * Sensors sensors = 5;
+     * </pre>
+     *
+     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+     */
+    public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakesOrBuilder getEmergencyBrakesOrBuilder() {
+      return getEmergencyBrakes();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (navigation_ != null) {
+        output.writeMessage(1, getNavigation());
+      }
+      if (stateMachine_ != null) {
+        output.writeMessage(2, getStateMachine());
+      }
+      if (motors_ != null) {
+        output.writeMessage(3, getMotors());
+      }
+      if (emergencyBrakes_ != null) {
+        output.writeMessage(6, getEmergencyBrakes());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (navigation_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getNavigation());
+      }
+      if (stateMachine_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getStateMachine());
+      }
+      if (motors_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getMotors());
+      }
+      if (emergencyBrakes_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, getEmergencyBrakes());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof telemetrydata.TelemetryData.ClientToServer)) {
+        return super.equals(obj);
+      }
+      telemetrydata.TelemetryData.ClientToServer other = (telemetrydata.TelemetryData.ClientToServer) obj;
+
+      boolean result = true;
+      result = result && (hasNavigation() == other.hasNavigation());
+      if (hasNavigation()) {
+        result = result && getNavigation()
+            .equals(other.getNavigation());
+      }
+      result = result && (hasStateMachine() == other.hasStateMachine());
+      if (hasStateMachine()) {
+        result = result && getStateMachine()
+            .equals(other.getStateMachine());
+      }
+      result = result && (hasMotors() == other.hasMotors());
+      if (hasMotors()) {
+        result = result && getMotors()
+            .equals(other.getMotors());
+      }
+      result = result && (hasEmergencyBrakes() == other.hasEmergencyBrakes());
+      if (hasEmergencyBrakes()) {
+        result = result && getEmergencyBrakes()
+            .equals(other.getEmergencyBrakes());
+      }
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasNavigation()) {
+        hash = (37 * hash) + NAVIGATION_FIELD_NUMBER;
+        hash = (53 * hash) + getNavigation().hashCode();
+      }
+      if (hasStateMachine()) {
+        hash = (37 * hash) + STATE_MACHINE_FIELD_NUMBER;
+        hash = (53 * hash) + getStateMachine().hashCode();
+      }
+      if (hasMotors()) {
+        hash = (37 * hash) + MOTORS_FIELD_NUMBER;
+        hash = (53 * hash) + getMotors().hashCode();
+      }
+      if (hasEmergencyBrakes()) {
+        hash = (37 * hash) + EMERGENCY_BRAKES_FIELD_NUMBER;
+        hash = (53 * hash) + getEmergencyBrakes().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static telemetrydata.TelemetryData.ClientToServer parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static telemetrydata.TelemetryData.ClientToServer parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static telemetrydata.TelemetryData.ClientToServer parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static telemetrydata.TelemetryData.ClientToServer parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static telemetrydata.TelemetryData.ClientToServer parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static telemetrydata.TelemetryData.ClientToServer parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static telemetrydata.TelemetryData.ClientToServer parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static telemetrydata.TelemetryData.ClientToServer parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static telemetrydata.TelemetryData.ClientToServer parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static telemetrydata.TelemetryData.ClientToServer parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static telemetrydata.TelemetryData.ClientToServer parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static telemetrydata.TelemetryData.ClientToServer parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(telemetrydata.TelemetryData.ClientToServer prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code telemetry_data.ClientToServer}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:telemetry_data.ClientToServer)
+        telemetrydata.TelemetryData.ClientToServerOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                telemetrydata.TelemetryData.ClientToServer.class, telemetrydata.TelemetryData.ClientToServer.Builder.class);
+      }
+
+      // Construct using telemetrydata.TelemetryData.ClientToServer.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (navigationBuilder_ == null) {
+          navigation_ = null;
+        } else {
+          navigation_ = null;
+          navigationBuilder_ = null;
+        }
+        if (stateMachineBuilder_ == null) {
+          stateMachine_ = null;
+        } else {
+          stateMachine_ = null;
+          stateMachineBuilder_ = null;
+        }
+        if (motorsBuilder_ == null) {
+          motors_ = null;
+        } else {
+          motors_ = null;
+          motorsBuilder_ = null;
+        }
+        if (emergencyBrakesBuilder_ == null) {
+          emergencyBrakes_ = null;
+        } else {
+          emergencyBrakes_ = null;
+          emergencyBrakesBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_descriptor;
+      }
+
+      @java.lang.Override
+      public telemetrydata.TelemetryData.ClientToServer getDefaultInstanceForType() {
+        return telemetrydata.TelemetryData.ClientToServer.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public telemetrydata.TelemetryData.ClientToServer build() {
+        telemetrydata.TelemetryData.ClientToServer result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public telemetrydata.TelemetryData.ClientToServer buildPartial() {
+        telemetrydata.TelemetryData.ClientToServer result = new telemetrydata.TelemetryData.ClientToServer(this);
+        if (navigationBuilder_ == null) {
+          result.navigation_ = navigation_;
+        } else {
+          result.navigation_ = navigationBuilder_.build();
+        }
+        if (stateMachineBuilder_ == null) {
+          result.stateMachine_ = stateMachine_;
+        } else {
+          result.stateMachine_ = stateMachineBuilder_.build();
+        }
+        if (motorsBuilder_ == null) {
+          result.motors_ = motors_;
+        } else {
+          result.motors_ = motorsBuilder_.build();
+        }
+        if (emergencyBrakesBuilder_ == null) {
+          result.emergencyBrakes_ = emergencyBrakes_;
+        } else {
+          result.emergencyBrakes_ = emergencyBrakesBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof telemetrydata.TelemetryData.ClientToServer) {
+          return mergeFrom((telemetrydata.TelemetryData.ClientToServer)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(telemetrydata.TelemetryData.ClientToServer other) {
+        if (other == telemetrydata.TelemetryData.ClientToServer.getDefaultInstance()) return this;
+        if (other.hasNavigation()) {
+          mergeNavigation(other.getNavigation());
+        }
+        if (other.hasStateMachine()) {
+          mergeStateMachine(other.getStateMachine());
+        }
+        if (other.hasMotors()) {
+          mergeMotors(other.getMotors());
+        }
+        if (other.hasEmergencyBrakes()) {
+          mergeEmergencyBrakes(other.getEmergencyBrakes());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        telemetrydata.TelemetryData.ClientToServer parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (telemetrydata.TelemetryData.ClientToServer) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private telemetrydata.TelemetryData.ClientToServer.Navigation navigation_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          telemetrydata.TelemetryData.ClientToServer.Navigation, telemetrydata.TelemetryData.ClientToServer.Navigation.Builder, telemetrydata.TelemetryData.ClientToServer.NavigationOrBuilder> navigationBuilder_;
+      /**
+       * <code>.telemetry_data.ClientToServer.Navigation navigation = 1;</code>
+       */
+      public boolean hasNavigation() {
+        return navigationBuilder_ != null || navigation_ != null;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Navigation navigation = 1;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.Navigation getNavigation() {
+        if (navigationBuilder_ == null) {
+          return navigation_ == null ? telemetrydata.TelemetryData.ClientToServer.Navigation.getDefaultInstance() : navigation_;
+        } else {
+          return navigationBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Navigation navigation = 1;</code>
+       */
+      public Builder setNavigation(telemetrydata.TelemetryData.ClientToServer.Navigation value) {
+        if (navigationBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          navigation_ = value;
+          onChanged();
+        } else {
+          navigationBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Navigation navigation = 1;</code>
+       */
+      public Builder setNavigation(
+          telemetrydata.TelemetryData.ClientToServer.Navigation.Builder builderForValue) {
+        if (navigationBuilder_ == null) {
+          navigation_ = builderForValue.build();
+          onChanged();
+        } else {
+          navigationBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Navigation navigation = 1;</code>
+       */
+      public Builder mergeNavigation(telemetrydata.TelemetryData.ClientToServer.Navigation value) {
+        if (navigationBuilder_ == null) {
+          if (navigation_ != null) {
+            navigation_ =
+              telemetrydata.TelemetryData.ClientToServer.Navigation.newBuilder(navigation_).mergeFrom(value).buildPartial();
+          } else {
+            navigation_ = value;
+          }
+          onChanged();
+        } else {
+          navigationBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Navigation navigation = 1;</code>
+       */
+      public Builder clearNavigation() {
+        if (navigationBuilder_ == null) {
+          navigation_ = null;
+          onChanged();
+        } else {
+          navigation_ = null;
+          navigationBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Navigation navigation = 1;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.Navigation.Builder getNavigationBuilder() {
+        
+        onChanged();
+        return getNavigationFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Navigation navigation = 1;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.NavigationOrBuilder getNavigationOrBuilder() {
+        if (navigationBuilder_ != null) {
+          return navigationBuilder_.getMessageOrBuilder();
+        } else {
+          return navigation_ == null ?
+              telemetrydata.TelemetryData.ClientToServer.Navigation.getDefaultInstance() : navigation_;
+        }
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Navigation navigation = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          telemetrydata.TelemetryData.ClientToServer.Navigation, telemetrydata.TelemetryData.ClientToServer.Navigation.Builder, telemetrydata.TelemetryData.ClientToServer.NavigationOrBuilder> 
+          getNavigationFieldBuilder() {
+        if (navigationBuilder_ == null) {
+          navigationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              telemetrydata.TelemetryData.ClientToServer.Navigation, telemetrydata.TelemetryData.ClientToServer.Navigation.Builder, telemetrydata.TelemetryData.ClientToServer.NavigationOrBuilder>(
+                  getNavigation(),
+                  getParentForChildren(),
+                  isClean());
+          navigation_ = null;
+        }
+        return navigationBuilder_;
+      }
+
+      private telemetrydata.TelemetryData.ClientToServer.StateMachine stateMachine_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          telemetrydata.TelemetryData.ClientToServer.StateMachine, telemetrydata.TelemetryData.ClientToServer.StateMachine.Builder, telemetrydata.TelemetryData.ClientToServer.StateMachineOrBuilder> stateMachineBuilder_;
+      /**
+       * <code>.telemetry_data.ClientToServer.StateMachine state_machine = 2;</code>
+       */
+      public boolean hasStateMachine() {
+        return stateMachineBuilder_ != null || stateMachine_ != null;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.StateMachine state_machine = 2;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.StateMachine getStateMachine() {
+        if (stateMachineBuilder_ == null) {
+          return stateMachine_ == null ? telemetrydata.TelemetryData.ClientToServer.StateMachine.getDefaultInstance() : stateMachine_;
+        } else {
+          return stateMachineBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.StateMachine state_machine = 2;</code>
+       */
+      public Builder setStateMachine(telemetrydata.TelemetryData.ClientToServer.StateMachine value) {
+        if (stateMachineBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          stateMachine_ = value;
+          onChanged();
+        } else {
+          stateMachineBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.StateMachine state_machine = 2;</code>
+       */
+      public Builder setStateMachine(
+          telemetrydata.TelemetryData.ClientToServer.StateMachine.Builder builderForValue) {
+        if (stateMachineBuilder_ == null) {
+          stateMachine_ = builderForValue.build();
+          onChanged();
+        } else {
+          stateMachineBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.StateMachine state_machine = 2;</code>
+       */
+      public Builder mergeStateMachine(telemetrydata.TelemetryData.ClientToServer.StateMachine value) {
+        if (stateMachineBuilder_ == null) {
+          if (stateMachine_ != null) {
+            stateMachine_ =
+              telemetrydata.TelemetryData.ClientToServer.StateMachine.newBuilder(stateMachine_).mergeFrom(value).buildPartial();
+          } else {
+            stateMachine_ = value;
+          }
+          onChanged();
+        } else {
+          stateMachineBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.StateMachine state_machine = 2;</code>
+       */
+      public Builder clearStateMachine() {
+        if (stateMachineBuilder_ == null) {
+          stateMachine_ = null;
+          onChanged();
+        } else {
+          stateMachine_ = null;
+          stateMachineBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.StateMachine state_machine = 2;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.StateMachine.Builder getStateMachineBuilder() {
+        
+        onChanged();
+        return getStateMachineFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.StateMachine state_machine = 2;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.StateMachineOrBuilder getStateMachineOrBuilder() {
+        if (stateMachineBuilder_ != null) {
+          return stateMachineBuilder_.getMessageOrBuilder();
+        } else {
+          return stateMachine_ == null ?
+              telemetrydata.TelemetryData.ClientToServer.StateMachine.getDefaultInstance() : stateMachine_;
+        }
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.StateMachine state_machine = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          telemetrydata.TelemetryData.ClientToServer.StateMachine, telemetrydata.TelemetryData.ClientToServer.StateMachine.Builder, telemetrydata.TelemetryData.ClientToServer.StateMachineOrBuilder> 
+          getStateMachineFieldBuilder() {
+        if (stateMachineBuilder_ == null) {
+          stateMachineBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              telemetrydata.TelemetryData.ClientToServer.StateMachine, telemetrydata.TelemetryData.ClientToServer.StateMachine.Builder, telemetrydata.TelemetryData.ClientToServer.StateMachineOrBuilder>(
+                  getStateMachine(),
+                  getParentForChildren(),
+                  isClean());
+          stateMachine_ = null;
+        }
+        return stateMachineBuilder_;
+      }
+
+      private telemetrydata.TelemetryData.ClientToServer.Motors motors_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          telemetrydata.TelemetryData.ClientToServer.Motors, telemetrydata.TelemetryData.ClientToServer.Motors.Builder, telemetrydata.TelemetryData.ClientToServer.MotorsOrBuilder> motorsBuilder_;
+      /**
+       * <code>.telemetry_data.ClientToServer.Motors motors = 3;</code>
+       */
+      public boolean hasMotors() {
+        return motorsBuilder_ != null || motors_ != null;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Motors motors = 3;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.Motors getMotors() {
+        if (motorsBuilder_ == null) {
+          return motors_ == null ? telemetrydata.TelemetryData.ClientToServer.Motors.getDefaultInstance() : motors_;
+        } else {
+          return motorsBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Motors motors = 3;</code>
+       */
+      public Builder setMotors(telemetrydata.TelemetryData.ClientToServer.Motors value) {
+        if (motorsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          motors_ = value;
+          onChanged();
+        } else {
+          motorsBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Motors motors = 3;</code>
+       */
+      public Builder setMotors(
+          telemetrydata.TelemetryData.ClientToServer.Motors.Builder builderForValue) {
+        if (motorsBuilder_ == null) {
+          motors_ = builderForValue.build();
+          onChanged();
+        } else {
+          motorsBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Motors motors = 3;</code>
+       */
+      public Builder mergeMotors(telemetrydata.TelemetryData.ClientToServer.Motors value) {
+        if (motorsBuilder_ == null) {
+          if (motors_ != null) {
+            motors_ =
+              telemetrydata.TelemetryData.ClientToServer.Motors.newBuilder(motors_).mergeFrom(value).buildPartial();
+          } else {
+            motors_ = value;
+          }
+          onChanged();
+        } else {
+          motorsBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Motors motors = 3;</code>
+       */
+      public Builder clearMotors() {
+        if (motorsBuilder_ == null) {
+          motors_ = null;
+          onChanged();
+        } else {
+          motors_ = null;
+          motorsBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Motors motors = 3;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.Motors.Builder getMotorsBuilder() {
+        
+        onChanged();
+        return getMotorsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Motors motors = 3;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.MotorsOrBuilder getMotorsOrBuilder() {
+        if (motorsBuilder_ != null) {
+          return motorsBuilder_.getMessageOrBuilder();
+        } else {
+          return motors_ == null ?
+              telemetrydata.TelemetryData.ClientToServer.Motors.getDefaultInstance() : motors_;
+        }
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Motors motors = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          telemetrydata.TelemetryData.ClientToServer.Motors, telemetrydata.TelemetryData.ClientToServer.Motors.Builder, telemetrydata.TelemetryData.ClientToServer.MotorsOrBuilder> 
+          getMotorsFieldBuilder() {
+        if (motorsBuilder_ == null) {
+          motorsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              telemetrydata.TelemetryData.ClientToServer.Motors, telemetrydata.TelemetryData.ClientToServer.Motors.Builder, telemetrydata.TelemetryData.ClientToServer.MotorsOrBuilder>(
+                  getMotors(),
+                  getParentForChildren(),
+                  isClean());
+          motors_ = null;
+        }
+        return motorsBuilder_;
+      }
+
+      private telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes emergencyBrakes_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes, telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.Builder, telemetrydata.TelemetryData.ClientToServer.EmergencyBrakesOrBuilder> emergencyBrakesBuilder_;
+      /**
+       * <pre>
+       * Batteries batteries = 4;
+       * Sensors sensors = 5;
+       * </pre>
+       *
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       */
+      public boolean hasEmergencyBrakes() {
+        return emergencyBrakesBuilder_ != null || emergencyBrakes_ != null;
+      }
+      /**
+       * <pre>
+       * Batteries batteries = 4;
+       * Sensors sensors = 5;
+       * </pre>
+       *
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes getEmergencyBrakes() {
+        if (emergencyBrakesBuilder_ == null) {
+          return emergencyBrakes_ == null ? telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.getDefaultInstance() : emergencyBrakes_;
+        } else {
+          return emergencyBrakesBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * Batteries batteries = 4;
+       * Sensors sensors = 5;
+       * </pre>
+       *
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       */
+      public Builder setEmergencyBrakes(telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes value) {
+        if (emergencyBrakesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          emergencyBrakes_ = value;
+          onChanged();
+        } else {
+          emergencyBrakesBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Batteries batteries = 4;
+       * Sensors sensors = 5;
+       * </pre>
+       *
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       */
+      public Builder setEmergencyBrakes(
+          telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.Builder builderForValue) {
+        if (emergencyBrakesBuilder_ == null) {
+          emergencyBrakes_ = builderForValue.build();
+          onChanged();
+        } else {
+          emergencyBrakesBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Batteries batteries = 4;
+       * Sensors sensors = 5;
+       * </pre>
+       *
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       */
+      public Builder mergeEmergencyBrakes(telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes value) {
+        if (emergencyBrakesBuilder_ == null) {
+          if (emergencyBrakes_ != null) {
+            emergencyBrakes_ =
+              telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.newBuilder(emergencyBrakes_).mergeFrom(value).buildPartial();
+          } else {
+            emergencyBrakes_ = value;
+          }
+          onChanged();
+        } else {
+          emergencyBrakesBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Batteries batteries = 4;
+       * Sensors sensors = 5;
+       * </pre>
+       *
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       */
+      public Builder clearEmergencyBrakes() {
+        if (emergencyBrakesBuilder_ == null) {
+          emergencyBrakes_ = null;
+          onChanged();
+        } else {
+          emergencyBrakes_ = null;
+          emergencyBrakesBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Batteries batteries = 4;
+       * Sensors sensors = 5;
+       * </pre>
+       *
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.Builder getEmergencyBrakesBuilder() {
+        
+        onChanged();
+        return getEmergencyBrakesFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * Batteries batteries = 4;
+       * Sensors sensors = 5;
+       * </pre>
+       *
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakesOrBuilder getEmergencyBrakesOrBuilder() {
+        if (emergencyBrakesBuilder_ != null) {
+          return emergencyBrakesBuilder_.getMessageOrBuilder();
+        } else {
+          return emergencyBrakes_ == null ?
+              telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.getDefaultInstance() : emergencyBrakes_;
+        }
+      }
+      /**
+       * <pre>
+       * Batteries batteries = 4;
+       * Sensors sensors = 5;
+       * </pre>
+       *
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes, telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.Builder, telemetrydata.TelemetryData.ClientToServer.EmergencyBrakesOrBuilder> 
+          getEmergencyBrakesFieldBuilder() {
+        if (emergencyBrakesBuilder_ == null) {
+          emergencyBrakesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes, telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.Builder, telemetrydata.TelemetryData.ClientToServer.EmergencyBrakesOrBuilder>(
+                  getEmergencyBrakes(),
+                  getParentForChildren(),
+                  isClean());
+          emergencyBrakes_ = null;
+        }
+        return emergencyBrakesBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:telemetry_data.ClientToServer)
+    }
+
+    // @@protoc_insertion_point(class_scope:telemetry_data.ClientToServer)
+    private static final telemetrydata.TelemetryData.ClientToServer DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new telemetrydata.TelemetryData.ClientToServer();
+    }
+
+    public static telemetrydata.TelemetryData.ClientToServer getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ClientToServer>
+        PARSER = new com.google.protobuf.AbstractParser<ClientToServer>() {
+      @java.lang.Override
+      public ClientToServer parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ClientToServer(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ClientToServer> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ClientToServer> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public telemetrydata.TelemetryData.ClientToServer getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_telemetry_data_TestMessage_descriptor;
   private static final 
@@ -1507,6 +5400,31 @@ public final class TelemetryData {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_telemetry_data_ServerToClient_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_telemetry_data_ClientToServer_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_telemetry_data_ClientToServer_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_telemetry_data_ClientToServer_Navigation_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_telemetry_data_ClientToServer_Navigation_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_telemetry_data_ClientToServer_StateMachine_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_telemetry_data_ClientToServer_StateMachine_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_telemetry_data_ClientToServer_Motors_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_telemetry_data_ClientToServer_Motors_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_telemetry_data_ClientToServer_EmergencyBrakes_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1526,8 +5444,29 @@ public final class TelemetryData {
       "ommand\022\022\n\nrun_length\030\002 \001(\002\022\032\n\022service_pr" +
       "opulsion\030\003 \001(\010\"[\n\007Command\022\007\n\003ACK\020\000\022\010\n\004ST" +
       "OP\020\001\022\n\n\006LAUNCH\020\002\022\t\n\005RESET\020\003\022\016\n\nRUN_LENGT" +
-      "H\020\004\022\026\n\022SERVICE_PROPULSION\020\005B\036\n\rtelemetry" +
-      "dataB\rTelemetryDatab\006proto3"
+      "H\020\004\022\026\n\022SERVICE_PROPULSION\020\005\"\255\006\n\016ClientTo" +
+      "Server\022=\n\nnavigation\030\001 \001(\0132).telemetry_d" +
+      "ata.ClientToServer.Navigation\022B\n\rstate_m" +
+      "achine\030\002 \001(\0132+.telemetry_data.ClientToSe" +
+      "rver.StateMachine\0225\n\006motors\030\003 \001(\0132%.tele" +
+      "metry_data.ClientToServer.Motors\022H\n\020emer" +
+      "gency_brakes\030\006 \001(\0132..telemetry_data.Clie" +
+      "ntToServer.EmergencyBrakes\032F\n\nNavigation" +
+      "\022\020\n\010distance\030\001 \001(\002\022\020\n\010velocity\030\002 \001(\002\022\024\n\014" +
+      "acceleration\030\003 \001(\002\032\215\002\n\014StateMachine\022@\n\005s" +
+      "tate\030\001 \001(\01621.telemetry_data.ClientToServ" +
+      "er.StateMachine.State\"\272\001\n\005State\022\010\n\004IDLE\020" +
+      "\000\022\017\n\013CALIBRATING\020\001\022\t\n\005READY\020\002\022\020\n\014ACCELER" +
+      "ATING\020\003\022\023\n\017NOMINAL_BRAKING\020\004\022\025\n\021EMERGENC" +
+      "Y_BRAKING\020\005\022\020\n\014RUN_COMPLETE\020\006\022\023\n\017FAILURE" +
+      "_STOPPED\020\007\022\013\n\007EXITING\020\010\022\014\n\010FINISHED\020\t\022\013\n" +
+      "\007INVALID\020\n\032\200\001\n\006Motors\022\022\n\nvelocity_1\030\001 \001(" +
+      "\021\022\022\n\nvelocity_2\030\002 \001(\021\022\022\n\nvelocity_3\030\003 \001(" +
+      "\021\022\022\n\nvelocity_4\030\004 \001(\021\022\022\n\nvelocity_5\030\005 \001(" +
+      "\021\022\022\n\nvelocity_6\030\006 \001(\021\032<\n\017EmergencyBrakes" +
+      "\022\024\n\014front_brakes\030\001 \001(\010\022\023\n\013rear_brakes\030\002 " +
+      "\001(\010B\036\n\rtelemetrydataB\rTelemetryDatab\006pro" +
+      "to3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1553,6 +5492,36 @@ public final class TelemetryData {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ServerToClient_descriptor,
         new java.lang.String[] { "Command", "RunLength", "ServicePropulsion", });
+    internal_static_telemetry_data_ClientToServer_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_telemetry_data_ClientToServer_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_telemetry_data_ClientToServer_descriptor,
+        new java.lang.String[] { "Navigation", "StateMachine", "Motors", "EmergencyBrakes", });
+    internal_static_telemetry_data_ClientToServer_Navigation_descriptor =
+      internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(0);
+    internal_static_telemetry_data_ClientToServer_Navigation_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_telemetry_data_ClientToServer_Navigation_descriptor,
+        new java.lang.String[] { "Distance", "Velocity", "Acceleration", });
+    internal_static_telemetry_data_ClientToServer_StateMachine_descriptor =
+      internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(1);
+    internal_static_telemetry_data_ClientToServer_StateMachine_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_telemetry_data_ClientToServer_StateMachine_descriptor,
+        new java.lang.String[] { "State", });
+    internal_static_telemetry_data_ClientToServer_Motors_descriptor =
+      internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(2);
+    internal_static_telemetry_data_ClientToServer_Motors_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_telemetry_data_ClientToServer_Motors_descriptor,
+        new java.lang.String[] { "Velocity1", "Velocity2", "Velocity3", "Velocity4", "Velocity5", "Velocity6", });
+    internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor =
+      internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(3);
+    internal_static_telemetry_data_ClientToServer_EmergencyBrakes_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor,
+        new java.lang.String[] { "FrontBrakes", "RearBrakes", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
