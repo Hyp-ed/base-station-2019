@@ -85,7 +85,7 @@ $(function () {
     $( "#stop" ).click(function() { sendMessage('{"command":"STOP"}'); });
     $( "#launch" ).click(function() { sendMessage('{"command":"LAUNCH"}'); });
     $( "#reset" ).click(function() { sendMessage('{"command":"RESET"}'); });
-    $( "#run_length" ).click(function() { sendMessage('{"command":"RUN_LENGTH", "run_length":25}'); });
+    $( "#run_length" ).click(function() { sendMessage(`{"command":"RUN_LENGTH", "run_length":${document.getElementById("run_length_value").value}}`); }); // template literal, enclosed in back-ticks not single quotes
     $( "#svp_go" ).click(function() { sendMessage('{"command":"SERVICE_PROPULSION", "state":true}'); });
     $( "#svp_stop" ).click(function() { sendMessage('{"command":"SERVICE_PROPULSION", "state":false}'); });
 });
