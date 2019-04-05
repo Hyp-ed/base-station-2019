@@ -31,6 +31,9 @@ function connect() {
         stompClient.subscribe('/topic/podStats', function (data) {
             showData(data.body);
         });
+        stompClient.subscribe('/topic/sendMessageStatus', function (data) {
+            showSendMessageStatus(data.body);
+        });
     });
 }
 
@@ -50,6 +53,23 @@ function sendMessage(msg) {
     stompClient.send("/app/sendMessage", {}, msg);
 }
 
+function showSendMessageStatus(message) {
+    var jsonData = JSON.parse(message);
+
+    switch (jsonData['status']) { // array syntax because status is javascript keyword
+        case 'error':
+            $( "#alert_placeholder" ).html('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + jsonData.errorMessage + '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button></div>');
+            console.log("Sent poorly formatted JSON (probably sent run_length with nothing in textbox)");
+            break;
+        case 'sent msg':
+            console.log(`Sent >>> ${JSON.stringify(jsonData.message)} <<< to server`);
+            break;
+        default:
+            console.log("sendMessage returned unknown json");
+            break;
+    }
+}
+
 function showData(message) {
     var jsonData = JSON.parse(message);
     var percentage = (jsonData.data / 1000) * 100; // pretend value we receive is out of 1000
@@ -64,13 +84,9 @@ function showData(message) {
         case "BRAKE_TEMP":
             document.getElementById("progressBarBatteryHp1Temperature").style.width = percentage + "%";
             break;
-        default: // probably an received an error
-            if (jsonData.status == "error") {
-                $( "#alert_placeholder" ).html('<div class="alert alert-warning alert-dismissible fade show" role="alert">' + jsonData.errorMessage + '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button></div>');
-            }
-            else {
-                console.log("Got some weird JSON data");
-            }
+        default:
+            console.log("Got some weird JSON data");
+            break;
     }
 }
 

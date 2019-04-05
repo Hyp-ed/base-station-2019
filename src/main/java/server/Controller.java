@@ -49,7 +49,7 @@ public class Controller {
     }
 
     @MessageMapping("/sendMessage")
-    @SendTo("/topic/podStats") // TODO: error messages get sent to same destination as pod stats do, probably should change this
+    @SendTo("/topic/sendMessageStatus") // TODO: error messages get sent to same destination as pod stats do, probably should change this
     public String sendMessage(String msg) {
         try {
             if (server != null && server.isConnected()) {
