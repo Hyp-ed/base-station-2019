@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello WebSocket</title>
+    <title>Base-Station</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
@@ -22,14 +22,14 @@
         </div>
 
         <div class="row mt-3 align-items-center">
-            <div class="col-sm-6 col-md">
+            <div class="col-sm-6 col-md-3">
                 <img src="hyped.png" class="img-fluid" alt="HypED logo">
             </div>
 
             <div class="col-sm-6 col-md">
                 <form class="form-inline">
                     <div class="form-group">
-                        <label for="connect">Websocket:</label>
+                        <label for="connect">Server:</label>
                         <button id="connect" class="btn btn-light btn-sm ml-3 mr-1" type="submit">Connect</button>
                         <button id="disconnect" class="btn btn-light btn-sm mx-1" type="submit" disabled="disabled">Disconnect</button>
                     </div>
@@ -40,161 +40,169 @@
                     <button id="pullData" class="btn btn-primary mr-3" type="submit">Start pulling data</button>
                 </form>
             </div>
-            <div class"col-sm-12 col-md">
-                <form class="form-inline float-right">
-                    <button id="send4" class="btn btn-danger mx-2" type="submit">Send FINISH</button>
-                    <button id="send5" class="btn btn-danger mr-3" type="submit">Send EM_STOP</button>
-                </form>
-            </div>
         </div>
 
-        <div class="col-md mt-5">
-            <table width="80%" align="center" >
-                <tr>
-                    <td>
-                        <label> BATTERY HP 1 </label>
-                        <table id="batteryHp1" >
-                            <tbody>
-                            <tr>
-                                <th scope="row" class="variable">BATTERY</th>
-                                <td>
-                                    <div id="progressBatteryHp1Battery">
-                                        <div id="progressBarBatteryHp1Battery"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="variable">VOLTAGE</th>
-                                <td>
-                                    <div id="progressBatteryHp1Voltage">
-                                        <div id="progressBarBatteryHp1Voltage"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="variable">TEMPERATURE</th>
-                                <td>
-                                    <div id="progressBatteryHp1Temperature">
-                                        <div id="progressBarBatteryHp1Temperature"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="variable">CURRENT</th>
-                                <td>
-                                    <div id="progressBatteryHp1Current">
-                                        <div id="progressBarBatteryHp1Current"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td>
-                        <label> BATTERY HP 2 </label>
-                        <table id="batteryHp2">
-                            <tbody>
-                            <tr>
-                                <th scope="row" class="variable">BATTERY</th>
-                                <td>
-                                    <div id="progressBatteryHp2Battery">
-                                        <div id="progressBarBatteryHp2Battery"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="variable">VOLTAGE</th>
-                                <td>
-                                    <div id="progressBatteryHp2Voltage">
-                                        <div id="progressBarBatteryHp2Voltage"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="variable">TEMPERATURE</th>
-                                <td>
-                                    <div id="progressBatteryHp2Temperature">
-                                        <div id="progressBarBatteryHp2Temperature"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="variable">CURRENT</th>
-                                <td>
-                                    <div id="progressBatteryHp2Current">
-                                        <div id="progressBarBatteryHp2Current"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td >
-                        <label> BATTERY LP 1 </label>
-                        <table id="batteryLp1" >
-                            <tbody>
-                            <tr>
-                                <th scope="row" class="variable">BATTERY</th>
-                                <td>
-                                    <div id="progressBatteryLp1Battery">
-                                        <div id="progressBarBatteryLp1Battery"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="variable">VOLTAGE</th>
-                                <td>
-                                    <div id="progressBatteryLp1Voltage">
-                                        <div id="progressBarBatteryLp1Voltage"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="variable">CURRENT</th>
-                                <td>
-                                    <div id="progressBatteryLp1Current">
-                                        <div id="progressBarBatteryLp1Current"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td>
-                        <label> BATTERY LP 2 </label>
-                        <table id="batteryLp2">
-                            <tbody>
-                            <tr>
-                                <th scope="row" class="variable">BATTERY</th>
-                                <td>
-                                    <div id="progressBatteryLp2Battery">
-                                        <div id="progressBarBatteryLp2Battery"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="variable">VOLTAGE</th>
-                                <td>
-                                    <div id="progressBatteryLp2Voltage">
-                                        <div id="progressBarBatteryLp2Voltage"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="variable">CURRENT</th>
-                                <td>
-                                    <div id="progressBatteryLp2Current">
-                                        <div id="progressBarBatteryLp2Current"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-            </table>
+        <div class="row mt-5 align-items-center">
+            <div class"col-sm-12">
+                <form class="form-inline float-right">
+                    <button id="stop" class="btn btn-danger mx-2" type="submit">STOP</button>
+                    <button id="launch" class="btn btn-danger mx-2" type="submit">LAUNCH</button>
+                    <button id="reset" class="btn btn-danger mx-2" type="submit">RESET</button>
+                    <input id="run_length_value" type="text" class="ml-5" size="5"/>
+                    <button id="run_length" class="btn btn-danger mx-2" type="submit">RUN LENGTH</button>
+                    <button id="svp_go" class="btn btn-danger mx-2" type="submit">SERVICE PROPULSION GO</button>
+                    <button id="svp_stop" class="btn btn-danger mx-2" type="submit">SERVICE PROPULSION STOP</button>
+                </form>
+            </div>
+
+            <div class="col-sm-12 mt-5">
+                <table width="80%" align="center">
+                    <tr>
+                        <td>
+                            <label> BATTERY HP 1 </label>
+                            <table id="batteryHp1">
+                                <tbody>
+                                <tr>
+                                    <th scope="row" class="variable">BATTERY</th>
+                                    <td>
+                                        <div id="progressBatteryHp1Battery">
+                                            <div id="progressBarBatteryHp1Battery"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="variable">VOLTAGE</th>
+                                    <td>
+                                        <div id="progressBatteryHp1Voltage">
+                                            <div id="progressBarBatteryHp1Voltage"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="variable">TEMPERATURE</th>
+                                    <td>
+                                        <div id="progressBatteryHp1Temperature">
+                                            <div id="progressBarBatteryHp1Temperature"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="variable">CURRENT</th>
+                                    <td>
+                                        <div id="progressBatteryHp1Current">
+                                            <div id="progressBarBatteryHp1Current"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <label> BATTERY HP 2 </label>
+                            <table id="batteryHp2">
+                                <tbody>
+                                <tr>
+                                    <th scope="row" class="variable">BATTERY</th>
+                                    <td>
+                                        <div id="progressBatteryHp2Battery">
+                                            <div id="progressBarBatteryHp2Battery"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="variable">VOLTAGE</th>
+                                    <td>
+                                        <div id="progressBatteryHp2Voltage">
+                                            <div id="progressBarBatteryHp2Voltage"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="variable">TEMPERATURE</th>
+                                    <td>
+                                        <div id="progressBatteryHp2Temperature">
+                                            <div id="progressBarBatteryHp2Temperature"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="variable">CURRENT</th>
+                                    <td>
+                                        <div id="progressBatteryHp2Current">
+                                            <div id="progressBarBatteryHp2Current"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <label> BATTERY LP 1 </label>
+                            <table id="batteryLp1" >
+                                <tbody>
+                                <tr>
+                                    <th scope="row" class="variable">BATTERY</th>
+                                    <td>
+                                        <div id="progressBatteryLp1Battery">
+                                            <div id="progressBarBatteryLp1Battery"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="variable">VOLTAGE</th>
+                                    <td>
+                                        <div id="progressBatteryLp1Voltage">
+                                            <div id="progressBarBatteryLp1Voltage"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="variable">CURRENT</th>
+                                    <td>
+                                        <div id="progressBatteryLp1Current">
+                                            <div id="progressBarBatteryLp1Current"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <label> BATTERY LP 2 </label>
+                            <table id="batteryLp2">
+                                <tbody>
+                                <tr>
+                                    <th scope="row" class="variable">BATTERY</th>
+                                    <td>
+                                        <div id="progressBatteryLp2Battery">
+                                            <div id="progressBarBatteryLp2Battery"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="variable">VOLTAGE</th>
+                                    <td>
+                                        <div id="progressBatteryLp2Voltage">
+                                            <div id="progressBarBatteryLp2Voltage"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="variable">CURRENT</th>
+                                    <td>
+                                        <div id="progressBatteryLp2Current">
+                                            <div id="progressBarBatteryLp2Current"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 

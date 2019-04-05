@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 import telemetrydata.TelemetryData.*;
 
+import org.json.*;
+
 public class Server implements Runnable {
     private static final int PORT = 9090;
     private static final int SPACE_X_PORT = 3000;
@@ -66,7 +68,7 @@ public class Server implements Runnable {
         }
     }
 
-    public void sendMessage(int message) {
+    public void sendMessage(JSONObject message) {
         try {
             Thread sendWorker = new Thread(new MessageSender(message));
             sendWorker.start();
@@ -83,20 +85,18 @@ public class Server implements Runnable {
     private class MessageSender implements Runnable {
         private ServerToClient.Builder msgBuilder;
 
-        public MessageSender(int content) {
-            switch (content) {
-                // case 4:
-                    // msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.LAUNCH);
-                    // break;
-                case 4:
-                    msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.RUN_LENGTH)
-                                                            .setRunLength(25.9f);
+        public MessageSender(JSONObject msg) {
+            // TODO: check for null from json? / throw exception if this fails??
+            msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.valueOf(msg.getString("command").toUpperCase()));
+
+            switch (msg.optString("command", "ERROR").toUpperCase()) {
+                case "RUN_LENGTH":
+                    msgBuilder.setRunLength((float) msg.getDouble("run_length")); // TODO: check if this fails
                     break;
-                case 5:
-                    msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.RUN_LENGTH)
-                                                            .setRunLength(150.5f);
+                case "SERVICE_PROPULSION":
+                    msgBuilder.setServicePropulsion(msg.getBoolean("state")); // TODO: check if this fails
                     break;
-                // IMPLEMENT DEFAULT CASE, honestly idk what to do here since we can't "cancel" this runnable from here
+                // TODO: IMPLEMENT DEFAULT CASE, honestly idk what to do here since we can't "cancel" this runnable from here
             }
         }
 
@@ -130,8 +130,8 @@ public class Server implements Runnable {
             while (true) {
                 try {
                     msg = TestMessage.parseDelimitedFrom(Server.this.client.getInputStream());
-                    System.out.println("Recvd msg: ");
-                    System.out.println(msg);
+                    // System.out.println("Recvd msg: ");
+                    // System.out.println(msg);
                     cmd = msg.getCommand();
                     data = msg.getData();
                 }

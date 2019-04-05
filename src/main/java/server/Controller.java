@@ -49,11 +49,16 @@ public class Controller {
     }
 
     @MessageMapping("/sendMessage")
-    @SendTo("/topic/podStats") // error messages get sent to same destination as pod stats do, probably should change this
-    public String sendMessage(int msg) {
-        if (server != null && server.isConnected()) {
-            server.sendMessage(msg);
-            return "{\"status\":\"sent msg: < " + msg + "> to server\"}";
+    @SendTo("/topic/sendMessageStatus") // TODO: error messages get sent to same destination as pod stats do, probably should change this
+    public String sendMessage(String msg) {
+        try {
+            if (server != null && server.isConnected()) {
+                server.sendMessage(new JSONObject(msg));
+                return "{\"status\":\"sent msg\", \"message\":" + msg + "}";
+            }
+        }
+        catch (JSONException e) {
+            return "{\"status\":\"error\", \"errorMessage\":\"poorly formed json attempted to be sent to server (probs entered nothing in run_length box)\"}";
         }
 
         return "{\"status\":\"error\", \"errorMessage\":\"could not send message\"}";
@@ -72,8 +77,8 @@ public class Controller {
         data.put("cmd", cmd);
         data.put("data", dataInt);
 
-        System.out.println("server.getCmd(): " + cmd);
-        System.out.println("server.getData(): " + dataInt);
+        // System.out.println("server.getCmd(): " + cmd);
+        // System.out.println("server.getData(): " + dataInt);
 
         template.convertAndSend("/topic/podStats", data.toString());
     }
