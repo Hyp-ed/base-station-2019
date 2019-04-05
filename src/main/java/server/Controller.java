@@ -69,13 +69,14 @@ public class Controller {
 
     // this method gets scheduled to run every 100ms (resposible for sending data to frontend)
     public void pingData() {
-        JSONObject data = new JSONObject();
+        JSONObject data = new JSONObject().put("cmd", "1")
+                                          .put("data", 222);
 
-        String cmd = server.getCmd();
-        int dataInt = server.getData();
+        // String cmd = server.getCmd();
+        // int dataInt = server.getData();
 
-        data.put("cmd", cmd);
-        data.put("data", dataInt);
+        // data.put("cmd", cmd);
+        // data.put("data", dataInt);
 
         // System.out.println("server.getCmd(): " + cmd);
         // System.out.println("server.getData(): " + dataInt);
