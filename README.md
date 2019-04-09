@@ -13,8 +13,7 @@ $ ./gradlew build
 
 Also compile protobuf files (can't run backend without generating these files):
 ```
-$ protoc --cpp_out=src/main/cpp/types/ src/main/proto_types/message.proto
-$ protoc --java_out=src/main/java/server/ src/main/proto_types/message.proto
+$ protoc -I=src/main/proto_types/ --java_out=src/main/java/server/ message.proto
 ```
 
 #### Start up spring server:
