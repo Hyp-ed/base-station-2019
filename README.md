@@ -24,6 +24,8 @@ $ ./gradlew bootRun
 Go to `localhost:8080` and click the 'connect' button to start the websocket connection between the browser and the spring server.
 
 #### Run client side: In another terminal window, run
+vvv ***Section below outdated, update*** vvv
+
 ```
 $ ./build/exe/main/main
 ```
