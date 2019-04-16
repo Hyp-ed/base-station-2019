@@ -1691,22 +1691,147 @@ public final class TelemetryData {
               telemetrydata.TelemetryData.ClientToServer.class, telemetrydata.TelemetryData.ClientToServer.Builder.class);
     }
 
+    /**
+     * Protobuf enum {@code telemetry_data.ClientToServer.ModuleStatus}
+     */
+    public enum ModuleStatus
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>START = 0;</code>
+       */
+      START(0),
+      /**
+       * <code>INIT = 1;</code>
+       */
+      INIT(1),
+      /**
+       * <code>READY = 2;</code>
+       */
+      READY(2),
+      /**
+       * <code>CRITICAL_FAILURE = 3;</code>
+       */
+      CRITICAL_FAILURE(3),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>START = 0;</code>
+       */
+      public static final int START_VALUE = 0;
+      /**
+       * <code>INIT = 1;</code>
+       */
+      public static final int INIT_VALUE = 1;
+      /**
+       * <code>READY = 2;</code>
+       */
+      public static final int READY_VALUE = 2;
+      /**
+       * <code>CRITICAL_FAILURE = 3;</code>
+       */
+      public static final int CRITICAL_FAILURE_VALUE = 3;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static ModuleStatus valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static ModuleStatus forNumber(int value) {
+        switch (value) {
+          case 0: return START;
+          case 1: return INIT;
+          case 2: return READY;
+          case 3: return CRITICAL_FAILURE;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<ModuleStatus>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          ModuleStatus> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<ModuleStatus>() {
+              public ModuleStatus findValueByNumber(int number) {
+                return ModuleStatus.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return telemetrydata.TelemetryData.ClientToServer.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final ModuleStatus[] VALUES = values();
+
+      public static ModuleStatus valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private ModuleStatus(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:telemetry_data.ClientToServer.ModuleStatus)
+    }
+
     public interface NavigationOrBuilder extends
         // @@protoc_insertion_point(interface_extends:telemetry_data.ClientToServer.Navigation)
         com.google.protobuf.MessageOrBuilder {
 
       /**
-       * <code>float distance = 1;</code>
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+       */
+      int getModuleStatusValue();
+      /**
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+       */
+      telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus();
+
+      /**
+       * <code>float distance = 2;</code>
        */
       float getDistance();
 
       /**
-       * <code>float velocity = 2;</code>
+       * <code>float velocity = 3;</code>
        */
       float getVelocity();
 
       /**
-       * <code>float acceleration = 3;</code>
+       * <code>float acceleration = 4;</code>
        */
       float getAcceleration();
     }
@@ -1723,6 +1848,7 @@ public final class TelemetryData {
         super(builder);
       }
       private Navigation() {
+        moduleStatus_ = 0;
         distance_ = 0F;
         velocity_ = 0F;
         acceleration_ = 0F;
@@ -1752,17 +1878,23 @@ public final class TelemetryData {
               case 0:
                 done = true;
                 break;
-              case 13: {
+              case 8: {
+                int rawValue = input.readEnum();
 
-                distance_ = input.readFloat();
+                moduleStatus_ = rawValue;
                 break;
               }
               case 21: {
 
-                velocity_ = input.readFloat();
+                distance_ = input.readFloat();
                 break;
               }
               case 29: {
+
+                velocity_ = input.readFloat();
+                break;
+              }
+              case 37: {
 
                 acceleration_ = input.readFloat();
                 break;
@@ -1799,28 +1931,45 @@ public final class TelemetryData {
                 telemetrydata.TelemetryData.ClientToServer.Navigation.class, telemetrydata.TelemetryData.ClientToServer.Navigation.Builder.class);
       }
 
-      public static final int DISTANCE_FIELD_NUMBER = 1;
+      public static final int MODULE_STATUS_FIELD_NUMBER = 1;
+      private int moduleStatus_;
+      /**
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+       */
+      public int getModuleStatusValue() {
+        return moduleStatus_;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus() {
+        @SuppressWarnings("deprecation")
+        telemetrydata.TelemetryData.ClientToServer.ModuleStatus result = telemetrydata.TelemetryData.ClientToServer.ModuleStatus.valueOf(moduleStatus_);
+        return result == null ? telemetrydata.TelemetryData.ClientToServer.ModuleStatus.UNRECOGNIZED : result;
+      }
+
+      public static final int DISTANCE_FIELD_NUMBER = 2;
       private float distance_;
       /**
-       * <code>float distance = 1;</code>
+       * <code>float distance = 2;</code>
        */
       public float getDistance() {
         return distance_;
       }
 
-      public static final int VELOCITY_FIELD_NUMBER = 2;
+      public static final int VELOCITY_FIELD_NUMBER = 3;
       private float velocity_;
       /**
-       * <code>float velocity = 2;</code>
+       * <code>float velocity = 3;</code>
        */
       public float getVelocity() {
         return velocity_;
       }
 
-      public static final int ACCELERATION_FIELD_NUMBER = 3;
+      public static final int ACCELERATION_FIELD_NUMBER = 4;
       private float acceleration_;
       /**
-       * <code>float acceleration = 3;</code>
+       * <code>float acceleration = 4;</code>
        */
       public float getAcceleration() {
         return acceleration_;
@@ -1840,14 +1989,17 @@ public final class TelemetryData {
       @java.lang.Override
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
+        if (moduleStatus_ != telemetrydata.TelemetryData.ClientToServer.ModuleStatus.START.getNumber()) {
+          output.writeEnum(1, moduleStatus_);
+        }
         if (distance_ != 0F) {
-          output.writeFloat(1, distance_);
+          output.writeFloat(2, distance_);
         }
         if (velocity_ != 0F) {
-          output.writeFloat(2, velocity_);
+          output.writeFloat(3, velocity_);
         }
         if (acceleration_ != 0F) {
-          output.writeFloat(3, acceleration_);
+          output.writeFloat(4, acceleration_);
         }
         unknownFields.writeTo(output);
       }
@@ -1858,17 +2010,21 @@ public final class TelemetryData {
         if (size != -1) return size;
 
         size = 0;
+        if (moduleStatus_ != telemetrydata.TelemetryData.ClientToServer.ModuleStatus.START.getNumber()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeEnumSize(1, moduleStatus_);
+        }
         if (distance_ != 0F) {
           size += com.google.protobuf.CodedOutputStream
-            .computeFloatSize(1, distance_);
+            .computeFloatSize(2, distance_);
         }
         if (velocity_ != 0F) {
           size += com.google.protobuf.CodedOutputStream
-            .computeFloatSize(2, velocity_);
+            .computeFloatSize(3, velocity_);
         }
         if (acceleration_ != 0F) {
           size += com.google.protobuf.CodedOutputStream
-            .computeFloatSize(3, acceleration_);
+            .computeFloatSize(4, acceleration_);
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
@@ -1886,6 +2042,7 @@ public final class TelemetryData {
         telemetrydata.TelemetryData.ClientToServer.Navigation other = (telemetrydata.TelemetryData.ClientToServer.Navigation) obj;
 
         boolean result = true;
+        result = result && moduleStatus_ == other.moduleStatus_;
         result = result && (
             java.lang.Float.floatToIntBits(getDistance())
             == java.lang.Float.floatToIntBits(
@@ -1909,6 +2066,8 @@ public final class TelemetryData {
         }
         int hash = 41;
         hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + MODULE_STATUS_FIELD_NUMBER;
+        hash = (53 * hash) + moduleStatus_;
         hash = (37 * hash) + DISTANCE_FIELD_NUMBER;
         hash = (53 * hash) + java.lang.Float.floatToIntBits(
             getDistance());
@@ -2051,6 +2210,8 @@ public final class TelemetryData {
         @java.lang.Override
         public Builder clear() {
           super.clear();
+          moduleStatus_ = 0;
+
           distance_ = 0F;
 
           velocity_ = 0F;
@@ -2083,6 +2244,7 @@ public final class TelemetryData {
         @java.lang.Override
         public telemetrydata.TelemetryData.ClientToServer.Navigation buildPartial() {
           telemetrydata.TelemetryData.ClientToServer.Navigation result = new telemetrydata.TelemetryData.ClientToServer.Navigation(this);
+          result.moduleStatus_ = moduleStatus_;
           result.distance_ = distance_;
           result.velocity_ = velocity_;
           result.acceleration_ = acceleration_;
@@ -2134,6 +2296,9 @@ public final class TelemetryData {
 
         public Builder mergeFrom(telemetrydata.TelemetryData.ClientToServer.Navigation other) {
           if (other == telemetrydata.TelemetryData.ClientToServer.Navigation.getDefaultInstance()) return this;
+          if (other.moduleStatus_ != 0) {
+            setModuleStatusValue(other.getModuleStatusValue());
+          }
           if (other.getDistance() != 0F) {
             setDistance(other.getDistance());
           }
@@ -2172,15 +2337,60 @@ public final class TelemetryData {
           return this;
         }
 
+        private int moduleStatus_ = 0;
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public int getModuleStatusValue() {
+          return moduleStatus_;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public Builder setModuleStatusValue(int value) {
+          moduleStatus_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus() {
+          @SuppressWarnings("deprecation")
+          telemetrydata.TelemetryData.ClientToServer.ModuleStatus result = telemetrydata.TelemetryData.ClientToServer.ModuleStatus.valueOf(moduleStatus_);
+          return result == null ? telemetrydata.TelemetryData.ClientToServer.ModuleStatus.UNRECOGNIZED : result;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public Builder setModuleStatus(telemetrydata.TelemetryData.ClientToServer.ModuleStatus value) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          
+          moduleStatus_ = value.getNumber();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public Builder clearModuleStatus() {
+          
+          moduleStatus_ = 0;
+          onChanged();
+          return this;
+        }
+
         private float distance_ ;
         /**
-         * <code>float distance = 1;</code>
+         * <code>float distance = 2;</code>
          */
         public float getDistance() {
           return distance_;
         }
         /**
-         * <code>float distance = 1;</code>
+         * <code>float distance = 2;</code>
          */
         public Builder setDistance(float value) {
           
@@ -2189,7 +2399,7 @@ public final class TelemetryData {
           return this;
         }
         /**
-         * <code>float distance = 1;</code>
+         * <code>float distance = 2;</code>
          */
         public Builder clearDistance() {
           
@@ -2200,13 +2410,13 @@ public final class TelemetryData {
 
         private float velocity_ ;
         /**
-         * <code>float velocity = 2;</code>
+         * <code>float velocity = 3;</code>
          */
         public float getVelocity() {
           return velocity_;
         }
         /**
-         * <code>float velocity = 2;</code>
+         * <code>float velocity = 3;</code>
          */
         public Builder setVelocity(float value) {
           
@@ -2215,7 +2425,7 @@ public final class TelemetryData {
           return this;
         }
         /**
-         * <code>float velocity = 2;</code>
+         * <code>float velocity = 3;</code>
          */
         public Builder clearVelocity() {
           
@@ -2226,13 +2436,13 @@ public final class TelemetryData {
 
         private float acceleration_ ;
         /**
-         * <code>float acceleration = 3;</code>
+         * <code>float acceleration = 4;</code>
          */
         public float getAcceleration() {
           return acceleration_;
         }
         /**
-         * <code>float acceleration = 3;</code>
+         * <code>float acceleration = 4;</code>
          */
         public Builder setAcceleration(float value) {
           
@@ -2241,7 +2451,7 @@ public final class TelemetryData {
           return this;
         }
         /**
-         * <code>float acceleration = 3;</code>
+         * <code>float acceleration = 4;</code>
          */
         public Builder clearAcceleration() {
           
@@ -2307,13 +2517,22 @@ public final class TelemetryData {
         com.google.protobuf.MessageOrBuilder {
 
       /**
-       * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
        */
-      int getStateValue();
+      int getModuleStatusValue();
       /**
-       * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
        */
-      telemetrydata.TelemetryData.ClientToServer.StateMachine.State getState();
+      telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus();
+
+      /**
+       * <code>.telemetry_data.ClientToServer.StateMachine.State current_state = 2;</code>
+       */
+      int getCurrentStateValue();
+      /**
+       * <code>.telemetry_data.ClientToServer.StateMachine.State current_state = 2;</code>
+       */
+      telemetrydata.TelemetryData.ClientToServer.StateMachine.State getCurrentState();
     }
     /**
      * Protobuf type {@code telemetry_data.ClientToServer.StateMachine}
@@ -2328,7 +2547,8 @@ public final class TelemetryData {
         super(builder);
       }
       private StateMachine() {
-        state_ = 0;
+        moduleStatus_ = 0;
+        currentState_ = 0;
       }
 
       @java.lang.Override
@@ -2358,7 +2578,13 @@ public final class TelemetryData {
               case 8: {
                 int rawValue = input.readEnum();
 
-                state_ = rawValue;
+                moduleStatus_ = rawValue;
+                break;
+              }
+              case 16: {
+                int rawValue = input.readEnum();
+
+                currentState_ = rawValue;
                 break;
               }
               default: {
@@ -2572,20 +2798,37 @@ public final class TelemetryData {
         // @@protoc_insertion_point(enum_scope:telemetry_data.ClientToServer.StateMachine.State)
       }
 
-      public static final int STATE_FIELD_NUMBER = 1;
-      private int state_;
+      public static final int MODULE_STATUS_FIELD_NUMBER = 1;
+      private int moduleStatus_;
       /**
-       * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
        */
-      public int getStateValue() {
-        return state_;
+      public int getModuleStatusValue() {
+        return moduleStatus_;
       }
       /**
-       * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
        */
-      public telemetrydata.TelemetryData.ClientToServer.StateMachine.State getState() {
+      public telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus() {
         @SuppressWarnings("deprecation")
-        telemetrydata.TelemetryData.ClientToServer.StateMachine.State result = telemetrydata.TelemetryData.ClientToServer.StateMachine.State.valueOf(state_);
+        telemetrydata.TelemetryData.ClientToServer.ModuleStatus result = telemetrydata.TelemetryData.ClientToServer.ModuleStatus.valueOf(moduleStatus_);
+        return result == null ? telemetrydata.TelemetryData.ClientToServer.ModuleStatus.UNRECOGNIZED : result;
+      }
+
+      public static final int CURRENT_STATE_FIELD_NUMBER = 2;
+      private int currentState_;
+      /**
+       * <code>.telemetry_data.ClientToServer.StateMachine.State current_state = 2;</code>
+       */
+      public int getCurrentStateValue() {
+        return currentState_;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.StateMachine.State current_state = 2;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.StateMachine.State getCurrentState() {
+        @SuppressWarnings("deprecation")
+        telemetrydata.TelemetryData.ClientToServer.StateMachine.State result = telemetrydata.TelemetryData.ClientToServer.StateMachine.State.valueOf(currentState_);
         return result == null ? telemetrydata.TelemetryData.ClientToServer.StateMachine.State.UNRECOGNIZED : result;
       }
 
@@ -2603,8 +2846,11 @@ public final class TelemetryData {
       @java.lang.Override
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
-        if (state_ != telemetrydata.TelemetryData.ClientToServer.StateMachine.State.IDLE.getNumber()) {
-          output.writeEnum(1, state_);
+        if (moduleStatus_ != telemetrydata.TelemetryData.ClientToServer.ModuleStatus.START.getNumber()) {
+          output.writeEnum(1, moduleStatus_);
+        }
+        if (currentState_ != telemetrydata.TelemetryData.ClientToServer.StateMachine.State.IDLE.getNumber()) {
+          output.writeEnum(2, currentState_);
         }
         unknownFields.writeTo(output);
       }
@@ -2615,9 +2861,13 @@ public final class TelemetryData {
         if (size != -1) return size;
 
         size = 0;
-        if (state_ != telemetrydata.TelemetryData.ClientToServer.StateMachine.State.IDLE.getNumber()) {
+        if (moduleStatus_ != telemetrydata.TelemetryData.ClientToServer.ModuleStatus.START.getNumber()) {
           size += com.google.protobuf.CodedOutputStream
-            .computeEnumSize(1, state_);
+            .computeEnumSize(1, moduleStatus_);
+        }
+        if (currentState_ != telemetrydata.TelemetryData.ClientToServer.StateMachine.State.IDLE.getNumber()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeEnumSize(2, currentState_);
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
@@ -2635,7 +2885,8 @@ public final class TelemetryData {
         telemetrydata.TelemetryData.ClientToServer.StateMachine other = (telemetrydata.TelemetryData.ClientToServer.StateMachine) obj;
 
         boolean result = true;
-        result = result && state_ == other.state_;
+        result = result && moduleStatus_ == other.moduleStatus_;
+        result = result && currentState_ == other.currentState_;
         result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
@@ -2647,8 +2898,10 @@ public final class TelemetryData {
         }
         int hash = 41;
         hash = (19 * hash) + getDescriptor().hashCode();
-        hash = (37 * hash) + STATE_FIELD_NUMBER;
-        hash = (53 * hash) + state_;
+        hash = (37 * hash) + MODULE_STATUS_FIELD_NUMBER;
+        hash = (53 * hash) + moduleStatus_;
+        hash = (37 * hash) + CURRENT_STATE_FIELD_NUMBER;
+        hash = (53 * hash) + currentState_;
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -2782,7 +3035,9 @@ public final class TelemetryData {
         @java.lang.Override
         public Builder clear() {
           super.clear();
-          state_ = 0;
+          moduleStatus_ = 0;
+
+          currentState_ = 0;
 
           return this;
         }
@@ -2810,7 +3065,8 @@ public final class TelemetryData {
         @java.lang.Override
         public telemetrydata.TelemetryData.ClientToServer.StateMachine buildPartial() {
           telemetrydata.TelemetryData.ClientToServer.StateMachine result = new telemetrydata.TelemetryData.ClientToServer.StateMachine(this);
-          result.state_ = state_;
+          result.moduleStatus_ = moduleStatus_;
+          result.currentState_ = currentState_;
           onBuilt();
           return result;
         }
@@ -2859,8 +3115,11 @@ public final class TelemetryData {
 
         public Builder mergeFrom(telemetrydata.TelemetryData.ClientToServer.StateMachine other) {
           if (other == telemetrydata.TelemetryData.ClientToServer.StateMachine.getDefaultInstance()) return this;
-          if (other.state_ != 0) {
-            setStateValue(other.getStateValue());
+          if (other.moduleStatus_ != 0) {
+            setModuleStatusValue(other.getModuleStatusValue());
+          }
+          if (other.currentState_ != 0) {
+            setCurrentStateValue(other.getCurrentStateValue());
           }
           this.mergeUnknownFields(other.unknownFields);
           onChanged();
@@ -2891,47 +3150,92 @@ public final class TelemetryData {
           return this;
         }
 
-        private int state_ = 0;
+        private int moduleStatus_ = 0;
         /**
-         * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
          */
-        public int getStateValue() {
-          return state_;
+        public int getModuleStatusValue() {
+          return moduleStatus_;
         }
         /**
-         * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
          */
-        public Builder setStateValue(int value) {
-          state_ = value;
+        public Builder setModuleStatusValue(int value) {
+          moduleStatus_ = value;
           onChanged();
           return this;
         }
         /**
-         * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
          */
-        public telemetrydata.TelemetryData.ClientToServer.StateMachine.State getState() {
+        public telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus() {
           @SuppressWarnings("deprecation")
-          telemetrydata.TelemetryData.ClientToServer.StateMachine.State result = telemetrydata.TelemetryData.ClientToServer.StateMachine.State.valueOf(state_);
-          return result == null ? telemetrydata.TelemetryData.ClientToServer.StateMachine.State.UNRECOGNIZED : result;
+          telemetrydata.TelemetryData.ClientToServer.ModuleStatus result = telemetrydata.TelemetryData.ClientToServer.ModuleStatus.valueOf(moduleStatus_);
+          return result == null ? telemetrydata.TelemetryData.ClientToServer.ModuleStatus.UNRECOGNIZED : result;
         }
         /**
-         * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
          */
-        public Builder setState(telemetrydata.TelemetryData.ClientToServer.StateMachine.State value) {
+        public Builder setModuleStatus(telemetrydata.TelemetryData.ClientToServer.ModuleStatus value) {
           if (value == null) {
             throw new NullPointerException();
           }
           
-          state_ = value.getNumber();
+          moduleStatus_ = value.getNumber();
           onChanged();
           return this;
         }
         /**
-         * <code>.telemetry_data.ClientToServer.StateMachine.State state = 1;</code>
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
          */
-        public Builder clearState() {
+        public Builder clearModuleStatus() {
           
-          state_ = 0;
+          moduleStatus_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int currentState_ = 0;
+        /**
+         * <code>.telemetry_data.ClientToServer.StateMachine.State current_state = 2;</code>
+         */
+        public int getCurrentStateValue() {
+          return currentState_;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.StateMachine.State current_state = 2;</code>
+         */
+        public Builder setCurrentStateValue(int value) {
+          currentState_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.StateMachine.State current_state = 2;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.StateMachine.State getCurrentState() {
+          @SuppressWarnings("deprecation")
+          telemetrydata.TelemetryData.ClientToServer.StateMachine.State result = telemetrydata.TelemetryData.ClientToServer.StateMachine.State.valueOf(currentState_);
+          return result == null ? telemetrydata.TelemetryData.ClientToServer.StateMachine.State.UNRECOGNIZED : result;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.StateMachine.State current_state = 2;</code>
+         */
+        public Builder setCurrentState(telemetrydata.TelemetryData.ClientToServer.StateMachine.State value) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          
+          currentState_ = value.getNumber();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.StateMachine.State current_state = 2;</code>
+         */
+        public Builder clearCurrentState() {
+          
+          currentState_ = 0;
           onChanged();
           return this;
         }
@@ -2993,32 +3297,41 @@ public final class TelemetryData {
         com.google.protobuf.MessageOrBuilder {
 
       /**
-       * <code>sint32 velocity_1 = 1;</code>
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+       */
+      int getModuleStatusValue();
+      /**
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+       */
+      telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus();
+
+      /**
+       * <code>sint32 velocity_1 = 2;</code>
        */
       int getVelocity1();
 
       /**
-       * <code>sint32 velocity_2 = 2;</code>
+       * <code>sint32 velocity_2 = 3;</code>
        */
       int getVelocity2();
 
       /**
-       * <code>sint32 velocity_3 = 3;</code>
+       * <code>sint32 velocity_3 = 4;</code>
        */
       int getVelocity3();
 
       /**
-       * <code>sint32 velocity_4 = 4;</code>
+       * <code>sint32 velocity_4 = 5;</code>
        */
       int getVelocity4();
 
       /**
-       * <code>sint32 velocity_5 = 5;</code>
+       * <code>sint32 velocity_5 = 6;</code>
        */
       int getVelocity5();
 
       /**
-       * <code>sint32 velocity_6 = 6;</code>
+       * <code>sint32 velocity_6 = 7;</code>
        */
       int getVelocity6();
     }
@@ -3035,6 +3348,7 @@ public final class TelemetryData {
         super(builder);
       }
       private Motors() {
+        moduleStatus_ = 0;
         velocity1_ = 0;
         velocity2_ = 0;
         velocity3_ = 0;
@@ -3068,31 +3382,37 @@ public final class TelemetryData {
                 done = true;
                 break;
               case 8: {
+                int rawValue = input.readEnum();
 
-                velocity1_ = input.readSInt32();
+                moduleStatus_ = rawValue;
                 break;
               }
               case 16: {
 
-                velocity2_ = input.readSInt32();
+                velocity1_ = input.readSInt32();
                 break;
               }
               case 24: {
 
-                velocity3_ = input.readSInt32();
+                velocity2_ = input.readSInt32();
                 break;
               }
               case 32: {
 
-                velocity4_ = input.readSInt32();
+                velocity3_ = input.readSInt32();
                 break;
               }
               case 40: {
 
-                velocity5_ = input.readSInt32();
+                velocity4_ = input.readSInt32();
                 break;
               }
               case 48: {
+
+                velocity5_ = input.readSInt32();
+                break;
+              }
+              case 56: {
 
                 velocity6_ = input.readSInt32();
                 break;
@@ -3129,55 +3449,72 @@ public final class TelemetryData {
                 telemetrydata.TelemetryData.ClientToServer.Motors.class, telemetrydata.TelemetryData.ClientToServer.Motors.Builder.class);
       }
 
-      public static final int VELOCITY_1_FIELD_NUMBER = 1;
+      public static final int MODULE_STATUS_FIELD_NUMBER = 1;
+      private int moduleStatus_;
+      /**
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+       */
+      public int getModuleStatusValue() {
+        return moduleStatus_;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus() {
+        @SuppressWarnings("deprecation")
+        telemetrydata.TelemetryData.ClientToServer.ModuleStatus result = telemetrydata.TelemetryData.ClientToServer.ModuleStatus.valueOf(moduleStatus_);
+        return result == null ? telemetrydata.TelemetryData.ClientToServer.ModuleStatus.UNRECOGNIZED : result;
+      }
+
+      public static final int VELOCITY_1_FIELD_NUMBER = 2;
       private int velocity1_;
       /**
-       * <code>sint32 velocity_1 = 1;</code>
+       * <code>sint32 velocity_1 = 2;</code>
        */
       public int getVelocity1() {
         return velocity1_;
       }
 
-      public static final int VELOCITY_2_FIELD_NUMBER = 2;
+      public static final int VELOCITY_2_FIELD_NUMBER = 3;
       private int velocity2_;
       /**
-       * <code>sint32 velocity_2 = 2;</code>
+       * <code>sint32 velocity_2 = 3;</code>
        */
       public int getVelocity2() {
         return velocity2_;
       }
 
-      public static final int VELOCITY_3_FIELD_NUMBER = 3;
+      public static final int VELOCITY_3_FIELD_NUMBER = 4;
       private int velocity3_;
       /**
-       * <code>sint32 velocity_3 = 3;</code>
+       * <code>sint32 velocity_3 = 4;</code>
        */
       public int getVelocity3() {
         return velocity3_;
       }
 
-      public static final int VELOCITY_4_FIELD_NUMBER = 4;
+      public static final int VELOCITY_4_FIELD_NUMBER = 5;
       private int velocity4_;
       /**
-       * <code>sint32 velocity_4 = 4;</code>
+       * <code>sint32 velocity_4 = 5;</code>
        */
       public int getVelocity4() {
         return velocity4_;
       }
 
-      public static final int VELOCITY_5_FIELD_NUMBER = 5;
+      public static final int VELOCITY_5_FIELD_NUMBER = 6;
       private int velocity5_;
       /**
-       * <code>sint32 velocity_5 = 5;</code>
+       * <code>sint32 velocity_5 = 6;</code>
        */
       public int getVelocity5() {
         return velocity5_;
       }
 
-      public static final int VELOCITY_6_FIELD_NUMBER = 6;
+      public static final int VELOCITY_6_FIELD_NUMBER = 7;
       private int velocity6_;
       /**
-       * <code>sint32 velocity_6 = 6;</code>
+       * <code>sint32 velocity_6 = 7;</code>
        */
       public int getVelocity6() {
         return velocity6_;
@@ -3197,23 +3534,26 @@ public final class TelemetryData {
       @java.lang.Override
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
+        if (moduleStatus_ != telemetrydata.TelemetryData.ClientToServer.ModuleStatus.START.getNumber()) {
+          output.writeEnum(1, moduleStatus_);
+        }
         if (velocity1_ != 0) {
-          output.writeSInt32(1, velocity1_);
+          output.writeSInt32(2, velocity1_);
         }
         if (velocity2_ != 0) {
-          output.writeSInt32(2, velocity2_);
+          output.writeSInt32(3, velocity2_);
         }
         if (velocity3_ != 0) {
-          output.writeSInt32(3, velocity3_);
+          output.writeSInt32(4, velocity3_);
         }
         if (velocity4_ != 0) {
-          output.writeSInt32(4, velocity4_);
+          output.writeSInt32(5, velocity4_);
         }
         if (velocity5_ != 0) {
-          output.writeSInt32(5, velocity5_);
+          output.writeSInt32(6, velocity5_);
         }
         if (velocity6_ != 0) {
-          output.writeSInt32(6, velocity6_);
+          output.writeSInt32(7, velocity6_);
         }
         unknownFields.writeTo(output);
       }
@@ -3224,29 +3564,33 @@ public final class TelemetryData {
         if (size != -1) return size;
 
         size = 0;
+        if (moduleStatus_ != telemetrydata.TelemetryData.ClientToServer.ModuleStatus.START.getNumber()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeEnumSize(1, moduleStatus_);
+        }
         if (velocity1_ != 0) {
           size += com.google.protobuf.CodedOutputStream
-            .computeSInt32Size(1, velocity1_);
+            .computeSInt32Size(2, velocity1_);
         }
         if (velocity2_ != 0) {
           size += com.google.protobuf.CodedOutputStream
-            .computeSInt32Size(2, velocity2_);
+            .computeSInt32Size(3, velocity2_);
         }
         if (velocity3_ != 0) {
           size += com.google.protobuf.CodedOutputStream
-            .computeSInt32Size(3, velocity3_);
+            .computeSInt32Size(4, velocity3_);
         }
         if (velocity4_ != 0) {
           size += com.google.protobuf.CodedOutputStream
-            .computeSInt32Size(4, velocity4_);
+            .computeSInt32Size(5, velocity4_);
         }
         if (velocity5_ != 0) {
           size += com.google.protobuf.CodedOutputStream
-            .computeSInt32Size(5, velocity5_);
+            .computeSInt32Size(6, velocity5_);
         }
         if (velocity6_ != 0) {
           size += com.google.protobuf.CodedOutputStream
-            .computeSInt32Size(6, velocity6_);
+            .computeSInt32Size(7, velocity6_);
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
@@ -3264,6 +3608,7 @@ public final class TelemetryData {
         telemetrydata.TelemetryData.ClientToServer.Motors other = (telemetrydata.TelemetryData.ClientToServer.Motors) obj;
 
         boolean result = true;
+        result = result && moduleStatus_ == other.moduleStatus_;
         result = result && (getVelocity1()
             == other.getVelocity1());
         result = result && (getVelocity2()
@@ -3287,6 +3632,8 @@ public final class TelemetryData {
         }
         int hash = 41;
         hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + MODULE_STATUS_FIELD_NUMBER;
+        hash = (53 * hash) + moduleStatus_;
         hash = (37 * hash) + VELOCITY_1_FIELD_NUMBER;
         hash = (53 * hash) + getVelocity1();
         hash = (37 * hash) + VELOCITY_2_FIELD_NUMBER;
@@ -3432,6 +3779,8 @@ public final class TelemetryData {
         @java.lang.Override
         public Builder clear() {
           super.clear();
+          moduleStatus_ = 0;
+
           velocity1_ = 0;
 
           velocity2_ = 0;
@@ -3470,6 +3819,7 @@ public final class TelemetryData {
         @java.lang.Override
         public telemetrydata.TelemetryData.ClientToServer.Motors buildPartial() {
           telemetrydata.TelemetryData.ClientToServer.Motors result = new telemetrydata.TelemetryData.ClientToServer.Motors(this);
+          result.moduleStatus_ = moduleStatus_;
           result.velocity1_ = velocity1_;
           result.velocity2_ = velocity2_;
           result.velocity3_ = velocity3_;
@@ -3524,6 +3874,9 @@ public final class TelemetryData {
 
         public Builder mergeFrom(telemetrydata.TelemetryData.ClientToServer.Motors other) {
           if (other == telemetrydata.TelemetryData.ClientToServer.Motors.getDefaultInstance()) return this;
+          if (other.moduleStatus_ != 0) {
+            setModuleStatusValue(other.getModuleStatusValue());
+          }
           if (other.getVelocity1() != 0) {
             setVelocity1(other.getVelocity1());
           }
@@ -3571,15 +3924,60 @@ public final class TelemetryData {
           return this;
         }
 
+        private int moduleStatus_ = 0;
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public int getModuleStatusValue() {
+          return moduleStatus_;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public Builder setModuleStatusValue(int value) {
+          moduleStatus_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus() {
+          @SuppressWarnings("deprecation")
+          telemetrydata.TelemetryData.ClientToServer.ModuleStatus result = telemetrydata.TelemetryData.ClientToServer.ModuleStatus.valueOf(moduleStatus_);
+          return result == null ? telemetrydata.TelemetryData.ClientToServer.ModuleStatus.UNRECOGNIZED : result;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public Builder setModuleStatus(telemetrydata.TelemetryData.ClientToServer.ModuleStatus value) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          
+          moduleStatus_ = value.getNumber();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public Builder clearModuleStatus() {
+          
+          moduleStatus_ = 0;
+          onChanged();
+          return this;
+        }
+
         private int velocity1_ ;
         /**
-         * <code>sint32 velocity_1 = 1;</code>
+         * <code>sint32 velocity_1 = 2;</code>
          */
         public int getVelocity1() {
           return velocity1_;
         }
         /**
-         * <code>sint32 velocity_1 = 1;</code>
+         * <code>sint32 velocity_1 = 2;</code>
          */
         public Builder setVelocity1(int value) {
           
@@ -3588,7 +3986,7 @@ public final class TelemetryData {
           return this;
         }
         /**
-         * <code>sint32 velocity_1 = 1;</code>
+         * <code>sint32 velocity_1 = 2;</code>
          */
         public Builder clearVelocity1() {
           
@@ -3599,13 +3997,13 @@ public final class TelemetryData {
 
         private int velocity2_ ;
         /**
-         * <code>sint32 velocity_2 = 2;</code>
+         * <code>sint32 velocity_2 = 3;</code>
          */
         public int getVelocity2() {
           return velocity2_;
         }
         /**
-         * <code>sint32 velocity_2 = 2;</code>
+         * <code>sint32 velocity_2 = 3;</code>
          */
         public Builder setVelocity2(int value) {
           
@@ -3614,7 +4012,7 @@ public final class TelemetryData {
           return this;
         }
         /**
-         * <code>sint32 velocity_2 = 2;</code>
+         * <code>sint32 velocity_2 = 3;</code>
          */
         public Builder clearVelocity2() {
           
@@ -3625,13 +4023,13 @@ public final class TelemetryData {
 
         private int velocity3_ ;
         /**
-         * <code>sint32 velocity_3 = 3;</code>
+         * <code>sint32 velocity_3 = 4;</code>
          */
         public int getVelocity3() {
           return velocity3_;
         }
         /**
-         * <code>sint32 velocity_3 = 3;</code>
+         * <code>sint32 velocity_3 = 4;</code>
          */
         public Builder setVelocity3(int value) {
           
@@ -3640,7 +4038,7 @@ public final class TelemetryData {
           return this;
         }
         /**
-         * <code>sint32 velocity_3 = 3;</code>
+         * <code>sint32 velocity_3 = 4;</code>
          */
         public Builder clearVelocity3() {
           
@@ -3651,13 +4049,13 @@ public final class TelemetryData {
 
         private int velocity4_ ;
         /**
-         * <code>sint32 velocity_4 = 4;</code>
+         * <code>sint32 velocity_4 = 5;</code>
          */
         public int getVelocity4() {
           return velocity4_;
         }
         /**
-         * <code>sint32 velocity_4 = 4;</code>
+         * <code>sint32 velocity_4 = 5;</code>
          */
         public Builder setVelocity4(int value) {
           
@@ -3666,7 +4064,7 @@ public final class TelemetryData {
           return this;
         }
         /**
-         * <code>sint32 velocity_4 = 4;</code>
+         * <code>sint32 velocity_4 = 5;</code>
          */
         public Builder clearVelocity4() {
           
@@ -3677,13 +4075,13 @@ public final class TelemetryData {
 
         private int velocity5_ ;
         /**
-         * <code>sint32 velocity_5 = 5;</code>
+         * <code>sint32 velocity_5 = 6;</code>
          */
         public int getVelocity5() {
           return velocity5_;
         }
         /**
-         * <code>sint32 velocity_5 = 5;</code>
+         * <code>sint32 velocity_5 = 6;</code>
          */
         public Builder setVelocity5(int value) {
           
@@ -3692,7 +4090,7 @@ public final class TelemetryData {
           return this;
         }
         /**
-         * <code>sint32 velocity_5 = 5;</code>
+         * <code>sint32 velocity_5 = 6;</code>
          */
         public Builder clearVelocity5() {
           
@@ -3703,13 +4101,13 @@ public final class TelemetryData {
 
         private int velocity6_ ;
         /**
-         * <code>sint32 velocity_6 = 6;</code>
+         * <code>sint32 velocity_6 = 7;</code>
          */
         public int getVelocity6() {
           return velocity6_;
         }
         /**
-         * <code>sint32 velocity_6 = 6;</code>
+         * <code>sint32 velocity_6 = 7;</code>
          */
         public Builder setVelocity6(int value) {
           
@@ -3718,7 +4116,7 @@ public final class TelemetryData {
           return this;
         }
         /**
-         * <code>sint32 velocity_6 = 6;</code>
+         * <code>sint32 velocity_6 = 7;</code>
          */
         public Builder clearVelocity6() {
           
@@ -5444,29 +5842,36 @@ public final class TelemetryData {
       "ommand\022\022\n\nrun_length\030\002 \001(\002\022\032\n\022service_pr" +
       "opulsion\030\003 \001(\010\"[\n\007Command\022\007\n\003ACK\020\000\022\010\n\004ST" +
       "OP\020\001\022\n\n\006LAUNCH\020\002\022\t\n\005RESET\020\003\022\016\n\nRUN_LENGT" +
-      "H\020\004\022\026\n\022SERVICE_PROPULSION\020\005\"\255\006\n\016ClientTo" +
+      "H\020\004\022\026\n\022SERVICE_PROPULSION\020\005\"\310\010\n\016ClientTo" +
       "Server\022=\n\nnavigation\030\001 \001(\0132).telemetry_d" +
       "ata.ClientToServer.Navigation\022B\n\rstate_m" +
       "achine\030\002 \001(\0132+.telemetry_data.ClientToSe" +
       "rver.StateMachine\0225\n\006motors\030\003 \001(\0132%.tele" +
       "metry_data.ClientToServer.Motors\022H\n\020emer" +
       "gency_brakes\030\006 \001(\0132..telemetry_data.Clie" +
-      "ntToServer.EmergencyBrakes\032F\n\nNavigation" +
-      "\022\020\n\010distance\030\001 \001(\002\022\020\n\010velocity\030\002 \001(\002\022\024\n\014" +
-      "acceleration\030\003 \001(\002\032\215\002\n\014StateMachine\022@\n\005s" +
-      "tate\030\001 \001(\01621.telemetry_data.ClientToServ" +
-      "er.StateMachine.State\"\272\001\n\005State\022\010\n\004IDLE\020" +
-      "\000\022\017\n\013CALIBRATING\020\001\022\t\n\005READY\020\002\022\020\n\014ACCELER" +
-      "ATING\020\003\022\023\n\017NOMINAL_BRAKING\020\004\022\025\n\021EMERGENC" +
-      "Y_BRAKING\020\005\022\020\n\014RUN_COMPLETE\020\006\022\023\n\017FAILURE" +
-      "_STOPPED\020\007\022\013\n\007EXITING\020\010\022\014\n\010FINISHED\020\t\022\013\n" +
-      "\007INVALID\020\n\032\200\001\n\006Motors\022\022\n\nvelocity_1\030\001 \001(" +
-      "\021\022\022\n\nvelocity_2\030\002 \001(\021\022\022\n\nvelocity_3\030\003 \001(" +
-      "\021\022\022\n\nvelocity_4\030\004 \001(\021\022\022\n\nvelocity_5\030\005 \001(" +
-      "\021\022\022\n\nvelocity_6\030\006 \001(\021\032<\n\017EmergencyBrakes" +
-      "\022\024\n\014front_brakes\030\001 \001(\010\022\023\n\013rear_brakes\030\002 " +
-      "\001(\010B\036\n\rtelemetrydataB\rTelemetryDatab\006pro" +
-      "to3"
+      "ntToServer.EmergencyBrakes\032\212\001\n\nNavigatio" +
+      "n\022B\n\rmodule_status\030\001 \001(\0162+.telemetry_dat" +
+      "a.ClientToServer.ModuleStatus\022\020\n\010distanc" +
+      "e\030\002 \001(\002\022\020\n\010velocity\030\003 \001(\002\022\024\n\014acceleratio" +
+      "n\030\004 \001(\002\032\331\002\n\014StateMachine\022B\n\rmodule_statu" +
+      "s\030\001 \001(\0162+.telemetry_data.ClientToServer." +
+      "ModuleStatus\022H\n\rcurrent_state\030\002 \001(\01621.te" +
+      "lemetry_data.ClientToServer.StateMachine" +
+      ".State\"\272\001\n\005State\022\010\n\004IDLE\020\000\022\017\n\013CALIBRATIN" +
+      "G\020\001\022\t\n\005READY\020\002\022\020\n\014ACCELERATING\020\003\022\023\n\017NOMI" +
+      "NAL_BRAKING\020\004\022\025\n\021EMERGENCY_BRAKING\020\005\022\020\n\014" +
+      "RUN_COMPLETE\020\006\022\023\n\017FAILURE_STOPPED\020\007\022\013\n\007E" +
+      "XITING\020\010\022\014\n\010FINISHED\020\t\022\013\n\007INVALID\020\n\032\304\001\n\006" +
+      "Motors\022B\n\rmodule_status\030\001 \001(\0162+.telemetr" +
+      "y_data.ClientToServer.ModuleStatus\022\022\n\nve" +
+      "locity_1\030\002 \001(\021\022\022\n\nvelocity_2\030\003 \001(\021\022\022\n\nve" +
+      "locity_3\030\004 \001(\021\022\022\n\nvelocity_4\030\005 \001(\021\022\022\n\nve" +
+      "locity_5\030\006 \001(\021\022\022\n\nvelocity_6\030\007 \001(\021\032<\n\017Em" +
+      "ergencyBrakes\022\024\n\014front_brakes\030\001 \001(\010\022\023\n\013r" +
+      "ear_brakes\030\002 \001(\010\"D\n\014ModuleStatus\022\t\n\005STAR" +
+      "T\020\000\022\010\n\004INIT\020\001\022\t\n\005READY\020\002\022\024\n\020CRITICAL_FAI" +
+      "LURE\020\003B\036\n\rtelemetrydataB\rTelemetryDatab\006" +
+      "proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -5503,19 +5908,19 @@ public final class TelemetryData {
     internal_static_telemetry_data_ClientToServer_Navigation_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_Navigation_descriptor,
-        new java.lang.String[] { "Distance", "Velocity", "Acceleration", });
+        new java.lang.String[] { "ModuleStatus", "Distance", "Velocity", "Acceleration", });
     internal_static_telemetry_data_ClientToServer_StateMachine_descriptor =
       internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(1);
     internal_static_telemetry_data_ClientToServer_StateMachine_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_StateMachine_descriptor,
-        new java.lang.String[] { "State", });
+        new java.lang.String[] { "ModuleStatus", "CurrentState", });
     internal_static_telemetry_data_ClientToServer_Motors_descriptor =
       internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(2);
     internal_static_telemetry_data_ClientToServer_Motors_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_Motors_descriptor,
-        new java.lang.String[] { "Velocity1", "Velocity2", "Velocity3", "Velocity4", "Velocity5", "Velocity6", });
+        new java.lang.String[] { "ModuleStatus", "Velocity1", "Velocity2", "Velocity3", "Velocity4", "Velocity5", "Velocity6", });
     internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor =
       internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(3);
     internal_static_telemetry_data_ClientToServer_EmergencyBrakes_fieldAccessorTable = new
