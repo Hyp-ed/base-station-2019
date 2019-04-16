@@ -1541,8 +1541,20 @@ public final class TelemetryData {
     telemetrydata.TelemetryData.ClientToServer.MotorsOrBuilder getMotorsOrBuilder();
 
     /**
+     * <code>.telemetry_data.ClientToServer.Batteries batteries = 4;</code>
+     */
+    boolean hasBatteries();
+    /**
+     * <code>.telemetry_data.ClientToServer.Batteries batteries = 4;</code>
+     */
+    telemetrydata.TelemetryData.ClientToServer.Batteries getBatteries();
+    /**
+     * <code>.telemetry_data.ClientToServer.Batteries batteries = 4;</code>
+     */
+    telemetrydata.TelemetryData.ClientToServer.BatteriesOrBuilder getBatteriesOrBuilder();
+
+    /**
      * <pre>
-     * Batteries batteries = 4;
      * Sensors sensors = 5;
      * </pre>
      *
@@ -1551,7 +1563,6 @@ public final class TelemetryData {
     boolean hasEmergencyBrakes();
     /**
      * <pre>
-     * Batteries batteries = 4;
      * Sensors sensors = 5;
      * </pre>
      *
@@ -1560,7 +1571,6 @@ public final class TelemetryData {
     telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes getEmergencyBrakes();
     /**
      * <pre>
-     * Batteries batteries = 4;
      * Sensors sensors = 5;
      * </pre>
      *
@@ -1642,6 +1652,19 @@ public final class TelemetryData {
               if (subBuilder != null) {
                 subBuilder.mergeFrom(motors_);
                 motors_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 34: {
+              telemetrydata.TelemetryData.ClientToServer.Batteries.Builder subBuilder = null;
+              if (batteries_ != null) {
+                subBuilder = batteries_.toBuilder();
+              }
+              batteries_ = input.readMessage(telemetrydata.TelemetryData.ClientToServer.Batteries.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(batteries_);
+                batteries_ = subBuilder.buildPartial();
               }
 
               break;
@@ -2517,15 +2540,6 @@ public final class TelemetryData {
         com.google.protobuf.MessageOrBuilder {
 
       /**
-       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
-       */
-      int getModuleStatusValue();
-      /**
-       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
-       */
-      telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus();
-
-      /**
        * <code>.telemetry_data.ClientToServer.StateMachine.State current_state = 2;</code>
        */
       int getCurrentStateValue();
@@ -2547,7 +2561,6 @@ public final class TelemetryData {
         super(builder);
       }
       private StateMachine() {
-        moduleStatus_ = 0;
         currentState_ = 0;
       }
 
@@ -2575,12 +2588,6 @@ public final class TelemetryData {
               case 0:
                 done = true;
                 break;
-              case 8: {
-                int rawValue = input.readEnum();
-
-                moduleStatus_ = rawValue;
-                break;
-              }
               case 16: {
                 int rawValue = input.readEnum();
 
@@ -2798,23 +2805,6 @@ public final class TelemetryData {
         // @@protoc_insertion_point(enum_scope:telemetry_data.ClientToServer.StateMachine.State)
       }
 
-      public static final int MODULE_STATUS_FIELD_NUMBER = 1;
-      private int moduleStatus_;
-      /**
-       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
-       */
-      public int getModuleStatusValue() {
-        return moduleStatus_;
-      }
-      /**
-       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
-       */
-      public telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus() {
-        @SuppressWarnings("deprecation")
-        telemetrydata.TelemetryData.ClientToServer.ModuleStatus result = telemetrydata.TelemetryData.ClientToServer.ModuleStatus.valueOf(moduleStatus_);
-        return result == null ? telemetrydata.TelemetryData.ClientToServer.ModuleStatus.UNRECOGNIZED : result;
-      }
-
       public static final int CURRENT_STATE_FIELD_NUMBER = 2;
       private int currentState_;
       /**
@@ -2846,9 +2836,6 @@ public final class TelemetryData {
       @java.lang.Override
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
-        if (moduleStatus_ != telemetrydata.TelemetryData.ClientToServer.ModuleStatus.START.getNumber()) {
-          output.writeEnum(1, moduleStatus_);
-        }
         if (currentState_ != telemetrydata.TelemetryData.ClientToServer.StateMachine.State.IDLE.getNumber()) {
           output.writeEnum(2, currentState_);
         }
@@ -2861,10 +2848,6 @@ public final class TelemetryData {
         if (size != -1) return size;
 
         size = 0;
-        if (moduleStatus_ != telemetrydata.TelemetryData.ClientToServer.ModuleStatus.START.getNumber()) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeEnumSize(1, moduleStatus_);
-        }
         if (currentState_ != telemetrydata.TelemetryData.ClientToServer.StateMachine.State.IDLE.getNumber()) {
           size += com.google.protobuf.CodedOutputStream
             .computeEnumSize(2, currentState_);
@@ -2885,7 +2868,6 @@ public final class TelemetryData {
         telemetrydata.TelemetryData.ClientToServer.StateMachine other = (telemetrydata.TelemetryData.ClientToServer.StateMachine) obj;
 
         boolean result = true;
-        result = result && moduleStatus_ == other.moduleStatus_;
         result = result && currentState_ == other.currentState_;
         result = result && unknownFields.equals(other.unknownFields);
         return result;
@@ -2898,8 +2880,6 @@ public final class TelemetryData {
         }
         int hash = 41;
         hash = (19 * hash) + getDescriptor().hashCode();
-        hash = (37 * hash) + MODULE_STATUS_FIELD_NUMBER;
-        hash = (53 * hash) + moduleStatus_;
         hash = (37 * hash) + CURRENT_STATE_FIELD_NUMBER;
         hash = (53 * hash) + currentState_;
         hash = (29 * hash) + unknownFields.hashCode();
@@ -3035,8 +3015,6 @@ public final class TelemetryData {
         @java.lang.Override
         public Builder clear() {
           super.clear();
-          moduleStatus_ = 0;
-
           currentState_ = 0;
 
           return this;
@@ -3065,7 +3043,6 @@ public final class TelemetryData {
         @java.lang.Override
         public telemetrydata.TelemetryData.ClientToServer.StateMachine buildPartial() {
           telemetrydata.TelemetryData.ClientToServer.StateMachine result = new telemetrydata.TelemetryData.ClientToServer.StateMachine(this);
-          result.moduleStatus_ = moduleStatus_;
           result.currentState_ = currentState_;
           onBuilt();
           return result;
@@ -3115,9 +3092,6 @@ public final class TelemetryData {
 
         public Builder mergeFrom(telemetrydata.TelemetryData.ClientToServer.StateMachine other) {
           if (other == telemetrydata.TelemetryData.ClientToServer.StateMachine.getDefaultInstance()) return this;
-          if (other.moduleStatus_ != 0) {
-            setModuleStatusValue(other.getModuleStatusValue());
-          }
           if (other.currentState_ != 0) {
             setCurrentStateValue(other.getCurrentStateValue());
           }
@@ -3147,51 +3121,6 @@ public final class TelemetryData {
               mergeFrom(parsedMessage);
             }
           }
-          return this;
-        }
-
-        private int moduleStatus_ = 0;
-        /**
-         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
-         */
-        public int getModuleStatusValue() {
-          return moduleStatus_;
-        }
-        /**
-         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
-         */
-        public Builder setModuleStatusValue(int value) {
-          moduleStatus_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
-         */
-        public telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus() {
-          @SuppressWarnings("deprecation")
-          telemetrydata.TelemetryData.ClientToServer.ModuleStatus result = telemetrydata.TelemetryData.ClientToServer.ModuleStatus.valueOf(moduleStatus_);
-          return result == null ? telemetrydata.TelemetryData.ClientToServer.ModuleStatus.UNRECOGNIZED : result;
-        }
-        /**
-         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
-         */
-        public Builder setModuleStatus(telemetrydata.TelemetryData.ClientToServer.ModuleStatus value) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          
-          moduleStatus_ = value.getNumber();
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
-         */
-        public Builder clearModuleStatus() {
-          
-          moduleStatus_ = 0;
-          onChanged();
           return this;
         }
 
@@ -4177,6 +4106,2043 @@ public final class TelemetryData {
 
     }
 
+    public interface BatteriesOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:telemetry_data.ClientToServer.Batteries)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+       */
+      int getModuleStatusValue();
+      /**
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+       */
+      telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus();
+
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+       */
+      java.util.List<telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData> 
+          getLowPowerBatteriesList();
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+       */
+      telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData getLowPowerBatteries(int index);
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+       */
+      int getLowPowerBatteriesCount();
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+       */
+      java.util.List<? extends telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder> 
+          getLowPowerBatteriesOrBuilderList();
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+       */
+      telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder getLowPowerBatteriesOrBuilder(
+          int index);
+
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+       */
+      java.util.List<telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData> 
+          getHighPowerBatteriesList();
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+       */
+      telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData getHighPowerBatteries(int index);
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+       */
+      int getHighPowerBatteriesCount();
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+       */
+      java.util.List<? extends telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder> 
+          getHighPowerBatteriesOrBuilderList();
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+       */
+      telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder getHighPowerBatteriesOrBuilder(
+          int index);
+    }
+    /**
+     * Protobuf type {@code telemetry_data.ClientToServer.Batteries}
+     */
+    public  static final class Batteries extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:telemetry_data.ClientToServer.Batteries)
+        BatteriesOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use Batteries.newBuilder() to construct.
+      private Batteries(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private Batteries() {
+        moduleStatus_ = 0;
+        lowPowerBatteries_ = java.util.Collections.emptyList();
+        highPowerBatteries_ = java.util.Collections.emptyList();
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Batteries(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                int rawValue = input.readEnum();
+
+                moduleStatus_ = rawValue;
+                break;
+              }
+              case 18: {
+                if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                  lowPowerBatteries_ = new java.util.ArrayList<telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData>();
+                  mutable_bitField0_ |= 0x00000002;
+                }
+                lowPowerBatteries_.add(
+                    input.readMessage(telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.parser(), extensionRegistry));
+                break;
+              }
+              case 26: {
+                if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                  highPowerBatteries_ = new java.util.ArrayList<telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData>();
+                  mutable_bitField0_ |= 0x00000004;
+                }
+                highPowerBatteries_.add(
+                    input.readMessage(telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.parser(), extensionRegistry));
+                break;
+              }
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+            lowPowerBatteries_ = java.util.Collections.unmodifiableList(lowPowerBatteries_);
+          }
+          if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+            highPowerBatteries_ = java.util.Collections.unmodifiableList(highPowerBatteries_);
+          }
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Batteries_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Batteries_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                telemetrydata.TelemetryData.ClientToServer.Batteries.class, telemetrydata.TelemetryData.ClientToServer.Batteries.Builder.class);
+      }
+
+      public interface BatteryDataOrBuilder extends
+          // @@protoc_insertion_point(interface_extends:telemetry_data.ClientToServer.Batteries.BatteryData)
+          com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>uint32 voltage = 1;</code>
+         */
+        int getVoltage();
+
+        /**
+         * <code>sint32 current = 2;</code>
+         */
+        int getCurrent();
+
+        /**
+         * <code>uint32 charge = 3;</code>
+         */
+        int getCharge();
+
+        /**
+         * <code>int32 temperature = 4;</code>
+         */
+        int getTemperature();
+
+        /**
+         * <code>uint32 low_voltage_cell = 5;</code>
+         */
+        int getLowVoltageCell();
+
+        /**
+         * <code>uint32 high_voltage_cell = 6;</code>
+         */
+        int getHighVoltageCell();
+      }
+      /**
+       * Protobuf type {@code telemetry_data.ClientToServer.Batteries.BatteryData}
+       */
+      public  static final class BatteryData extends
+          com.google.protobuf.GeneratedMessageV3 implements
+          // @@protoc_insertion_point(message_implements:telemetry_data.ClientToServer.Batteries.BatteryData)
+          BatteryDataOrBuilder {
+      private static final long serialVersionUID = 0L;
+        // Use BatteryData.newBuilder() to construct.
+        private BatteryData(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+          super(builder);
+        }
+        private BatteryData() {
+          voltage_ = 0;
+          current_ = 0;
+          charge_ = 0;
+          temperature_ = 0;
+          lowVoltageCell_ = 0;
+          highVoltageCell_ = 0;
+        }
+
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+          return this.unknownFields;
+        }
+        private BatteryData(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          this();
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          int mutable_bitField0_ = 0;
+          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+              com.google.protobuf.UnknownFieldSet.newBuilder();
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                case 8: {
+
+                  voltage_ = input.readUInt32();
+                  break;
+                }
+                case 16: {
+
+                  current_ = input.readSInt32();
+                  break;
+                }
+                case 24: {
+
+                  charge_ = input.readUInt32();
+                  break;
+                }
+                case 32: {
+
+                  temperature_ = input.readInt32();
+                  break;
+                }
+                case 40: {
+
+                  lowVoltageCell_ = input.readUInt32();
+                  break;
+                }
+                case 48: {
+
+                  highVoltageCell_ = input.readUInt32();
+                  break;
+                }
+                default: {
+                  if (!parseUnknownFieldProto3(
+                      input, unknownFields, extensionRegistry, tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
+          } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                e).setUnfinishedMessage(this);
+          } finally {
+            this.unknownFields = unknownFields.build();
+            makeExtensionsImmutable();
+          }
+        }
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Batteries_BatteryData_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Batteries_BatteryData_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.class, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder.class);
+        }
+
+        public static final int VOLTAGE_FIELD_NUMBER = 1;
+        private int voltage_;
+        /**
+         * <code>uint32 voltage = 1;</code>
+         */
+        public int getVoltage() {
+          return voltage_;
+        }
+
+        public static final int CURRENT_FIELD_NUMBER = 2;
+        private int current_;
+        /**
+         * <code>sint32 current = 2;</code>
+         */
+        public int getCurrent() {
+          return current_;
+        }
+
+        public static final int CHARGE_FIELD_NUMBER = 3;
+        private int charge_;
+        /**
+         * <code>uint32 charge = 3;</code>
+         */
+        public int getCharge() {
+          return charge_;
+        }
+
+        public static final int TEMPERATURE_FIELD_NUMBER = 4;
+        private int temperature_;
+        /**
+         * <code>int32 temperature = 4;</code>
+         */
+        public int getTemperature() {
+          return temperature_;
+        }
+
+        public static final int LOW_VOLTAGE_CELL_FIELD_NUMBER = 5;
+        private int lowVoltageCell_;
+        /**
+         * <code>uint32 low_voltage_cell = 5;</code>
+         */
+        public int getLowVoltageCell() {
+          return lowVoltageCell_;
+        }
+
+        public static final int HIGH_VOLTAGE_CELL_FIELD_NUMBER = 6;
+        private int highVoltageCell_;
+        /**
+         * <code>uint32 high_voltage_cell = 6;</code>
+         */
+        public int getHighVoltageCell() {
+          return highVoltageCell_;
+        }
+
+        private byte memoizedIsInitialized = -1;
+        @java.lang.Override
+        public final boolean isInitialized() {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return true;
+          if (isInitialized == 0) return false;
+
+          memoizedIsInitialized = 1;
+          return true;
+        }
+
+        @java.lang.Override
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                            throws java.io.IOException {
+          if (voltage_ != 0) {
+            output.writeUInt32(1, voltage_);
+          }
+          if (current_ != 0) {
+            output.writeSInt32(2, current_);
+          }
+          if (charge_ != 0) {
+            output.writeUInt32(3, charge_);
+          }
+          if (temperature_ != 0) {
+            output.writeInt32(4, temperature_);
+          }
+          if (lowVoltageCell_ != 0) {
+            output.writeUInt32(5, lowVoltageCell_);
+          }
+          if (highVoltageCell_ != 0) {
+            output.writeUInt32(6, highVoltageCell_);
+          }
+          unknownFields.writeTo(output);
+        }
+
+        @java.lang.Override
+        public int getSerializedSize() {
+          int size = memoizedSize;
+          if (size != -1) return size;
+
+          size = 0;
+          if (voltage_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeUInt32Size(1, voltage_);
+          }
+          if (current_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeSInt32Size(2, current_);
+          }
+          if (charge_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeUInt32Size(3, charge_);
+          }
+          if (temperature_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt32Size(4, temperature_);
+          }
+          if (lowVoltageCell_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeUInt32Size(5, lowVoltageCell_);
+          }
+          if (highVoltageCell_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeUInt32Size(6, highVoltageCell_);
+          }
+          size += unknownFields.getSerializedSize();
+          memoizedSize = size;
+          return size;
+        }
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+          if (obj == this) {
+           return true;
+          }
+          if (!(obj instanceof telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData)) {
+            return super.equals(obj);
+          }
+          telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData other = (telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData) obj;
+
+          boolean result = true;
+          result = result && (getVoltage()
+              == other.getVoltage());
+          result = result && (getCurrent()
+              == other.getCurrent());
+          result = result && (getCharge()
+              == other.getCharge());
+          result = result && (getTemperature()
+              == other.getTemperature());
+          result = result && (getLowVoltageCell()
+              == other.getLowVoltageCell());
+          result = result && (getHighVoltageCell()
+              == other.getHighVoltageCell());
+          result = result && unknownFields.equals(other.unknownFields);
+          return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+          if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+          }
+          int hash = 41;
+          hash = (19 * hash) + getDescriptor().hashCode();
+          hash = (37 * hash) + VOLTAGE_FIELD_NUMBER;
+          hash = (53 * hash) + getVoltage();
+          hash = (37 * hash) + CURRENT_FIELD_NUMBER;
+          hash = (53 * hash) + getCurrent();
+          hash = (37 * hash) + CHARGE_FIELD_NUMBER;
+          hash = (53 * hash) + getCharge();
+          hash = (37 * hash) + TEMPERATURE_FIELD_NUMBER;
+          hash = (53 * hash) + getTemperature();
+          hash = (37 * hash) + LOW_VOLTAGE_CELL_FIELD_NUMBER;
+          hash = (53 * hash) + getLowVoltageCell();
+          hash = (37 * hash) + HIGH_VOLTAGE_CELL_FIELD_NUMBER;
+          hash = (53 * hash) + getHighVoltageCell();
+          hash = (29 * hash) + unknownFields.hashCode();
+          memoizedHashCode = hash;
+          return hash;
+        }
+
+        public static telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        @java.lang.Override
+        public Builder newBuilderForType() { return newBuilder(); }
+        public static Builder newBuilder() {
+          return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData prototype) {
+          return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+        @java.lang.Override
+        public Builder toBuilder() {
+          return this == DEFAULT_INSTANCE
+              ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          Builder builder = new Builder(parent);
+          return builder;
+        }
+        /**
+         * Protobuf type {@code telemetry_data.ClientToServer.Batteries.BatteryData}
+         */
+        public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:telemetry_data.ClientToServer.Batteries.BatteryData)
+            telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder {
+          public static final com.google.protobuf.Descriptors.Descriptor
+              getDescriptor() {
+            return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Batteries_BatteryData_descriptor;
+          }
+
+          @java.lang.Override
+          protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+              internalGetFieldAccessorTable() {
+            return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Batteries_BatteryData_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                    telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.class, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder.class);
+          }
+
+          // Construct using telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.newBuilder()
+          private Builder() {
+            maybeForceBuilderInitialization();
+          }
+
+          private Builder(
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+          }
+          private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+            }
+          }
+          @java.lang.Override
+          public Builder clear() {
+            super.clear();
+            voltage_ = 0;
+
+            current_ = 0;
+
+            charge_ = 0;
+
+            temperature_ = 0;
+
+            lowVoltageCell_ = 0;
+
+            highVoltageCell_ = 0;
+
+            return this;
+          }
+
+          @java.lang.Override
+          public com.google.protobuf.Descriptors.Descriptor
+              getDescriptorForType() {
+            return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Batteries_BatteryData_descriptor;
+          }
+
+          @java.lang.Override
+          public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData getDefaultInstanceForType() {
+            return telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.getDefaultInstance();
+          }
+
+          @java.lang.Override
+          public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData build() {
+            telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData result = buildPartial();
+            if (!result.isInitialized()) {
+              throw newUninitializedMessageException(result);
+            }
+            return result;
+          }
+
+          @java.lang.Override
+          public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData buildPartial() {
+            telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData result = new telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData(this);
+            result.voltage_ = voltage_;
+            result.current_ = current_;
+            result.charge_ = charge_;
+            result.temperature_ = temperature_;
+            result.lowVoltageCell_ = lowVoltageCell_;
+            result.highVoltageCell_ = highVoltageCell_;
+            onBuilt();
+            return result;
+          }
+
+          @java.lang.Override
+          public Builder clone() {
+            return (Builder) super.clone();
+          }
+          @java.lang.Override
+          public Builder setField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
+            return (Builder) super.setField(field, value);
+          }
+          @java.lang.Override
+          public Builder clearField(
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return (Builder) super.clearField(field);
+          }
+          @java.lang.Override
+          public Builder clearOneof(
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return (Builder) super.clearOneof(oneof);
+          }
+          @java.lang.Override
+          public Builder setRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, java.lang.Object value) {
+            return (Builder) super.setRepeatedField(field, index, value);
+          }
+          @java.lang.Override
+          public Builder addRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
+            return (Builder) super.addRepeatedField(field, value);
+          }
+          @java.lang.Override
+          public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData) {
+              return mergeFrom((telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData)other);
+            } else {
+              super.mergeFrom(other);
+              return this;
+            }
+          }
+
+          public Builder mergeFrom(telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData other) {
+            if (other == telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.getDefaultInstance()) return this;
+            if (other.getVoltage() != 0) {
+              setVoltage(other.getVoltage());
+            }
+            if (other.getCurrent() != 0) {
+              setCurrent(other.getCurrent());
+            }
+            if (other.getCharge() != 0) {
+              setCharge(other.getCharge());
+            }
+            if (other.getTemperature() != 0) {
+              setTemperature(other.getTemperature());
+            }
+            if (other.getLowVoltageCell() != 0) {
+              setLowVoltageCell(other.getLowVoltageCell());
+            }
+            if (other.getHighVoltageCell() != 0) {
+              setHighVoltageCell(other.getHighVoltageCell());
+            }
+            this.mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
+          }
+
+          @java.lang.Override
+          public final boolean isInitialized() {
+            return true;
+          }
+
+          @java.lang.Override
+          public Builder mergeFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+            telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData parsedMessage = null;
+            try {
+              parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+              parsedMessage = (telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData) e.getUnfinishedMessage();
+              throw e.unwrapIOException();
+            } finally {
+              if (parsedMessage != null) {
+                mergeFrom(parsedMessage);
+              }
+            }
+            return this;
+          }
+
+          private int voltage_ ;
+          /**
+           * <code>uint32 voltage = 1;</code>
+           */
+          public int getVoltage() {
+            return voltage_;
+          }
+          /**
+           * <code>uint32 voltage = 1;</code>
+           */
+          public Builder setVoltage(int value) {
+            
+            voltage_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>uint32 voltage = 1;</code>
+           */
+          public Builder clearVoltage() {
+            
+            voltage_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private int current_ ;
+          /**
+           * <code>sint32 current = 2;</code>
+           */
+          public int getCurrent() {
+            return current_;
+          }
+          /**
+           * <code>sint32 current = 2;</code>
+           */
+          public Builder setCurrent(int value) {
+            
+            current_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>sint32 current = 2;</code>
+           */
+          public Builder clearCurrent() {
+            
+            current_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private int charge_ ;
+          /**
+           * <code>uint32 charge = 3;</code>
+           */
+          public int getCharge() {
+            return charge_;
+          }
+          /**
+           * <code>uint32 charge = 3;</code>
+           */
+          public Builder setCharge(int value) {
+            
+            charge_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>uint32 charge = 3;</code>
+           */
+          public Builder clearCharge() {
+            
+            charge_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private int temperature_ ;
+          /**
+           * <code>int32 temperature = 4;</code>
+           */
+          public int getTemperature() {
+            return temperature_;
+          }
+          /**
+           * <code>int32 temperature = 4;</code>
+           */
+          public Builder setTemperature(int value) {
+            
+            temperature_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>int32 temperature = 4;</code>
+           */
+          public Builder clearTemperature() {
+            
+            temperature_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private int lowVoltageCell_ ;
+          /**
+           * <code>uint32 low_voltage_cell = 5;</code>
+           */
+          public int getLowVoltageCell() {
+            return lowVoltageCell_;
+          }
+          /**
+           * <code>uint32 low_voltage_cell = 5;</code>
+           */
+          public Builder setLowVoltageCell(int value) {
+            
+            lowVoltageCell_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>uint32 low_voltage_cell = 5;</code>
+           */
+          public Builder clearLowVoltageCell() {
+            
+            lowVoltageCell_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private int highVoltageCell_ ;
+          /**
+           * <code>uint32 high_voltage_cell = 6;</code>
+           */
+          public int getHighVoltageCell() {
+            return highVoltageCell_;
+          }
+          /**
+           * <code>uint32 high_voltage_cell = 6;</code>
+           */
+          public Builder setHighVoltageCell(int value) {
+            
+            highVoltageCell_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>uint32 high_voltage_cell = 6;</code>
+           */
+          public Builder clearHighVoltageCell() {
+            
+            highVoltageCell_ = 0;
+            onChanged();
+            return this;
+          }
+          @java.lang.Override
+          public final Builder setUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFieldsProto3(unknownFields);
+          }
+
+          @java.lang.Override
+          public final Builder mergeUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+          }
+
+
+          // @@protoc_insertion_point(builder_scope:telemetry_data.ClientToServer.Batteries.BatteryData)
+        }
+
+        // @@protoc_insertion_point(class_scope:telemetry_data.ClientToServer.Batteries.BatteryData)
+        private static final telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData DEFAULT_INSTANCE;
+        static {
+          DEFAULT_INSTANCE = new telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData();
+        }
+
+        public static telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData getDefaultInstance() {
+          return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<BatteryData>
+            PARSER = new com.google.protobuf.AbstractParser<BatteryData>() {
+          @java.lang.Override
+          public BatteryData parsePartialFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+            return new BatteryData(input, extensionRegistry);
+          }
+        };
+
+        public static com.google.protobuf.Parser<BatteryData> parser() {
+          return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<BatteryData> getParserForType() {
+          return PARSER;
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData getDefaultInstanceForType() {
+          return DEFAULT_INSTANCE;
+        }
+
+      }
+
+      private int bitField0_;
+      public static final int MODULE_STATUS_FIELD_NUMBER = 1;
+      private int moduleStatus_;
+      /**
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+       */
+      public int getModuleStatusValue() {
+        return moduleStatus_;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus() {
+        @SuppressWarnings("deprecation")
+        telemetrydata.TelemetryData.ClientToServer.ModuleStatus result = telemetrydata.TelemetryData.ClientToServer.ModuleStatus.valueOf(moduleStatus_);
+        return result == null ? telemetrydata.TelemetryData.ClientToServer.ModuleStatus.UNRECOGNIZED : result;
+      }
+
+      public static final int LOW_POWER_BATTERIES_FIELD_NUMBER = 2;
+      private java.util.List<telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData> lowPowerBatteries_;
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+       */
+      public java.util.List<telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData> getLowPowerBatteriesList() {
+        return lowPowerBatteries_;
+      }
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+       */
+      public java.util.List<? extends telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder> 
+          getLowPowerBatteriesOrBuilderList() {
+        return lowPowerBatteries_;
+      }
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+       */
+      public int getLowPowerBatteriesCount() {
+        return lowPowerBatteries_.size();
+      }
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData getLowPowerBatteries(int index) {
+        return lowPowerBatteries_.get(index);
+      }
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder getLowPowerBatteriesOrBuilder(
+          int index) {
+        return lowPowerBatteries_.get(index);
+      }
+
+      public static final int HIGH_POWER_BATTERIES_FIELD_NUMBER = 3;
+      private java.util.List<telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData> highPowerBatteries_;
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+       */
+      public java.util.List<telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData> getHighPowerBatteriesList() {
+        return highPowerBatteries_;
+      }
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+       */
+      public java.util.List<? extends telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder> 
+          getHighPowerBatteriesOrBuilderList() {
+        return highPowerBatteries_;
+      }
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+       */
+      public int getHighPowerBatteriesCount() {
+        return highPowerBatteries_.size();
+      }
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData getHighPowerBatteries(int index) {
+        return highPowerBatteries_.get(index);
+      }
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder getHighPowerBatteriesOrBuilder(
+          int index) {
+        return highPowerBatteries_.get(index);
+      }
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      @java.lang.Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (moduleStatus_ != telemetrydata.TelemetryData.ClientToServer.ModuleStatus.START.getNumber()) {
+          output.writeEnum(1, moduleStatus_);
+        }
+        for (int i = 0; i < lowPowerBatteries_.size(); i++) {
+          output.writeMessage(2, lowPowerBatteries_.get(i));
+        }
+        for (int i = 0; i < highPowerBatteries_.size(); i++) {
+          output.writeMessage(3, highPowerBatteries_.get(i));
+        }
+        unknownFields.writeTo(output);
+      }
+
+      @java.lang.Override
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (moduleStatus_ != telemetrydata.TelemetryData.ClientToServer.ModuleStatus.START.getNumber()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeEnumSize(1, moduleStatus_);
+        }
+        for (int i = 0; i < lowPowerBatteries_.size(); i++) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(2, lowPowerBatteries_.get(i));
+        }
+        for (int i = 0; i < highPowerBatteries_.size(); i++) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(3, highPowerBatteries_.get(i));
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof telemetrydata.TelemetryData.ClientToServer.Batteries)) {
+          return super.equals(obj);
+        }
+        telemetrydata.TelemetryData.ClientToServer.Batteries other = (telemetrydata.TelemetryData.ClientToServer.Batteries) obj;
+
+        boolean result = true;
+        result = result && moduleStatus_ == other.moduleStatus_;
+        result = result && getLowPowerBatteriesList()
+            .equals(other.getLowPowerBatteriesList());
+        result = result && getHighPowerBatteriesList()
+            .equals(other.getHighPowerBatteriesList());
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + MODULE_STATUS_FIELD_NUMBER;
+        hash = (53 * hash) + moduleStatus_;
+        if (getLowPowerBatteriesCount() > 0) {
+          hash = (37 * hash) + LOW_POWER_BATTERIES_FIELD_NUMBER;
+          hash = (53 * hash) + getLowPowerBatteriesList().hashCode();
+        }
+        if (getHighPowerBatteriesCount() > 0) {
+          hash = (37 * hash) + HIGH_POWER_BATTERIES_FIELD_NUMBER;
+          hash = (53 * hash) + getHighPowerBatteriesList().hashCode();
+        }
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static telemetrydata.TelemetryData.ClientToServer.Batteries parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Batteries parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Batteries parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Batteries parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Batteries parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Batteries parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Batteries parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Batteries parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Batteries parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Batteries parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Batteries parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Batteries parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(telemetrydata.TelemetryData.ClientToServer.Batteries prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code telemetry_data.ClientToServer.Batteries}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:telemetry_data.ClientToServer.Batteries)
+          telemetrydata.TelemetryData.ClientToServer.BatteriesOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Batteries_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Batteries_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  telemetrydata.TelemetryData.ClientToServer.Batteries.class, telemetrydata.TelemetryData.ClientToServer.Batteries.Builder.class);
+        }
+
+        // Construct using telemetrydata.TelemetryData.ClientToServer.Batteries.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+            getLowPowerBatteriesFieldBuilder();
+            getHighPowerBatteriesFieldBuilder();
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          moduleStatus_ = 0;
+
+          if (lowPowerBatteriesBuilder_ == null) {
+            lowPowerBatteries_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            lowPowerBatteriesBuilder_.clear();
+          }
+          if (highPowerBatteriesBuilder_ == null) {
+            highPowerBatteries_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000004);
+          } else {
+            highPowerBatteriesBuilder_.clear();
+          }
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Batteries_descriptor;
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.Batteries getDefaultInstanceForType() {
+          return telemetrydata.TelemetryData.ClientToServer.Batteries.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.Batteries build() {
+          telemetrydata.TelemetryData.ClientToServer.Batteries result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.Batteries buildPartial() {
+          telemetrydata.TelemetryData.ClientToServer.Batteries result = new telemetrydata.TelemetryData.ClientToServer.Batteries(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          result.moduleStatus_ = moduleStatus_;
+          if (lowPowerBatteriesBuilder_ == null) {
+            if (((bitField0_ & 0x00000002) == 0x00000002)) {
+              lowPowerBatteries_ = java.util.Collections.unmodifiableList(lowPowerBatteries_);
+              bitField0_ = (bitField0_ & ~0x00000002);
+            }
+            result.lowPowerBatteries_ = lowPowerBatteries_;
+          } else {
+            result.lowPowerBatteries_ = lowPowerBatteriesBuilder_.build();
+          }
+          if (highPowerBatteriesBuilder_ == null) {
+            if (((bitField0_ & 0x00000004) == 0x00000004)) {
+              highPowerBatteries_ = java.util.Collections.unmodifiableList(highPowerBatteries_);
+              bitField0_ = (bitField0_ & ~0x00000004);
+            }
+            result.highPowerBatteries_ = highPowerBatteries_;
+          } else {
+            result.highPowerBatteries_ = highPowerBatteriesBuilder_.build();
+          }
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof telemetrydata.TelemetryData.ClientToServer.Batteries) {
+            return mergeFrom((telemetrydata.TelemetryData.ClientToServer.Batteries)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(telemetrydata.TelemetryData.ClientToServer.Batteries other) {
+          if (other == telemetrydata.TelemetryData.ClientToServer.Batteries.getDefaultInstance()) return this;
+          if (other.moduleStatus_ != 0) {
+            setModuleStatusValue(other.getModuleStatusValue());
+          }
+          if (lowPowerBatteriesBuilder_ == null) {
+            if (!other.lowPowerBatteries_.isEmpty()) {
+              if (lowPowerBatteries_.isEmpty()) {
+                lowPowerBatteries_ = other.lowPowerBatteries_;
+                bitField0_ = (bitField0_ & ~0x00000002);
+              } else {
+                ensureLowPowerBatteriesIsMutable();
+                lowPowerBatteries_.addAll(other.lowPowerBatteries_);
+              }
+              onChanged();
+            }
+          } else {
+            if (!other.lowPowerBatteries_.isEmpty()) {
+              if (lowPowerBatteriesBuilder_.isEmpty()) {
+                lowPowerBatteriesBuilder_.dispose();
+                lowPowerBatteriesBuilder_ = null;
+                lowPowerBatteries_ = other.lowPowerBatteries_;
+                bitField0_ = (bitField0_ & ~0x00000002);
+                lowPowerBatteriesBuilder_ = 
+                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                     getLowPowerBatteriesFieldBuilder() : null;
+              } else {
+                lowPowerBatteriesBuilder_.addAllMessages(other.lowPowerBatteries_);
+              }
+            }
+          }
+          if (highPowerBatteriesBuilder_ == null) {
+            if (!other.highPowerBatteries_.isEmpty()) {
+              if (highPowerBatteries_.isEmpty()) {
+                highPowerBatteries_ = other.highPowerBatteries_;
+                bitField0_ = (bitField0_ & ~0x00000004);
+              } else {
+                ensureHighPowerBatteriesIsMutable();
+                highPowerBatteries_.addAll(other.highPowerBatteries_);
+              }
+              onChanged();
+            }
+          } else {
+            if (!other.highPowerBatteries_.isEmpty()) {
+              if (highPowerBatteriesBuilder_.isEmpty()) {
+                highPowerBatteriesBuilder_.dispose();
+                highPowerBatteriesBuilder_ = null;
+                highPowerBatteries_ = other.highPowerBatteries_;
+                bitField0_ = (bitField0_ & ~0x00000004);
+                highPowerBatteriesBuilder_ = 
+                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                     getHighPowerBatteriesFieldBuilder() : null;
+              } else {
+                highPowerBatteriesBuilder_.addAllMessages(other.highPowerBatteries_);
+              }
+            }
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          telemetrydata.TelemetryData.ClientToServer.Batteries parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (telemetrydata.TelemetryData.ClientToServer.Batteries) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        private int moduleStatus_ = 0;
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public int getModuleStatusValue() {
+          return moduleStatus_;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public Builder setModuleStatusValue(int value) {
+          moduleStatus_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus() {
+          @SuppressWarnings("deprecation")
+          telemetrydata.TelemetryData.ClientToServer.ModuleStatus result = telemetrydata.TelemetryData.ClientToServer.ModuleStatus.valueOf(moduleStatus_);
+          return result == null ? telemetrydata.TelemetryData.ClientToServer.ModuleStatus.UNRECOGNIZED : result;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public Builder setModuleStatus(telemetrydata.TelemetryData.ClientToServer.ModuleStatus value) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          
+          moduleStatus_ = value.getNumber();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public Builder clearModuleStatus() {
+          
+          moduleStatus_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private java.util.List<telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData> lowPowerBatteries_ =
+          java.util.Collections.emptyList();
+        private void ensureLowPowerBatteriesIsMutable() {
+          if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+            lowPowerBatteries_ = new java.util.ArrayList<telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData>(lowPowerBatteries_);
+            bitField0_ |= 0x00000002;
+           }
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder> lowPowerBatteriesBuilder_;
+
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public java.util.List<telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData> getLowPowerBatteriesList() {
+          if (lowPowerBatteriesBuilder_ == null) {
+            return java.util.Collections.unmodifiableList(lowPowerBatteries_);
+          } else {
+            return lowPowerBatteriesBuilder_.getMessageList();
+          }
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public int getLowPowerBatteriesCount() {
+          if (lowPowerBatteriesBuilder_ == null) {
+            return lowPowerBatteries_.size();
+          } else {
+            return lowPowerBatteriesBuilder_.getCount();
+          }
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData getLowPowerBatteries(int index) {
+          if (lowPowerBatteriesBuilder_ == null) {
+            return lowPowerBatteries_.get(index);
+          } else {
+            return lowPowerBatteriesBuilder_.getMessage(index);
+          }
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public Builder setLowPowerBatteries(
+            int index, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData value) {
+          if (lowPowerBatteriesBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureLowPowerBatteriesIsMutable();
+            lowPowerBatteries_.set(index, value);
+            onChanged();
+          } else {
+            lowPowerBatteriesBuilder_.setMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public Builder setLowPowerBatteries(
+            int index, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder builderForValue) {
+          if (lowPowerBatteriesBuilder_ == null) {
+            ensureLowPowerBatteriesIsMutable();
+            lowPowerBatteries_.set(index, builderForValue.build());
+            onChanged();
+          } else {
+            lowPowerBatteriesBuilder_.setMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public Builder addLowPowerBatteries(telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData value) {
+          if (lowPowerBatteriesBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureLowPowerBatteriesIsMutable();
+            lowPowerBatteries_.add(value);
+            onChanged();
+          } else {
+            lowPowerBatteriesBuilder_.addMessage(value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public Builder addLowPowerBatteries(
+            int index, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData value) {
+          if (lowPowerBatteriesBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureLowPowerBatteriesIsMutable();
+            lowPowerBatteries_.add(index, value);
+            onChanged();
+          } else {
+            lowPowerBatteriesBuilder_.addMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public Builder addLowPowerBatteries(
+            telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder builderForValue) {
+          if (lowPowerBatteriesBuilder_ == null) {
+            ensureLowPowerBatteriesIsMutable();
+            lowPowerBatteries_.add(builderForValue.build());
+            onChanged();
+          } else {
+            lowPowerBatteriesBuilder_.addMessage(builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public Builder addLowPowerBatteries(
+            int index, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder builderForValue) {
+          if (lowPowerBatteriesBuilder_ == null) {
+            ensureLowPowerBatteriesIsMutable();
+            lowPowerBatteries_.add(index, builderForValue.build());
+            onChanged();
+          } else {
+            lowPowerBatteriesBuilder_.addMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public Builder addAllLowPowerBatteries(
+            java.lang.Iterable<? extends telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData> values) {
+          if (lowPowerBatteriesBuilder_ == null) {
+            ensureLowPowerBatteriesIsMutable();
+            com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                values, lowPowerBatteries_);
+            onChanged();
+          } else {
+            lowPowerBatteriesBuilder_.addAllMessages(values);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public Builder clearLowPowerBatteries() {
+          if (lowPowerBatteriesBuilder_ == null) {
+            lowPowerBatteries_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000002);
+            onChanged();
+          } else {
+            lowPowerBatteriesBuilder_.clear();
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public Builder removeLowPowerBatteries(int index) {
+          if (lowPowerBatteriesBuilder_ == null) {
+            ensureLowPowerBatteriesIsMutable();
+            lowPowerBatteries_.remove(index);
+            onChanged();
+          } else {
+            lowPowerBatteriesBuilder_.remove(index);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder getLowPowerBatteriesBuilder(
+            int index) {
+          return getLowPowerBatteriesFieldBuilder().getBuilder(index);
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder getLowPowerBatteriesOrBuilder(
+            int index) {
+          if (lowPowerBatteriesBuilder_ == null) {
+            return lowPowerBatteries_.get(index);  } else {
+            return lowPowerBatteriesBuilder_.getMessageOrBuilder(index);
+          }
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public java.util.List<? extends telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder> 
+             getLowPowerBatteriesOrBuilderList() {
+          if (lowPowerBatteriesBuilder_ != null) {
+            return lowPowerBatteriesBuilder_.getMessageOrBuilderList();
+          } else {
+            return java.util.Collections.unmodifiableList(lowPowerBatteries_);
+          }
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder addLowPowerBatteriesBuilder() {
+          return getLowPowerBatteriesFieldBuilder().addBuilder(
+              telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder addLowPowerBatteriesBuilder(
+            int index) {
+          return getLowPowerBatteriesFieldBuilder().addBuilder(
+              index, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData low_power_batteries = 2;</code>
+         */
+        public java.util.List<telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder> 
+             getLowPowerBatteriesBuilderList() {
+          return getLowPowerBatteriesFieldBuilder().getBuilderList();
+        }
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder> 
+            getLowPowerBatteriesFieldBuilder() {
+          if (lowPowerBatteriesBuilder_ == null) {
+            lowPowerBatteriesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder>(
+                    lowPowerBatteries_,
+                    ((bitField0_ & 0x00000002) == 0x00000002),
+                    getParentForChildren(),
+                    isClean());
+            lowPowerBatteries_ = null;
+          }
+          return lowPowerBatteriesBuilder_;
+        }
+
+        private java.util.List<telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData> highPowerBatteries_ =
+          java.util.Collections.emptyList();
+        private void ensureHighPowerBatteriesIsMutable() {
+          if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+            highPowerBatteries_ = new java.util.ArrayList<telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData>(highPowerBatteries_);
+            bitField0_ |= 0x00000004;
+           }
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder> highPowerBatteriesBuilder_;
+
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public java.util.List<telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData> getHighPowerBatteriesList() {
+          if (highPowerBatteriesBuilder_ == null) {
+            return java.util.Collections.unmodifiableList(highPowerBatteries_);
+          } else {
+            return highPowerBatteriesBuilder_.getMessageList();
+          }
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public int getHighPowerBatteriesCount() {
+          if (highPowerBatteriesBuilder_ == null) {
+            return highPowerBatteries_.size();
+          } else {
+            return highPowerBatteriesBuilder_.getCount();
+          }
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData getHighPowerBatteries(int index) {
+          if (highPowerBatteriesBuilder_ == null) {
+            return highPowerBatteries_.get(index);
+          } else {
+            return highPowerBatteriesBuilder_.getMessage(index);
+          }
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public Builder setHighPowerBatteries(
+            int index, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData value) {
+          if (highPowerBatteriesBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureHighPowerBatteriesIsMutable();
+            highPowerBatteries_.set(index, value);
+            onChanged();
+          } else {
+            highPowerBatteriesBuilder_.setMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public Builder setHighPowerBatteries(
+            int index, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder builderForValue) {
+          if (highPowerBatteriesBuilder_ == null) {
+            ensureHighPowerBatteriesIsMutable();
+            highPowerBatteries_.set(index, builderForValue.build());
+            onChanged();
+          } else {
+            highPowerBatteriesBuilder_.setMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public Builder addHighPowerBatteries(telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData value) {
+          if (highPowerBatteriesBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureHighPowerBatteriesIsMutable();
+            highPowerBatteries_.add(value);
+            onChanged();
+          } else {
+            highPowerBatteriesBuilder_.addMessage(value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public Builder addHighPowerBatteries(
+            int index, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData value) {
+          if (highPowerBatteriesBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureHighPowerBatteriesIsMutable();
+            highPowerBatteries_.add(index, value);
+            onChanged();
+          } else {
+            highPowerBatteriesBuilder_.addMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public Builder addHighPowerBatteries(
+            telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder builderForValue) {
+          if (highPowerBatteriesBuilder_ == null) {
+            ensureHighPowerBatteriesIsMutable();
+            highPowerBatteries_.add(builderForValue.build());
+            onChanged();
+          } else {
+            highPowerBatteriesBuilder_.addMessage(builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public Builder addHighPowerBatteries(
+            int index, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder builderForValue) {
+          if (highPowerBatteriesBuilder_ == null) {
+            ensureHighPowerBatteriesIsMutable();
+            highPowerBatteries_.add(index, builderForValue.build());
+            onChanged();
+          } else {
+            highPowerBatteriesBuilder_.addMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public Builder addAllHighPowerBatteries(
+            java.lang.Iterable<? extends telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData> values) {
+          if (highPowerBatteriesBuilder_ == null) {
+            ensureHighPowerBatteriesIsMutable();
+            com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                values, highPowerBatteries_);
+            onChanged();
+          } else {
+            highPowerBatteriesBuilder_.addAllMessages(values);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public Builder clearHighPowerBatteries() {
+          if (highPowerBatteriesBuilder_ == null) {
+            highPowerBatteries_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000004);
+            onChanged();
+          } else {
+            highPowerBatteriesBuilder_.clear();
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public Builder removeHighPowerBatteries(int index) {
+          if (highPowerBatteriesBuilder_ == null) {
+            ensureHighPowerBatteriesIsMutable();
+            highPowerBatteries_.remove(index);
+            onChanged();
+          } else {
+            highPowerBatteriesBuilder_.remove(index);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder getHighPowerBatteriesBuilder(
+            int index) {
+          return getHighPowerBatteriesFieldBuilder().getBuilder(index);
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder getHighPowerBatteriesOrBuilder(
+            int index) {
+          if (highPowerBatteriesBuilder_ == null) {
+            return highPowerBatteries_.get(index);  } else {
+            return highPowerBatteriesBuilder_.getMessageOrBuilder(index);
+          }
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public java.util.List<? extends telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder> 
+             getHighPowerBatteriesOrBuilderList() {
+          if (highPowerBatteriesBuilder_ != null) {
+            return highPowerBatteriesBuilder_.getMessageOrBuilderList();
+          } else {
+            return java.util.Collections.unmodifiableList(highPowerBatteries_);
+          }
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder addHighPowerBatteriesBuilder() {
+          return getHighPowerBatteriesFieldBuilder().addBuilder(
+              telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder addHighPowerBatteriesBuilder(
+            int index) {
+          return getHighPowerBatteriesFieldBuilder().addBuilder(
+              index, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Batteries.BatteryData high_power_batteries = 3;</code>
+         */
+        public java.util.List<telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder> 
+             getHighPowerBatteriesBuilderList() {
+          return getHighPowerBatteriesFieldBuilder().getBuilderList();
+        }
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder> 
+            getHighPowerBatteriesFieldBuilder() {
+          if (highPowerBatteriesBuilder_ == null) {
+            highPowerBatteriesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryDataOrBuilder>(
+                    highPowerBatteries_,
+                    ((bitField0_ & 0x00000004) == 0x00000004),
+                    getParentForChildren(),
+                    isClean());
+            highPowerBatteries_ = null;
+          }
+          return highPowerBatteriesBuilder_;
+        }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:telemetry_data.ClientToServer.Batteries)
+      }
+
+      // @@protoc_insertion_point(class_scope:telemetry_data.ClientToServer.Batteries)
+      private static final telemetrydata.TelemetryData.ClientToServer.Batteries DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new telemetrydata.TelemetryData.ClientToServer.Batteries();
+      }
+
+      public static telemetrydata.TelemetryData.ClientToServer.Batteries getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<Batteries>
+          PARSER = new com.google.protobuf.AbstractParser<Batteries>() {
+        @java.lang.Override
+        public Batteries parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Batteries(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<Batteries> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Batteries> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public telemetrydata.TelemetryData.ClientToServer.Batteries getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
     public interface EmergencyBrakesOrBuilder extends
         // @@protoc_insertion_point(interface_extends:telemetry_data.ClientToServer.EmergencyBrakes)
         com.google.protobuf.MessageOrBuilder {
@@ -4781,11 +6747,31 @@ public final class TelemetryData {
       return getMotors();
     }
 
+    public static final int BATTERIES_FIELD_NUMBER = 4;
+    private telemetrydata.TelemetryData.ClientToServer.Batteries batteries_;
+    /**
+     * <code>.telemetry_data.ClientToServer.Batteries batteries = 4;</code>
+     */
+    public boolean hasBatteries() {
+      return batteries_ != null;
+    }
+    /**
+     * <code>.telemetry_data.ClientToServer.Batteries batteries = 4;</code>
+     */
+    public telemetrydata.TelemetryData.ClientToServer.Batteries getBatteries() {
+      return batteries_ == null ? telemetrydata.TelemetryData.ClientToServer.Batteries.getDefaultInstance() : batteries_;
+    }
+    /**
+     * <code>.telemetry_data.ClientToServer.Batteries batteries = 4;</code>
+     */
+    public telemetrydata.TelemetryData.ClientToServer.BatteriesOrBuilder getBatteriesOrBuilder() {
+      return getBatteries();
+    }
+
     public static final int EMERGENCY_BRAKES_FIELD_NUMBER = 6;
     private telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes emergencyBrakes_;
     /**
      * <pre>
-     * Batteries batteries = 4;
      * Sensors sensors = 5;
      * </pre>
      *
@@ -4796,7 +6782,6 @@ public final class TelemetryData {
     }
     /**
      * <pre>
-     * Batteries batteries = 4;
      * Sensors sensors = 5;
      * </pre>
      *
@@ -4807,7 +6792,6 @@ public final class TelemetryData {
     }
     /**
      * <pre>
-     * Batteries batteries = 4;
      * Sensors sensors = 5;
      * </pre>
      *
@@ -4840,6 +6824,9 @@ public final class TelemetryData {
       if (motors_ != null) {
         output.writeMessage(3, getMotors());
       }
+      if (batteries_ != null) {
+        output.writeMessage(4, getBatteries());
+      }
       if (emergencyBrakes_ != null) {
         output.writeMessage(6, getEmergencyBrakes());
       }
@@ -4863,6 +6850,10 @@ public final class TelemetryData {
       if (motors_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getMotors());
+      }
+      if (batteries_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, getBatteries());
       }
       if (emergencyBrakes_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -4899,6 +6890,11 @@ public final class TelemetryData {
         result = result && getMotors()
             .equals(other.getMotors());
       }
+      result = result && (hasBatteries() == other.hasBatteries());
+      if (hasBatteries()) {
+        result = result && getBatteries()
+            .equals(other.getBatteries());
+      }
       result = result && (hasEmergencyBrakes() == other.hasEmergencyBrakes());
       if (hasEmergencyBrakes()) {
         result = result && getEmergencyBrakes()
@@ -4926,6 +6922,10 @@ public final class TelemetryData {
       if (hasMotors()) {
         hash = (37 * hash) + MOTORS_FIELD_NUMBER;
         hash = (53 * hash) + getMotors().hashCode();
+      }
+      if (hasBatteries()) {
+        hash = (37 * hash) + BATTERIES_FIELD_NUMBER;
+        hash = (53 * hash) + getBatteries().hashCode();
       }
       if (hasEmergencyBrakes()) {
         hash = (37 * hash) + EMERGENCY_BRAKES_FIELD_NUMBER;
@@ -5082,6 +7082,12 @@ public final class TelemetryData {
           motors_ = null;
           motorsBuilder_ = null;
         }
+        if (batteriesBuilder_ == null) {
+          batteries_ = null;
+        } else {
+          batteries_ = null;
+          batteriesBuilder_ = null;
+        }
         if (emergencyBrakesBuilder_ == null) {
           emergencyBrakes_ = null;
         } else {
@@ -5128,6 +7134,11 @@ public final class TelemetryData {
           result.motors_ = motors_;
         } else {
           result.motors_ = motorsBuilder_.build();
+        }
+        if (batteriesBuilder_ == null) {
+          result.batteries_ = batteries_;
+        } else {
+          result.batteries_ = batteriesBuilder_.build();
         }
         if (emergencyBrakesBuilder_ == null) {
           result.emergencyBrakes_ = emergencyBrakes_;
@@ -5190,6 +7201,9 @@ public final class TelemetryData {
         }
         if (other.hasMotors()) {
           mergeMotors(other.getMotors());
+        }
+        if (other.hasBatteries()) {
+          mergeBatteries(other.getBatteries());
         }
         if (other.hasEmergencyBrakes()) {
           mergeEmergencyBrakes(other.getEmergencyBrakes());
@@ -5574,12 +7588,128 @@ public final class TelemetryData {
         return motorsBuilder_;
       }
 
+      private telemetrydata.TelemetryData.ClientToServer.Batteries batteries_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          telemetrydata.TelemetryData.ClientToServer.Batteries, telemetrydata.TelemetryData.ClientToServer.Batteries.Builder, telemetrydata.TelemetryData.ClientToServer.BatteriesOrBuilder> batteriesBuilder_;
+      /**
+       * <code>.telemetry_data.ClientToServer.Batteries batteries = 4;</code>
+       */
+      public boolean hasBatteries() {
+        return batteriesBuilder_ != null || batteries_ != null;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Batteries batteries = 4;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.Batteries getBatteries() {
+        if (batteriesBuilder_ == null) {
+          return batteries_ == null ? telemetrydata.TelemetryData.ClientToServer.Batteries.getDefaultInstance() : batteries_;
+        } else {
+          return batteriesBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Batteries batteries = 4;</code>
+       */
+      public Builder setBatteries(telemetrydata.TelemetryData.ClientToServer.Batteries value) {
+        if (batteriesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          batteries_ = value;
+          onChanged();
+        } else {
+          batteriesBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Batteries batteries = 4;</code>
+       */
+      public Builder setBatteries(
+          telemetrydata.TelemetryData.ClientToServer.Batteries.Builder builderForValue) {
+        if (batteriesBuilder_ == null) {
+          batteries_ = builderForValue.build();
+          onChanged();
+        } else {
+          batteriesBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Batteries batteries = 4;</code>
+       */
+      public Builder mergeBatteries(telemetrydata.TelemetryData.ClientToServer.Batteries value) {
+        if (batteriesBuilder_ == null) {
+          if (batteries_ != null) {
+            batteries_ =
+              telemetrydata.TelemetryData.ClientToServer.Batteries.newBuilder(batteries_).mergeFrom(value).buildPartial();
+          } else {
+            batteries_ = value;
+          }
+          onChanged();
+        } else {
+          batteriesBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Batteries batteries = 4;</code>
+       */
+      public Builder clearBatteries() {
+        if (batteriesBuilder_ == null) {
+          batteries_ = null;
+          onChanged();
+        } else {
+          batteries_ = null;
+          batteriesBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Batteries batteries = 4;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.Batteries.Builder getBatteriesBuilder() {
+        
+        onChanged();
+        return getBatteriesFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Batteries batteries = 4;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.BatteriesOrBuilder getBatteriesOrBuilder() {
+        if (batteriesBuilder_ != null) {
+          return batteriesBuilder_.getMessageOrBuilder();
+        } else {
+          return batteries_ == null ?
+              telemetrydata.TelemetryData.ClientToServer.Batteries.getDefaultInstance() : batteries_;
+        }
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Batteries batteries = 4;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          telemetrydata.TelemetryData.ClientToServer.Batteries, telemetrydata.TelemetryData.ClientToServer.Batteries.Builder, telemetrydata.TelemetryData.ClientToServer.BatteriesOrBuilder> 
+          getBatteriesFieldBuilder() {
+        if (batteriesBuilder_ == null) {
+          batteriesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              telemetrydata.TelemetryData.ClientToServer.Batteries, telemetrydata.TelemetryData.ClientToServer.Batteries.Builder, telemetrydata.TelemetryData.ClientToServer.BatteriesOrBuilder>(
+                  getBatteries(),
+                  getParentForChildren(),
+                  isClean());
+          batteries_ = null;
+        }
+        return batteriesBuilder_;
+      }
+
       private telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes emergencyBrakes_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
           telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes, telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.Builder, telemetrydata.TelemetryData.ClientToServer.EmergencyBrakesOrBuilder> emergencyBrakesBuilder_;
       /**
        * <pre>
-       * Batteries batteries = 4;
        * Sensors sensors = 5;
        * </pre>
        *
@@ -5590,7 +7720,6 @@ public final class TelemetryData {
       }
       /**
        * <pre>
-       * Batteries batteries = 4;
        * Sensors sensors = 5;
        * </pre>
        *
@@ -5605,7 +7734,6 @@ public final class TelemetryData {
       }
       /**
        * <pre>
-       * Batteries batteries = 4;
        * Sensors sensors = 5;
        * </pre>
        *
@@ -5626,7 +7754,6 @@ public final class TelemetryData {
       }
       /**
        * <pre>
-       * Batteries batteries = 4;
        * Sensors sensors = 5;
        * </pre>
        *
@@ -5645,7 +7772,6 @@ public final class TelemetryData {
       }
       /**
        * <pre>
-       * Batteries batteries = 4;
        * Sensors sensors = 5;
        * </pre>
        *
@@ -5668,7 +7794,6 @@ public final class TelemetryData {
       }
       /**
        * <pre>
-       * Batteries batteries = 4;
        * Sensors sensors = 5;
        * </pre>
        *
@@ -5687,7 +7812,6 @@ public final class TelemetryData {
       }
       /**
        * <pre>
-       * Batteries batteries = 4;
        * Sensors sensors = 5;
        * </pre>
        *
@@ -5700,7 +7824,6 @@ public final class TelemetryData {
       }
       /**
        * <pre>
-       * Batteries batteries = 4;
        * Sensors sensors = 5;
        * </pre>
        *
@@ -5716,7 +7839,6 @@ public final class TelemetryData {
       }
       /**
        * <pre>
-       * Batteries batteries = 4;
        * Sensors sensors = 5;
        * </pre>
        *
@@ -5819,6 +7941,16 @@ public final class TelemetryData {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_telemetry_data_ClientToServer_Motors_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_telemetry_data_ClientToServer_Batteries_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_telemetry_data_ClientToServer_Batteries_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_telemetry_data_ClientToServer_Batteries_BatteryData_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_telemetry_data_ClientToServer_Batteries_BatteryData_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -5842,36 +7974,45 @@ public final class TelemetryData {
       "ommand\022\022\n\nrun_length\030\002 \001(\002\022\032\n\022service_pr" +
       "opulsion\030\003 \001(\010\"[\n\007Command\022\007\n\003ACK\020\000\022\010\n\004ST" +
       "OP\020\001\022\n\n\006LAUNCH\020\002\022\t\n\005RESET\020\003\022\016\n\nRUN_LENGT" +
-      "H\020\004\022\026\n\022SERVICE_PROPULSION\020\005\"\310\010\n\016ClientTo" +
+      "H\020\004\022\026\n\022SERVICE_PROPULSION\020\005\"\306\013\n\016ClientTo" +
       "Server\022=\n\nnavigation\030\001 \001(\0132).telemetry_d" +
       "ata.ClientToServer.Navigation\022B\n\rstate_m" +
       "achine\030\002 \001(\0132+.telemetry_data.ClientToSe" +
       "rver.StateMachine\0225\n\006motors\030\003 \001(\0132%.tele" +
-      "metry_data.ClientToServer.Motors\022H\n\020emer" +
-      "gency_brakes\030\006 \001(\0132..telemetry_data.Clie" +
-      "ntToServer.EmergencyBrakes\032\212\001\n\nNavigatio" +
-      "n\022B\n\rmodule_status\030\001 \001(\0162+.telemetry_dat" +
-      "a.ClientToServer.ModuleStatus\022\020\n\010distanc" +
-      "e\030\002 \001(\002\022\020\n\010velocity\030\003 \001(\002\022\024\n\014acceleratio" +
-      "n\030\004 \001(\002\032\331\002\n\014StateMachine\022B\n\rmodule_statu" +
-      "s\030\001 \001(\0162+.telemetry_data.ClientToServer." +
-      "ModuleStatus\022H\n\rcurrent_state\030\002 \001(\01621.te" +
-      "lemetry_data.ClientToServer.StateMachine" +
-      ".State\"\272\001\n\005State\022\010\n\004IDLE\020\000\022\017\n\013CALIBRATIN" +
-      "G\020\001\022\t\n\005READY\020\002\022\020\n\014ACCELERATING\020\003\022\023\n\017NOMI" +
-      "NAL_BRAKING\020\004\022\025\n\021EMERGENCY_BRAKING\020\005\022\020\n\014" +
-      "RUN_COMPLETE\020\006\022\023\n\017FAILURE_STOPPED\020\007\022\013\n\007E" +
-      "XITING\020\010\022\014\n\010FINISHED\020\t\022\013\n\007INVALID\020\n\032\304\001\n\006" +
-      "Motors\022B\n\rmodule_status\030\001 \001(\0162+.telemetr" +
-      "y_data.ClientToServer.ModuleStatus\022\022\n\nve" +
-      "locity_1\030\002 \001(\021\022\022\n\nvelocity_2\030\003 \001(\021\022\022\n\nve" +
-      "locity_3\030\004 \001(\021\022\022\n\nvelocity_4\030\005 \001(\021\022\022\n\nve" +
-      "locity_5\030\006 \001(\021\022\022\n\nvelocity_6\030\007 \001(\021\032<\n\017Em" +
-      "ergencyBrakes\022\024\n\014front_brakes\030\001 \001(\010\022\023\n\013r" +
-      "ear_brakes\030\002 \001(\010\"D\n\014ModuleStatus\022\t\n\005STAR" +
-      "T\020\000\022\010\n\004INIT\020\001\022\t\n\005READY\020\002\022\024\n\020CRITICAL_FAI" +
-      "LURE\020\003B\036\n\rtelemetrydataB\rTelemetryDatab\006" +
-      "proto3"
+      "metry_data.ClientToServer.Motors\022;\n\tbatt" +
+      "eries\030\004 \001(\0132(.telemetry_data.ClientToSer" +
+      "ver.Batteries\022H\n\020emergency_brakes\030\006 \001(\0132" +
+      "..telemetry_data.ClientToServer.Emergenc" +
+      "yBrakes\032\212\001\n\nNavigation\022B\n\rmodule_status\030" +
+      "\001 \001(\0162+.telemetry_data.ClientToServer.Mo" +
+      "duleStatus\022\020\n\010distance\030\002 \001(\002\022\020\n\010velocity" +
+      "\030\003 \001(\002\022\024\n\014acceleration\030\004 \001(\002\032\225\002\n\014StateMa" +
+      "chine\022H\n\rcurrent_state\030\002 \001(\01621.telemetry" +
+      "_data.ClientToServer.StateMachine.State\"" +
+      "\272\001\n\005State\022\010\n\004IDLE\020\000\022\017\n\013CALIBRATING\020\001\022\t\n\005" +
+      "READY\020\002\022\020\n\014ACCELERATING\020\003\022\023\n\017NOMINAL_BRA" +
+      "KING\020\004\022\025\n\021EMERGENCY_BRAKING\020\005\022\020\n\014RUN_COM" +
+      "PLETE\020\006\022\023\n\017FAILURE_STOPPED\020\007\022\013\n\007EXITING\020" +
+      "\010\022\014\n\010FINISHED\020\t\022\013\n\007INVALID\020\n\032\304\001\n\006Motors\022" +
+      "B\n\rmodule_status\030\001 \001(\0162+.telemetry_data." +
+      "ClientToServer.ModuleStatus\022\022\n\nvelocity_" +
+      "1\030\002 \001(\021\022\022\n\nvelocity_2\030\003 \001(\021\022\022\n\nvelocity_" +
+      "3\030\004 \001(\021\022\022\n\nvelocity_4\030\005 \001(\021\022\022\n\nvelocity_" +
+      "5\030\006 \001(\021\022\022\n\nvelocity_6\030\007 \001(\021\032\202\003\n\tBatterie" +
+      "s\022B\n\rmodule_status\030\001 \001(\0162+.telemetry_dat" +
+      "a.ClientToServer.ModuleStatus\022Q\n\023low_pow" +
+      "er_batteries\030\002 \003(\01324.telemetry_data.Clie" +
+      "ntToServer.Batteries.BatteryData\022R\n\024high" +
+      "_power_batteries\030\003 \003(\01324.telemetry_data." +
+      "ClientToServer.Batteries.BatteryData\032\211\001\n" +
+      "\013BatteryData\022\017\n\007voltage\030\001 \001(\r\022\017\n\007current" +
+      "\030\002 \001(\021\022\016\n\006charge\030\003 \001(\r\022\023\n\013temperature\030\004 " +
+      "\001(\005\022\030\n\020low_voltage_cell\030\005 \001(\r\022\031\n\021high_vo" +
+      "ltage_cell\030\006 \001(\r\032<\n\017EmergencyBrakes\022\024\n\014f" +
+      "ront_brakes\030\001 \001(\010\022\023\n\013rear_brakes\030\002 \001(\010\"D" +
+      "\n\014ModuleStatus\022\t\n\005START\020\000\022\010\n\004INIT\020\001\022\t\n\005R" +
+      "EADY\020\002\022\024\n\020CRITICAL_FAILURE\020\003B\036\n\rtelemetr" +
+      "ydataB\rTelemetryDatab\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -5902,7 +8043,7 @@ public final class TelemetryData {
     internal_static_telemetry_data_ClientToServer_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_descriptor,
-        new java.lang.String[] { "Navigation", "StateMachine", "Motors", "EmergencyBrakes", });
+        new java.lang.String[] { "Navigation", "StateMachine", "Motors", "Batteries", "EmergencyBrakes", });
     internal_static_telemetry_data_ClientToServer_Navigation_descriptor =
       internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(0);
     internal_static_telemetry_data_ClientToServer_Navigation_fieldAccessorTable = new
@@ -5914,15 +8055,27 @@ public final class TelemetryData {
     internal_static_telemetry_data_ClientToServer_StateMachine_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_StateMachine_descriptor,
-        new java.lang.String[] { "ModuleStatus", "CurrentState", });
+        new java.lang.String[] { "CurrentState", });
     internal_static_telemetry_data_ClientToServer_Motors_descriptor =
       internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(2);
     internal_static_telemetry_data_ClientToServer_Motors_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_Motors_descriptor,
         new java.lang.String[] { "ModuleStatus", "Velocity1", "Velocity2", "Velocity3", "Velocity4", "Velocity5", "Velocity6", });
-    internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor =
+    internal_static_telemetry_data_ClientToServer_Batteries_descriptor =
       internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(3);
+    internal_static_telemetry_data_ClientToServer_Batteries_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_telemetry_data_ClientToServer_Batteries_descriptor,
+        new java.lang.String[] { "ModuleStatus", "LowPowerBatteries", "HighPowerBatteries", });
+    internal_static_telemetry_data_ClientToServer_Batteries_BatteryData_descriptor =
+      internal_static_telemetry_data_ClientToServer_Batteries_descriptor.getNestedTypes().get(0);
+    internal_static_telemetry_data_ClientToServer_Batteries_BatteryData_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_telemetry_data_ClientToServer_Batteries_BatteryData_descriptor,
+        new java.lang.String[] { "Voltage", "Current", "Charge", "Temperature", "LowVoltageCell", "HighVoltageCell", });
+    internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor =
+      internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(4);
     internal_static_telemetry_data_ClientToServer_EmergencyBrakes_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor,
