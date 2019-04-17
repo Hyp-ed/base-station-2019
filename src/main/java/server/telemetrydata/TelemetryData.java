@@ -1554,26 +1554,27 @@ public final class TelemetryData {
     telemetrydata.TelemetryData.ClientToServer.BatteriesOrBuilder getBatteriesOrBuilder();
 
     /**
-     * <pre>
-     * Sensors sensors = 5;
-     * </pre>
-     *
+     * <code>.telemetry_data.ClientToServer.Sensors sensors = 5;</code>
+     */
+    boolean hasSensors();
+    /**
+     * <code>.telemetry_data.ClientToServer.Sensors sensors = 5;</code>
+     */
+    telemetrydata.TelemetryData.ClientToServer.Sensors getSensors();
+    /**
+     * <code>.telemetry_data.ClientToServer.Sensors sensors = 5;</code>
+     */
+    telemetrydata.TelemetryData.ClientToServer.SensorsOrBuilder getSensorsOrBuilder();
+
+    /**
      * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
      */
     boolean hasEmergencyBrakes();
     /**
-     * <pre>
-     * Sensors sensors = 5;
-     * </pre>
-     *
      * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
      */
     telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes getEmergencyBrakes();
     /**
-     * <pre>
-     * Sensors sensors = 5;
-     * </pre>
-     *
      * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
      */
     telemetrydata.TelemetryData.ClientToServer.EmergencyBrakesOrBuilder getEmergencyBrakesOrBuilder();
@@ -1665,6 +1666,19 @@ public final class TelemetryData {
               if (subBuilder != null) {
                 subBuilder.mergeFrom(batteries_);
                 batteries_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 42: {
+              telemetrydata.TelemetryData.ClientToServer.Sensors.Builder subBuilder = null;
+              if (sensors_ != null) {
+                subBuilder = sensors_.toBuilder();
+              }
+              sensors_ = input.readMessage(telemetrydata.TelemetryData.ClientToServer.Sensors.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(sensors_);
+                sensors_ = subBuilder.buildPartial();
               }
 
               break;
@@ -6143,6 +6157,1536 @@ public final class TelemetryData {
 
     }
 
+    public interface SensorsOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:telemetry_data.ClientToServer.Sensors)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+       */
+      int getModuleStatusValue();
+      /**
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+       */
+      telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus();
+
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+       */
+      java.util.List<telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData> 
+          getImuList();
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+       */
+      telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData getImu(int index);
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+       */
+      int getImuCount();
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+       */
+      java.util.List<? extends telemetrydata.TelemetryData.ClientToServer.Sensors.ImuDataOrBuilder> 
+          getImuOrBuilderList();
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+       */
+      telemetrydata.TelemetryData.ClientToServer.Sensors.ImuDataOrBuilder getImuOrBuilder(
+          int index);
+    }
+    /**
+     * Protobuf type {@code telemetry_data.ClientToServer.Sensors}
+     */
+    public  static final class Sensors extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:telemetry_data.ClientToServer.Sensors)
+        SensorsOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use Sensors.newBuilder() to construct.
+      private Sensors(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private Sensors() {
+        moduleStatus_ = 0;
+        imu_ = java.util.Collections.emptyList();
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Sensors(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                int rawValue = input.readEnum();
+
+                moduleStatus_ = rawValue;
+                break;
+              }
+              case 18: {
+                if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                  imu_ = new java.util.ArrayList<telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData>();
+                  mutable_bitField0_ |= 0x00000002;
+                }
+                imu_.add(
+                    input.readMessage(telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.parser(), extensionRegistry));
+                break;
+              }
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+            imu_ = java.util.Collections.unmodifiableList(imu_);
+          }
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Sensors_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Sensors_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                telemetrydata.TelemetryData.ClientToServer.Sensors.class, telemetrydata.TelemetryData.ClientToServer.Sensors.Builder.class);
+      }
+
+      public interface ImuDataOrBuilder extends
+          // @@protoc_insertion_point(interface_extends:telemetry_data.ClientToServer.Sensors.ImuData)
+          com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>bool operational = 1;</code>
+         */
+        boolean getOperational();
+
+        /**
+         * <code>repeated float acc = 2;</code>
+         */
+        java.util.List<java.lang.Float> getAccList();
+        /**
+         * <code>repeated float acc = 2;</code>
+         */
+        int getAccCount();
+        /**
+         * <code>repeated float acc = 2;</code>
+         */
+        float getAcc(int index);
+      }
+      /**
+       * Protobuf type {@code telemetry_data.ClientToServer.Sensors.ImuData}
+       */
+      public  static final class ImuData extends
+          com.google.protobuf.GeneratedMessageV3 implements
+          // @@protoc_insertion_point(message_implements:telemetry_data.ClientToServer.Sensors.ImuData)
+          ImuDataOrBuilder {
+      private static final long serialVersionUID = 0L;
+        // Use ImuData.newBuilder() to construct.
+        private ImuData(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+          super(builder);
+        }
+        private ImuData() {
+          operational_ = false;
+          acc_ = java.util.Collections.emptyList();
+        }
+
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+          return this.unknownFields;
+        }
+        private ImuData(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          this();
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          int mutable_bitField0_ = 0;
+          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+              com.google.protobuf.UnknownFieldSet.newBuilder();
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                case 8: {
+
+                  operational_ = input.readBool();
+                  break;
+                }
+                case 21: {
+                  if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                    acc_ = new java.util.ArrayList<java.lang.Float>();
+                    mutable_bitField0_ |= 0x00000002;
+                  }
+                  acc_.add(input.readFloat());
+                  break;
+                }
+                case 18: {
+                  int length = input.readRawVarint32();
+                  int limit = input.pushLimit(length);
+                  if (!((mutable_bitField0_ & 0x00000002) == 0x00000002) && input.getBytesUntilLimit() > 0) {
+                    acc_ = new java.util.ArrayList<java.lang.Float>();
+                    mutable_bitField0_ |= 0x00000002;
+                  }
+                  while (input.getBytesUntilLimit() > 0) {
+                    acc_.add(input.readFloat());
+                  }
+                  input.popLimit(limit);
+                  break;
+                }
+                default: {
+                  if (!parseUnknownFieldProto3(
+                      input, unknownFields, extensionRegistry, tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
+          } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                e).setUnfinishedMessage(this);
+          } finally {
+            if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              acc_ = java.util.Collections.unmodifiableList(acc_);
+            }
+            this.unknownFields = unknownFields.build();
+            makeExtensionsImmutable();
+          }
+        }
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Sensors_ImuData_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Sensors_ImuData_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.class, telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.Builder.class);
+        }
+
+        private int bitField0_;
+        public static final int OPERATIONAL_FIELD_NUMBER = 1;
+        private boolean operational_;
+        /**
+         * <code>bool operational = 1;</code>
+         */
+        public boolean getOperational() {
+          return operational_;
+        }
+
+        public static final int ACC_FIELD_NUMBER = 2;
+        private java.util.List<java.lang.Float> acc_;
+        /**
+         * <code>repeated float acc = 2;</code>
+         */
+        public java.util.List<java.lang.Float>
+            getAccList() {
+          return acc_;
+        }
+        /**
+         * <code>repeated float acc = 2;</code>
+         */
+        public int getAccCount() {
+          return acc_.size();
+        }
+        /**
+         * <code>repeated float acc = 2;</code>
+         */
+        public float getAcc(int index) {
+          return acc_.get(index);
+        }
+        private int accMemoizedSerializedSize = -1;
+
+        private byte memoizedIsInitialized = -1;
+        @java.lang.Override
+        public final boolean isInitialized() {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return true;
+          if (isInitialized == 0) return false;
+
+          memoizedIsInitialized = 1;
+          return true;
+        }
+
+        @java.lang.Override
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                            throws java.io.IOException {
+          getSerializedSize();
+          if (operational_ != false) {
+            output.writeBool(1, operational_);
+          }
+          if (getAccList().size() > 0) {
+            output.writeUInt32NoTag(18);
+            output.writeUInt32NoTag(accMemoizedSerializedSize);
+          }
+          for (int i = 0; i < acc_.size(); i++) {
+            output.writeFloatNoTag(acc_.get(i));
+          }
+          unknownFields.writeTo(output);
+        }
+
+        @java.lang.Override
+        public int getSerializedSize() {
+          int size = memoizedSize;
+          if (size != -1) return size;
+
+          size = 0;
+          if (operational_ != false) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeBoolSize(1, operational_);
+          }
+          {
+            int dataSize = 0;
+            dataSize = 4 * getAccList().size();
+            size += dataSize;
+            if (!getAccList().isEmpty()) {
+              size += 1;
+              size += com.google.protobuf.CodedOutputStream
+                  .computeInt32SizeNoTag(dataSize);
+            }
+            accMemoizedSerializedSize = dataSize;
+          }
+          size += unknownFields.getSerializedSize();
+          memoizedSize = size;
+          return size;
+        }
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+          if (obj == this) {
+           return true;
+          }
+          if (!(obj instanceof telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData)) {
+            return super.equals(obj);
+          }
+          telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData other = (telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData) obj;
+
+          boolean result = true;
+          result = result && (getOperational()
+              == other.getOperational());
+          result = result && getAccList()
+              .equals(other.getAccList());
+          result = result && unknownFields.equals(other.unknownFields);
+          return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+          if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+          }
+          int hash = 41;
+          hash = (19 * hash) + getDescriptor().hashCode();
+          hash = (37 * hash) + OPERATIONAL_FIELD_NUMBER;
+          hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+              getOperational());
+          if (getAccCount() > 0) {
+            hash = (37 * hash) + ACC_FIELD_NUMBER;
+            hash = (53 * hash) + getAccList().hashCode();
+          }
+          hash = (29 * hash) + unknownFields.hashCode();
+          memoizedHashCode = hash;
+          return hash;
+        }
+
+        public static telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+        }
+        public static telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        @java.lang.Override
+        public Builder newBuilderForType() { return newBuilder(); }
+        public static Builder newBuilder() {
+          return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData prototype) {
+          return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+        @java.lang.Override
+        public Builder toBuilder() {
+          return this == DEFAULT_INSTANCE
+              ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          Builder builder = new Builder(parent);
+          return builder;
+        }
+        /**
+         * Protobuf type {@code telemetry_data.ClientToServer.Sensors.ImuData}
+         */
+        public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:telemetry_data.ClientToServer.Sensors.ImuData)
+            telemetrydata.TelemetryData.ClientToServer.Sensors.ImuDataOrBuilder {
+          public static final com.google.protobuf.Descriptors.Descriptor
+              getDescriptor() {
+            return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Sensors_ImuData_descriptor;
+          }
+
+          @java.lang.Override
+          protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+              internalGetFieldAccessorTable() {
+            return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Sensors_ImuData_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                    telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.class, telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.Builder.class);
+          }
+
+          // Construct using telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.newBuilder()
+          private Builder() {
+            maybeForceBuilderInitialization();
+          }
+
+          private Builder(
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+          }
+          private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+            }
+          }
+          @java.lang.Override
+          public Builder clear() {
+            super.clear();
+            operational_ = false;
+
+            acc_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000002);
+            return this;
+          }
+
+          @java.lang.Override
+          public com.google.protobuf.Descriptors.Descriptor
+              getDescriptorForType() {
+            return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Sensors_ImuData_descriptor;
+          }
+
+          @java.lang.Override
+          public telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData getDefaultInstanceForType() {
+            return telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.getDefaultInstance();
+          }
+
+          @java.lang.Override
+          public telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData build() {
+            telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData result = buildPartial();
+            if (!result.isInitialized()) {
+              throw newUninitializedMessageException(result);
+            }
+            return result;
+          }
+
+          @java.lang.Override
+          public telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData buildPartial() {
+            telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData result = new telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData(this);
+            int from_bitField0_ = bitField0_;
+            int to_bitField0_ = 0;
+            result.operational_ = operational_;
+            if (((bitField0_ & 0x00000002) == 0x00000002)) {
+              acc_ = java.util.Collections.unmodifiableList(acc_);
+              bitField0_ = (bitField0_ & ~0x00000002);
+            }
+            result.acc_ = acc_;
+            result.bitField0_ = to_bitField0_;
+            onBuilt();
+            return result;
+          }
+
+          @java.lang.Override
+          public Builder clone() {
+            return (Builder) super.clone();
+          }
+          @java.lang.Override
+          public Builder setField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
+            return (Builder) super.setField(field, value);
+          }
+          @java.lang.Override
+          public Builder clearField(
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return (Builder) super.clearField(field);
+          }
+          @java.lang.Override
+          public Builder clearOneof(
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return (Builder) super.clearOneof(oneof);
+          }
+          @java.lang.Override
+          public Builder setRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, java.lang.Object value) {
+            return (Builder) super.setRepeatedField(field, index, value);
+          }
+          @java.lang.Override
+          public Builder addRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
+            return (Builder) super.addRepeatedField(field, value);
+          }
+          @java.lang.Override
+          public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData) {
+              return mergeFrom((telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData)other);
+            } else {
+              super.mergeFrom(other);
+              return this;
+            }
+          }
+
+          public Builder mergeFrom(telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData other) {
+            if (other == telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.getDefaultInstance()) return this;
+            if (other.getOperational() != false) {
+              setOperational(other.getOperational());
+            }
+            if (!other.acc_.isEmpty()) {
+              if (acc_.isEmpty()) {
+                acc_ = other.acc_;
+                bitField0_ = (bitField0_ & ~0x00000002);
+              } else {
+                ensureAccIsMutable();
+                acc_.addAll(other.acc_);
+              }
+              onChanged();
+            }
+            this.mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
+          }
+
+          @java.lang.Override
+          public final boolean isInitialized() {
+            return true;
+          }
+
+          @java.lang.Override
+          public Builder mergeFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+            telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData parsedMessage = null;
+            try {
+              parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+              parsedMessage = (telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData) e.getUnfinishedMessage();
+              throw e.unwrapIOException();
+            } finally {
+              if (parsedMessage != null) {
+                mergeFrom(parsedMessage);
+              }
+            }
+            return this;
+          }
+          private int bitField0_;
+
+          private boolean operational_ ;
+          /**
+           * <code>bool operational = 1;</code>
+           */
+          public boolean getOperational() {
+            return operational_;
+          }
+          /**
+           * <code>bool operational = 1;</code>
+           */
+          public Builder setOperational(boolean value) {
+            
+            operational_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>bool operational = 1;</code>
+           */
+          public Builder clearOperational() {
+            
+            operational_ = false;
+            onChanged();
+            return this;
+          }
+
+          private java.util.List<java.lang.Float> acc_ = java.util.Collections.emptyList();
+          private void ensureAccIsMutable() {
+            if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+              acc_ = new java.util.ArrayList<java.lang.Float>(acc_);
+              bitField0_ |= 0x00000002;
+             }
+          }
+          /**
+           * <code>repeated float acc = 2;</code>
+           */
+          public java.util.List<java.lang.Float>
+              getAccList() {
+            return java.util.Collections.unmodifiableList(acc_);
+          }
+          /**
+           * <code>repeated float acc = 2;</code>
+           */
+          public int getAccCount() {
+            return acc_.size();
+          }
+          /**
+           * <code>repeated float acc = 2;</code>
+           */
+          public float getAcc(int index) {
+            return acc_.get(index);
+          }
+          /**
+           * <code>repeated float acc = 2;</code>
+           */
+          public Builder setAcc(
+              int index, float value) {
+            ensureAccIsMutable();
+            acc_.set(index, value);
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>repeated float acc = 2;</code>
+           */
+          public Builder addAcc(float value) {
+            ensureAccIsMutable();
+            acc_.add(value);
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>repeated float acc = 2;</code>
+           */
+          public Builder addAllAcc(
+              java.lang.Iterable<? extends java.lang.Float> values) {
+            ensureAccIsMutable();
+            com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                values, acc_);
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>repeated float acc = 2;</code>
+           */
+          public Builder clearAcc() {
+            acc_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000002);
+            onChanged();
+            return this;
+          }
+          @java.lang.Override
+          public final Builder setUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFieldsProto3(unknownFields);
+          }
+
+          @java.lang.Override
+          public final Builder mergeUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+          }
+
+
+          // @@protoc_insertion_point(builder_scope:telemetry_data.ClientToServer.Sensors.ImuData)
+        }
+
+        // @@protoc_insertion_point(class_scope:telemetry_data.ClientToServer.Sensors.ImuData)
+        private static final telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData DEFAULT_INSTANCE;
+        static {
+          DEFAULT_INSTANCE = new telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData();
+        }
+
+        public static telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData getDefaultInstance() {
+          return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<ImuData>
+            PARSER = new com.google.protobuf.AbstractParser<ImuData>() {
+          @java.lang.Override
+          public ImuData parsePartialFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+            return new ImuData(input, extensionRegistry);
+          }
+        };
+
+        public static com.google.protobuf.Parser<ImuData> parser() {
+          return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<ImuData> getParserForType() {
+          return PARSER;
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData getDefaultInstanceForType() {
+          return DEFAULT_INSTANCE;
+        }
+
+      }
+
+      private int bitField0_;
+      public static final int MODULE_STATUS_FIELD_NUMBER = 1;
+      private int moduleStatus_;
+      /**
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+       */
+      public int getModuleStatusValue() {
+        return moduleStatus_;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus() {
+        @SuppressWarnings("deprecation")
+        telemetrydata.TelemetryData.ClientToServer.ModuleStatus result = telemetrydata.TelemetryData.ClientToServer.ModuleStatus.valueOf(moduleStatus_);
+        return result == null ? telemetrydata.TelemetryData.ClientToServer.ModuleStatus.UNRECOGNIZED : result;
+      }
+
+      public static final int IMU_FIELD_NUMBER = 2;
+      private java.util.List<telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData> imu_;
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+       */
+      public java.util.List<telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData> getImuList() {
+        return imu_;
+      }
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+       */
+      public java.util.List<? extends telemetrydata.TelemetryData.ClientToServer.Sensors.ImuDataOrBuilder> 
+          getImuOrBuilderList() {
+        return imu_;
+      }
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+       */
+      public int getImuCount() {
+        return imu_.size();
+      }
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData getImu(int index) {
+        return imu_.get(index);
+      }
+      /**
+       * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.Sensors.ImuDataOrBuilder getImuOrBuilder(
+          int index) {
+        return imu_.get(index);
+      }
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      @java.lang.Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (moduleStatus_ != telemetrydata.TelemetryData.ClientToServer.ModuleStatus.START.getNumber()) {
+          output.writeEnum(1, moduleStatus_);
+        }
+        for (int i = 0; i < imu_.size(); i++) {
+          output.writeMessage(2, imu_.get(i));
+        }
+        unknownFields.writeTo(output);
+      }
+
+      @java.lang.Override
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (moduleStatus_ != telemetrydata.TelemetryData.ClientToServer.ModuleStatus.START.getNumber()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeEnumSize(1, moduleStatus_);
+        }
+        for (int i = 0; i < imu_.size(); i++) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(2, imu_.get(i));
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof telemetrydata.TelemetryData.ClientToServer.Sensors)) {
+          return super.equals(obj);
+        }
+        telemetrydata.TelemetryData.ClientToServer.Sensors other = (telemetrydata.TelemetryData.ClientToServer.Sensors) obj;
+
+        boolean result = true;
+        result = result && moduleStatus_ == other.moduleStatus_;
+        result = result && getImuList()
+            .equals(other.getImuList());
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + MODULE_STATUS_FIELD_NUMBER;
+        hash = (53 * hash) + moduleStatus_;
+        if (getImuCount() > 0) {
+          hash = (37 * hash) + IMU_FIELD_NUMBER;
+          hash = (53 * hash) + getImuList().hashCode();
+        }
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static telemetrydata.TelemetryData.ClientToServer.Sensors parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Sensors parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Sensors parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Sensors parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Sensors parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Sensors parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Sensors parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Sensors parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Sensors parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Sensors parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Sensors parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Sensors parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(telemetrydata.TelemetryData.ClientToServer.Sensors prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code telemetry_data.ClientToServer.Sensors}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:telemetry_data.ClientToServer.Sensors)
+          telemetrydata.TelemetryData.ClientToServer.SensorsOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Sensors_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Sensors_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  telemetrydata.TelemetryData.ClientToServer.Sensors.class, telemetrydata.TelemetryData.ClientToServer.Sensors.Builder.class);
+        }
+
+        // Construct using telemetrydata.TelemetryData.ClientToServer.Sensors.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+            getImuFieldBuilder();
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          moduleStatus_ = 0;
+
+          if (imuBuilder_ == null) {
+            imu_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            imuBuilder_.clear();
+          }
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Sensors_descriptor;
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.Sensors getDefaultInstanceForType() {
+          return telemetrydata.TelemetryData.ClientToServer.Sensors.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.Sensors build() {
+          telemetrydata.TelemetryData.ClientToServer.Sensors result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.Sensors buildPartial() {
+          telemetrydata.TelemetryData.ClientToServer.Sensors result = new telemetrydata.TelemetryData.ClientToServer.Sensors(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          result.moduleStatus_ = moduleStatus_;
+          if (imuBuilder_ == null) {
+            if (((bitField0_ & 0x00000002) == 0x00000002)) {
+              imu_ = java.util.Collections.unmodifiableList(imu_);
+              bitField0_ = (bitField0_ & ~0x00000002);
+            }
+            result.imu_ = imu_;
+          } else {
+            result.imu_ = imuBuilder_.build();
+          }
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof telemetrydata.TelemetryData.ClientToServer.Sensors) {
+            return mergeFrom((telemetrydata.TelemetryData.ClientToServer.Sensors)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(telemetrydata.TelemetryData.ClientToServer.Sensors other) {
+          if (other == telemetrydata.TelemetryData.ClientToServer.Sensors.getDefaultInstance()) return this;
+          if (other.moduleStatus_ != 0) {
+            setModuleStatusValue(other.getModuleStatusValue());
+          }
+          if (imuBuilder_ == null) {
+            if (!other.imu_.isEmpty()) {
+              if (imu_.isEmpty()) {
+                imu_ = other.imu_;
+                bitField0_ = (bitField0_ & ~0x00000002);
+              } else {
+                ensureImuIsMutable();
+                imu_.addAll(other.imu_);
+              }
+              onChanged();
+            }
+          } else {
+            if (!other.imu_.isEmpty()) {
+              if (imuBuilder_.isEmpty()) {
+                imuBuilder_.dispose();
+                imuBuilder_ = null;
+                imu_ = other.imu_;
+                bitField0_ = (bitField0_ & ~0x00000002);
+                imuBuilder_ = 
+                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                     getImuFieldBuilder() : null;
+              } else {
+                imuBuilder_.addAllMessages(other.imu_);
+              }
+            }
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          telemetrydata.TelemetryData.ClientToServer.Sensors parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (telemetrydata.TelemetryData.ClientToServer.Sensors) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        private int moduleStatus_ = 0;
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public int getModuleStatusValue() {
+          return moduleStatus_;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public Builder setModuleStatusValue(int value) {
+          moduleStatus_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus() {
+          @SuppressWarnings("deprecation")
+          telemetrydata.TelemetryData.ClientToServer.ModuleStatus result = telemetrydata.TelemetryData.ClientToServer.ModuleStatus.valueOf(moduleStatus_);
+          return result == null ? telemetrydata.TelemetryData.ClientToServer.ModuleStatus.UNRECOGNIZED : result;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public Builder setModuleStatus(telemetrydata.TelemetryData.ClientToServer.ModuleStatus value) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          
+          moduleStatus_ = value.getNumber();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
+         */
+        public Builder clearModuleStatus() {
+          
+          moduleStatus_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private java.util.List<telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData> imu_ =
+          java.util.Collections.emptyList();
+        private void ensureImuIsMutable() {
+          if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+            imu_ = new java.util.ArrayList<telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData>(imu_);
+            bitField0_ |= 0x00000002;
+           }
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData, telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.Builder, telemetrydata.TelemetryData.ClientToServer.Sensors.ImuDataOrBuilder> imuBuilder_;
+
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public java.util.List<telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData> getImuList() {
+          if (imuBuilder_ == null) {
+            return java.util.Collections.unmodifiableList(imu_);
+          } else {
+            return imuBuilder_.getMessageList();
+          }
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public int getImuCount() {
+          if (imuBuilder_ == null) {
+            return imu_.size();
+          } else {
+            return imuBuilder_.getCount();
+          }
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData getImu(int index) {
+          if (imuBuilder_ == null) {
+            return imu_.get(index);
+          } else {
+            return imuBuilder_.getMessage(index);
+          }
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public Builder setImu(
+            int index, telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData value) {
+          if (imuBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureImuIsMutable();
+            imu_.set(index, value);
+            onChanged();
+          } else {
+            imuBuilder_.setMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public Builder setImu(
+            int index, telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.Builder builderForValue) {
+          if (imuBuilder_ == null) {
+            ensureImuIsMutable();
+            imu_.set(index, builderForValue.build());
+            onChanged();
+          } else {
+            imuBuilder_.setMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public Builder addImu(telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData value) {
+          if (imuBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureImuIsMutable();
+            imu_.add(value);
+            onChanged();
+          } else {
+            imuBuilder_.addMessage(value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public Builder addImu(
+            int index, telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData value) {
+          if (imuBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureImuIsMutable();
+            imu_.add(index, value);
+            onChanged();
+          } else {
+            imuBuilder_.addMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public Builder addImu(
+            telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.Builder builderForValue) {
+          if (imuBuilder_ == null) {
+            ensureImuIsMutable();
+            imu_.add(builderForValue.build());
+            onChanged();
+          } else {
+            imuBuilder_.addMessage(builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public Builder addImu(
+            int index, telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.Builder builderForValue) {
+          if (imuBuilder_ == null) {
+            ensureImuIsMutable();
+            imu_.add(index, builderForValue.build());
+            onChanged();
+          } else {
+            imuBuilder_.addMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public Builder addAllImu(
+            java.lang.Iterable<? extends telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData> values) {
+          if (imuBuilder_ == null) {
+            ensureImuIsMutable();
+            com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                values, imu_);
+            onChanged();
+          } else {
+            imuBuilder_.addAllMessages(values);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public Builder clearImu() {
+          if (imuBuilder_ == null) {
+            imu_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000002);
+            onChanged();
+          } else {
+            imuBuilder_.clear();
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public Builder removeImu(int index) {
+          if (imuBuilder_ == null) {
+            ensureImuIsMutable();
+            imu_.remove(index);
+            onChanged();
+          } else {
+            imuBuilder_.remove(index);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.Builder getImuBuilder(
+            int index) {
+          return getImuFieldBuilder().getBuilder(index);
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.Sensors.ImuDataOrBuilder getImuOrBuilder(
+            int index) {
+          if (imuBuilder_ == null) {
+            return imu_.get(index);  } else {
+            return imuBuilder_.getMessageOrBuilder(index);
+          }
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public java.util.List<? extends telemetrydata.TelemetryData.ClientToServer.Sensors.ImuDataOrBuilder> 
+             getImuOrBuilderList() {
+          if (imuBuilder_ != null) {
+            return imuBuilder_.getMessageOrBuilderList();
+          } else {
+            return java.util.Collections.unmodifiableList(imu_);
+          }
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.Builder addImuBuilder() {
+          return getImuFieldBuilder().addBuilder(
+              telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.Builder addImuBuilder(
+            int index) {
+          return getImuFieldBuilder().addBuilder(
+              index, telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .telemetry_data.ClientToServer.Sensors.ImuData imu = 2;</code>
+         */
+        public java.util.List<telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.Builder> 
+             getImuBuilderList() {
+          return getImuFieldBuilder().getBuilderList();
+        }
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData, telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.Builder, telemetrydata.TelemetryData.ClientToServer.Sensors.ImuDataOrBuilder> 
+            getImuFieldBuilder() {
+          if (imuBuilder_ == null) {
+            imuBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData, telemetrydata.TelemetryData.ClientToServer.Sensors.ImuData.Builder, telemetrydata.TelemetryData.ClientToServer.Sensors.ImuDataOrBuilder>(
+                    imu_,
+                    ((bitField0_ & 0x00000002) == 0x00000002),
+                    getParentForChildren(),
+                    isClean());
+            imu_ = null;
+          }
+          return imuBuilder_;
+        }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:telemetry_data.ClientToServer.Sensors)
+      }
+
+      // @@protoc_insertion_point(class_scope:telemetry_data.ClientToServer.Sensors)
+      private static final telemetrydata.TelemetryData.ClientToServer.Sensors DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new telemetrydata.TelemetryData.ClientToServer.Sensors();
+      }
+
+      public static telemetrydata.TelemetryData.ClientToServer.Sensors getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<Sensors>
+          PARSER = new com.google.protobuf.AbstractParser<Sensors>() {
+        @java.lang.Override
+        public Sensors parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Sensors(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<Sensors> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Sensors> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public telemetrydata.TelemetryData.ClientToServer.Sensors getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
     public interface EmergencyBrakesOrBuilder extends
         // @@protoc_insertion_point(interface_extends:telemetry_data.ClientToServer.EmergencyBrakes)
         com.google.protobuf.MessageOrBuilder {
@@ -6768,33 +8312,42 @@ public final class TelemetryData {
       return getBatteries();
     }
 
+    public static final int SENSORS_FIELD_NUMBER = 5;
+    private telemetrydata.TelemetryData.ClientToServer.Sensors sensors_;
+    /**
+     * <code>.telemetry_data.ClientToServer.Sensors sensors = 5;</code>
+     */
+    public boolean hasSensors() {
+      return sensors_ != null;
+    }
+    /**
+     * <code>.telemetry_data.ClientToServer.Sensors sensors = 5;</code>
+     */
+    public telemetrydata.TelemetryData.ClientToServer.Sensors getSensors() {
+      return sensors_ == null ? telemetrydata.TelemetryData.ClientToServer.Sensors.getDefaultInstance() : sensors_;
+    }
+    /**
+     * <code>.telemetry_data.ClientToServer.Sensors sensors = 5;</code>
+     */
+    public telemetrydata.TelemetryData.ClientToServer.SensorsOrBuilder getSensorsOrBuilder() {
+      return getSensors();
+    }
+
     public static final int EMERGENCY_BRAKES_FIELD_NUMBER = 6;
     private telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes emergencyBrakes_;
     /**
-     * <pre>
-     * Sensors sensors = 5;
-     * </pre>
-     *
      * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
      */
     public boolean hasEmergencyBrakes() {
       return emergencyBrakes_ != null;
     }
     /**
-     * <pre>
-     * Sensors sensors = 5;
-     * </pre>
-     *
      * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
      */
     public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes getEmergencyBrakes() {
       return emergencyBrakes_ == null ? telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.getDefaultInstance() : emergencyBrakes_;
     }
     /**
-     * <pre>
-     * Sensors sensors = 5;
-     * </pre>
-     *
      * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
      */
     public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakesOrBuilder getEmergencyBrakesOrBuilder() {
@@ -6827,6 +8380,9 @@ public final class TelemetryData {
       if (batteries_ != null) {
         output.writeMessage(4, getBatteries());
       }
+      if (sensors_ != null) {
+        output.writeMessage(5, getSensors());
+      }
       if (emergencyBrakes_ != null) {
         output.writeMessage(6, getEmergencyBrakes());
       }
@@ -6854,6 +8410,10 @@ public final class TelemetryData {
       if (batteries_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getBatteries());
+      }
+      if (sensors_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, getSensors());
       }
       if (emergencyBrakes_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -6895,6 +8455,11 @@ public final class TelemetryData {
         result = result && getBatteries()
             .equals(other.getBatteries());
       }
+      result = result && (hasSensors() == other.hasSensors());
+      if (hasSensors()) {
+        result = result && getSensors()
+            .equals(other.getSensors());
+      }
       result = result && (hasEmergencyBrakes() == other.hasEmergencyBrakes());
       if (hasEmergencyBrakes()) {
         result = result && getEmergencyBrakes()
@@ -6926,6 +8491,10 @@ public final class TelemetryData {
       if (hasBatteries()) {
         hash = (37 * hash) + BATTERIES_FIELD_NUMBER;
         hash = (53 * hash) + getBatteries().hashCode();
+      }
+      if (hasSensors()) {
+        hash = (37 * hash) + SENSORS_FIELD_NUMBER;
+        hash = (53 * hash) + getSensors().hashCode();
       }
       if (hasEmergencyBrakes()) {
         hash = (37 * hash) + EMERGENCY_BRAKES_FIELD_NUMBER;
@@ -7088,6 +8657,12 @@ public final class TelemetryData {
           batteries_ = null;
           batteriesBuilder_ = null;
         }
+        if (sensorsBuilder_ == null) {
+          sensors_ = null;
+        } else {
+          sensors_ = null;
+          sensorsBuilder_ = null;
+        }
         if (emergencyBrakesBuilder_ == null) {
           emergencyBrakes_ = null;
         } else {
@@ -7139,6 +8714,11 @@ public final class TelemetryData {
           result.batteries_ = batteries_;
         } else {
           result.batteries_ = batteriesBuilder_.build();
+        }
+        if (sensorsBuilder_ == null) {
+          result.sensors_ = sensors_;
+        } else {
+          result.sensors_ = sensorsBuilder_.build();
         }
         if (emergencyBrakesBuilder_ == null) {
           result.emergencyBrakes_ = emergencyBrakes_;
@@ -7204,6 +8784,9 @@ public final class TelemetryData {
         }
         if (other.hasBatteries()) {
           mergeBatteries(other.getBatteries());
+        }
+        if (other.hasSensors()) {
+          mergeSensors(other.getSensors());
         }
         if (other.hasEmergencyBrakes()) {
           mergeEmergencyBrakes(other.getEmergencyBrakes());
@@ -7705,24 +9288,133 @@ public final class TelemetryData {
         return batteriesBuilder_;
       }
 
+      private telemetrydata.TelemetryData.ClientToServer.Sensors sensors_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          telemetrydata.TelemetryData.ClientToServer.Sensors, telemetrydata.TelemetryData.ClientToServer.Sensors.Builder, telemetrydata.TelemetryData.ClientToServer.SensorsOrBuilder> sensorsBuilder_;
+      /**
+       * <code>.telemetry_data.ClientToServer.Sensors sensors = 5;</code>
+       */
+      public boolean hasSensors() {
+        return sensorsBuilder_ != null || sensors_ != null;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Sensors sensors = 5;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.Sensors getSensors() {
+        if (sensorsBuilder_ == null) {
+          return sensors_ == null ? telemetrydata.TelemetryData.ClientToServer.Sensors.getDefaultInstance() : sensors_;
+        } else {
+          return sensorsBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Sensors sensors = 5;</code>
+       */
+      public Builder setSensors(telemetrydata.TelemetryData.ClientToServer.Sensors value) {
+        if (sensorsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          sensors_ = value;
+          onChanged();
+        } else {
+          sensorsBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Sensors sensors = 5;</code>
+       */
+      public Builder setSensors(
+          telemetrydata.TelemetryData.ClientToServer.Sensors.Builder builderForValue) {
+        if (sensorsBuilder_ == null) {
+          sensors_ = builderForValue.build();
+          onChanged();
+        } else {
+          sensorsBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Sensors sensors = 5;</code>
+       */
+      public Builder mergeSensors(telemetrydata.TelemetryData.ClientToServer.Sensors value) {
+        if (sensorsBuilder_ == null) {
+          if (sensors_ != null) {
+            sensors_ =
+              telemetrydata.TelemetryData.ClientToServer.Sensors.newBuilder(sensors_).mergeFrom(value).buildPartial();
+          } else {
+            sensors_ = value;
+          }
+          onChanged();
+        } else {
+          sensorsBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Sensors sensors = 5;</code>
+       */
+      public Builder clearSensors() {
+        if (sensorsBuilder_ == null) {
+          sensors_ = null;
+          onChanged();
+        } else {
+          sensors_ = null;
+          sensorsBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Sensors sensors = 5;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.Sensors.Builder getSensorsBuilder() {
+        
+        onChanged();
+        return getSensorsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Sensors sensors = 5;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.SensorsOrBuilder getSensorsOrBuilder() {
+        if (sensorsBuilder_ != null) {
+          return sensorsBuilder_.getMessageOrBuilder();
+        } else {
+          return sensors_ == null ?
+              telemetrydata.TelemetryData.ClientToServer.Sensors.getDefaultInstance() : sensors_;
+        }
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Sensors sensors = 5;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          telemetrydata.TelemetryData.ClientToServer.Sensors, telemetrydata.TelemetryData.ClientToServer.Sensors.Builder, telemetrydata.TelemetryData.ClientToServer.SensorsOrBuilder> 
+          getSensorsFieldBuilder() {
+        if (sensorsBuilder_ == null) {
+          sensorsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              telemetrydata.TelemetryData.ClientToServer.Sensors, telemetrydata.TelemetryData.ClientToServer.Sensors.Builder, telemetrydata.TelemetryData.ClientToServer.SensorsOrBuilder>(
+                  getSensors(),
+                  getParentForChildren(),
+                  isClean());
+          sensors_ = null;
+        }
+        return sensorsBuilder_;
+      }
+
       private telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes emergencyBrakes_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
           telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes, telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.Builder, telemetrydata.TelemetryData.ClientToServer.EmergencyBrakesOrBuilder> emergencyBrakesBuilder_;
       /**
-       * <pre>
-       * Sensors sensors = 5;
-       * </pre>
-       *
        * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
        */
       public boolean hasEmergencyBrakes() {
         return emergencyBrakesBuilder_ != null || emergencyBrakes_ != null;
       }
       /**
-       * <pre>
-       * Sensors sensors = 5;
-       * </pre>
-       *
        * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
        */
       public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes getEmergencyBrakes() {
@@ -7733,10 +9425,6 @@ public final class TelemetryData {
         }
       }
       /**
-       * <pre>
-       * Sensors sensors = 5;
-       * </pre>
-       *
        * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
        */
       public Builder setEmergencyBrakes(telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes value) {
@@ -7753,10 +9441,6 @@ public final class TelemetryData {
         return this;
       }
       /**
-       * <pre>
-       * Sensors sensors = 5;
-       * </pre>
-       *
        * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
        */
       public Builder setEmergencyBrakes(
@@ -7771,10 +9455,6 @@ public final class TelemetryData {
         return this;
       }
       /**
-       * <pre>
-       * Sensors sensors = 5;
-       * </pre>
-       *
        * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
        */
       public Builder mergeEmergencyBrakes(telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes value) {
@@ -7793,10 +9473,6 @@ public final class TelemetryData {
         return this;
       }
       /**
-       * <pre>
-       * Sensors sensors = 5;
-       * </pre>
-       *
        * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
        */
       public Builder clearEmergencyBrakes() {
@@ -7811,10 +9487,6 @@ public final class TelemetryData {
         return this;
       }
       /**
-       * <pre>
-       * Sensors sensors = 5;
-       * </pre>
-       *
        * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
        */
       public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.Builder getEmergencyBrakesBuilder() {
@@ -7823,10 +9495,6 @@ public final class TelemetryData {
         return getEmergencyBrakesFieldBuilder().getBuilder();
       }
       /**
-       * <pre>
-       * Sensors sensors = 5;
-       * </pre>
-       *
        * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
        */
       public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakesOrBuilder getEmergencyBrakesOrBuilder() {
@@ -7838,10 +9506,6 @@ public final class TelemetryData {
         }
       }
       /**
-       * <pre>
-       * Sensors sensors = 5;
-       * </pre>
-       *
        * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -7951,6 +9615,16 @@ public final class TelemetryData {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_telemetry_data_ClientToServer_Batteries_BatteryData_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_telemetry_data_ClientToServer_Sensors_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_telemetry_data_ClientToServer_Sensors_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_telemetry_data_ClientToServer_Sensors_ImuData_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_telemetry_data_ClientToServer_Sensors_ImuData_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -7974,45 +9648,51 @@ public final class TelemetryData {
       "ommand\022\022\n\nrun_length\030\002 \001(\002\022\032\n\022service_pr" +
       "opulsion\030\003 \001(\010\"[\n\007Command\022\007\n\003ACK\020\000\022\010\n\004ST" +
       "OP\020\001\022\n\n\006LAUNCH\020\002\022\t\n\005RESET\020\003\022\016\n\nRUN_LENGT" +
-      "H\020\004\022\026\n\022SERVICE_PROPULSION\020\005\"\306\013\n\016ClientTo" +
+      "H\020\004\022\026\n\022SERVICE_PROPULSION\020\005\"\271\r\n\016ClientTo" +
       "Server\022=\n\nnavigation\030\001 \001(\0132).telemetry_d" +
       "ata.ClientToServer.Navigation\022B\n\rstate_m" +
       "achine\030\002 \001(\0132+.telemetry_data.ClientToSe" +
       "rver.StateMachine\0225\n\006motors\030\003 \001(\0132%.tele" +
       "metry_data.ClientToServer.Motors\022;\n\tbatt" +
       "eries\030\004 \001(\0132(.telemetry_data.ClientToSer" +
-      "ver.Batteries\022H\n\020emergency_brakes\030\006 \001(\0132" +
-      "..telemetry_data.ClientToServer.Emergenc" +
-      "yBrakes\032\212\001\n\nNavigation\022B\n\rmodule_status\030" +
-      "\001 \001(\0162+.telemetry_data.ClientToServer.Mo" +
-      "duleStatus\022\020\n\010distance\030\002 \001(\002\022\020\n\010velocity" +
-      "\030\003 \001(\002\022\024\n\014acceleration\030\004 \001(\002\032\225\002\n\014StateMa" +
-      "chine\022H\n\rcurrent_state\030\002 \001(\01621.telemetry" +
-      "_data.ClientToServer.StateMachine.State\"" +
-      "\272\001\n\005State\022\010\n\004IDLE\020\000\022\017\n\013CALIBRATING\020\001\022\t\n\005" +
-      "READY\020\002\022\020\n\014ACCELERATING\020\003\022\023\n\017NOMINAL_BRA" +
-      "KING\020\004\022\025\n\021EMERGENCY_BRAKING\020\005\022\020\n\014RUN_COM" +
-      "PLETE\020\006\022\023\n\017FAILURE_STOPPED\020\007\022\013\n\007EXITING\020" +
-      "\010\022\014\n\010FINISHED\020\t\022\013\n\007INVALID\020\n\032\304\001\n\006Motors\022" +
+      "ver.Batteries\0227\n\007sensors\030\005 \001(\0132&.telemet" +
+      "ry_data.ClientToServer.Sensors\022H\n\020emerge" +
+      "ncy_brakes\030\006 \001(\0132..telemetry_data.Client" +
+      "ToServer.EmergencyBrakes\032\212\001\n\nNavigation\022" +
       "B\n\rmodule_status\030\001 \001(\0162+.telemetry_data." +
-      "ClientToServer.ModuleStatus\022\022\n\nvelocity_" +
-      "1\030\002 \001(\021\022\022\n\nvelocity_2\030\003 \001(\021\022\022\n\nvelocity_" +
-      "3\030\004 \001(\021\022\022\n\nvelocity_4\030\005 \001(\021\022\022\n\nvelocity_" +
-      "5\030\006 \001(\021\022\022\n\nvelocity_6\030\007 \001(\021\032\202\003\n\tBatterie" +
-      "s\022B\n\rmodule_status\030\001 \001(\0162+.telemetry_dat" +
-      "a.ClientToServer.ModuleStatus\022Q\n\023low_pow" +
-      "er_batteries\030\002 \003(\01324.telemetry_data.Clie" +
-      "ntToServer.Batteries.BatteryData\022R\n\024high" +
-      "_power_batteries\030\003 \003(\01324.telemetry_data." +
-      "ClientToServer.Batteries.BatteryData\032\211\001\n" +
-      "\013BatteryData\022\017\n\007voltage\030\001 \001(\r\022\017\n\007current" +
-      "\030\002 \001(\021\022\016\n\006charge\030\003 \001(\r\022\023\n\013temperature\030\004 " +
-      "\001(\005\022\030\n\020low_voltage_cell\030\005 \001(\r\022\031\n\021high_vo" +
-      "ltage_cell\030\006 \001(\r\032<\n\017EmergencyBrakes\022\024\n\014f" +
-      "ront_brakes\030\001 \001(\010\022\023\n\013rear_brakes\030\002 \001(\010\"D" +
-      "\n\014ModuleStatus\022\t\n\005START\020\000\022\010\n\004INIT\020\001\022\t\n\005R" +
-      "EADY\020\002\022\024\n\020CRITICAL_FAILURE\020\003B\036\n\rtelemetr" +
-      "ydataB\rTelemetryDatab\006proto3"
+      "ClientToServer.ModuleStatus\022\020\n\010distance\030" +
+      "\002 \001(\002\022\020\n\010velocity\030\003 \001(\002\022\024\n\014acceleration\030" +
+      "\004 \001(\002\032\225\002\n\014StateMachine\022H\n\rcurrent_state\030" +
+      "\002 \001(\01621.telemetry_data.ClientToServer.St" +
+      "ateMachine.State\"\272\001\n\005State\022\010\n\004IDLE\020\000\022\017\n\013" +
+      "CALIBRATING\020\001\022\t\n\005READY\020\002\022\020\n\014ACCELERATING" +
+      "\020\003\022\023\n\017NOMINAL_BRAKING\020\004\022\025\n\021EMERGENCY_BRA" +
+      "KING\020\005\022\020\n\014RUN_COMPLETE\020\006\022\023\n\017FAILURE_STOP" +
+      "PED\020\007\022\013\n\007EXITING\020\010\022\014\n\010FINISHED\020\t\022\013\n\007INVA" +
+      "LID\020\n\032\304\001\n\006Motors\022B\n\rmodule_status\030\001 \001(\0162" +
+      "+.telemetry_data.ClientToServer.ModuleSt" +
+      "atus\022\022\n\nvelocity_1\030\002 \001(\021\022\022\n\nvelocity_2\030\003" +
+      " \001(\021\022\022\n\nvelocity_3\030\004 \001(\021\022\022\n\nvelocity_4\030\005" +
+      " \001(\021\022\022\n\nvelocity_5\030\006 \001(\021\022\022\n\nvelocity_6\030\007" +
+      " \001(\021\032\202\003\n\tBatteries\022B\n\rmodule_status\030\001 \001(" +
+      "\0162+.telemetry_data.ClientToServer.Module" +
+      "Status\022Q\n\023low_power_batteries\030\002 \003(\01324.te" +
+      "lemetry_data.ClientToServer.Batteries.Ba" +
+      "tteryData\022R\n\024high_power_batteries\030\003 \003(\0132" +
+      "4.telemetry_data.ClientToServer.Batterie" +
+      "s.BatteryData\032\211\001\n\013BatteryData\022\017\n\007voltage" +
+      "\030\001 \001(\r\022\017\n\007current\030\002 \001(\021\022\016\n\006charge\030\003 \001(\r\022" +
+      "\023\n\013temperature\030\004 \001(\005\022\030\n\020low_voltage_cell" +
+      "\030\005 \001(\r\022\031\n\021high_voltage_cell\030\006 \001(\r\032\267\001\n\007Se" +
+      "nsors\022B\n\rmodule_status\030\001 \001(\0162+.telemetry" +
+      "_data.ClientToServer.ModuleStatus\022;\n\003imu" +
+      "\030\002 \003(\0132..telemetry_data.ClientToServer.S" +
+      "ensors.ImuData\032+\n\007ImuData\022\023\n\013operational" +
+      "\030\001 \001(\010\022\013\n\003acc\030\002 \003(\002\032<\n\017EmergencyBrakes\022\024" +
+      "\n\014front_brakes\030\001 \001(\010\022\023\n\013rear_brakes\030\002 \001(" +
+      "\010\"D\n\014ModuleStatus\022\t\n\005START\020\000\022\010\n\004INIT\020\001\022\t" +
+      "\n\005READY\020\002\022\024\n\020CRITICAL_FAILURE\020\003B\036\n\rtelem" +
+      "etrydataB\rTelemetryDatab\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -8043,7 +9723,7 @@ public final class TelemetryData {
     internal_static_telemetry_data_ClientToServer_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_descriptor,
-        new java.lang.String[] { "Navigation", "StateMachine", "Motors", "Batteries", "EmergencyBrakes", });
+        new java.lang.String[] { "Navigation", "StateMachine", "Motors", "Batteries", "Sensors", "EmergencyBrakes", });
     internal_static_telemetry_data_ClientToServer_Navigation_descriptor =
       internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(0);
     internal_static_telemetry_data_ClientToServer_Navigation_fieldAccessorTable = new
@@ -8074,8 +9754,20 @@ public final class TelemetryData {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_Batteries_BatteryData_descriptor,
         new java.lang.String[] { "Voltage", "Current", "Charge", "Temperature", "LowVoltageCell", "HighVoltageCell", });
-    internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor =
+    internal_static_telemetry_data_ClientToServer_Sensors_descriptor =
       internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(4);
+    internal_static_telemetry_data_ClientToServer_Sensors_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_telemetry_data_ClientToServer_Sensors_descriptor,
+        new java.lang.String[] { "ModuleStatus", "Imu", });
+    internal_static_telemetry_data_ClientToServer_Sensors_ImuData_descriptor =
+      internal_static_telemetry_data_ClientToServer_Sensors_descriptor.getNestedTypes().get(0);
+    internal_static_telemetry_data_ClientToServer_Sensors_ImuData_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_telemetry_data_ClientToServer_Sensors_ImuData_descriptor,
+        new java.lang.String[] { "Operational", "Acc", });
+    internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor =
+      internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(5);
     internal_static_telemetry_data_ClientToServer_EmergencyBrakes_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor,
