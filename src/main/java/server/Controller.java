@@ -9,6 +9,9 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.TaskScheduler;
 import java.util.concurrent.ScheduledFuture;
+import telemetrydata.TelemetryData.*;
+import com.google.protobuf.util.JsonFormat;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.json.*;
 
@@ -49,11 +52,16 @@ public class Controller {
     }
 
     @MessageMapping("/sendMessage")
-    @SendTo("/topic/podStats") // error messages get sent to same destination as pod stats do, probably should change this
-    public String sendMessage(int msg) {
-        if (server != null && server.isConnected()) {
-            server.sendMessage(msg);
-            return "{\"status\":\"sent msg: < " + msg + "> to server\"}";
+    @SendTo("/topic/sendMessageStatus") // TODO: error messages get sent to same destination as pod stats do, probably should change this
+    public String sendMessage(String msg) {
+        try {
+            if (server != null && server.isConnected()) {
+                server.sendMessage(new JSONObject(msg));
+                return "{\"status\":\"sent msg\", \"message\":" + msg + "}";
+            }
+        }
+        catch (JSONException e) {
+            return "{\"status\":\"error\", \"errorMessage\":\"poorly formed json attempted to be sent to server (probs entered nothing in run_length box)\"}";
         }
 
         return "{\"status\":\"error\", \"errorMessage\":\"could not send message\"}";
@@ -64,10 +72,18 @@ public class Controller {
 
     // this method gets scheduled to run every 100ms (resposible for sending data to frontend)
     public void pingData() {
-        JSONObject data = new JSONObject();
-        data.put("cmd", server.getCmd());
-        data.put("data", server.getData());
+        ClientToServer msg = server.getProtoMessage();
+        JsonFormat.Printer protoJsonPrinter = JsonFormat.printer();
+        String msgJson;
 
-        template.convertAndSend("/topic/podStats", data.toString());
+        try {
+            msgJson = protoJsonPrinter.print(msg);
+        }
+        catch (InvalidProtocolBufferException e) {
+            System.out.println("Error: " + e);
+            msgJson = "{\"status\":\"error\", \"errorMessage\":\"empty msgJson\"}";
+        }
+
+        template.convertAndSend("/topic/podStats", msgJson);
     }
 }

@@ -6,7 +6,9 @@ import java.nio.ByteBuffer;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
-import protoTypes.MessageProtos.*;
+import telemetrydata.TelemetryData.*;
+
+import org.json.*;
 
 public class Server implements Runnable {
     private static final int PORT = 9090;
@@ -17,8 +19,8 @@ public class Server implements Runnable {
     private DatagramSocket spaceXSocket; // UDP socket to SpaceX
     private InetAddress spaceXAddress;
 
-    private TestMessage msg;
-    private boolean connected = false;
+    private ClientToServer msgFromClient;
+    private boolean connected;
 
     public Server() {
         try {
@@ -66,7 +68,7 @@ public class Server implements Runnable {
         }
     }
 
-    public void sendMessage(int message) {
+    public void sendMessage(JSONObject message) {
         try {
             Thread sendWorker = new Thread(new MessageSender(message));
             sendWorker.start();
@@ -81,24 +83,28 @@ public class Server implements Runnable {
     }
 
     private class MessageSender implements Runnable {
-        private TestMessage.Builder msgBuilder;
+        private ServerToClient.Builder msgBuilder;
 
-        public MessageSender(int content) {
-            switch (content) {
-                case 4:
-                    msgBuilder = TestMessage.newBuilder().setCommand(TestMessage.Command.FINISH);
+        public MessageSender(JSONObject msg) {
+            // TODO: check for null from json? / throw exception if this fails??
+            msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.valueOf(msg.getString("command").toUpperCase()));
+
+            // here we add extra data like run_length if the command requires it
+            switch (msg.optString("command", "ERROR").toUpperCase()) {
+                case "RUN_LENGTH":
+                    msgBuilder.setRunLength((float) msg.getDouble("run_length")); // TODO: check if this fails
                     break;
-                case 5:
-                    msgBuilder = TestMessage.newBuilder().setCommand(TestMessage.Command.EM_STOP);
+                case "SERVICE_PROPULSION":
+                    msgBuilder.setServicePropulsion(msg.getBoolean("state")); // TODO: check if this fails
                     break;
-                // IMPLEMENT DEFAULT CASE, honestly idk what to do here since we can't "cancel" this runnable from here
+                // TODO: IMPLEMENT DEFAULT CASE, honestly idk what to do here since we can't "cancel" this runnable from here
             }
         }
 
         @Override
         public void run() {
             try {
-                TestMessage msg = msgBuilder.build();
+                ServerToClient msg = msgBuilder.build();
                 msg.writeDelimitedTo(Server.this.client.getOutputStream());
                 System.out.println("Sent \"" + msg.getCommand() + "\" to client");
             }
@@ -117,16 +123,12 @@ public class Server implements Runnable {
 
         @Override
         public void run() {
-            TestMessage.Command cmd = TestMessage.Command.ERROR; // default value
-            int data = 0; // default value
-
             logger.info("******BEGIN******");
 
             while (true) {
                 try {
-                    msg = TestMessage.parseDelimitedFrom(Server.this.client.getInputStream());
-                    cmd = msg.getCommand();
-                    data = msg.getData();
+                    Server.this.msgFromClient = ClientToServer.parseDelimitedFrom(Server.this.client.getInputStream());
+                    logger.info(Server.this.msgFromClient.toString());
                 }
                 catch (NullPointerException e) {
                     System.out.println("Client probably disconnected");
@@ -136,21 +138,6 @@ public class Server implements Runnable {
                 catch (IOException e) {
                     System.out.println("Exception: " + e);
                     break;
-                }
-
-                switch (cmd) {
-                    case VELOCITY:
-                        logger.info("VELOCITY: " + data);
-                        break;
-                    case ACCELERATION:
-                        logger.info("ACCELERATION: " + data);
-                        break;
-                    case BRAKE_TEMP:
-                        logger.info("BRAKE_TEMP: " + data);
-                        break;
-                    default:
-                        logger.info("ERROR: we should never reach this state");
-                        throw new RuntimeException("UNREACHABLE");
                 }
             }
         }
@@ -246,12 +233,8 @@ public class Server implements Runnable {
         }
     }
 
-    public String getCmd() {
-        return String.valueOf(msg.getCommand());
-    }
-
-    public int getData() {
-        return msg.getData();
+    public ClientToServer getProtoMessage() {
+        return msgFromClient;
     }
 
     public boolean isConnected() {
