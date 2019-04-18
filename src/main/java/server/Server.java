@@ -19,8 +19,8 @@ public class Server implements Runnable {
     private DatagramSocket spaceXSocket; // UDP socket to SpaceX
     private InetAddress spaceXAddress;
 
-    private TestMessage msg;
-    private boolean connected = false;
+    private ClientToServer msgFromClient;
+    private boolean connected;
 
     public Server() {
         try {
@@ -89,6 +89,7 @@ public class Server implements Runnable {
             // TODO: check for null from json? / throw exception if this fails??
             msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.valueOf(msg.getString("command").toUpperCase()));
 
+            // here we add extra data like run_length if the command requires it
             switch (msg.optString("command", "ERROR").toUpperCase()) {
                 case "RUN_LENGTH":
                     msgBuilder.setRunLength((float) msg.getDouble("run_length")); // TODO: check if this fails
@@ -122,18 +123,12 @@ public class Server implements Runnable {
 
         @Override
         public void run() {
-            TestMessage.Command cmd = TestMessage.Command.ERROR; // default value
-            int data = 0; // default value
-
             logger.info("******BEGIN******");
 
             while (true) {
                 try {
-                    msg = TestMessage.parseDelimitedFrom(Server.this.client.getInputStream());
-                    // System.out.println("Recvd msg: ");
-                    // System.out.println(msg);
-                    cmd = msg.getCommand();
-                    data = msg.getData();
+                    Server.this.msgFromClient = ClientToServer.parseDelimitedFrom(Server.this.client.getInputStream());
+                    logger.info(Server.this.msgFromClient.toString());
                 }
                 catch (NullPointerException e) {
                     System.out.println("Client probably disconnected");
@@ -143,21 +138,6 @@ public class Server implements Runnable {
                 catch (IOException e) {
                     System.out.println("Exception: " + e);
                     break;
-                }
-
-                switch (cmd) {
-                    case VELOCITY:
-                        logger.info("VELOCITY: " + data);
-                        break;
-                    case ACCELERATION:
-                        logger.info("ACCELERATION: " + data);
-                        break;
-                    case BRAKE_TEMP:
-                        logger.info("BRAKE_TEMP: " + data);
-                        break;
-                    default:
-                        logger.info("ERROR: we should never reach this state");
-                        throw new RuntimeException("UNREACHABLE");
                 }
             }
         }
@@ -253,14 +233,8 @@ public class Server implements Runnable {
         }
     }
 
-    public String getCmd() {
-        System.out.println("Current msg: ");
-        System.out.println(msg);
-        return String.valueOf(msg.getCommand());
-    }
-
-    public int getData() {
-        return msg.getData();
+    public ClientToServer getProtoMessage() {
+        return msgFromClient;
     }
 
     public boolean isConnected() {
