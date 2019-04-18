@@ -9,6 +9,9 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.TaskScheduler;
 import java.util.concurrent.ScheduledFuture;
+import telemetrydata.TelemetryData.*;
+import com.google.protobuf.util.JsonFormat;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.json.*;
 
@@ -69,18 +72,18 @@ public class Controller {
 
     // this method gets scheduled to run every 100ms (resposible for sending data to frontend)
     public void pingData() {
-        JSONObject data = new JSONObject().put("cmd", "1")
-                                          .put("data", 222);
+        ClientToServer msg = server.getProtoMessage();
+        JsonFormat.Printer protoJsonPrinter = JsonFormat.printer();
+        String msgJson;
 
-        // String cmd = server.getCmd();
-        // int dataInt = server.getData();
+        try {
+            msgJson = protoJsonPrinter.print(msg);
+        }
+        catch (InvalidProtocolBufferException e) {
+            System.out.println("Error: " + e);
+            msgJson = "{\"status\":\"error\", \"errorMessage\":\"empty msgJson\"}";
+        }
 
-        // data.put("cmd", cmd);
-        // data.put("data", dataInt);
-
-        // System.out.println("server.getCmd(): " + cmd);
-        // System.out.println("server.getData(): " + dataInt);
-
-        template.convertAndSend("/topic/podStats", data.toString());
+        template.convertAndSend("/topic/podStats", msgJson);
     }
 }

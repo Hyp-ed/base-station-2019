@@ -19,8 +19,8 @@ public class Server implements Runnable {
     private DatagramSocket spaceXSocket; // UDP socket to SpaceX
     private InetAddress spaceXAddress;
 
-    private String msgJsonString;
-    private boolean connected = false;
+    private ClientToServer msgFromClient;
+    private boolean connected;
 
     public Server() {
         try {
@@ -116,7 +116,6 @@ public class Server implements Runnable {
 
     private class MessageReader implements Runnable {
         private Logger logger = null;
-        private ClientToServer msg = null;
 
         public MessageReader() {
             logger = Server.getLogger(Server.class.getName());
@@ -128,10 +127,8 @@ public class Server implements Runnable {
 
             while (true) {
                 try {
-                    msg = ClientToServer.parseDelimitedFrom(Server.this.client.getInputStream());
-                    System.out.println("Recvd msg: ");
-                    System.out.println(msg);
-                    logger.info(msg.toString());
+                    Server.this.msgFromClient = ClientToServer.parseDelimitedFrom(Server.this.client.getInputStream());
+                    logger.info(Server.this.msgFromClient.toString());
                 }
                 catch (NullPointerException e) {
                     System.out.println("Client probably disconnected");
@@ -142,21 +139,6 @@ public class Server implements Runnable {
                     System.out.println("Exception: " + e);
                     break;
                 }
-
-                // switch (cmd) {
-                    // case VELOCITY:
-                        // logger.info("VELOCITY: " + data);
-                        // break;
-                    // case ACCELERATION:
-                        // logger.info("ACCELERATION: " + data);
-                        // break;
-                    // case BRAKE_TEMP:
-                        // logger.info("BRAKE_TEMP: " + data);
-                        // break;
-                    // default:
-                        // logger.info("ERROR: we should never reach this state");
-                        // throw new RuntimeException("UNREACHABLE");
-                // }
             }
         }
     }
@@ -249,6 +231,10 @@ public class Server implements Runnable {
             System.out.println("Error creating new logger");
             return null;
         }
+    }
+
+    public ClientToServer getProtoMessage() {
+        return msgFromClient;
     }
 
     public boolean isConnected() {
