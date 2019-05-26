@@ -40,21 +40,76 @@ td.spaceRight {
     background-color: #707070;
 }
 
-#progressBarBatteryHp1Battery,
-#progressBarBatteryHp1Voltage,
-#progressBarBatteryHp1Temperature,
-#progressBarBatteryHp1Current,
-#progressBarBatteryHp2Battery,
-#progressBarBatteryHp2Voltage,
-#progressBarBatteryHp2Temperature,
-#progressBarBatteryHp2Current,
-#progressBarBatteryLp1Battery,
-#progressBarBatteryLp1Voltage,
-#progressBarBatteryLp1Current,
-#progressBarBatteryLp2Battery,
-#progressBarBatteryLp2Voltage,
+#progressBarBatteryHp1Battery {
+    width: 23%;
+    height: 20px;
+    background-color: #FFFFFF;
+}
+
+#progressBarBatteryHp1Voltage {
+    width: 87%;
+    height: 20px;
+    background-color: #b50000;
+}
+
+#progressBarBatteryHp1Temperature {
+    width: 42%;
+    height: 20px;
+    background-color: #FFFFFF;
+}
+
+#progressBarBatteryHp1Current {
+    width: 29%;
+    height: 20px;
+    background-color: #FFFFFF;
+}
+#progressBarBatteryHp2Battery {
+    width: 39%;
+    height: 20px;
+    background-color: #FFFFFF;
+}
+#progressBarBatteryHp2Voltage {
+    width: 10%;
+    height: 20px;
+    background-color: #FFFFFF;
+}
+#progressBarBatteryHp2Temperature {
+    width: 63%;
+    height: 20px;
+    background-color: #FFFFFF;
+}
+#progressBarBatteryHp2Current {
+    width: 24%;
+    height: 20px;
+    background-color: #FFFFFF;
+}
+#progressBarBatteryLp1Battery {
+    width: 82%;
+    height: 20px;
+    background-color: #b50000;
+}
+#progressBarBatteryLp1Voltage {
+    width: 38%;
+    height: 20px;
+    background-color: #FFFFFF;
+}
+#progressBarBatteryLp1Current {
+    width: 24%;
+    height: 20px;
+    background-color: #FFFFFF;
+}
+#progressBarBatteryLp2Battery {
+    width: 55%;
+    height: 20px;
+    background-color: #FFFFFF;
+}
+#progressBarBatteryLp2Voltage {
+    width: 87%;
+    height: 20px;
+    background-color: #FFFFFF;
+}
 #progressBarBatteryLp2Current{
-    width: 1%;
+    width: 48%;
     height: 20px;
     background-color: #FFFFFF;
 }
