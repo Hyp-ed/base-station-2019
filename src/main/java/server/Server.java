@@ -5,7 +5,6 @@ import java.net.*;
 import java.nio.ByteBuffer;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 import telemetrydata.TelemetryData.*;
 
 import org.json.*;
@@ -222,7 +221,6 @@ public class Server implements Runnable {
         try {
             Logger logger = Logger.getLogger(name);
             FileHandler fh = new FileHandler(System.getProperty("user.dir") + "/temp/server_log.log"); // make sure temp dir exists in current dir before running
-            fh.setFormatter(new SimpleFormatter());
             logger.addHandler(fh);
             logger.setUseParentHandlers(false);
             return logger;
