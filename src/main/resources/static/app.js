@@ -23,8 +23,7 @@ function startBaseStationServer() {
 function connect() {
     startBaseStationServer();
 
-    var socket = new SockJS('/connecthere');
-    stompClient = Stomp.over(socket);
+    stompClient = Stomp.client('ws://localhost:8080/connecthere');
     stompClient.connect({}, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
