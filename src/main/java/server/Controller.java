@@ -47,8 +47,14 @@ public class Controller {
             @Override
             public void run() {
                 while (!server.isConnected()) {
-                    template.convertAndSend("topic/podStats", "Pod not connected");  // isn't received on GUI, idk why
-                    System.out.println("RUNNING");
+                    template.convertAndSend("/topic/podStats", "Pod not connected");
+
+                    try {
+                        Thread.sleep(200);
+                    }
+                    catch (InterruptedException e) {
+                        System.out.println("Error sleeping thread while checking if pod is connected");
+                    }
                 }
 
                 scheduler.scheduleAtFixedRate(() -> pingData(), 100);
