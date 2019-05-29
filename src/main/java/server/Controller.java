@@ -17,38 +17,38 @@ import org.json.*;
 
 @RestController
 public class Controller {
+
+    @Autowired
     private Server server;
 
     // starts base station server, and returns if it has connected to pod client or not
     @RequestMapping(path = "/server", method = RequestMethod.POST)
     public String postServer() {
-        if (server == null) {
-            server = new Server();
+        if (server != null) {
             Thread serverThread = new Thread(server);
             serverThread.start();
+            System.out.println("******** Server started");
         }
 
         return String.valueOf(server.isConnected());
     }
 
-    @Autowired
-    private TaskScheduler scheduler;
-    private ScheduledFuture scheduledFuture;
-
     @MessageMapping("/pullData")
     @SendTo("/topic/podStats")
-    public String podStats() {
+    public void podStats() {
         // check if scheduledFuture is null bc we don't want to schedule pingData more than once per 100 ms
-        if (server != null && server.isConnected() && scheduledFuture == null) {
-            scheduledFuture = scheduler.scheduleAtFixedRate(() -> pingData(), 100); // don't really need this ScheduledFuture object, maybe to cancel() or something
-            return "{\"status\":\"should be working\"}";
-        }
+        // if (server != null && server.isConnected() && scheduledFuture == null) {
+            // scheduledFuture = scheduler.scheduleAtFixedRate(() -> pingData(), 100); // don't really need this ScheduledFuture object, maybe to cancel() or something
+            // return "{\"status\":\"should be working\"}";
+        // }
+// 
+        // if (scheduledFuture != null) {
+            // return "{\"status\":\"ScheduledFuture already running\"}";
+        // }
 
-        if (scheduledFuture != null) {
-            return "{\"status\":\"ScheduledFuture already running\"}";
-        }
-
-        return "{\"status\":\"error\", \"errorMessage\":\"error: base-station server probably not connected to pod (pod not started)\"}";
+        // return "{\"status\":\"error\", \"errorMessage\":\"error: base-station server probably not connected to pod (pod not started)\"}";
+        getReadyToPingData();
+        return;
     }
 
     @MessageMapping("/sendMessage")
@@ -67,8 +67,17 @@ public class Controller {
         return "{\"status\":\"error\", \"errorMessage\":\"could not send message\"}";
     }
 
-    @Autowired
-    private SimpMessagingTemplate template;
+    @Autowired private SimpMessagingTemplate template;
+    @Autowired private TaskScheduler scheduler;
+    private ScheduledFuture scheduledFuture;  // not autowired since it is initialized using scheduleAtFixedRate() below
+
+    public void getReadyToPingData() {
+        while (!server.isConnected()) {
+            template.convertAndSend("topic/podStats", "Pod not connected");  // isn't received on GUI, idk why
+        }
+
+        scheduledFuture = scheduler.scheduleAtFixedRate(() -> pingData(), 100); // don't really need this ScheduledFuture object, maybe to cancel() or something
+    }
 
     // this method gets scheduled to run every 100ms (resposible for sending data to frontend)
     public void pingData() {

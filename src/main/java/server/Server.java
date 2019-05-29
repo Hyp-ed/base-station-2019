@@ -6,9 +6,11 @@ import java.nio.ByteBuffer;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import telemetrydata.TelemetryData.*;
+import org.springframework.stereotype.Service;
 
 import org.json.*;
 
+@Service
 public class Server implements Runnable {
     private static final int PORT = 9090;
     private static final int SPACE_X_PORT = 3000;
