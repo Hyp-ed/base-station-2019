@@ -27,16 +27,36 @@ public class Controller {
         if (server != null) {
             Thread serverThread = new Thread(server);
             serverThread.start();
-            System.out.println("******** Server started");
+            System.out.println("Server started");
         }
 
         return String.valueOf(server.isConnected());
     }
 
+    @Autowired
+    private SimpMessagingTemplate template;
+
+    @Autowired
+    private TaskScheduler scheduler;
+
     @MessageMapping("/pullData")
     @SendTo("/topic/podStats")
     public void podStats() {
-        getReadyToPingData();
+        Thread checkToSchedule = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (!server.isConnected()) {
+                    template.convertAndSend("topic/podStats", "Pod not connected");  // isn't received on GUI, idk why
+                    System.out.println("RUNNING");
+                }
+
+                scheduler.scheduleAtFixedRate(() -> pingData(), 100);
+                return;
+            }
+        });
+
+        checkToSchedule.start();
         return;
     }
 
@@ -54,17 +74,6 @@ public class Controller {
         }
 
         return "{\"status\":\"error\", \"errorMessage\":\"could not send message\"}";
-    }
-
-    @Autowired private SimpMessagingTemplate template;
-    @Autowired private TaskScheduler scheduler;
-
-    public void getReadyToPingData() {
-        while (!server.isConnected()) {
-            template.convertAndSend("topic/podStats", "Pod not connected");  // isn't received on GUI, idk why
-        }
-
-        scheduler.scheduleAtFixedRate(() -> pingData(), 100);
     }
 
     // this method gets scheduled to run every 100ms (resposible for sending data to frontend)
