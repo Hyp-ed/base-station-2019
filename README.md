@@ -2,7 +2,7 @@
 
 This project is responsible for communicating with the hyperloop pod and sending relevant commands and information back and forth. The web interface is also included in here.
 
-## How to run
+### How to run
 This project uses gradle as its build system. The gradle wrapper is already checked into this repo, so no need to explicitly download gradle (unless you want to).
 
 Download the latest release from Github, and run:
@@ -12,7 +12,7 @@ $ java -jar build/libs/base-station-2019.jar
 
 Go to `localhost:8080` for the gui.
 
-#### Build project:
+### Build project:
 ```
 $ ./gradlew build
 ```
