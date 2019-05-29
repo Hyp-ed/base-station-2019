@@ -8,11 +8,9 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.TaskScheduler;
-import java.util.concurrent.ScheduledFuture;
 import telemetrydata.TelemetryData.*;
 import com.google.protobuf.util.JsonFormat;
 import com.google.protobuf.InvalidProtocolBufferException;
-
 import org.json.*;
 
 @RestController
@@ -69,7 +67,7 @@ public class Controller {
     }
 
     @MessageMapping("/sendMessage")
-    @SendTo("/topic/sendMessageStatus") // TODO: error messages get sent to same destination as pod stats do, probably should change this
+    @SendTo("/topic/sendMessageStatus")
     public String sendMessage(String msg) {
         try {
             if (server != null && server.isConnected()) {
