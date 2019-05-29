@@ -7,7 +7,7 @@ This project uses gradle as its build system. The gradle wrapper is already chec
 
 Download the latest release from Github, and run:
 ```
-$ java -jar build/libs/base-station-2019.jar
+$ java -jar base-station-2019.jar
 ```
 
 Go to `localhost:8080` for the gui.
