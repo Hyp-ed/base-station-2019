@@ -3,7 +3,7 @@
 This project is responsible for communicating with the hyperloop pod and sending relevant commands and information back and forth. The web interface is also included in here.
 
 ## How to run
-This project uses gradle as its build system. The gradle wrapper is already checked into this repo, so no need to explicitly download gradle (unless you want to). Also make sure you install the [protobufs](https://github.com/protocolbuffers/protobuf) library!!
+This project uses gradle as its build system. The gradle wrapper is already checked into this repo, so no need to explicitly download gradle (unless you want to).
 
 Download the latest release from Github, and run:
 ```
