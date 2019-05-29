@@ -17,38 +17,55 @@ import org.json.*;
 
 @RestController
 public class Controller {
+
+    @Autowired
     private Server server;
 
     // starts base station server, and returns if it has connected to pod client or not
     @RequestMapping(path = "/server", method = RequestMethod.POST)
     public String postServer() {
-        if (server == null) {
-            server = new Server();
+        if (server != null) {
             Thread serverThread = new Thread(server);
             serverThread.start();
+            System.out.println("Server started");
         }
 
         return String.valueOf(server.isConnected());
     }
 
     @Autowired
+    private SimpMessagingTemplate template;
+
+    @Autowired
     private TaskScheduler scheduler;
-    private ScheduledFuture scheduledFuture;
 
     @MessageMapping("/pullData")
-    @SendTo("/topic/podStats")
-    public String podStats() {
-        // check if scheduledFuture is null bc we don't want to schedule pingData more than once per 100 ms
-        if (server != null && server.isConnected() && scheduledFuture == null) {
-            scheduledFuture = scheduler.scheduleAtFixedRate(() -> pingData(), 100); // don't really need this ScheduledFuture object, maybe to cancel() or something
-            return "{\"status\":\"should be working\"}";
-        }
+    @SendTo("/topic/isPodConnected")
+    public void podStats() {
+        Thread checkToScheduleThread = new Thread(new Runnable() {
 
-        if (scheduledFuture != null) {
-            return "{\"status\":\"ScheduledFuture already running\"}";
-        }
+            @Override
+            public void run() {
+                while (!server.isConnected()) {
+                    try {
+                        Thread.sleep(200);
+                    }
+                    catch (InterruptedException e) {
+                        System.out.println("Error putting thread to sleep while checking if pod is connected");
+                    }
+                }
 
-        return "{\"status\":\"error\", \"errorMessage\":\"error: base-station server probably not connected to pod (pod not started)\"}";
+                template.convertAndSend("/topic/isPodConnected", "Pod is connected");
+                scheduler.scheduleAtFixedRate(() -> pingData(), 100);
+
+                return;  // end thread
+            }
+        });
+
+        checkToScheduleThread.start();
+
+        // don't return anything so that frontend knows as soon as it receives something from /topic/isPodConnected pod is connected
+        return;
     }
 
     @MessageMapping("/sendMessage")
@@ -66,9 +83,6 @@ public class Controller {
 
         return "{\"status\":\"error\", \"errorMessage\":\"could not send message\"}";
     }
-
-    @Autowired
-    private SimpMessagingTemplate template;
 
     // this method gets scheduled to run every 100ms (resposible for sending data to frontend)
     public void pingData() {
