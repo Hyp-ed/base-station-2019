@@ -41,7 +41,7 @@ public class Controller {
 
     @MessageMapping("/pullData")
     @SendTo("/topic/podStats")
-    public void podStats() {
+    public String podStats() {
         Thread checkToSchedule = new Thread(new Runnable() {
 
             @Override
@@ -63,7 +63,7 @@ public class Controller {
         });
 
         checkToSchedule.start();
-        return;
+        return "Waiting for pod to connect";
     }
 
     @MessageMapping("/sendMessage")
