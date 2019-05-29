@@ -40,30 +40,32 @@ public class Controller {
     private TaskScheduler scheduler;
 
     @MessageMapping("/pullData")
-    @SendTo("/topic/podStats")
-    public String podStats() {
-        Thread checkToSchedule = new Thread(new Runnable() {
+    @SendTo("/topic/isPodConnected")
+    public void podStats() {
+        Thread checkToScheduleThread = new Thread(new Runnable() {
 
             @Override
             public void run() {
                 while (!server.isConnected()) {
-                    template.convertAndSend("/topic/podStats", "Pod not connected");
-
                     try {
                         Thread.sleep(200);
                     }
                     catch (InterruptedException e) {
-                        System.out.println("Error sleeping thread while checking if pod is connected");
+                        System.out.println("Error putting thread to sleep while checking if pod is connected");
                     }
                 }
 
+                template.convertAndSend("/topic/isPodConnected", "Pod is connected");
                 scheduler.scheduleAtFixedRate(() -> pingData(), 100);
-                return;
+
+                return;  // end thread
             }
         });
 
-        checkToSchedule.start();
-        return "Waiting for pod to connect";
+        checkToScheduleThread.start();
+
+        // don't return anything so that frontend knows as soon as it receives something from /topic/isPodConnected pod is connected
+        return;
     }
 
     @MessageMapping("/sendMessage")
