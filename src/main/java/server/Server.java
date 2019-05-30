@@ -95,9 +95,6 @@ public class Server implements Runnable {
                 case "RUN_LENGTH":
                     msgBuilder.setRunLength((float) msg.getDouble("run_length")); // TODO: check if this fails
                     break;
-                case "SERVICE_PROPULSION":
-                    msgBuilder.setServicePropulsion(msg.getBoolean("state")); // TODO: check if this fails
-                    break;
                 // TODO: IMPLEMENT DEFAULT CASE, honestly idk what to do here since we can't "cancel" this runnable from here
             }
         }

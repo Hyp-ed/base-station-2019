@@ -14,718 +14,6 @@ public final class TelemetryData {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface TestMessageOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:telemetry_data.TestMessage)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.telemetry_data.TestMessage.Command command = 1;</code>
-     */
-    int getCommandValue();
-    /**
-     * <code>.telemetry_data.TestMessage.Command command = 1;</code>
-     */
-    telemetrydata.TelemetryData.TestMessage.Command getCommand();
-
-    /**
-     * <code>int32 data = 2;</code>
-     */
-    int getData();
-  }
-  /**
-   * Protobuf type {@code telemetry_data.TestMessage}
-   */
-  public  static final class TestMessage extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:telemetry_data.TestMessage)
-      TestMessageOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use TestMessage.newBuilder() to construct.
-    private TestMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private TestMessage() {
-      command_ = 0;
-      data_ = 0;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private TestMessage(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-              int rawValue = input.readEnum();
-
-              command_ = rawValue;
-              break;
-            }
-            case 16: {
-
-              data_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return telemetrydata.TelemetryData.internal_static_telemetry_data_TestMessage_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return telemetrydata.TelemetryData.internal_static_telemetry_data_TestMessage_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              telemetrydata.TelemetryData.TestMessage.class, telemetrydata.TelemetryData.TestMessage.Builder.class);
-    }
-
-    /**
-     * Protobuf enum {@code telemetry_data.TestMessage.Command}
-     */
-    public enum Command
-        implements com.google.protobuf.ProtocolMessageEnum {
-      /**
-       * <code>ERROR = 0;</code>
-       */
-      ERROR(0),
-      /**
-       * <code>VELOCITY = 1;</code>
-       */
-      VELOCITY(1),
-      /**
-       * <code>ACCELERATION = 2;</code>
-       */
-      ACCELERATION(2),
-      /**
-       * <code>BRAKE_TEMP = 3;</code>
-       */
-      BRAKE_TEMP(3),
-      /**
-       * <pre>
-       * commands below intended for server to client
-       * </pre>
-       *
-       * <code>FINISH = 4;</code>
-       */
-      FINISH(4),
-      /**
-       * <code>EM_STOP = 5;</code>
-       */
-      EM_STOP(5),
-      UNRECOGNIZED(-1),
-      ;
-
-      /**
-       * <code>ERROR = 0;</code>
-       */
-      public static final int ERROR_VALUE = 0;
-      /**
-       * <code>VELOCITY = 1;</code>
-       */
-      public static final int VELOCITY_VALUE = 1;
-      /**
-       * <code>ACCELERATION = 2;</code>
-       */
-      public static final int ACCELERATION_VALUE = 2;
-      /**
-       * <code>BRAKE_TEMP = 3;</code>
-       */
-      public static final int BRAKE_TEMP_VALUE = 3;
-      /**
-       * <pre>
-       * commands below intended for server to client
-       * </pre>
-       *
-       * <code>FINISH = 4;</code>
-       */
-      public static final int FINISH_VALUE = 4;
-      /**
-       * <code>EM_STOP = 5;</code>
-       */
-      public static final int EM_STOP_VALUE = 5;
-
-
-      public final int getNumber() {
-        if (this == UNRECOGNIZED) {
-          throw new java.lang.IllegalArgumentException(
-              "Can't get the number of an unknown enum value.");
-        }
-        return value;
-      }
-
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static Command valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static Command forNumber(int value) {
-        switch (value) {
-          case 0: return ERROR;
-          case 1: return VELOCITY;
-          case 2: return ACCELERATION;
-          case 3: return BRAKE_TEMP;
-          case 4: return FINISH;
-          case 5: return EM_STOP;
-          default: return null;
-        }
-      }
-
-      public static com.google.protobuf.Internal.EnumLiteMap<Command>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          Command> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Command>() {
-              public Command findValueByNumber(int number) {
-                return Command.forNumber(number);
-              }
-            };
-
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor
-          getValueDescriptor() {
-        return getDescriptor().getValues().get(ordinal());
-      }
-      public final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptorForType() {
-        return getDescriptor();
-      }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptor() {
-        return telemetrydata.TelemetryData.TestMessage.getDescriptor().getEnumTypes().get(0);
-      }
-
-      private static final Command[] VALUES = values();
-
-      public static Command valueOf(
-          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-        if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
-        }
-        if (desc.getIndex() == -1) {
-          return UNRECOGNIZED;
-        }
-        return VALUES[desc.getIndex()];
-      }
-
-      private final int value;
-
-      private Command(int value) {
-        this.value = value;
-      }
-
-      // @@protoc_insertion_point(enum_scope:telemetry_data.TestMessage.Command)
-    }
-
-    public static final int COMMAND_FIELD_NUMBER = 1;
-    private int command_;
-    /**
-     * <code>.telemetry_data.TestMessage.Command command = 1;</code>
-     */
-    public int getCommandValue() {
-      return command_;
-    }
-    /**
-     * <code>.telemetry_data.TestMessage.Command command = 1;</code>
-     */
-    public telemetrydata.TelemetryData.TestMessage.Command getCommand() {
-      @SuppressWarnings("deprecation")
-      telemetrydata.TelemetryData.TestMessage.Command result = telemetrydata.TelemetryData.TestMessage.Command.valueOf(command_);
-      return result == null ? telemetrydata.TelemetryData.TestMessage.Command.UNRECOGNIZED : result;
-    }
-
-    public static final int DATA_FIELD_NUMBER = 2;
-    private int data_;
-    /**
-     * <code>int32 data = 2;</code>
-     */
-    public int getData() {
-      return data_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (command_ != telemetrydata.TelemetryData.TestMessage.Command.ERROR.getNumber()) {
-        output.writeEnum(1, command_);
-      }
-      if (data_ != 0) {
-        output.writeInt32(2, data_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (command_ != telemetrydata.TelemetryData.TestMessage.Command.ERROR.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, command_);
-      }
-      if (data_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, data_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof telemetrydata.TelemetryData.TestMessage)) {
-        return super.equals(obj);
-      }
-      telemetrydata.TelemetryData.TestMessage other = (telemetrydata.TelemetryData.TestMessage) obj;
-
-      boolean result = true;
-      result = result && command_ == other.command_;
-      result = result && (getData()
-          == other.getData());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + COMMAND_FIELD_NUMBER;
-      hash = (53 * hash) + command_;
-      hash = (37 * hash) + DATA_FIELD_NUMBER;
-      hash = (53 * hash) + getData();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static telemetrydata.TelemetryData.TestMessage parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static telemetrydata.TelemetryData.TestMessage parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static telemetrydata.TelemetryData.TestMessage parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static telemetrydata.TelemetryData.TestMessage parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static telemetrydata.TelemetryData.TestMessage parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static telemetrydata.TelemetryData.TestMessage parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static telemetrydata.TelemetryData.TestMessage parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static telemetrydata.TelemetryData.TestMessage parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static telemetrydata.TelemetryData.TestMessage parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static telemetrydata.TelemetryData.TestMessage parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static telemetrydata.TelemetryData.TestMessage parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static telemetrydata.TelemetryData.TestMessage parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(telemetrydata.TelemetryData.TestMessage prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code telemetry_data.TestMessage}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:telemetry_data.TestMessage)
-        telemetrydata.TelemetryData.TestMessageOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return telemetrydata.TelemetryData.internal_static_telemetry_data_TestMessage_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return telemetrydata.TelemetryData.internal_static_telemetry_data_TestMessage_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                telemetrydata.TelemetryData.TestMessage.class, telemetrydata.TelemetryData.TestMessage.Builder.class);
-      }
-
-      // Construct using telemetrydata.TelemetryData.TestMessage.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        command_ = 0;
-
-        data_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return telemetrydata.TelemetryData.internal_static_telemetry_data_TestMessage_descriptor;
-      }
-
-      @java.lang.Override
-      public telemetrydata.TelemetryData.TestMessage getDefaultInstanceForType() {
-        return telemetrydata.TelemetryData.TestMessage.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public telemetrydata.TelemetryData.TestMessage build() {
-        telemetrydata.TelemetryData.TestMessage result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public telemetrydata.TelemetryData.TestMessage buildPartial() {
-        telemetrydata.TelemetryData.TestMessage result = new telemetrydata.TelemetryData.TestMessage(this);
-        result.command_ = command_;
-        result.data_ = data_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof telemetrydata.TelemetryData.TestMessage) {
-          return mergeFrom((telemetrydata.TelemetryData.TestMessage)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(telemetrydata.TelemetryData.TestMessage other) {
-        if (other == telemetrydata.TelemetryData.TestMessage.getDefaultInstance()) return this;
-        if (other.command_ != 0) {
-          setCommandValue(other.getCommandValue());
-        }
-        if (other.getData() != 0) {
-          setData(other.getData());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        telemetrydata.TelemetryData.TestMessage parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (telemetrydata.TelemetryData.TestMessage) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int command_ = 0;
-      /**
-       * <code>.telemetry_data.TestMessage.Command command = 1;</code>
-       */
-      public int getCommandValue() {
-        return command_;
-      }
-      /**
-       * <code>.telemetry_data.TestMessage.Command command = 1;</code>
-       */
-      public Builder setCommandValue(int value) {
-        command_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.telemetry_data.TestMessage.Command command = 1;</code>
-       */
-      public telemetrydata.TelemetryData.TestMessage.Command getCommand() {
-        @SuppressWarnings("deprecation")
-        telemetrydata.TelemetryData.TestMessage.Command result = telemetrydata.TelemetryData.TestMessage.Command.valueOf(command_);
-        return result == null ? telemetrydata.TelemetryData.TestMessage.Command.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>.telemetry_data.TestMessage.Command command = 1;</code>
-       */
-      public Builder setCommand(telemetrydata.TelemetryData.TestMessage.Command value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        
-        command_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.telemetry_data.TestMessage.Command command = 1;</code>
-       */
-      public Builder clearCommand() {
-        
-        command_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int data_ ;
-      /**
-       * <code>int32 data = 2;</code>
-       */
-      public int getData() {
-        return data_;
-      }
-      /**
-       * <code>int32 data = 2;</code>
-       */
-      public Builder setData(int value) {
-        
-        data_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 data = 2;</code>
-       */
-      public Builder clearData() {
-        
-        data_ = 0;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:telemetry_data.TestMessage)
-    }
-
-    // @@protoc_insertion_point(class_scope:telemetry_data.TestMessage)
-    private static final telemetrydata.TelemetryData.TestMessage DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new telemetrydata.TelemetryData.TestMessage();
-    }
-
-    public static telemetrydata.TelemetryData.TestMessage getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<TestMessage>
-        PARSER = new com.google.protobuf.AbstractParser<TestMessage>() {
-      @java.lang.Override
-      public TestMessage parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new TestMessage(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<TestMessage> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<TestMessage> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public telemetrydata.TelemetryData.TestMessage getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface ServerToClientOrBuilder extends
       // @@protoc_insertion_point(interface_extends:telemetry_data.ServerToClient)
       com.google.protobuf.MessageOrBuilder {
@@ -743,11 +31,6 @@ public final class TelemetryData {
      * <code>float run_length = 2;</code>
      */
     float getRunLength();
-
-    /**
-     * <code>bool service_propulsion = 3;</code>
-     */
-    boolean getServicePropulsion();
   }
   /**
    * Protobuf type {@code telemetry_data.ServerToClient}
@@ -764,7 +47,6 @@ public final class TelemetryData {
     private ServerToClient() {
       command_ = 0;
       runLength_ = 0F;
-      servicePropulsion_ = false;
     }
 
     @java.lang.Override
@@ -800,11 +82,6 @@ public final class TelemetryData {
             case 21: {
 
               runLength_ = input.readFloat();
-              break;
-            }
-            case 24: {
-
-              servicePropulsion_ = input.readBool();
               break;
             }
             default: {
@@ -853,21 +130,29 @@ public final class TelemetryData {
        */
       STOP(1),
       /**
-       * <code>LAUNCH = 2;</code>
+       * <code>CALIBRATE = 2;</code>
        */
-      LAUNCH(2),
+      CALIBRATE(2),
       /**
-       * <code>RESET = 3;</code>
+       * <code>LAUNCH = 3;</code>
        */
-      RESET(3),
+      LAUNCH(3),
       /**
-       * <code>RUN_LENGTH = 4;</code>
+       * <code>RESET = 4;</code>
        */
-      RUN_LENGTH(4),
+      RESET(4),
       /**
-       * <code>SERVICE_PROPULSION = 5;</code>
+       * <code>RUN_LENGTH = 5;</code>
        */
-      SERVICE_PROPULSION(5),
+      RUN_LENGTH(5),
+      /**
+       * <code>SERVICE_PROPULSION_GO = 6;</code>
+       */
+      SERVICE_PROPULSION_GO(6),
+      /**
+       * <code>SERVICE_PROPULSION_STOP = 7;</code>
+       */
+      SERVICE_PROPULSION_STOP(7),
       UNRECOGNIZED(-1),
       ;
 
@@ -880,21 +165,29 @@ public final class TelemetryData {
        */
       public static final int STOP_VALUE = 1;
       /**
-       * <code>LAUNCH = 2;</code>
+       * <code>CALIBRATE = 2;</code>
        */
-      public static final int LAUNCH_VALUE = 2;
+      public static final int CALIBRATE_VALUE = 2;
       /**
-       * <code>RESET = 3;</code>
+       * <code>LAUNCH = 3;</code>
        */
-      public static final int RESET_VALUE = 3;
+      public static final int LAUNCH_VALUE = 3;
       /**
-       * <code>RUN_LENGTH = 4;</code>
+       * <code>RESET = 4;</code>
        */
-      public static final int RUN_LENGTH_VALUE = 4;
+      public static final int RESET_VALUE = 4;
       /**
-       * <code>SERVICE_PROPULSION = 5;</code>
+       * <code>RUN_LENGTH = 5;</code>
        */
-      public static final int SERVICE_PROPULSION_VALUE = 5;
+      public static final int RUN_LENGTH_VALUE = 5;
+      /**
+       * <code>SERVICE_PROPULSION_GO = 6;</code>
+       */
+      public static final int SERVICE_PROPULSION_GO_VALUE = 6;
+      /**
+       * <code>SERVICE_PROPULSION_STOP = 7;</code>
+       */
+      public static final int SERVICE_PROPULSION_STOP_VALUE = 7;
 
 
       public final int getNumber() {
@@ -917,10 +210,12 @@ public final class TelemetryData {
         switch (value) {
           case 0: return ACK;
           case 1: return STOP;
-          case 2: return LAUNCH;
-          case 3: return RESET;
-          case 4: return RUN_LENGTH;
-          case 5: return SERVICE_PROPULSION;
+          case 2: return CALIBRATE;
+          case 3: return LAUNCH;
+          case 4: return RESET;
+          case 5: return RUN_LENGTH;
+          case 6: return SERVICE_PROPULSION_GO;
+          case 7: return SERVICE_PROPULSION_STOP;
           default: return null;
         }
       }
@@ -999,15 +294,6 @@ public final class TelemetryData {
       return runLength_;
     }
 
-    public static final int SERVICE_PROPULSION_FIELD_NUMBER = 3;
-    private boolean servicePropulsion_;
-    /**
-     * <code>bool service_propulsion = 3;</code>
-     */
-    public boolean getServicePropulsion() {
-      return servicePropulsion_;
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1028,9 +314,6 @@ public final class TelemetryData {
       if (runLength_ != 0F) {
         output.writeFloat(2, runLength_);
       }
-      if (servicePropulsion_ != false) {
-        output.writeBool(3, servicePropulsion_);
-      }
       unknownFields.writeTo(output);
     }
 
@@ -1047,10 +330,6 @@ public final class TelemetryData {
       if (runLength_ != 0F) {
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(2, runLength_);
-      }
-      if (servicePropulsion_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(3, servicePropulsion_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1073,8 +352,6 @@ public final class TelemetryData {
           java.lang.Float.floatToIntBits(getRunLength())
           == java.lang.Float.floatToIntBits(
               other.getRunLength()));
-      result = result && (getServicePropulsion()
-          == other.getServicePropulsion());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -1091,9 +368,6 @@ public final class TelemetryData {
       hash = (37 * hash) + RUN_LENGTH_FIELD_NUMBER;
       hash = (53 * hash) + java.lang.Float.floatToIntBits(
           getRunLength());
-      hash = (37 * hash) + SERVICE_PROPULSION_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getServicePropulsion());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1231,8 +505,6 @@ public final class TelemetryData {
 
         runLength_ = 0F;
 
-        servicePropulsion_ = false;
-
         return this;
       }
 
@@ -1261,7 +533,6 @@ public final class TelemetryData {
         telemetrydata.TelemetryData.ServerToClient result = new telemetrydata.TelemetryData.ServerToClient(this);
         result.command_ = command_;
         result.runLength_ = runLength_;
-        result.servicePropulsion_ = servicePropulsion_;
         onBuilt();
         return result;
       }
@@ -1315,9 +586,6 @@ public final class TelemetryData {
         }
         if (other.getRunLength() != 0F) {
           setRunLength(other.getRunLength());
-        }
-        if (other.getServicePropulsion() != false) {
-          setServicePropulsion(other.getServicePropulsion());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1415,32 +683,6 @@ public final class TelemetryData {
       public Builder clearRunLength() {
         
         runLength_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private boolean servicePropulsion_ ;
-      /**
-       * <code>bool service_propulsion = 3;</code>
-       */
-      public boolean getServicePropulsion() {
-        return servicePropulsion_;
-      }
-      /**
-       * <code>bool service_propulsion = 3;</code>
-       */
-      public Builder setServicePropulsion(boolean value) {
-        
-        servicePropulsion_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bool service_propulsion = 3;</code>
-       */
-      public Builder clearServicePropulsion() {
-        
-        servicePropulsion_ = false;
         onChanged();
         return this;
       }
@@ -9575,11 +8817,6 @@ public final class TelemetryData {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_telemetry_data_TestMessage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_telemetry_data_TestMessage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_telemetry_data_ServerToClient_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -9638,61 +8875,57 @@ public final class TelemetryData {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rmessage.proto\022\016telemetry_data\"\260\001\n\013Test" +
-      "Message\0224\n\007command\030\001 \001(\0162#.telemetry_dat" +
-      "a.TestMessage.Command\022\014\n\004data\030\002 \001(\005\"]\n\007C" +
-      "ommand\022\t\n\005ERROR\020\000\022\014\n\010VELOCITY\020\001\022\020\n\014ACCEL" +
-      "ERATION\020\002\022\016\n\nBRAKE_TEMP\020\003\022\n\n\006FINISH\020\004\022\013\n" +
-      "\007EM_STOP\020\005\"\326\001\n\016ServerToClient\0227\n\007command" +
-      "\030\001 \001(\0162&.telemetry_data.ServerToClient.C" +
-      "ommand\022\022\n\nrun_length\030\002 \001(\002\022\032\n\022service_pr" +
-      "opulsion\030\003 \001(\010\"[\n\007Command\022\007\n\003ACK\020\000\022\010\n\004ST" +
-      "OP\020\001\022\n\n\006LAUNCH\020\002\022\t\n\005RESET\020\003\022\016\n\nRUN_LENGT" +
-      "H\020\004\022\026\n\022SERVICE_PROPULSION\020\005\"\271\r\n\016ClientTo" +
-      "Server\022=\n\nnavigation\030\001 \001(\0132).telemetry_d" +
-      "ata.ClientToServer.Navigation\022B\n\rstate_m" +
-      "achine\030\002 \001(\0132+.telemetry_data.ClientToSe" +
-      "rver.StateMachine\0225\n\006motors\030\003 \001(\0132%.tele" +
-      "metry_data.ClientToServer.Motors\022;\n\tbatt" +
-      "eries\030\004 \001(\0132(.telemetry_data.ClientToSer" +
-      "ver.Batteries\0227\n\007sensors\030\005 \001(\0132&.telemet" +
-      "ry_data.ClientToServer.Sensors\022H\n\020emerge" +
-      "ncy_brakes\030\006 \001(\0132..telemetry_data.Client" +
-      "ToServer.EmergencyBrakes\032\212\001\n\nNavigation\022" +
-      "B\n\rmodule_status\030\001 \001(\0162+.telemetry_data." +
-      "ClientToServer.ModuleStatus\022\020\n\010distance\030" +
-      "\002 \001(\002\022\020\n\010velocity\030\003 \001(\002\022\024\n\014acceleration\030" +
-      "\004 \001(\002\032\225\002\n\014StateMachine\022H\n\rcurrent_state\030" +
-      "\002 \001(\01621.telemetry_data.ClientToServer.St" +
-      "ateMachine.State\"\272\001\n\005State\022\010\n\004IDLE\020\000\022\017\n\013" +
-      "CALIBRATING\020\001\022\t\n\005READY\020\002\022\020\n\014ACCELERATING" +
-      "\020\003\022\023\n\017NOMINAL_BRAKING\020\004\022\025\n\021EMERGENCY_BRA" +
-      "KING\020\005\022\020\n\014RUN_COMPLETE\020\006\022\023\n\017FAILURE_STOP" +
-      "PED\020\007\022\013\n\007EXITING\020\010\022\014\n\010FINISHED\020\t\022\013\n\007INVA" +
-      "LID\020\n\032\304\001\n\006Motors\022B\n\rmodule_status\030\001 \001(\0162" +
-      "+.telemetry_data.ClientToServer.ModuleSt" +
-      "atus\022\022\n\nvelocity_1\030\002 \001(\021\022\022\n\nvelocity_2\030\003" +
-      " \001(\021\022\022\n\nvelocity_3\030\004 \001(\021\022\022\n\nvelocity_4\030\005" +
-      " \001(\021\022\022\n\nvelocity_5\030\006 \001(\021\022\022\n\nvelocity_6\030\007" +
-      " \001(\021\032\202\003\n\tBatteries\022B\n\rmodule_status\030\001 \001(" +
-      "\0162+.telemetry_data.ClientToServer.Module" +
-      "Status\022Q\n\023low_power_batteries\030\002 \003(\01324.te" +
-      "lemetry_data.ClientToServer.Batteries.Ba" +
-      "tteryData\022R\n\024high_power_batteries\030\003 \003(\0132" +
-      "4.telemetry_data.ClientToServer.Batterie" +
-      "s.BatteryData\032\211\001\n\013BatteryData\022\017\n\007voltage" +
-      "\030\001 \001(\r\022\017\n\007current\030\002 \001(\021\022\016\n\006charge\030\003 \001(\r\022" +
-      "\023\n\013temperature\030\004 \001(\005\022\030\n\020low_voltage_cell" +
-      "\030\005 \001(\r\022\031\n\021high_voltage_cell\030\006 \001(\r\032\267\001\n\007Se" +
-      "nsors\022B\n\rmodule_status\030\001 \001(\0162+.telemetry" +
-      "_data.ClientToServer.ModuleStatus\022;\n\003imu" +
-      "\030\002 \003(\0132..telemetry_data.ClientToServer.S" +
-      "ensors.ImuData\032+\n\007ImuData\022\023\n\013operational" +
-      "\030\001 \001(\010\022\013\n\003acc\030\002 \003(\002\032<\n\017EmergencyBrakes\022\024" +
-      "\n\014front_brakes\030\001 \001(\010\022\023\n\013rear_brakes\030\002 \001(" +
-      "\010\"D\n\014ModuleStatus\022\t\n\005START\020\000\022\010\n\004INIT\020\001\022\t" +
-      "\n\005READY\020\002\022\024\n\020CRITICAL_FAILURE\020\003B\036\n\rtelem" +
-      "etrydataB\rTelemetryDatab\006proto3"
+      "\n\rmessage.proto\022\016telemetry_data\"\352\001\n\016Serv" +
+      "erToClient\0227\n\007command\030\001 \001(\0162&.telemetry_" +
+      "data.ServerToClient.Command\022\022\n\nrun_lengt" +
+      "h\030\002 \001(\002\"\212\001\n\007Command\022\007\n\003ACK\020\000\022\010\n\004STOP\020\001\022\r" +
+      "\n\tCALIBRATE\020\002\022\n\n\006LAUNCH\020\003\022\t\n\005RESET\020\004\022\016\n\n" +
+      "RUN_LENGTH\020\005\022\031\n\025SERVICE_PROPULSION_GO\020\006\022" +
+      "\033\n\027SERVICE_PROPULSION_STOP\020\007\"\271\r\n\016ClientT" +
+      "oServer\022=\n\nnavigation\030\001 \001(\0132).telemetry_" +
+      "data.ClientToServer.Navigation\022B\n\rstate_" +
+      "machine\030\002 \001(\0132+.telemetry_data.ClientToS" +
+      "erver.StateMachine\0225\n\006motors\030\003 \001(\0132%.tel" +
+      "emetry_data.ClientToServer.Motors\022;\n\tbat" +
+      "teries\030\004 \001(\0132(.telemetry_data.ClientToSe" +
+      "rver.Batteries\0227\n\007sensors\030\005 \001(\0132&.teleme" +
+      "try_data.ClientToServer.Sensors\022H\n\020emerg" +
+      "ency_brakes\030\006 \001(\0132..telemetry_data.Clien" +
+      "tToServer.EmergencyBrakes\032\212\001\n\nNavigation" +
+      "\022B\n\rmodule_status\030\001 \001(\0162+.telemetry_data" +
+      ".ClientToServer.ModuleStatus\022\020\n\010distance" +
+      "\030\002 \001(\002\022\020\n\010velocity\030\003 \001(\002\022\024\n\014acceleration" +
+      "\030\004 \001(\002\032\225\002\n\014StateMachine\022H\n\rcurrent_state" +
+      "\030\002 \001(\01621.telemetry_data.ClientToServer.S" +
+      "tateMachine.State\"\272\001\n\005State\022\010\n\004IDLE\020\000\022\017\n" +
+      "\013CALIBRATING\020\001\022\t\n\005READY\020\002\022\020\n\014ACCELERATIN" +
+      "G\020\003\022\023\n\017NOMINAL_BRAKING\020\004\022\025\n\021EMERGENCY_BR" +
+      "AKING\020\005\022\020\n\014RUN_COMPLETE\020\006\022\023\n\017FAILURE_STO" +
+      "PPED\020\007\022\013\n\007EXITING\020\010\022\014\n\010FINISHED\020\t\022\013\n\007INV" +
+      "ALID\020\n\032\304\001\n\006Motors\022B\n\rmodule_status\030\001 \001(\016" +
+      "2+.telemetry_data.ClientToServer.ModuleS" +
+      "tatus\022\022\n\nvelocity_1\030\002 \001(\021\022\022\n\nvelocity_2\030" +
+      "\003 \001(\021\022\022\n\nvelocity_3\030\004 \001(\021\022\022\n\nvelocity_4\030" +
+      "\005 \001(\021\022\022\n\nvelocity_5\030\006 \001(\021\022\022\n\nvelocity_6\030" +
+      "\007 \001(\021\032\202\003\n\tBatteries\022B\n\rmodule_status\030\001 \001" +
+      "(\0162+.telemetry_data.ClientToServer.Modul" +
+      "eStatus\022Q\n\023low_power_batteries\030\002 \003(\01324.t" +
+      "elemetry_data.ClientToServer.Batteries.B" +
+      "atteryData\022R\n\024high_power_batteries\030\003 \003(\013" +
+      "24.telemetry_data.ClientToServer.Batteri" +
+      "es.BatteryData\032\211\001\n\013BatteryData\022\017\n\007voltag" +
+      "e\030\001 \001(\r\022\017\n\007current\030\002 \001(\021\022\016\n\006charge\030\003 \001(\r" +
+      "\022\023\n\013temperature\030\004 \001(\005\022\030\n\020low_voltage_cel" +
+      "l\030\005 \001(\r\022\031\n\021high_voltage_cell\030\006 \001(\r\032\267\001\n\007S" +
+      "ensors\022B\n\rmodule_status\030\001 \001(\0162+.telemetr" +
+      "y_data.ClientToServer.ModuleStatus\022;\n\003im" +
+      "u\030\002 \003(\0132..telemetry_data.ClientToServer." +
+      "Sensors.ImuData\032+\n\007ImuData\022\023\n\013operationa" +
+      "l\030\001 \001(\010\022\013\n\003acc\030\002 \003(\002\032<\n\017EmergencyBrakes\022" +
+      "\024\n\014front_brakes\030\001 \001(\010\022\023\n\013rear_brakes\030\002 \001" +
+      "(\010\"D\n\014ModuleStatus\022\t\n\005START\020\000\022\010\n\004INIT\020\001\022" +
+      "\t\n\005READY\020\002\022\024\n\020CRITICAL_FAILURE\020\003B\036\n\rtele" +
+      "metrydataB\rTelemetryDatab\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -9706,20 +8939,14 @@ public final class TelemetryData {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_telemetry_data_TestMessage_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_telemetry_data_TestMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_telemetry_data_TestMessage_descriptor,
-        new java.lang.String[] { "Command", "Data", });
     internal_static_telemetry_data_ServerToClient_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(0);
     internal_static_telemetry_data_ServerToClient_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ServerToClient_descriptor,
-        new java.lang.String[] { "Command", "RunLength", "ServicePropulsion", });
+        new java.lang.String[] { "Command", "RunLength", });
     internal_static_telemetry_data_ClientToServer_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(1);
     internal_static_telemetry_data_ClientToServer_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_descriptor,
