@@ -131,10 +131,10 @@ public class Server implements Runnable {
                 catch (NullPointerException e) {
                     System.out.println("Client probably disconnected");
                     connected = false;
-                    System.exit(0);
+                    break;
                 }
                 catch (IOException e) {
-                    System.out.println("Exception: " + e);
+                    System.out.println("IO Exception: " + e);
                     break;
                 }
             }

@@ -53,7 +53,9 @@ public class Controller {
                     }
                 }
 
-                template.convertAndSend("/topic/isPodConnected", "Pod is connected");
+                template.convertAndSend("/topic/isPodConnected", "CONNECTED");
+
+                scheduler.scheduleAtFixedRate(() -> pingPodConnectionStatus(), 100);
                 scheduler.scheduleAtFixedRate(() -> pingData(), 100);
 
                 return;  // end thread
@@ -80,6 +82,16 @@ public class Controller {
         }
 
         return "{\"status\":\"error\", \"errorMessage\":\"could not send message\"}";
+    }
+
+    // this method gets scheduled to run every 100ms (resposible for sending pod status to frontend)
+    public void pingPodConnectionStatus() {
+        if (!server.isConnected()) {
+            template.convertAndSend("/topic/isPodConnected", "DISCONNECTED");
+        }
+        else {
+            template.convertAndSend("/topic/isPodConnected", "CONNECTED");
+        }
     }
 
     // this method gets scheduled to run every 100ms (resposible for sending data to frontend)
