@@ -63,9 +63,6 @@ public class Controller {
         });
 
         checkToScheduleThread.start();
-
-        // don't return anything so that frontend knows as soon as it receives something from /topic/isPodConnected pod is connected
-        return;
     }
 
     @MessageMapping("/sendMessage")
@@ -84,30 +81,33 @@ public class Controller {
         return "{\"status\":\"error\", \"errorMessage\":\"could not send message\"}";
     }
 
-    // this method gets scheduled to run every 100ms (resposible for sending pod status to frontend)
     public void pingPodConnectionStatus() {
         if (!server.isConnected()) {
             template.convertAndSend("/topic/isPodConnected", "DISCONNECTED");
+            System.out.println("DISCONNECTED TO POD");
         }
         else {
             template.convertAndSend("/topic/isPodConnected", "CONNECTED");
         }
     }
 
-    // this method gets scheduled to run every 100ms (resposible for sending data to frontend)
     public void pingData() {
         ClientToServer msg = server.getProtoMessage();
-        JsonFormat.Printer protoJsonPrinter = JsonFormat.printer();
-        String msgJson;
 
         try {
-            msgJson = protoJsonPrinter.print(msg);
+            forwardToFrontend(msg);
         }
         catch (InvalidProtocolBufferException e) {
-            System.out.println("Error: " + e);
-            msgJson = "{\"status\":\"error\", \"errorMessage\":\"empty msgJson\"}";
+            System.out.println("Error (Handled): " + e);
+            template.convertAndSend("/topic/errors", "server received invalid protobuf message");
         }
+        catch (NullPointerException e) {
+            System.out.println("Error (Handled): " + e);
+        }
+    }
 
-        template.convertAndSend("/topic/podStats", msgJson);
+    public void forwardToFrontend(ClientToServer msg) throws InvalidProtocolBufferException {
+        JsonFormat.Printer protoJsonPrinter = JsonFormat.printer();
+        template.convertAndSend("/topic/podStats", protoJsonPrinter.print(msg));
     }
 }
