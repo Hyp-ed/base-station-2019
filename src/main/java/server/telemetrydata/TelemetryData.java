@@ -1888,96 +1888,96 @@ public final class TelemetryData {
       public enum State
           implements com.google.protobuf.ProtocolMessageEnum {
         /**
-         * <code>IDLE = 0;</code>
+         * <code>INVALID = 0;</code>
          */
-        IDLE(0),
+        INVALID(0),
         /**
-         * <code>CALIBRATING = 1;</code>
+         * <code>IDLE = 1;</code>
          */
-        CALIBRATING(1),
+        IDLE(1),
         /**
-         * <code>READY = 2;</code>
+         * <code>CALIBRATING = 2;</code>
          */
-        READY(2),
+        CALIBRATING(2),
         /**
-         * <code>ACCELERATING = 3;</code>
+         * <code>READY = 3;</code>
          */
-        ACCELERATING(3),
+        READY(3),
         /**
-         * <code>NOMINAL_BRAKING = 4;</code>
+         * <code>ACCELERATING = 4;</code>
          */
-        NOMINAL_BRAKING(4),
+        ACCELERATING(4),
         /**
-         * <code>EMERGENCY_BRAKING = 5;</code>
+         * <code>NOMINAL_BRAKING = 5;</code>
          */
-        EMERGENCY_BRAKING(5),
+        NOMINAL_BRAKING(5),
         /**
-         * <code>RUN_COMPLETE = 6;</code>
+         * <code>EMERGENCY_BRAKING = 6;</code>
          */
-        RUN_COMPLETE(6),
+        EMERGENCY_BRAKING(6),
         /**
-         * <code>FAILURE_STOPPED = 7;</code>
+         * <code>RUN_COMPLETE = 7;</code>
          */
-        FAILURE_STOPPED(7),
+        RUN_COMPLETE(7),
         /**
-         * <code>EXITING = 8;</code>
+         * <code>FAILURE_STOPPED = 8;</code>
          */
-        EXITING(8),
+        FAILURE_STOPPED(8),
         /**
-         * <code>FINISHED = 9;</code>
+         * <code>EXITING = 9;</code>
          */
-        FINISHED(9),
+        EXITING(9),
         /**
-         * <code>INVALID = 10;</code>
+         * <code>FINISHED = 10;</code>
          */
-        INVALID(10),
+        FINISHED(10),
         UNRECOGNIZED(-1),
         ;
 
         /**
-         * <code>IDLE = 0;</code>
+         * <code>INVALID = 0;</code>
          */
-        public static final int IDLE_VALUE = 0;
+        public static final int INVALID_VALUE = 0;
         /**
-         * <code>CALIBRATING = 1;</code>
+         * <code>IDLE = 1;</code>
          */
-        public static final int CALIBRATING_VALUE = 1;
+        public static final int IDLE_VALUE = 1;
         /**
-         * <code>READY = 2;</code>
+         * <code>CALIBRATING = 2;</code>
          */
-        public static final int READY_VALUE = 2;
+        public static final int CALIBRATING_VALUE = 2;
         /**
-         * <code>ACCELERATING = 3;</code>
+         * <code>READY = 3;</code>
          */
-        public static final int ACCELERATING_VALUE = 3;
+        public static final int READY_VALUE = 3;
         /**
-         * <code>NOMINAL_BRAKING = 4;</code>
+         * <code>ACCELERATING = 4;</code>
          */
-        public static final int NOMINAL_BRAKING_VALUE = 4;
+        public static final int ACCELERATING_VALUE = 4;
         /**
-         * <code>EMERGENCY_BRAKING = 5;</code>
+         * <code>NOMINAL_BRAKING = 5;</code>
          */
-        public static final int EMERGENCY_BRAKING_VALUE = 5;
+        public static final int NOMINAL_BRAKING_VALUE = 5;
         /**
-         * <code>RUN_COMPLETE = 6;</code>
+         * <code>EMERGENCY_BRAKING = 6;</code>
          */
-        public static final int RUN_COMPLETE_VALUE = 6;
+        public static final int EMERGENCY_BRAKING_VALUE = 6;
         /**
-         * <code>FAILURE_STOPPED = 7;</code>
+         * <code>RUN_COMPLETE = 7;</code>
          */
-        public static final int FAILURE_STOPPED_VALUE = 7;
+        public static final int RUN_COMPLETE_VALUE = 7;
         /**
-         * <code>EXITING = 8;</code>
+         * <code>FAILURE_STOPPED = 8;</code>
          */
-        public static final int EXITING_VALUE = 8;
+        public static final int FAILURE_STOPPED_VALUE = 8;
         /**
-         * <code>FINISHED = 9;</code>
+         * <code>EXITING = 9;</code>
          */
-        public static final int FINISHED_VALUE = 9;
+        public static final int EXITING_VALUE = 9;
         /**
-         * <code>INVALID = 10;</code>
+         * <code>FINISHED = 10;</code>
          */
-        public static final int INVALID_VALUE = 10;
+        public static final int FINISHED_VALUE = 10;
 
 
         public final int getNumber() {
@@ -1998,17 +1998,17 @@ public final class TelemetryData {
 
         public static State forNumber(int value) {
           switch (value) {
-            case 0: return IDLE;
-            case 1: return CALIBRATING;
-            case 2: return READY;
-            case 3: return ACCELERATING;
-            case 4: return NOMINAL_BRAKING;
-            case 5: return EMERGENCY_BRAKING;
-            case 6: return RUN_COMPLETE;
-            case 7: return FAILURE_STOPPED;
-            case 8: return EXITING;
-            case 9: return FINISHED;
-            case 10: return INVALID;
+            case 0: return INVALID;
+            case 1: return IDLE;
+            case 2: return CALIBRATING;
+            case 3: return READY;
+            case 4: return ACCELERATING;
+            case 5: return NOMINAL_BRAKING;
+            case 6: return EMERGENCY_BRAKING;
+            case 7: return RUN_COMPLETE;
+            case 8: return FAILURE_STOPPED;
+            case 9: return EXITING;
+            case 10: return FINISHED;
             default: return null;
           }
         }
@@ -2092,7 +2092,7 @@ public final class TelemetryData {
       @java.lang.Override
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
-        if (currentState_ != telemetrydata.TelemetryData.ClientToServer.StateMachine.State.IDLE.getNumber()) {
+        if (currentState_ != telemetrydata.TelemetryData.ClientToServer.StateMachine.State.INVALID.getNumber()) {
           output.writeEnum(2, currentState_);
         }
         unknownFields.writeTo(output);
@@ -2104,7 +2104,7 @@ public final class TelemetryData {
         if (size != -1) return size;
 
         size = 0;
-        if (currentState_ != telemetrydata.TelemetryData.ClientToServer.StateMachine.State.IDLE.getNumber()) {
+        if (currentState_ != telemetrydata.TelemetryData.ClientToServer.StateMachine.State.INVALID.getNumber()) {
           size += com.google.protobuf.CodedOutputStream
             .computeEnumSize(2, currentState_);
         }
@@ -8897,12 +8897,12 @@ public final class TelemetryData {
       "\030\002 \001(\002\022\020\n\010velocity\030\003 \001(\002\022\024\n\014acceleration" +
       "\030\004 \001(\002\032\225\002\n\014StateMachine\022H\n\rcurrent_state" +
       "\030\002 \001(\01621.telemetry_data.ClientToServer.S" +
-      "tateMachine.State\"\272\001\n\005State\022\010\n\004IDLE\020\000\022\017\n" +
-      "\013CALIBRATING\020\001\022\t\n\005READY\020\002\022\020\n\014ACCELERATIN" +
-      "G\020\003\022\023\n\017NOMINAL_BRAKING\020\004\022\025\n\021EMERGENCY_BR" +
-      "AKING\020\005\022\020\n\014RUN_COMPLETE\020\006\022\023\n\017FAILURE_STO" +
-      "PPED\020\007\022\013\n\007EXITING\020\010\022\014\n\010FINISHED\020\t\022\013\n\007INV" +
-      "ALID\020\n\032\304\001\n\006Motors\022B\n\rmodule_status\030\001 \001(\016" +
+      "tateMachine.State\"\272\001\n\005State\022\013\n\007INVALID\020\000" +
+      "\022\010\n\004IDLE\020\001\022\017\n\013CALIBRATING\020\002\022\t\n\005READY\020\003\022\020" +
+      "\n\014ACCELERATING\020\004\022\023\n\017NOMINAL_BRAKING\020\005\022\025\n" +
+      "\021EMERGENCY_BRAKING\020\006\022\020\n\014RUN_COMPLETE\020\007\022\023" +
+      "\n\017FAILURE_STOPPED\020\010\022\013\n\007EXITING\020\t\022\014\n\010FINI" +
+      "SHED\020\n\032\304\001\n\006Motors\022B\n\rmodule_status\030\001 \001(\016" +
       "2+.telemetry_data.ClientToServer.ModuleS" +
       "tatus\022\022\n\nvelocity_1\030\002 \001(\021\022\022\n\nvelocity_2\030" +
       "\003 \001(\021\022\022\n\nvelocity_3\030\004 \001(\021\022\022\n\nvelocity_4\030" +
