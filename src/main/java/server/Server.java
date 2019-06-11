@@ -3,11 +3,8 @@ package server;
 import java.io.IOException;
 import java.net.*;
 import java.nio.ByteBuffer;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
 import telemetrydata.TelemetryData.*;
 import org.springframework.stereotype.Service;
-
 import org.json.*;
 
 @Service
@@ -113,20 +110,12 @@ public class Server implements Runnable {
     }
 
     private class MessageReader implements Runnable {
-        private Logger logger = null;
-
-        public MessageReader() {
-            logger = Server.getLogger(Server.class.getName());
-        }
 
         @Override
         public void run() {
-            logger.info("******BEGIN******");
-
             while (true) {
                 try {
                     Server.this.msgFromClient = ClientToServer.parseDelimitedFrom(Server.this.client.getInputStream());
-                    logger.info(Server.this.msgFromClient.toString());
                 }
                 catch (NullPointerException e) {
                     System.out.println("Client probably disconnected");
@@ -213,20 +202,6 @@ public class Server implements Runnable {
         }
         catch (IOException e) {
             throw new RuntimeException("Error closing server socket");
-        }
-    }
-
-    private static Logger getLogger(String name) {
-        try {
-            Logger logger = Logger.getLogger(name);
-            FileHandler fh = new FileHandler(System.getProperty("user.dir") + "/temp/server_log.log"); // make sure temp dir exists in current dir before running
-            logger.addHandler(fh);
-            logger.setUseParentHandlers(false);
-            return logger;
-        }
-        catch (IOException e) {
-            System.out.println("Error creating new logger");
-            return null;
         }
     }
 

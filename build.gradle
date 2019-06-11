@@ -21,18 +21,11 @@ dependencies {
     implementation 'org.json:json:20180813'
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-websocket")
-    testImplementation("junit:junit")
-
-    implementation("org.webjars:webjars-locator-core")
-    implementation("org.webjars:stomp-websocket:2.3.3")
-    implementation("org.webjars:jquery:3.1.0")
-
     runtimeOnly project(':base-station-2019-frontend')
 }
 
-// idk why this doesn't happen automatically, but here we specify some manifest stuff in our jar
-jar {
-    manifest.attributes "Main-Class": "server.Main"
+springBoot {
+    mainClassName = 'server.Application'
 }
 
 // for Java
