@@ -7,6 +7,14 @@ import telemetrydata.TelemetryData.*;
 import org.springframework.stereotype.Service;
 import org.json.*;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import java.util.concurrent.ExecutionException;
+
 @Service
 public class Server implements Runnable {
     private static final int PORT = 9090;
@@ -113,23 +121,54 @@ public class Server implements Runnable {
 
         @Override
         public void run() {
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+
             while (true) {
+                Future<ClientToServer> futureMsg = executor.submit(new Callable() {
+                    @Override
+                    public ClientToServer call() throws Exception {
+                        try {
+                            return ClientToServer.parseDelimitedFrom(Server.this.client.getInputStream());
+                        }
+                        catch (IOException e) {
+                            System.out.println("IO Exception: " + e);
+                            throw new RuntimeException("Failed getting input stream");
+                        }
+                    }
+                });
+
                 try {
-                    Server.this.msgFromClient = ClientToServer.parseDelimitedFrom(Server.this.client.getInputStream());
+                    System.out.println("STARTING");
+                    Server.this.msgFromClient = futureMsg.get(500, TimeUnit.MILLISECONDS);
+                    System.out.println("RECEIVED");
 
                     if (Server.this.msgFromClient == null) {
                         throw new NullPointerException();
                     }
+                }
+                catch (TimeoutException e) {
+                    futureMsg.cancel(true);
+                    System.out.println("Client did not send message back in time, may be disconnected");
+                    connected = false;
+                    break;
+                }
+                catch (InterruptedException e) {
+                    System.out.println("BRUHH");
+                    connected = false;
+                    break;
+                }
+                catch (ExecutionException e) {
+                    System.out.println("BRUHH");
+                    connected = false;
+                    break;
                 }
                 catch (NullPointerException e) {
                     System.out.println("Client probably disconnected");
                     connected = false;
                     break;
                 }
-                catch (IOException e) {
-                    System.out.println("IO Exception: " + e);
-                    break;
-                }
+
+                // executor.shutdownNow();
             }
         }
     }
