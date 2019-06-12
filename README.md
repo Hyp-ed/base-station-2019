@@ -23,5 +23,3 @@ $ ./gradlew build
 (If on windows use `gradlew.bat` instead of `./gradlew`)
 
 This will create a jar file in `build/libs/` that contains both the backend and the static frontend that it serves.
-
-Be sure to make a `/temp` directory in your project's root directory, as this is where the log is stored. Read log with `tail -F temp/server_log.log`
