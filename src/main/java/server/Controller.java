@@ -39,7 +39,7 @@ public class Controller {
 
     @MessageMapping("/pullData")
     @SendTo("/topic/isPodConnected")
-    public void podStats() {
+    public void startPingingData() {
         Thread checkToScheduleThread = new Thread(new Runnable() {
 
             @Override
@@ -108,6 +108,6 @@ public class Controller {
 
     public void forwardToFrontend(ClientToServer msg) throws InvalidProtocolBufferException {
         JsonFormat.Printer protoJsonPrinter = JsonFormat.printer();
-        template.convertAndSend("/topic/podStats", protoJsonPrinter.print(msg));
+        template.convertAndSend("/topic/podData", protoJsonPrinter.print(msg));
     }
 }
