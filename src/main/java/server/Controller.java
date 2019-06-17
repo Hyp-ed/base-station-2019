@@ -98,7 +98,7 @@ public class Controller {
             forwardToFrontend(msg);
         }
         catch (InvalidProtocolBufferException e) {
-            System.out.println("Error (Handled): " + e);
+            System.out.println("InvalidProtocolBufferException (Handled): " + e);
             template.convertAndSend("/topic/errors", "server received invalid protobuf message");
         }
         catch (NullPointerException e) {

@@ -116,6 +116,10 @@ public class Server implements Runnable {
             while (true) {
                 try {
                     Server.this.msgFromClient = ClientToServer.parseDelimitedFrom(Server.this.client.getInputStream());
+
+                    if (Server.this.msgFromClient == null) {
+                        throw new NullPointerException();
+                    }
                 }
                 catch (NullPointerException e) {
                     System.out.println("Client probably disconnected");
