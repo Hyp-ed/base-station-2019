@@ -138,9 +138,7 @@ public class Server implements Runnable {
                 });
 
                 try {
-                    System.out.println("STARTING");
                     Server.this.msgFromClient = futureMsg.get(500, TimeUnit.MILLISECONDS);
-                    System.out.println("RECEIVED");
 
                     if (Server.this.msgFromClient == null) {
                         throw new NullPointerException();
