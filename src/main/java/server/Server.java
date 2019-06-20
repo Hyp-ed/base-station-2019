@@ -150,13 +150,8 @@ public class Server implements Runnable {
                     connected = false;
                     break;
                 }
-                catch (InterruptedException e) {
-                    System.out.println("BRUHH");
-                    connected = false;
-                    break;
-                }
-                catch (ExecutionException e) {
-                    System.out.println("BRUHH");
+                catch (InterruptedException | ExecutionException e) {
+                    System.out.println("Execution of futureMsg was interrupted");
                     connected = false;
                     break;
                 }
