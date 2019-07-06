@@ -94,14 +94,6 @@ public class Server implements Runnable {
         public MessageSender(JSONObject msg) {
             // TODO: check for null from json? / throw exception if this fails??
             msgBuilder = ServerToClient.newBuilder().setCommand(ServerToClient.Command.valueOf(msg.getString("command").toUpperCase()));
-
-            // here we add extra data like run_length if the command requires it
-            switch (msg.optString("command", "ERROR").toUpperCase()) {
-                case "RUN_LENGTH":
-                    msgBuilder.setRunLength((float) msg.getDouble("run_length")); // TODO: check if this fails
-                    break;
-                // TODO: IMPLEMENT DEFAULT CASE, honestly idk what to do here since we can't "cancel" this runnable from here
-            }
         }
 
         @Override

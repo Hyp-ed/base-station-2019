@@ -26,11 +26,6 @@ public final class TelemetryData {
      * <code>.telemetry_data.ServerToClient.Command command = 1;</code>
      */
     telemetrydata.TelemetryData.ServerToClient.Command getCommand();
-
-    /**
-     * <code>float run_length = 2;</code>
-     */
-    float getRunLength();
   }
   /**
    * Protobuf type {@code telemetry_data.ServerToClient}
@@ -46,7 +41,6 @@ public final class TelemetryData {
     }
     private ServerToClient() {
       command_ = 0;
-      runLength_ = 0F;
     }
 
     @java.lang.Override
@@ -77,11 +71,6 @@ public final class TelemetryData {
               int rawValue = input.readEnum();
 
               command_ = rawValue;
-              break;
-            }
-            case 21: {
-
-              runLength_ = input.readFloat();
               break;
             }
             default: {
@@ -142,21 +131,17 @@ public final class TelemetryData {
        */
       RESET(4),
       /**
-       * <code>RUN_LENGTH = 5;</code>
+       * <code>SERVICE_PROPULSION_GO = 5;</code>
        */
-      RUN_LENGTH(5),
+      SERVICE_PROPULSION_GO(5),
       /**
-       * <code>SERVICE_PROPULSION_GO = 6;</code>
+       * <code>SERVICE_PROPULSION_STOP = 6;</code>
        */
-      SERVICE_PROPULSION_GO(6),
+      SERVICE_PROPULSION_STOP(6),
       /**
-       * <code>SERVICE_PROPULSION_STOP = 7;</code>
+       * <code>NOMINAL_BRAKING = 7;</code>
        */
-      SERVICE_PROPULSION_STOP(7),
-      /**
-       * <code>NOMINAL_BRAKING = 8;</code>
-       */
-      NOMINAL_BRAKING(8),
+      NOMINAL_BRAKING(7),
       UNRECOGNIZED(-1),
       ;
 
@@ -181,21 +166,17 @@ public final class TelemetryData {
        */
       public static final int RESET_VALUE = 4;
       /**
-       * <code>RUN_LENGTH = 5;</code>
+       * <code>SERVICE_PROPULSION_GO = 5;</code>
        */
-      public static final int RUN_LENGTH_VALUE = 5;
+      public static final int SERVICE_PROPULSION_GO_VALUE = 5;
       /**
-       * <code>SERVICE_PROPULSION_GO = 6;</code>
+       * <code>SERVICE_PROPULSION_STOP = 6;</code>
        */
-      public static final int SERVICE_PROPULSION_GO_VALUE = 6;
+      public static final int SERVICE_PROPULSION_STOP_VALUE = 6;
       /**
-       * <code>SERVICE_PROPULSION_STOP = 7;</code>
+       * <code>NOMINAL_BRAKING = 7;</code>
        */
-      public static final int SERVICE_PROPULSION_STOP_VALUE = 7;
-      /**
-       * <code>NOMINAL_BRAKING = 8;</code>
-       */
-      public static final int NOMINAL_BRAKING_VALUE = 8;
+      public static final int NOMINAL_BRAKING_VALUE = 7;
 
 
       public final int getNumber() {
@@ -221,10 +202,9 @@ public final class TelemetryData {
           case 2: return CALIBRATE;
           case 3: return LAUNCH;
           case 4: return RESET;
-          case 5: return RUN_LENGTH;
-          case 6: return SERVICE_PROPULSION_GO;
-          case 7: return SERVICE_PROPULSION_STOP;
-          case 8: return NOMINAL_BRAKING;
+          case 5: return SERVICE_PROPULSION_GO;
+          case 6: return SERVICE_PROPULSION_STOP;
+          case 7: return NOMINAL_BRAKING;
           default: return null;
         }
       }
@@ -294,15 +274,6 @@ public final class TelemetryData {
       return result == null ? telemetrydata.TelemetryData.ServerToClient.Command.UNRECOGNIZED : result;
     }
 
-    public static final int RUN_LENGTH_FIELD_NUMBER = 2;
-    private float runLength_;
-    /**
-     * <code>float run_length = 2;</code>
-     */
-    public float getRunLength() {
-      return runLength_;
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -320,9 +291,6 @@ public final class TelemetryData {
       if (command_ != telemetrydata.TelemetryData.ServerToClient.Command.ACK.getNumber()) {
         output.writeEnum(1, command_);
       }
-      if (runLength_ != 0F) {
-        output.writeFloat(2, runLength_);
-      }
       unknownFields.writeTo(output);
     }
 
@@ -335,10 +303,6 @@ public final class TelemetryData {
       if (command_ != telemetrydata.TelemetryData.ServerToClient.Command.ACK.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, command_);
-      }
-      if (runLength_ != 0F) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(2, runLength_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -357,10 +321,6 @@ public final class TelemetryData {
 
       boolean result = true;
       result = result && command_ == other.command_;
-      result = result && (
-          java.lang.Float.floatToIntBits(getRunLength())
-          == java.lang.Float.floatToIntBits(
-              other.getRunLength()));
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -374,9 +334,6 @@ public final class TelemetryData {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + COMMAND_FIELD_NUMBER;
       hash = (53 * hash) + command_;
-      hash = (37 * hash) + RUN_LENGTH_FIELD_NUMBER;
-      hash = (53 * hash) + java.lang.Float.floatToIntBits(
-          getRunLength());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -512,8 +469,6 @@ public final class TelemetryData {
         super.clear();
         command_ = 0;
 
-        runLength_ = 0F;
-
         return this;
       }
 
@@ -541,7 +496,6 @@ public final class TelemetryData {
       public telemetrydata.TelemetryData.ServerToClient buildPartial() {
         telemetrydata.TelemetryData.ServerToClient result = new telemetrydata.TelemetryData.ServerToClient(this);
         result.command_ = command_;
-        result.runLength_ = runLength_;
         onBuilt();
         return result;
       }
@@ -592,9 +546,6 @@ public final class TelemetryData {
         if (other == telemetrydata.TelemetryData.ServerToClient.getDefaultInstance()) return this;
         if (other.command_ != 0) {
           setCommandValue(other.getCommandValue());
-        }
-        if (other.getRunLength() != 0F) {
-          setRunLength(other.getRunLength());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -666,32 +617,6 @@ public final class TelemetryData {
       public Builder clearCommand() {
         
         command_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private float runLength_ ;
-      /**
-       * <code>float run_length = 2;</code>
-       */
-      public float getRunLength() {
-        return runLength_;
-      }
-      /**
-       * <code>float run_length = 2;</code>
-       */
-      public Builder setRunLength(float value) {
-        
-        runLength_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>float run_length = 2;</code>
-       */
-      public Builder clearRunLength() {
-        
-        runLength_ = 0F;
         onChanged();
         return this;
       }
@@ -6943,14 +6868,17 @@ public final class TelemetryData {
         com.google.protobuf.MessageOrBuilder {
 
       /**
-       * <code>bool front_brakes = 1;</code>
+       * <code>repeated bool brakes = 1;</code>
        */
-      boolean getFrontBrakes();
-
+      java.util.List<java.lang.Boolean> getBrakesList();
       /**
-       * <code>bool rear_brakes = 2;</code>
+       * <code>repeated bool brakes = 1;</code>
        */
-      boolean getRearBrakes();
+      int getBrakesCount();
+      /**
+       * <code>repeated bool brakes = 1;</code>
+       */
+      boolean getBrakes(int index);
     }
     /**
      * Protobuf type {@code telemetry_data.ClientToServer.EmergencyBrakes}
@@ -6965,8 +6893,7 @@ public final class TelemetryData {
         super(builder);
       }
       private EmergencyBrakes() {
-        frontBrakes_ = false;
-        rearBrakes_ = false;
+        brakes_ = java.util.Collections.emptyList();
       }
 
       @java.lang.Override
@@ -6994,13 +6921,24 @@ public final class TelemetryData {
                 done = true;
                 break;
               case 8: {
-
-                frontBrakes_ = input.readBool();
+                if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                  brakes_ = new java.util.ArrayList<java.lang.Boolean>();
+                  mutable_bitField0_ |= 0x00000001;
+                }
+                brakes_.add(input.readBool());
                 break;
               }
-              case 16: {
-
-                rearBrakes_ = input.readBool();
+              case 10: {
+                int length = input.readRawVarint32();
+                int limit = input.pushLimit(length);
+                if (!((mutable_bitField0_ & 0x00000001) == 0x00000001) && input.getBytesUntilLimit() > 0) {
+                  brakes_ = new java.util.ArrayList<java.lang.Boolean>();
+                  mutable_bitField0_ |= 0x00000001;
+                }
+                while (input.getBytesUntilLimit() > 0) {
+                  brakes_.add(input.readBool());
+                }
+                input.popLimit(limit);
                 break;
               }
               default: {
@@ -7018,6 +6956,9 @@ public final class TelemetryData {
           throw new com.google.protobuf.InvalidProtocolBufferException(
               e).setUnfinishedMessage(this);
         } finally {
+          if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+            brakes_ = java.util.Collections.unmodifiableList(brakes_);
+          }
           this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
@@ -7035,23 +6976,28 @@ public final class TelemetryData {
                 telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.class, telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.Builder.class);
       }
 
-      public static final int FRONT_BRAKES_FIELD_NUMBER = 1;
-      private boolean frontBrakes_;
+      public static final int BRAKES_FIELD_NUMBER = 1;
+      private java.util.List<java.lang.Boolean> brakes_;
       /**
-       * <code>bool front_brakes = 1;</code>
+       * <code>repeated bool brakes = 1;</code>
        */
-      public boolean getFrontBrakes() {
-        return frontBrakes_;
+      public java.util.List<java.lang.Boolean>
+          getBrakesList() {
+        return brakes_;
       }
-
-      public static final int REAR_BRAKES_FIELD_NUMBER = 2;
-      private boolean rearBrakes_;
       /**
-       * <code>bool rear_brakes = 2;</code>
+       * <code>repeated bool brakes = 1;</code>
        */
-      public boolean getRearBrakes() {
-        return rearBrakes_;
+      public int getBrakesCount() {
+        return brakes_.size();
       }
+      /**
+       * <code>repeated bool brakes = 1;</code>
+       */
+      public boolean getBrakes(int index) {
+        return brakes_.get(index);
+      }
+      private int brakesMemoizedSerializedSize = -1;
 
       private byte memoizedIsInitialized = -1;
       @java.lang.Override
@@ -7067,11 +7013,13 @@ public final class TelemetryData {
       @java.lang.Override
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
-        if (frontBrakes_ != false) {
-          output.writeBool(1, frontBrakes_);
+        getSerializedSize();
+        if (getBrakesList().size() > 0) {
+          output.writeUInt32NoTag(10);
+          output.writeUInt32NoTag(brakesMemoizedSerializedSize);
         }
-        if (rearBrakes_ != false) {
-          output.writeBool(2, rearBrakes_);
+        for (int i = 0; i < brakes_.size(); i++) {
+          output.writeBoolNoTag(brakes_.get(i));
         }
         unknownFields.writeTo(output);
       }
@@ -7082,13 +7030,16 @@ public final class TelemetryData {
         if (size != -1) return size;
 
         size = 0;
-        if (frontBrakes_ != false) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeBoolSize(1, frontBrakes_);
-        }
-        if (rearBrakes_ != false) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeBoolSize(2, rearBrakes_);
+        {
+          int dataSize = 0;
+          dataSize = 1 * getBrakesList().size();
+          size += dataSize;
+          if (!getBrakesList().isEmpty()) {
+            size += 1;
+            size += com.google.protobuf.CodedOutputStream
+                .computeInt32SizeNoTag(dataSize);
+          }
+          brakesMemoizedSerializedSize = dataSize;
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
@@ -7106,10 +7057,8 @@ public final class TelemetryData {
         telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes other = (telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes) obj;
 
         boolean result = true;
-        result = result && (getFrontBrakes()
-            == other.getFrontBrakes());
-        result = result && (getRearBrakes()
-            == other.getRearBrakes());
+        result = result && getBrakesList()
+            .equals(other.getBrakesList());
         result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
@@ -7121,12 +7070,10 @@ public final class TelemetryData {
         }
         int hash = 41;
         hash = (19 * hash) + getDescriptor().hashCode();
-        hash = (37 * hash) + FRONT_BRAKES_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getFrontBrakes());
-        hash = (37 * hash) + REAR_BRAKES_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getRearBrakes());
+        if (getBrakesCount() > 0) {
+          hash = (37 * hash) + BRAKES_FIELD_NUMBER;
+          hash = (53 * hash) + getBrakesList().hashCode();
+        }
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -7260,10 +7207,8 @@ public final class TelemetryData {
         @java.lang.Override
         public Builder clear() {
           super.clear();
-          frontBrakes_ = false;
-
-          rearBrakes_ = false;
-
+          brakes_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
           return this;
         }
 
@@ -7290,8 +7235,12 @@ public final class TelemetryData {
         @java.lang.Override
         public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes buildPartial() {
           telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes result = new telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes(this);
-          result.frontBrakes_ = frontBrakes_;
-          result.rearBrakes_ = rearBrakes_;
+          int from_bitField0_ = bitField0_;
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            brakes_ = java.util.Collections.unmodifiableList(brakes_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.brakes_ = brakes_;
           onBuilt();
           return result;
         }
@@ -7340,11 +7289,15 @@ public final class TelemetryData {
 
         public Builder mergeFrom(telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes other) {
           if (other == telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.getDefaultInstance()) return this;
-          if (other.getFrontBrakes() != false) {
-            setFrontBrakes(other.getFrontBrakes());
-          }
-          if (other.getRearBrakes() != false) {
-            setRearBrakes(other.getRearBrakes());
+          if (!other.brakes_.isEmpty()) {
+            if (brakes_.isEmpty()) {
+              brakes_ = other.brakes_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureBrakesIsMutable();
+              brakes_.addAll(other.brakes_);
+            }
+            onChanged();
           }
           this.mergeUnknownFields(other.unknownFields);
           onChanged();
@@ -7374,55 +7327,70 @@ public final class TelemetryData {
           }
           return this;
         }
+        private int bitField0_;
 
-        private boolean frontBrakes_ ;
-        /**
-         * <code>bool front_brakes = 1;</code>
-         */
-        public boolean getFrontBrakes() {
-          return frontBrakes_;
+        private java.util.List<java.lang.Boolean> brakes_ = java.util.Collections.emptyList();
+        private void ensureBrakesIsMutable() {
+          if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+            brakes_ = new java.util.ArrayList<java.lang.Boolean>(brakes_);
+            bitField0_ |= 0x00000001;
+           }
         }
         /**
-         * <code>bool front_brakes = 1;</code>
+         * <code>repeated bool brakes = 1;</code>
          */
-        public Builder setFrontBrakes(boolean value) {
-          
-          frontBrakes_ = value;
+        public java.util.List<java.lang.Boolean>
+            getBrakesList() {
+          return java.util.Collections.unmodifiableList(brakes_);
+        }
+        /**
+         * <code>repeated bool brakes = 1;</code>
+         */
+        public int getBrakesCount() {
+          return brakes_.size();
+        }
+        /**
+         * <code>repeated bool brakes = 1;</code>
+         */
+        public boolean getBrakes(int index) {
+          return brakes_.get(index);
+        }
+        /**
+         * <code>repeated bool brakes = 1;</code>
+         */
+        public Builder setBrakes(
+            int index, boolean value) {
+          ensureBrakesIsMutable();
+          brakes_.set(index, value);
           onChanged();
           return this;
         }
         /**
-         * <code>bool front_brakes = 1;</code>
+         * <code>repeated bool brakes = 1;</code>
          */
-        public Builder clearFrontBrakes() {
-          
-          frontBrakes_ = false;
-          onChanged();
-          return this;
-        }
-
-        private boolean rearBrakes_ ;
-        /**
-         * <code>bool rear_brakes = 2;</code>
-         */
-        public boolean getRearBrakes() {
-          return rearBrakes_;
-        }
-        /**
-         * <code>bool rear_brakes = 2;</code>
-         */
-        public Builder setRearBrakes(boolean value) {
-          
-          rearBrakes_ = value;
+        public Builder addBrakes(boolean value) {
+          ensureBrakesIsMutable();
+          brakes_.add(value);
           onChanged();
           return this;
         }
         /**
-         * <code>bool rear_brakes = 2;</code>
+         * <code>repeated bool brakes = 1;</code>
          */
-        public Builder clearRearBrakes() {
-          
-          rearBrakes_ = false;
+        public Builder addAllBrakes(
+            java.lang.Iterable<? extends java.lang.Boolean> values) {
+          ensureBrakesIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, brakes_);
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>repeated bool brakes = 1;</code>
+         */
+        public Builder clearBrakes() {
+          brakes_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
           return this;
         }
@@ -8884,58 +8852,56 @@ public final class TelemetryData {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rmessage.proto\022\016telemetry_data\"\377\001\n\016Serv" +
+      "\n\rmessage.proto\022\016telemetry_data\"\333\001\n\016Serv" +
       "erToClient\0227\n\007command\030\001 \001(\0162&.telemetry_" +
-      "data.ServerToClient.Command\022\022\n\nrun_lengt" +
-      "h\030\002 \001(\002\"\237\001\n\007Command\022\007\n\003ACK\020\000\022\010\n\004STOP\020\001\022\r" +
-      "\n\tCALIBRATE\020\002\022\n\n\006LAUNCH\020\003\022\t\n\005RESET\020\004\022\016\n\n" +
-      "RUN_LENGTH\020\005\022\031\n\025SERVICE_PROPULSION_GO\020\006\022" +
-      "\033\n\027SERVICE_PROPULSION_STOP\020\007\022\023\n\017NOMINAL_" +
-      "BRAKING\020\010\"\271\r\n\016ClientToServer\022=\n\nnavigati" +
-      "on\030\001 \001(\0132).telemetry_data.ClientToServer" +
-      ".Navigation\022B\n\rstate_machine\030\002 \001(\0132+.tel" +
-      "emetry_data.ClientToServer.StateMachine\022" +
-      "5\n\006motors\030\003 \001(\0132%.telemetry_data.ClientT" +
-      "oServer.Motors\022;\n\tbatteries\030\004 \001(\0132(.tele" +
-      "metry_data.ClientToServer.Batteries\0227\n\007s" +
-      "ensors\030\005 \001(\0132&.telemetry_data.ClientToSe" +
-      "rver.Sensors\022H\n\020emergency_brakes\030\006 \001(\0132." +
-      ".telemetry_data.ClientToServer.Emergency" +
-      "Brakes\032\212\001\n\nNavigation\022B\n\rmodule_status\030\001" +
-      " \001(\0162+.telemetry_data.ClientToServer.Mod" +
-      "uleStatus\022\020\n\010distance\030\002 \001(\002\022\020\n\010velocity\030" +
-      "\003 \001(\002\022\024\n\014acceleration\030\004 \001(\002\032\225\002\n\014StateMac" +
-      "hine\022H\n\rcurrent_state\030\002 \001(\01621.telemetry_" +
-      "data.ClientToServer.StateMachine.State\"\272" +
-      "\001\n\005State\022\013\n\007INVALID\020\000\022\010\n\004IDLE\020\001\022\017\n\013CALIB" +
-      "RATING\020\002\022\t\n\005READY\020\003\022\020\n\014ACCELERATING\020\004\022\023\n" +
-      "\017NOMINAL_BRAKING\020\005\022\025\n\021EMERGENCY_BRAKING\020" +
-      "\006\022\020\n\014RUN_COMPLETE\020\007\022\023\n\017FAILURE_STOPPED\020\010" +
-      "\022\013\n\007EXITING\020\t\022\014\n\010FINISHED\020\n\032\304\001\n\006Motors\022B" +
-      "\n\rmodule_status\030\001 \001(\0162+.telemetry_data.C" +
-      "lientToServer.ModuleStatus\022\022\n\nvelocity_1" +
-      "\030\002 \001(\021\022\022\n\nvelocity_2\030\003 \001(\021\022\022\n\nvelocity_3" +
-      "\030\004 \001(\021\022\022\n\nvelocity_4\030\005 \001(\021\022\022\n\nvelocity_5" +
-      "\030\006 \001(\021\022\022\n\nvelocity_6\030\007 \001(\021\032\202\003\n\tBatteries" +
-      "\022B\n\rmodule_status\030\001 \001(\0162+.telemetry_data" +
-      ".ClientToServer.ModuleStatus\022Q\n\023low_powe" +
-      "r_batteries\030\002 \003(\01324.telemetry_data.Clien" +
-      "tToServer.Batteries.BatteryData\022R\n\024high_" +
-      "power_batteries\030\003 \003(\01324.telemetry_data.C" +
-      "lientToServer.Batteries.BatteryData\032\211\001\n\013" +
-      "BatteryData\022\017\n\007voltage\030\001 \001(\r\022\017\n\007current\030" +
-      "\002 \001(\021\022\016\n\006charge\030\003 \001(\r\022\023\n\013temperature\030\004 \001" +
-      "(\005\022\030\n\020low_voltage_cell\030\005 \001(\r\022\031\n\021high_vol" +
-      "tage_cell\030\006 \001(\r\032\267\001\n\007Sensors\022B\n\rmodule_st" +
-      "atus\030\001 \001(\0162+.telemetry_data.ClientToServ" +
-      "er.ModuleStatus\022;\n\003imu\030\002 \003(\0132..telemetry" +
-      "_data.ClientToServer.Sensors.ImuData\032+\n\007" +
-      "ImuData\022\023\n\013operational\030\001 \001(\010\022\013\n\003acc\030\002 \003(" +
-      "\002\032<\n\017EmergencyBrakes\022\024\n\014front_brakes\030\001 \001" +
-      "(\010\022\023\n\013rear_brakes\030\002 \001(\010\"D\n\014ModuleStatus\022" +
-      "\t\n\005START\020\000\022\010\n\004INIT\020\001\022\t\n\005READY\020\002\022\024\n\020CRITI" +
-      "CAL_FAILURE\020\003B\036\n\rtelemetrydataB\rTelemetr" +
-      "yDatab\006proto3"
+      "data.ServerToClient.Command\"\217\001\n\007Command\022" +
+      "\007\n\003ACK\020\000\022\010\n\004STOP\020\001\022\r\n\tCALIBRATE\020\002\022\n\n\006LAU" +
+      "NCH\020\003\022\t\n\005RESET\020\004\022\031\n\025SERVICE_PROPULSION_G" +
+      "O\020\005\022\033\n\027SERVICE_PROPULSION_STOP\020\006\022\023\n\017NOMI" +
+      "NAL_BRAKING\020\007\"\236\r\n\016ClientToServer\022=\n\nnavi" +
+      "gation\030\001 \001(\0132).telemetry_data.ClientToSe" +
+      "rver.Navigation\022B\n\rstate_machine\030\002 \001(\0132+" +
+      ".telemetry_data.ClientToServer.StateMach" +
+      "ine\0225\n\006motors\030\003 \001(\0132%.telemetry_data.Cli" +
+      "entToServer.Motors\022;\n\tbatteries\030\004 \001(\0132(." +
+      "telemetry_data.ClientToServer.Batteries\022" +
+      "7\n\007sensors\030\005 \001(\0132&.telemetry_data.Client" +
+      "ToServer.Sensors\022H\n\020emergency_brakes\030\006 \001" +
+      "(\0132..telemetry_data.ClientToServer.Emerg" +
+      "encyBrakes\032\212\001\n\nNavigation\022B\n\rmodule_stat" +
+      "us\030\001 \001(\0162+.telemetry_data.ClientToServer" +
+      ".ModuleStatus\022\020\n\010distance\030\002 \001(\002\022\020\n\010veloc" +
+      "ity\030\003 \001(\002\022\024\n\014acceleration\030\004 \001(\002\032\225\002\n\014Stat" +
+      "eMachine\022H\n\rcurrent_state\030\002 \001(\01621.teleme" +
+      "try_data.ClientToServer.StateMachine.Sta" +
+      "te\"\272\001\n\005State\022\013\n\007INVALID\020\000\022\010\n\004IDLE\020\001\022\017\n\013C" +
+      "ALIBRATING\020\002\022\t\n\005READY\020\003\022\020\n\014ACCELERATING\020" +
+      "\004\022\023\n\017NOMINAL_BRAKING\020\005\022\025\n\021EMERGENCY_BRAK" +
+      "ING\020\006\022\020\n\014RUN_COMPLETE\020\007\022\023\n\017FAILURE_STOPP" +
+      "ED\020\010\022\013\n\007EXITING\020\t\022\014\n\010FINISHED\020\n\032\304\001\n\006Moto" +
+      "rs\022B\n\rmodule_status\030\001 \001(\0162+.telemetry_da" +
+      "ta.ClientToServer.ModuleStatus\022\022\n\nveloci" +
+      "ty_1\030\002 \001(\021\022\022\n\nvelocity_2\030\003 \001(\021\022\022\n\nveloci" +
+      "ty_3\030\004 \001(\021\022\022\n\nvelocity_4\030\005 \001(\021\022\022\n\nveloci" +
+      "ty_5\030\006 \001(\021\022\022\n\nvelocity_6\030\007 \001(\021\032\202\003\n\tBatte" +
+      "ries\022B\n\rmodule_status\030\001 \001(\0162+.telemetry_" +
+      "data.ClientToServer.ModuleStatus\022Q\n\023low_" +
+      "power_batteries\030\002 \003(\01324.telemetry_data.C" +
+      "lientToServer.Batteries.BatteryData\022R\n\024h" +
+      "igh_power_batteries\030\003 \003(\01324.telemetry_da" +
+      "ta.ClientToServer.Batteries.BatteryData\032" +
+      "\211\001\n\013BatteryData\022\017\n\007voltage\030\001 \001(\r\022\017\n\007curr" +
+      "ent\030\002 \001(\021\022\016\n\006charge\030\003 \001(\r\022\023\n\013temperature" +
+      "\030\004 \001(\005\022\030\n\020low_voltage_cell\030\005 \001(\r\022\031\n\021high" +
+      "_voltage_cell\030\006 \001(\r\032\267\001\n\007Sensors\022B\n\rmodul" +
+      "e_status\030\001 \001(\0162+.telemetry_data.ClientTo" +
+      "Server.ModuleStatus\022;\n\003imu\030\002 \003(\0132..telem" +
+      "etry_data.ClientToServer.Sensors.ImuData" +
+      "\032+\n\007ImuData\022\023\n\013operational\030\001 \001(\010\022\013\n\003acc\030" +
+      "\002 \003(\002\032!\n\017EmergencyBrakes\022\016\n\006brakes\030\001 \003(\010" +
+      "\"D\n\014ModuleStatus\022\t\n\005START\020\000\022\010\n\004INIT\020\001\022\t\n" +
+      "\005READY\020\002\022\024\n\020CRITICAL_FAILURE\020\003B\036\n\rteleme" +
+      "trydataB\rTelemetryDatab\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -8954,7 +8920,7 @@ public final class TelemetryData {
     internal_static_telemetry_data_ServerToClient_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ServerToClient_descriptor,
-        new java.lang.String[] { "Command", "RunLength", });
+        new java.lang.String[] { "Command", });
     internal_static_telemetry_data_ClientToServer_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_telemetry_data_ClientToServer_fieldAccessorTable = new
@@ -9008,7 +8974,7 @@ public final class TelemetryData {
     internal_static_telemetry_data_ClientToServer_EmergencyBrakes_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor,
-        new java.lang.String[] { "FrontBrakes", "RearBrakes", });
+        new java.lang.String[] { "Brakes", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
