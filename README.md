@@ -13,7 +13,7 @@ Go to `localhost:8080` for the gui.
 Then run `./hyped` (from the hyped-2019 repo) to start the pod, and you should see the pod connecting on the gui. Make sure to read [this guide](https://github.com/Hyp-ed/hyped-2019/blob/develop/docs/guides/telemetry_guides.md) first.
 
 ### Build project:
-This project uses gradle as its build system. The gradle wrapper is already checked into this repo, so no need to explicitly download gradle (unless you want to).
+This project uses gradle as its build system. Only manually build the project instead of using the released jar file as explained above if you actually intend to work on the base-station. The gradle wrapper is already checked into this repo, so no need to explicitly download gradle (unless you want to).
 
 Run:
 ```
