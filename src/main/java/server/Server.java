@@ -130,7 +130,7 @@ public class Server implements Runnable {
                 });
 
                 try {
-                    Server.this.msgFromClient = futureMsg.get(1000, TimeUnit.MILLISECONDS);
+                    Server.this.msgFromClient = futureMsg.get(3000, TimeUnit.MILLISECONDS);
 
                     if (Server.this.msgFromClient == null) {
                         throw new NullPointerException();
