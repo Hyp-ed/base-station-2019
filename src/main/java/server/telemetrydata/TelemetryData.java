@@ -743,15 +743,28 @@ public final class TelemetryData {
     telemetrydata.TelemetryData.ClientToServer.SensorsOrBuilder getSensorsOrBuilder();
 
     /**
-     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+     * <code>.telemetry_data.ClientToServer.Temperature temperature = 6;</code>
+     */
+    boolean hasTemperature();
+    /**
+     * <code>.telemetry_data.ClientToServer.Temperature temperature = 6;</code>
+     */
+    telemetrydata.TelemetryData.ClientToServer.Temperature getTemperature();
+    /**
+     * <code>.telemetry_data.ClientToServer.Temperature temperature = 6;</code>
+     */
+    telemetrydata.TelemetryData.ClientToServer.TemperatureOrBuilder getTemperatureOrBuilder();
+
+    /**
+     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 7;</code>
      */
     boolean hasEmergencyBrakes();
     /**
-     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 7;</code>
      */
     telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes getEmergencyBrakes();
     /**
-     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 7;</code>
      */
     telemetrydata.TelemetryData.ClientToServer.EmergencyBrakesOrBuilder getEmergencyBrakesOrBuilder();
   }
@@ -860,6 +873,19 @@ public final class TelemetryData {
               break;
             }
             case 50: {
+              telemetrydata.TelemetryData.ClientToServer.Temperature.Builder subBuilder = null;
+              if (temperature_ != null) {
+                subBuilder = temperature_.toBuilder();
+              }
+              temperature_ = input.readMessage(telemetrydata.TelemetryData.ClientToServer.Temperature.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(temperature_);
+                temperature_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 58: {
               telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.Builder subBuilder = null;
               if (emergencyBrakes_ != null) {
                 subBuilder = emergencyBrakes_.toBuilder();
@@ -6863,6 +6889,502 @@ public final class TelemetryData {
 
     }
 
+    public interface TemperatureOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:telemetry_data.ClientToServer.Temperature)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <pre>
+       * not uint32 becuase temp *just might maybe* be negative, however unlikely
+       * </pre>
+       *
+       * <code>sint32 temperature = 1;</code>
+       */
+      int getTemperature();
+    }
+    /**
+     * Protobuf type {@code telemetry_data.ClientToServer.Temperature}
+     */
+    public  static final class Temperature extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:telemetry_data.ClientToServer.Temperature)
+        TemperatureOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use Temperature.newBuilder() to construct.
+      private Temperature(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private Temperature() {
+        temperature_ = 0;
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Temperature(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+
+                temperature_ = input.readSInt32();
+                break;
+              }
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Temperature_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Temperature_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                telemetrydata.TelemetryData.ClientToServer.Temperature.class, telemetrydata.TelemetryData.ClientToServer.Temperature.Builder.class);
+      }
+
+      public static final int TEMPERATURE_FIELD_NUMBER = 1;
+      private int temperature_;
+      /**
+       * <pre>
+       * not uint32 becuase temp *just might maybe* be negative, however unlikely
+       * </pre>
+       *
+       * <code>sint32 temperature = 1;</code>
+       */
+      public int getTemperature() {
+        return temperature_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      @java.lang.Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (temperature_ != 0) {
+          output.writeSInt32(1, temperature_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      @java.lang.Override
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (temperature_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeSInt32Size(1, temperature_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof telemetrydata.TelemetryData.ClientToServer.Temperature)) {
+          return super.equals(obj);
+        }
+        telemetrydata.TelemetryData.ClientToServer.Temperature other = (telemetrydata.TelemetryData.ClientToServer.Temperature) obj;
+
+        boolean result = true;
+        result = result && (getTemperature()
+            == other.getTemperature());
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + TEMPERATURE_FIELD_NUMBER;
+        hash = (53 * hash) + getTemperature();
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static telemetrydata.TelemetryData.ClientToServer.Temperature parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Temperature parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Temperature parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Temperature parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Temperature parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Temperature parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Temperature parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Temperature parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Temperature parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Temperature parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Temperature parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static telemetrydata.TelemetryData.ClientToServer.Temperature parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(telemetrydata.TelemetryData.ClientToServer.Temperature prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code telemetry_data.ClientToServer.Temperature}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:telemetry_data.ClientToServer.Temperature)
+          telemetrydata.TelemetryData.ClientToServer.TemperatureOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Temperature_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Temperature_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  telemetrydata.TelemetryData.ClientToServer.Temperature.class, telemetrydata.TelemetryData.ClientToServer.Temperature.Builder.class);
+        }
+
+        // Construct using telemetrydata.TelemetryData.ClientToServer.Temperature.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          temperature_ = 0;
+
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return telemetrydata.TelemetryData.internal_static_telemetry_data_ClientToServer_Temperature_descriptor;
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.Temperature getDefaultInstanceForType() {
+          return telemetrydata.TelemetryData.ClientToServer.Temperature.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.Temperature build() {
+          telemetrydata.TelemetryData.ClientToServer.Temperature result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public telemetrydata.TelemetryData.ClientToServer.Temperature buildPartial() {
+          telemetrydata.TelemetryData.ClientToServer.Temperature result = new telemetrydata.TelemetryData.ClientToServer.Temperature(this);
+          result.temperature_ = temperature_;
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof telemetrydata.TelemetryData.ClientToServer.Temperature) {
+            return mergeFrom((telemetrydata.TelemetryData.ClientToServer.Temperature)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(telemetrydata.TelemetryData.ClientToServer.Temperature other) {
+          if (other == telemetrydata.TelemetryData.ClientToServer.Temperature.getDefaultInstance()) return this;
+          if (other.getTemperature() != 0) {
+            setTemperature(other.getTemperature());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          telemetrydata.TelemetryData.ClientToServer.Temperature parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (telemetrydata.TelemetryData.ClientToServer.Temperature) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private int temperature_ ;
+        /**
+         * <pre>
+         * not uint32 becuase temp *just might maybe* be negative, however unlikely
+         * </pre>
+         *
+         * <code>sint32 temperature = 1;</code>
+         */
+        public int getTemperature() {
+          return temperature_;
+        }
+        /**
+         * <pre>
+         * not uint32 becuase temp *just might maybe* be negative, however unlikely
+         * </pre>
+         *
+         * <code>sint32 temperature = 1;</code>
+         */
+        public Builder setTemperature(int value) {
+          
+          temperature_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         * not uint32 becuase temp *just might maybe* be negative, however unlikely
+         * </pre>
+         *
+         * <code>sint32 temperature = 1;</code>
+         */
+        public Builder clearTemperature() {
+          
+          temperature_ = 0;
+          onChanged();
+          return this;
+        }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:telemetry_data.ClientToServer.Temperature)
+      }
+
+      // @@protoc_insertion_point(class_scope:telemetry_data.ClientToServer.Temperature)
+      private static final telemetrydata.TelemetryData.ClientToServer.Temperature DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new telemetrydata.TelemetryData.ClientToServer.Temperature();
+      }
+
+      public static telemetrydata.TelemetryData.ClientToServer.Temperature getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<Temperature>
+          PARSER = new com.google.protobuf.AbstractParser<Temperature>() {
+        @java.lang.Override
+        public Temperature parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Temperature(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<Temperature> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Temperature> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public telemetrydata.TelemetryData.ClientToServer.Temperature getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
     public interface EmergencyBrakesOrBuilder extends
         // @@protoc_insertion_point(interface_extends:telemetry_data.ClientToServer.EmergencyBrakes)
         com.google.protobuf.MessageOrBuilder {
@@ -7552,22 +8074,43 @@ public final class TelemetryData {
       return getSensors();
     }
 
-    public static final int EMERGENCY_BRAKES_FIELD_NUMBER = 6;
+    public static final int TEMPERATURE_FIELD_NUMBER = 6;
+    private telemetrydata.TelemetryData.ClientToServer.Temperature temperature_;
+    /**
+     * <code>.telemetry_data.ClientToServer.Temperature temperature = 6;</code>
+     */
+    public boolean hasTemperature() {
+      return temperature_ != null;
+    }
+    /**
+     * <code>.telemetry_data.ClientToServer.Temperature temperature = 6;</code>
+     */
+    public telemetrydata.TelemetryData.ClientToServer.Temperature getTemperature() {
+      return temperature_ == null ? telemetrydata.TelemetryData.ClientToServer.Temperature.getDefaultInstance() : temperature_;
+    }
+    /**
+     * <code>.telemetry_data.ClientToServer.Temperature temperature = 6;</code>
+     */
+    public telemetrydata.TelemetryData.ClientToServer.TemperatureOrBuilder getTemperatureOrBuilder() {
+      return getTemperature();
+    }
+
+    public static final int EMERGENCY_BRAKES_FIELD_NUMBER = 7;
     private telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes emergencyBrakes_;
     /**
-     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 7;</code>
      */
     public boolean hasEmergencyBrakes() {
       return emergencyBrakes_ != null;
     }
     /**
-     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 7;</code>
      */
     public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes getEmergencyBrakes() {
       return emergencyBrakes_ == null ? telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.getDefaultInstance() : emergencyBrakes_;
     }
     /**
-     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+     * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 7;</code>
      */
     public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakesOrBuilder getEmergencyBrakesOrBuilder() {
       return getEmergencyBrakes();
@@ -7602,8 +8145,11 @@ public final class TelemetryData {
       if (sensors_ != null) {
         output.writeMessage(5, getSensors());
       }
+      if (temperature_ != null) {
+        output.writeMessage(6, getTemperature());
+      }
       if (emergencyBrakes_ != null) {
-        output.writeMessage(6, getEmergencyBrakes());
+        output.writeMessage(7, getEmergencyBrakes());
       }
       unknownFields.writeTo(output);
     }
@@ -7634,9 +8180,13 @@ public final class TelemetryData {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, getSensors());
       }
+      if (temperature_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, getTemperature());
+      }
       if (emergencyBrakes_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, getEmergencyBrakes());
+          .computeMessageSize(7, getEmergencyBrakes());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -7679,6 +8229,11 @@ public final class TelemetryData {
         result = result && getSensors()
             .equals(other.getSensors());
       }
+      result = result && (hasTemperature() == other.hasTemperature());
+      if (hasTemperature()) {
+        result = result && getTemperature()
+            .equals(other.getTemperature());
+      }
       result = result && (hasEmergencyBrakes() == other.hasEmergencyBrakes());
       if (hasEmergencyBrakes()) {
         result = result && getEmergencyBrakes()
@@ -7714,6 +8269,10 @@ public final class TelemetryData {
       if (hasSensors()) {
         hash = (37 * hash) + SENSORS_FIELD_NUMBER;
         hash = (53 * hash) + getSensors().hashCode();
+      }
+      if (hasTemperature()) {
+        hash = (37 * hash) + TEMPERATURE_FIELD_NUMBER;
+        hash = (53 * hash) + getTemperature().hashCode();
       }
       if (hasEmergencyBrakes()) {
         hash = (37 * hash) + EMERGENCY_BRAKES_FIELD_NUMBER;
@@ -7882,6 +8441,12 @@ public final class TelemetryData {
           sensors_ = null;
           sensorsBuilder_ = null;
         }
+        if (temperatureBuilder_ == null) {
+          temperature_ = null;
+        } else {
+          temperature_ = null;
+          temperatureBuilder_ = null;
+        }
         if (emergencyBrakesBuilder_ == null) {
           emergencyBrakes_ = null;
         } else {
@@ -7938,6 +8503,11 @@ public final class TelemetryData {
           result.sensors_ = sensors_;
         } else {
           result.sensors_ = sensorsBuilder_.build();
+        }
+        if (temperatureBuilder_ == null) {
+          result.temperature_ = temperature_;
+        } else {
+          result.temperature_ = temperatureBuilder_.build();
         }
         if (emergencyBrakesBuilder_ == null) {
           result.emergencyBrakes_ = emergencyBrakes_;
@@ -8006,6 +8576,9 @@ public final class TelemetryData {
         }
         if (other.hasSensors()) {
           mergeSensors(other.getSensors());
+        }
+        if (other.hasTemperature()) {
+          mergeTemperature(other.getTemperature());
         }
         if (other.hasEmergencyBrakes()) {
           mergeEmergencyBrakes(other.getEmergencyBrakes());
@@ -8624,17 +9197,134 @@ public final class TelemetryData {
         return sensorsBuilder_;
       }
 
+      private telemetrydata.TelemetryData.ClientToServer.Temperature temperature_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          telemetrydata.TelemetryData.ClientToServer.Temperature, telemetrydata.TelemetryData.ClientToServer.Temperature.Builder, telemetrydata.TelemetryData.ClientToServer.TemperatureOrBuilder> temperatureBuilder_;
+      /**
+       * <code>.telemetry_data.ClientToServer.Temperature temperature = 6;</code>
+       */
+      public boolean hasTemperature() {
+        return temperatureBuilder_ != null || temperature_ != null;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Temperature temperature = 6;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.Temperature getTemperature() {
+        if (temperatureBuilder_ == null) {
+          return temperature_ == null ? telemetrydata.TelemetryData.ClientToServer.Temperature.getDefaultInstance() : temperature_;
+        } else {
+          return temperatureBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Temperature temperature = 6;</code>
+       */
+      public Builder setTemperature(telemetrydata.TelemetryData.ClientToServer.Temperature value) {
+        if (temperatureBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          temperature_ = value;
+          onChanged();
+        } else {
+          temperatureBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Temperature temperature = 6;</code>
+       */
+      public Builder setTemperature(
+          telemetrydata.TelemetryData.ClientToServer.Temperature.Builder builderForValue) {
+        if (temperatureBuilder_ == null) {
+          temperature_ = builderForValue.build();
+          onChanged();
+        } else {
+          temperatureBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Temperature temperature = 6;</code>
+       */
+      public Builder mergeTemperature(telemetrydata.TelemetryData.ClientToServer.Temperature value) {
+        if (temperatureBuilder_ == null) {
+          if (temperature_ != null) {
+            temperature_ =
+              telemetrydata.TelemetryData.ClientToServer.Temperature.newBuilder(temperature_).mergeFrom(value).buildPartial();
+          } else {
+            temperature_ = value;
+          }
+          onChanged();
+        } else {
+          temperatureBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Temperature temperature = 6;</code>
+       */
+      public Builder clearTemperature() {
+        if (temperatureBuilder_ == null) {
+          temperature_ = null;
+          onChanged();
+        } else {
+          temperature_ = null;
+          temperatureBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Temperature temperature = 6;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.Temperature.Builder getTemperatureBuilder() {
+        
+        onChanged();
+        return getTemperatureFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Temperature temperature = 6;</code>
+       */
+      public telemetrydata.TelemetryData.ClientToServer.TemperatureOrBuilder getTemperatureOrBuilder() {
+        if (temperatureBuilder_ != null) {
+          return temperatureBuilder_.getMessageOrBuilder();
+        } else {
+          return temperature_ == null ?
+              telemetrydata.TelemetryData.ClientToServer.Temperature.getDefaultInstance() : temperature_;
+        }
+      }
+      /**
+       * <code>.telemetry_data.ClientToServer.Temperature temperature = 6;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          telemetrydata.TelemetryData.ClientToServer.Temperature, telemetrydata.TelemetryData.ClientToServer.Temperature.Builder, telemetrydata.TelemetryData.ClientToServer.TemperatureOrBuilder> 
+          getTemperatureFieldBuilder() {
+        if (temperatureBuilder_ == null) {
+          temperatureBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              telemetrydata.TelemetryData.ClientToServer.Temperature, telemetrydata.TelemetryData.ClientToServer.Temperature.Builder, telemetrydata.TelemetryData.ClientToServer.TemperatureOrBuilder>(
+                  getTemperature(),
+                  getParentForChildren(),
+                  isClean());
+          temperature_ = null;
+        }
+        return temperatureBuilder_;
+      }
+
       private telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes emergencyBrakes_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
           telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes, telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.Builder, telemetrydata.TelemetryData.ClientToServer.EmergencyBrakesOrBuilder> emergencyBrakesBuilder_;
       /**
-       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 7;</code>
        */
       public boolean hasEmergencyBrakes() {
         return emergencyBrakesBuilder_ != null || emergencyBrakes_ != null;
       }
       /**
-       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 7;</code>
        */
       public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes getEmergencyBrakes() {
         if (emergencyBrakesBuilder_ == null) {
@@ -8644,7 +9334,7 @@ public final class TelemetryData {
         }
       }
       /**
-       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 7;</code>
        */
       public Builder setEmergencyBrakes(telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes value) {
         if (emergencyBrakesBuilder_ == null) {
@@ -8660,7 +9350,7 @@ public final class TelemetryData {
         return this;
       }
       /**
-       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 7;</code>
        */
       public Builder setEmergencyBrakes(
           telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.Builder builderForValue) {
@@ -8674,7 +9364,7 @@ public final class TelemetryData {
         return this;
       }
       /**
-       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 7;</code>
        */
       public Builder mergeEmergencyBrakes(telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes value) {
         if (emergencyBrakesBuilder_ == null) {
@@ -8692,7 +9382,7 @@ public final class TelemetryData {
         return this;
       }
       /**
-       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 7;</code>
        */
       public Builder clearEmergencyBrakes() {
         if (emergencyBrakesBuilder_ == null) {
@@ -8706,7 +9396,7 @@ public final class TelemetryData {
         return this;
       }
       /**
-       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 7;</code>
        */
       public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.Builder getEmergencyBrakesBuilder() {
         
@@ -8714,7 +9404,7 @@ public final class TelemetryData {
         return getEmergencyBrakesFieldBuilder().getBuilder();
       }
       /**
-       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 7;</code>
        */
       public telemetrydata.TelemetryData.ClientToServer.EmergencyBrakesOrBuilder getEmergencyBrakesOrBuilder() {
         if (emergencyBrakesBuilder_ != null) {
@@ -8725,7 +9415,7 @@ public final class TelemetryData {
         }
       }
       /**
-       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 6;</code>
+       * <code>.telemetry_data.ClientToServer.EmergencyBrakes emergency_brakes = 7;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes, telemetrydata.TelemetryData.ClientToServer.EmergencyBrakes.Builder, telemetrydata.TelemetryData.ClientToServer.EmergencyBrakesOrBuilder> 
@@ -8839,6 +9529,11 @@ public final class TelemetryData {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_telemetry_data_ClientToServer_Sensors_ImuData_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_telemetry_data_ClientToServer_Temperature_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_telemetry_data_ClientToServer_Temperature_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -8858,7 +9553,7 @@ public final class TelemetryData {
       "\007\n\003ACK\020\000\022\010\n\004STOP\020\001\022\r\n\tCALIBRATE\020\002\022\n\n\006LAU" +
       "NCH\020\003\022\t\n\005RESET\020\004\022\031\n\025SERVICE_PROPULSION_G" +
       "O\020\005\022\033\n\027SERVICE_PROPULSION_STOP\020\006\022\023\n\017NOMI" +
-      "NAL_BRAKING\020\007\"\236\r\n\016ClientToServer\022=\n\nnavi" +
+      "NAL_BRAKING\020\007\"\203\016\n\016ClientToServer\022=\n\nnavi" +
       "gation\030\001 \001(\0132).telemetry_data.ClientToSe" +
       "rver.Navigation\022B\n\rstate_machine\030\002 \001(\0132+" +
       ".telemetry_data.ClientToServer.StateMach" +
@@ -8866,42 +9561,45 @@ public final class TelemetryData {
       "entToServer.Motors\022;\n\tbatteries\030\004 \001(\0132(." +
       "telemetry_data.ClientToServer.Batteries\022" +
       "7\n\007sensors\030\005 \001(\0132&.telemetry_data.Client" +
-      "ToServer.Sensors\022H\n\020emergency_brakes\030\006 \001" +
-      "(\0132..telemetry_data.ClientToServer.Emerg" +
-      "encyBrakes\032\212\001\n\nNavigation\022B\n\rmodule_stat" +
-      "us\030\001 \001(\0162+.telemetry_data.ClientToServer" +
-      ".ModuleStatus\022\020\n\010distance\030\002 \001(\002\022\020\n\010veloc" +
-      "ity\030\003 \001(\002\022\024\n\014acceleration\030\004 \001(\002\032\225\002\n\014Stat" +
-      "eMachine\022H\n\rcurrent_state\030\002 \001(\01621.teleme" +
-      "try_data.ClientToServer.StateMachine.Sta" +
-      "te\"\272\001\n\005State\022\013\n\007INVALID\020\000\022\010\n\004IDLE\020\001\022\017\n\013C" +
-      "ALIBRATING\020\002\022\t\n\005READY\020\003\022\020\n\014ACCELERATING\020" +
-      "\004\022\023\n\017NOMINAL_BRAKING\020\005\022\025\n\021EMERGENCY_BRAK" +
-      "ING\020\006\022\020\n\014RUN_COMPLETE\020\007\022\023\n\017FAILURE_STOPP" +
-      "ED\020\010\022\013\n\007EXITING\020\t\022\014\n\010FINISHED\020\n\032\304\001\n\006Moto" +
-      "rs\022B\n\rmodule_status\030\001 \001(\0162+.telemetry_da" +
-      "ta.ClientToServer.ModuleStatus\022\022\n\nveloci" +
-      "ty_1\030\002 \001(\021\022\022\n\nvelocity_2\030\003 \001(\021\022\022\n\nveloci" +
-      "ty_3\030\004 \001(\021\022\022\n\nvelocity_4\030\005 \001(\021\022\022\n\nveloci" +
-      "ty_5\030\006 \001(\021\022\022\n\nvelocity_6\030\007 \001(\021\032\202\003\n\tBatte" +
-      "ries\022B\n\rmodule_status\030\001 \001(\0162+.telemetry_" +
-      "data.ClientToServer.ModuleStatus\022Q\n\023low_" +
-      "power_batteries\030\002 \003(\01324.telemetry_data.C" +
-      "lientToServer.Batteries.BatteryData\022R\n\024h" +
-      "igh_power_batteries\030\003 \003(\01324.telemetry_da" +
-      "ta.ClientToServer.Batteries.BatteryData\032" +
-      "\211\001\n\013BatteryData\022\017\n\007voltage\030\001 \001(\r\022\017\n\007curr" +
-      "ent\030\002 \001(\021\022\016\n\006charge\030\003 \001(\r\022\023\n\013temperature" +
-      "\030\004 \001(\005\022\030\n\020low_voltage_cell\030\005 \001(\r\022\031\n\021high" +
-      "_voltage_cell\030\006 \001(\r\032\267\001\n\007Sensors\022B\n\rmodul" +
-      "e_status\030\001 \001(\0162+.telemetry_data.ClientTo" +
-      "Server.ModuleStatus\022;\n\003imu\030\002 \003(\0132..telem" +
-      "etry_data.ClientToServer.Sensors.ImuData" +
-      "\032+\n\007ImuData\022\023\n\013operational\030\001 \001(\010\022\013\n\003acc\030" +
-      "\002 \003(\002\032!\n\017EmergencyBrakes\022\016\n\006brakes\030\001 \003(\010" +
-      "\"D\n\014ModuleStatus\022\t\n\005START\020\000\022\010\n\004INIT\020\001\022\t\n" +
-      "\005READY\020\002\022\024\n\020CRITICAL_FAILURE\020\003B\036\n\rteleme" +
-      "trydataB\rTelemetryDatab\006proto3"
+      "ToServer.Sensors\022?\n\013temperature\030\006 \001(\0132*." +
+      "telemetry_data.ClientToServer.Temperatur" +
+      "e\022H\n\020emergency_brakes\030\007 \001(\0132..telemetry_" +
+      "data.ClientToServer.EmergencyBrakes\032\212\001\n\n" +
+      "Navigation\022B\n\rmodule_status\030\001 \001(\0162+.tele" +
+      "metry_data.ClientToServer.ModuleStatus\022\020" +
+      "\n\010distance\030\002 \001(\002\022\020\n\010velocity\030\003 \001(\002\022\024\n\014ac" +
+      "celeration\030\004 \001(\002\032\225\002\n\014StateMachine\022H\n\rcur" +
+      "rent_state\030\002 \001(\01621.telemetry_data.Client" +
+      "ToServer.StateMachine.State\"\272\001\n\005State\022\013\n" +
+      "\007INVALID\020\000\022\010\n\004IDLE\020\001\022\017\n\013CALIBRATING\020\002\022\t\n" +
+      "\005READY\020\003\022\020\n\014ACCELERATING\020\004\022\023\n\017NOMINAL_BR" +
+      "AKING\020\005\022\025\n\021EMERGENCY_BRAKING\020\006\022\020\n\014RUN_CO" +
+      "MPLETE\020\007\022\023\n\017FAILURE_STOPPED\020\010\022\013\n\007EXITING" +
+      "\020\t\022\014\n\010FINISHED\020\n\032\304\001\n\006Motors\022B\n\rmodule_st" +
+      "atus\030\001 \001(\0162+.telemetry_data.ClientToServ" +
+      "er.ModuleStatus\022\022\n\nvelocity_1\030\002 \001(\021\022\022\n\nv" +
+      "elocity_2\030\003 \001(\021\022\022\n\nvelocity_3\030\004 \001(\021\022\022\n\nv" +
+      "elocity_4\030\005 \001(\021\022\022\n\nvelocity_5\030\006 \001(\021\022\022\n\nv" +
+      "elocity_6\030\007 \001(\021\032\202\003\n\tBatteries\022B\n\rmodule_" +
+      "status\030\001 \001(\0162+.telemetry_data.ClientToSe" +
+      "rver.ModuleStatus\022Q\n\023low_power_batteries" +
+      "\030\002 \003(\01324.telemetry_data.ClientToServer.B" +
+      "atteries.BatteryData\022R\n\024high_power_batte" +
+      "ries\030\003 \003(\01324.telemetry_data.ClientToServ" +
+      "er.Batteries.BatteryData\032\211\001\n\013BatteryData" +
+      "\022\017\n\007voltage\030\001 \001(\r\022\017\n\007current\030\002 \001(\021\022\016\n\006ch" +
+      "arge\030\003 \001(\r\022\023\n\013temperature\030\004 \001(\005\022\030\n\020low_v" +
+      "oltage_cell\030\005 \001(\r\022\031\n\021high_voltage_cell\030\006" +
+      " \001(\r\032\267\001\n\007Sensors\022B\n\rmodule_status\030\001 \001(\0162" +
+      "+.telemetry_data.ClientToServer.ModuleSt" +
+      "atus\022;\n\003imu\030\002 \003(\0132..telemetry_data.Clien" +
+      "tToServer.Sensors.ImuData\032+\n\007ImuData\022\023\n\013" +
+      "operational\030\001 \001(\010\022\013\n\003acc\030\002 \003(\002\032\"\n\013Temper" +
+      "ature\022\023\n\013temperature\030\001 \001(\021\032!\n\017EmergencyB" +
+      "rakes\022\016\n\006brakes\030\001 \003(\010\"D\n\014ModuleStatus\022\t\n" +
+      "\005START\020\000\022\010\n\004INIT\020\001\022\t\n\005READY\020\002\022\024\n\020CRITICA" +
+      "L_FAILURE\020\003B\036\n\rtelemetrydataB\rTelemetryD" +
+      "atab\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -8926,7 +9624,7 @@ public final class TelemetryData {
     internal_static_telemetry_data_ClientToServer_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_descriptor,
-        new java.lang.String[] { "Navigation", "StateMachine", "Motors", "Batteries", "Sensors", "EmergencyBrakes", });
+        new java.lang.String[] { "Navigation", "StateMachine", "Motors", "Batteries", "Sensors", "Temperature", "EmergencyBrakes", });
     internal_static_telemetry_data_ClientToServer_Navigation_descriptor =
       internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(0);
     internal_static_telemetry_data_ClientToServer_Navigation_fieldAccessorTable = new
@@ -8969,8 +9667,14 @@ public final class TelemetryData {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_Sensors_ImuData_descriptor,
         new java.lang.String[] { "Operational", "Acc", });
-    internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor =
+    internal_static_telemetry_data_ClientToServer_Temperature_descriptor =
       internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(5);
+    internal_static_telemetry_data_ClientToServer_Temperature_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_telemetry_data_ClientToServer_Temperature_descriptor,
+        new java.lang.String[] { "Temperature", });
+    internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor =
+      internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(6);
     internal_static_telemetry_data_ClientToServer_EmergencyBrakes_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_EmergencyBrakes_descriptor,
