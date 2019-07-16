@@ -2449,36 +2449,6 @@ public final class TelemetryData {
        * <code>.telemetry_data.ClientToServer.ModuleStatus module_status = 1;</code>
        */
       telemetrydata.TelemetryData.ClientToServer.ModuleStatus getModuleStatus();
-
-      /**
-       * <code>sint32 velocity_1 = 2;</code>
-       */
-      int getVelocity1();
-
-      /**
-       * <code>sint32 velocity_2 = 3;</code>
-       */
-      int getVelocity2();
-
-      /**
-       * <code>sint32 velocity_3 = 4;</code>
-       */
-      int getVelocity3();
-
-      /**
-       * <code>sint32 velocity_4 = 5;</code>
-       */
-      int getVelocity4();
-
-      /**
-       * <code>sint32 velocity_5 = 6;</code>
-       */
-      int getVelocity5();
-
-      /**
-       * <code>sint32 velocity_6 = 7;</code>
-       */
-      int getVelocity6();
     }
     /**
      * Protobuf type {@code telemetry_data.ClientToServer.Motors}
@@ -2494,12 +2464,6 @@ public final class TelemetryData {
       }
       private Motors() {
         moduleStatus_ = 0;
-        velocity1_ = 0;
-        velocity2_ = 0;
-        velocity3_ = 0;
-        velocity4_ = 0;
-        velocity5_ = 0;
-        velocity6_ = 0;
       }
 
       @java.lang.Override
@@ -2530,36 +2494,6 @@ public final class TelemetryData {
                 int rawValue = input.readEnum();
 
                 moduleStatus_ = rawValue;
-                break;
-              }
-              case 16: {
-
-                velocity1_ = input.readSInt32();
-                break;
-              }
-              case 24: {
-
-                velocity2_ = input.readSInt32();
-                break;
-              }
-              case 32: {
-
-                velocity3_ = input.readSInt32();
-                break;
-              }
-              case 40: {
-
-                velocity4_ = input.readSInt32();
-                break;
-              }
-              case 48: {
-
-                velocity5_ = input.readSInt32();
-                break;
-              }
-              case 56: {
-
-                velocity6_ = input.readSInt32();
                 break;
               }
               default: {
@@ -2611,60 +2545,6 @@ public final class TelemetryData {
         return result == null ? telemetrydata.TelemetryData.ClientToServer.ModuleStatus.UNRECOGNIZED : result;
       }
 
-      public static final int VELOCITY_1_FIELD_NUMBER = 2;
-      private int velocity1_;
-      /**
-       * <code>sint32 velocity_1 = 2;</code>
-       */
-      public int getVelocity1() {
-        return velocity1_;
-      }
-
-      public static final int VELOCITY_2_FIELD_NUMBER = 3;
-      private int velocity2_;
-      /**
-       * <code>sint32 velocity_2 = 3;</code>
-       */
-      public int getVelocity2() {
-        return velocity2_;
-      }
-
-      public static final int VELOCITY_3_FIELD_NUMBER = 4;
-      private int velocity3_;
-      /**
-       * <code>sint32 velocity_3 = 4;</code>
-       */
-      public int getVelocity3() {
-        return velocity3_;
-      }
-
-      public static final int VELOCITY_4_FIELD_NUMBER = 5;
-      private int velocity4_;
-      /**
-       * <code>sint32 velocity_4 = 5;</code>
-       */
-      public int getVelocity4() {
-        return velocity4_;
-      }
-
-      public static final int VELOCITY_5_FIELD_NUMBER = 6;
-      private int velocity5_;
-      /**
-       * <code>sint32 velocity_5 = 6;</code>
-       */
-      public int getVelocity5() {
-        return velocity5_;
-      }
-
-      public static final int VELOCITY_6_FIELD_NUMBER = 7;
-      private int velocity6_;
-      /**
-       * <code>sint32 velocity_6 = 7;</code>
-       */
-      public int getVelocity6() {
-        return velocity6_;
-      }
-
       private byte memoizedIsInitialized = -1;
       @java.lang.Override
       public final boolean isInitialized() {
@@ -2682,24 +2562,6 @@ public final class TelemetryData {
         if (moduleStatus_ != telemetrydata.TelemetryData.ClientToServer.ModuleStatus.START.getNumber()) {
           output.writeEnum(1, moduleStatus_);
         }
-        if (velocity1_ != 0) {
-          output.writeSInt32(2, velocity1_);
-        }
-        if (velocity2_ != 0) {
-          output.writeSInt32(3, velocity2_);
-        }
-        if (velocity3_ != 0) {
-          output.writeSInt32(4, velocity3_);
-        }
-        if (velocity4_ != 0) {
-          output.writeSInt32(5, velocity4_);
-        }
-        if (velocity5_ != 0) {
-          output.writeSInt32(6, velocity5_);
-        }
-        if (velocity6_ != 0) {
-          output.writeSInt32(7, velocity6_);
-        }
         unknownFields.writeTo(output);
       }
 
@@ -2712,30 +2574,6 @@ public final class TelemetryData {
         if (moduleStatus_ != telemetrydata.TelemetryData.ClientToServer.ModuleStatus.START.getNumber()) {
           size += com.google.protobuf.CodedOutputStream
             .computeEnumSize(1, moduleStatus_);
-        }
-        if (velocity1_ != 0) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeSInt32Size(2, velocity1_);
-        }
-        if (velocity2_ != 0) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeSInt32Size(3, velocity2_);
-        }
-        if (velocity3_ != 0) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeSInt32Size(4, velocity3_);
-        }
-        if (velocity4_ != 0) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeSInt32Size(5, velocity4_);
-        }
-        if (velocity5_ != 0) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeSInt32Size(6, velocity5_);
-        }
-        if (velocity6_ != 0) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeSInt32Size(7, velocity6_);
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
@@ -2754,18 +2592,6 @@ public final class TelemetryData {
 
         boolean result = true;
         result = result && moduleStatus_ == other.moduleStatus_;
-        result = result && (getVelocity1()
-            == other.getVelocity1());
-        result = result && (getVelocity2()
-            == other.getVelocity2());
-        result = result && (getVelocity3()
-            == other.getVelocity3());
-        result = result && (getVelocity4()
-            == other.getVelocity4());
-        result = result && (getVelocity5()
-            == other.getVelocity5());
-        result = result && (getVelocity6()
-            == other.getVelocity6());
         result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
@@ -2779,18 +2605,6 @@ public final class TelemetryData {
         hash = (19 * hash) + getDescriptor().hashCode();
         hash = (37 * hash) + MODULE_STATUS_FIELD_NUMBER;
         hash = (53 * hash) + moduleStatus_;
-        hash = (37 * hash) + VELOCITY_1_FIELD_NUMBER;
-        hash = (53 * hash) + getVelocity1();
-        hash = (37 * hash) + VELOCITY_2_FIELD_NUMBER;
-        hash = (53 * hash) + getVelocity2();
-        hash = (37 * hash) + VELOCITY_3_FIELD_NUMBER;
-        hash = (53 * hash) + getVelocity3();
-        hash = (37 * hash) + VELOCITY_4_FIELD_NUMBER;
-        hash = (53 * hash) + getVelocity4();
-        hash = (37 * hash) + VELOCITY_5_FIELD_NUMBER;
-        hash = (53 * hash) + getVelocity5();
-        hash = (37 * hash) + VELOCITY_6_FIELD_NUMBER;
-        hash = (53 * hash) + getVelocity6();
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -2926,18 +2740,6 @@ public final class TelemetryData {
           super.clear();
           moduleStatus_ = 0;
 
-          velocity1_ = 0;
-
-          velocity2_ = 0;
-
-          velocity3_ = 0;
-
-          velocity4_ = 0;
-
-          velocity5_ = 0;
-
-          velocity6_ = 0;
-
           return this;
         }
 
@@ -2965,12 +2767,6 @@ public final class TelemetryData {
         public telemetrydata.TelemetryData.ClientToServer.Motors buildPartial() {
           telemetrydata.TelemetryData.ClientToServer.Motors result = new telemetrydata.TelemetryData.ClientToServer.Motors(this);
           result.moduleStatus_ = moduleStatus_;
-          result.velocity1_ = velocity1_;
-          result.velocity2_ = velocity2_;
-          result.velocity3_ = velocity3_;
-          result.velocity4_ = velocity4_;
-          result.velocity5_ = velocity5_;
-          result.velocity6_ = velocity6_;
           onBuilt();
           return result;
         }
@@ -3021,24 +2817,6 @@ public final class TelemetryData {
           if (other == telemetrydata.TelemetryData.ClientToServer.Motors.getDefaultInstance()) return this;
           if (other.moduleStatus_ != 0) {
             setModuleStatusValue(other.getModuleStatusValue());
-          }
-          if (other.getVelocity1() != 0) {
-            setVelocity1(other.getVelocity1());
-          }
-          if (other.getVelocity2() != 0) {
-            setVelocity2(other.getVelocity2());
-          }
-          if (other.getVelocity3() != 0) {
-            setVelocity3(other.getVelocity3());
-          }
-          if (other.getVelocity4() != 0) {
-            setVelocity4(other.getVelocity4());
-          }
-          if (other.getVelocity5() != 0) {
-            setVelocity5(other.getVelocity5());
-          }
-          if (other.getVelocity6() != 0) {
-            setVelocity6(other.getVelocity6());
           }
           this.mergeUnknownFields(other.unknownFields);
           onChanged();
@@ -3110,162 +2888,6 @@ public final class TelemetryData {
         public Builder clearModuleStatus() {
           
           moduleStatus_ = 0;
-          onChanged();
-          return this;
-        }
-
-        private int velocity1_ ;
-        /**
-         * <code>sint32 velocity_1 = 2;</code>
-         */
-        public int getVelocity1() {
-          return velocity1_;
-        }
-        /**
-         * <code>sint32 velocity_1 = 2;</code>
-         */
-        public Builder setVelocity1(int value) {
-          
-          velocity1_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>sint32 velocity_1 = 2;</code>
-         */
-        public Builder clearVelocity1() {
-          
-          velocity1_ = 0;
-          onChanged();
-          return this;
-        }
-
-        private int velocity2_ ;
-        /**
-         * <code>sint32 velocity_2 = 3;</code>
-         */
-        public int getVelocity2() {
-          return velocity2_;
-        }
-        /**
-         * <code>sint32 velocity_2 = 3;</code>
-         */
-        public Builder setVelocity2(int value) {
-          
-          velocity2_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>sint32 velocity_2 = 3;</code>
-         */
-        public Builder clearVelocity2() {
-          
-          velocity2_ = 0;
-          onChanged();
-          return this;
-        }
-
-        private int velocity3_ ;
-        /**
-         * <code>sint32 velocity_3 = 4;</code>
-         */
-        public int getVelocity3() {
-          return velocity3_;
-        }
-        /**
-         * <code>sint32 velocity_3 = 4;</code>
-         */
-        public Builder setVelocity3(int value) {
-          
-          velocity3_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>sint32 velocity_3 = 4;</code>
-         */
-        public Builder clearVelocity3() {
-          
-          velocity3_ = 0;
-          onChanged();
-          return this;
-        }
-
-        private int velocity4_ ;
-        /**
-         * <code>sint32 velocity_4 = 5;</code>
-         */
-        public int getVelocity4() {
-          return velocity4_;
-        }
-        /**
-         * <code>sint32 velocity_4 = 5;</code>
-         */
-        public Builder setVelocity4(int value) {
-          
-          velocity4_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>sint32 velocity_4 = 5;</code>
-         */
-        public Builder clearVelocity4() {
-          
-          velocity4_ = 0;
-          onChanged();
-          return this;
-        }
-
-        private int velocity5_ ;
-        /**
-         * <code>sint32 velocity_5 = 6;</code>
-         */
-        public int getVelocity5() {
-          return velocity5_;
-        }
-        /**
-         * <code>sint32 velocity_5 = 6;</code>
-         */
-        public Builder setVelocity5(int value) {
-          
-          velocity5_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>sint32 velocity_5 = 6;</code>
-         */
-        public Builder clearVelocity5() {
-          
-          velocity5_ = 0;
-          onChanged();
-          return this;
-        }
-
-        private int velocity6_ ;
-        /**
-         * <code>sint32 velocity_6 = 7;</code>
-         */
-        public int getVelocity6() {
-          return velocity6_;
-        }
-        /**
-         * <code>sint32 velocity_6 = 7;</code>
-         */
-        public Builder setVelocity6(int value) {
-          
-          velocity6_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>sint32 velocity_6 = 7;</code>
-         */
-        public Builder clearVelocity6() {
-          
-          velocity6_ = 0;
           onChanged();
           return this;
         }
@@ -9553,7 +9175,7 @@ public final class TelemetryData {
       "\007\n\003ACK\020\000\022\010\n\004STOP\020\001\022\r\n\tCALIBRATE\020\002\022\n\n\006LAU" +
       "NCH\020\003\022\t\n\005RESET\020\004\022\031\n\025SERVICE_PROPULSION_G" +
       "O\020\005\022\033\n\027SERVICE_PROPULSION_STOP\020\006\022\023\n\017NOMI" +
-      "NAL_BRAKING\020\007\"\203\016\n\016ClientToServer\022=\n\nnavi" +
+      "NAL_BRAKING\020\007\"\212\r\n\016ClientToServer\022=\n\nnavi" +
       "gation\030\001 \001(\0132).telemetry_data.ClientToSe" +
       "rver.Navigation\022B\n\rstate_machine\030\002 \001(\0132+" +
       ".telemetry_data.ClientToServer.StateMach" +
@@ -9575,31 +9197,28 @@ public final class TelemetryData {
       "\005READY\020\003\022\020\n\014ACCELERATING\020\004\022\023\n\017NOMINAL_BR" +
       "AKING\020\005\022\025\n\021EMERGENCY_BRAKING\020\006\022\020\n\014RUN_CO" +
       "MPLETE\020\007\022\023\n\017FAILURE_STOPPED\020\010\022\013\n\007EXITING" +
-      "\020\t\022\014\n\010FINISHED\020\n\032\304\001\n\006Motors\022B\n\rmodule_st" +
-      "atus\030\001 \001(\0162+.telemetry_data.ClientToServ" +
-      "er.ModuleStatus\022\022\n\nvelocity_1\030\002 \001(\021\022\022\n\nv" +
-      "elocity_2\030\003 \001(\021\022\022\n\nvelocity_3\030\004 \001(\021\022\022\n\nv" +
-      "elocity_4\030\005 \001(\021\022\022\n\nvelocity_5\030\006 \001(\021\022\022\n\nv" +
-      "elocity_6\030\007 \001(\021\032\202\003\n\tBatteries\022B\n\rmodule_" +
-      "status\030\001 \001(\0162+.telemetry_data.ClientToSe" +
-      "rver.ModuleStatus\022Q\n\023low_power_batteries" +
-      "\030\002 \003(\01324.telemetry_data.ClientToServer.B" +
-      "atteries.BatteryData\022R\n\024high_power_batte" +
-      "ries\030\003 \003(\01324.telemetry_data.ClientToServ" +
-      "er.Batteries.BatteryData\032\211\001\n\013BatteryData" +
-      "\022\017\n\007voltage\030\001 \001(\r\022\017\n\007current\030\002 \001(\021\022\016\n\006ch" +
-      "arge\030\003 \001(\r\022\023\n\013temperature\030\004 \001(\005\022\030\n\020low_v" +
-      "oltage_cell\030\005 \001(\r\022\031\n\021high_voltage_cell\030\006" +
-      " \001(\r\032\267\001\n\007Sensors\022B\n\rmodule_status\030\001 \001(\0162" +
-      "+.telemetry_data.ClientToServer.ModuleSt" +
-      "atus\022;\n\003imu\030\002 \003(\0132..telemetry_data.Clien" +
-      "tToServer.Sensors.ImuData\032+\n\007ImuData\022\023\n\013" +
-      "operational\030\001 \001(\010\022\013\n\003acc\030\002 \003(\002\032\"\n\013Temper" +
-      "ature\022\023\n\013temperature\030\001 \001(\021\032!\n\017EmergencyB" +
-      "rakes\022\016\n\006brakes\030\001 \003(\010\"D\n\014ModuleStatus\022\t\n" +
-      "\005START\020\000\022\010\n\004INIT\020\001\022\t\n\005READY\020\002\022\024\n\020CRITICA" +
-      "L_FAILURE\020\003B\036\n\rtelemetrydataB\rTelemetryD" +
-      "atab\006proto3"
+      "\020\t\022\014\n\010FINISHED\020\n\032L\n\006Motors\022B\n\rmodule_sta" +
+      "tus\030\001 \001(\0162+.telemetry_data.ClientToServe" +
+      "r.ModuleStatus\032\202\003\n\tBatteries\022B\n\rmodule_s" +
+      "tatus\030\001 \001(\0162+.telemetry_data.ClientToSer" +
+      "ver.ModuleStatus\022Q\n\023low_power_batteries\030" +
+      "\002 \003(\01324.telemetry_data.ClientToServer.Ba" +
+      "tteries.BatteryData\022R\n\024high_power_batter" +
+      "ies\030\003 \003(\01324.telemetry_data.ClientToServe" +
+      "r.Batteries.BatteryData\032\211\001\n\013BatteryData\022" +
+      "\017\n\007voltage\030\001 \001(\r\022\017\n\007current\030\002 \001(\021\022\016\n\006cha" +
+      "rge\030\003 \001(\r\022\023\n\013temperature\030\004 \001(\005\022\030\n\020low_vo" +
+      "ltage_cell\030\005 \001(\r\022\031\n\021high_voltage_cell\030\006 " +
+      "\001(\r\032\267\001\n\007Sensors\022B\n\rmodule_status\030\001 \001(\0162+" +
+      ".telemetry_data.ClientToServer.ModuleSta" +
+      "tus\022;\n\003imu\030\002 \003(\0132..telemetry_data.Client" +
+      "ToServer.Sensors.ImuData\032+\n\007ImuData\022\023\n\013o" +
+      "perational\030\001 \001(\010\022\013\n\003acc\030\002 \003(\002\032\"\n\013Tempera" +
+      "ture\022\023\n\013temperature\030\001 \001(\021\032!\n\017EmergencyBr" +
+      "akes\022\016\n\006brakes\030\001 \003(\010\"D\n\014ModuleStatus\022\t\n\005" +
+      "START\020\000\022\010\n\004INIT\020\001\022\t\n\005READY\020\002\022\024\n\020CRITICAL" +
+      "_FAILURE\020\003B\036\n\rtelemetrydataB\rTelemetryDa" +
+      "tab\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -9642,7 +9261,7 @@ public final class TelemetryData {
     internal_static_telemetry_data_ClientToServer_Motors_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_Motors_descriptor,
-        new java.lang.String[] { "ModuleStatus", "Velocity1", "Velocity2", "Velocity3", "Velocity4", "Velocity5", "Velocity6", });
+        new java.lang.String[] { "ModuleStatus", });
     internal_static_telemetry_data_ClientToServer_Batteries_descriptor =
       internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(3);
     internal_static_telemetry_data_ClientToServer_Batteries_fieldAccessorTable = new
