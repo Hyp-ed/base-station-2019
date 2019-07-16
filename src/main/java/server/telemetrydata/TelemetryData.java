@@ -3129,17 +3129,31 @@ public final class TelemetryData {
         int getCharge();
 
         /**
-         * <code>int32 temperature = 4;</code>
+         * <code>int32 average_temperature = 4;</code>
          */
-        int getTemperature();
+        int getAverageTemperature();
 
         /**
-         * <code>uint32 low_voltage_cell = 5;</code>
+         * <pre>
+         * below only for BMSHP! Value for BMSLP = 0
+         * </pre>
+         *
+         * <code>int32 low_temperature = 5;</code>
+         */
+        int getLowTemperature();
+
+        /**
+         * <code>int32 high_temperature = 6;</code>
+         */
+        int getHighTemperature();
+
+        /**
+         * <code>uint32 low_voltage_cell = 7;</code>
          */
         int getLowVoltageCell();
 
         /**
-         * <code>uint32 high_voltage_cell = 6;</code>
+         * <code>uint32 high_voltage_cell = 8;</code>
          */
         int getHighVoltageCell();
       }
@@ -3159,7 +3173,9 @@ public final class TelemetryData {
           voltage_ = 0;
           current_ = 0;
           charge_ = 0;
-          temperature_ = 0;
+          averageTemperature_ = 0;
+          lowTemperature_ = 0;
+          highTemperature_ = 0;
           lowVoltageCell_ = 0;
           highVoltageCell_ = 0;
         }
@@ -3205,15 +3221,25 @@ public final class TelemetryData {
                 }
                 case 32: {
 
-                  temperature_ = input.readInt32();
+                  averageTemperature_ = input.readInt32();
                   break;
                 }
                 case 40: {
 
-                  lowVoltageCell_ = input.readUInt32();
+                  lowTemperature_ = input.readInt32();
                   break;
                 }
                 case 48: {
+
+                  highTemperature_ = input.readInt32();
+                  break;
+                }
+                case 56: {
+
+                  lowVoltageCell_ = input.readUInt32();
+                  break;
+                }
+                case 64: {
 
                   highVoltageCell_ = input.readUInt32();
                   break;
@@ -3277,28 +3303,50 @@ public final class TelemetryData {
           return charge_;
         }
 
-        public static final int TEMPERATURE_FIELD_NUMBER = 4;
-        private int temperature_;
+        public static final int AVERAGE_TEMPERATURE_FIELD_NUMBER = 4;
+        private int averageTemperature_;
         /**
-         * <code>int32 temperature = 4;</code>
+         * <code>int32 average_temperature = 4;</code>
          */
-        public int getTemperature() {
-          return temperature_;
+        public int getAverageTemperature() {
+          return averageTemperature_;
         }
 
-        public static final int LOW_VOLTAGE_CELL_FIELD_NUMBER = 5;
+        public static final int LOW_TEMPERATURE_FIELD_NUMBER = 5;
+        private int lowTemperature_;
+        /**
+         * <pre>
+         * below only for BMSHP! Value for BMSLP = 0
+         * </pre>
+         *
+         * <code>int32 low_temperature = 5;</code>
+         */
+        public int getLowTemperature() {
+          return lowTemperature_;
+        }
+
+        public static final int HIGH_TEMPERATURE_FIELD_NUMBER = 6;
+        private int highTemperature_;
+        /**
+         * <code>int32 high_temperature = 6;</code>
+         */
+        public int getHighTemperature() {
+          return highTemperature_;
+        }
+
+        public static final int LOW_VOLTAGE_CELL_FIELD_NUMBER = 7;
         private int lowVoltageCell_;
         /**
-         * <code>uint32 low_voltage_cell = 5;</code>
+         * <code>uint32 low_voltage_cell = 7;</code>
          */
         public int getLowVoltageCell() {
           return lowVoltageCell_;
         }
 
-        public static final int HIGH_VOLTAGE_CELL_FIELD_NUMBER = 6;
+        public static final int HIGH_VOLTAGE_CELL_FIELD_NUMBER = 8;
         private int highVoltageCell_;
         /**
-         * <code>uint32 high_voltage_cell = 6;</code>
+         * <code>uint32 high_voltage_cell = 8;</code>
          */
         public int getHighVoltageCell() {
           return highVoltageCell_;
@@ -3327,14 +3375,20 @@ public final class TelemetryData {
           if (charge_ != 0) {
             output.writeUInt32(3, charge_);
           }
-          if (temperature_ != 0) {
-            output.writeInt32(4, temperature_);
+          if (averageTemperature_ != 0) {
+            output.writeInt32(4, averageTemperature_);
+          }
+          if (lowTemperature_ != 0) {
+            output.writeInt32(5, lowTemperature_);
+          }
+          if (highTemperature_ != 0) {
+            output.writeInt32(6, highTemperature_);
           }
           if (lowVoltageCell_ != 0) {
-            output.writeUInt32(5, lowVoltageCell_);
+            output.writeUInt32(7, lowVoltageCell_);
           }
           if (highVoltageCell_ != 0) {
-            output.writeUInt32(6, highVoltageCell_);
+            output.writeUInt32(8, highVoltageCell_);
           }
           unknownFields.writeTo(output);
         }
@@ -3357,17 +3411,25 @@ public final class TelemetryData {
             size += com.google.protobuf.CodedOutputStream
               .computeUInt32Size(3, charge_);
           }
-          if (temperature_ != 0) {
+          if (averageTemperature_ != 0) {
             size += com.google.protobuf.CodedOutputStream
-              .computeInt32Size(4, temperature_);
+              .computeInt32Size(4, averageTemperature_);
+          }
+          if (lowTemperature_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt32Size(5, lowTemperature_);
+          }
+          if (highTemperature_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt32Size(6, highTemperature_);
           }
           if (lowVoltageCell_ != 0) {
             size += com.google.protobuf.CodedOutputStream
-              .computeUInt32Size(5, lowVoltageCell_);
+              .computeUInt32Size(7, lowVoltageCell_);
           }
           if (highVoltageCell_ != 0) {
             size += com.google.protobuf.CodedOutputStream
-              .computeUInt32Size(6, highVoltageCell_);
+              .computeUInt32Size(8, highVoltageCell_);
           }
           size += unknownFields.getSerializedSize();
           memoizedSize = size;
@@ -3391,8 +3453,12 @@ public final class TelemetryData {
               == other.getCurrent());
           result = result && (getCharge()
               == other.getCharge());
-          result = result && (getTemperature()
-              == other.getTemperature());
+          result = result && (getAverageTemperature()
+              == other.getAverageTemperature());
+          result = result && (getLowTemperature()
+              == other.getLowTemperature());
+          result = result && (getHighTemperature()
+              == other.getHighTemperature());
           result = result && (getLowVoltageCell()
               == other.getLowVoltageCell());
           result = result && (getHighVoltageCell()
@@ -3414,8 +3480,12 @@ public final class TelemetryData {
           hash = (53 * hash) + getCurrent();
           hash = (37 * hash) + CHARGE_FIELD_NUMBER;
           hash = (53 * hash) + getCharge();
-          hash = (37 * hash) + TEMPERATURE_FIELD_NUMBER;
-          hash = (53 * hash) + getTemperature();
+          hash = (37 * hash) + AVERAGE_TEMPERATURE_FIELD_NUMBER;
+          hash = (53 * hash) + getAverageTemperature();
+          hash = (37 * hash) + LOW_TEMPERATURE_FIELD_NUMBER;
+          hash = (53 * hash) + getLowTemperature();
+          hash = (37 * hash) + HIGH_TEMPERATURE_FIELD_NUMBER;
+          hash = (53 * hash) + getHighTemperature();
           hash = (37 * hash) + LOW_VOLTAGE_CELL_FIELD_NUMBER;
           hash = (53 * hash) + getLowVoltageCell();
           hash = (37 * hash) + HIGH_VOLTAGE_CELL_FIELD_NUMBER;
@@ -3559,7 +3629,11 @@ public final class TelemetryData {
 
             charge_ = 0;
 
-            temperature_ = 0;
+            averageTemperature_ = 0;
+
+            lowTemperature_ = 0;
+
+            highTemperature_ = 0;
 
             lowVoltageCell_ = 0;
 
@@ -3594,7 +3668,9 @@ public final class TelemetryData {
             result.voltage_ = voltage_;
             result.current_ = current_;
             result.charge_ = charge_;
-            result.temperature_ = temperature_;
+            result.averageTemperature_ = averageTemperature_;
+            result.lowTemperature_ = lowTemperature_;
+            result.highTemperature_ = highTemperature_;
             result.lowVoltageCell_ = lowVoltageCell_;
             result.highVoltageCell_ = highVoltageCell_;
             onBuilt();
@@ -3654,8 +3730,14 @@ public final class TelemetryData {
             if (other.getCharge() != 0) {
               setCharge(other.getCharge());
             }
-            if (other.getTemperature() != 0) {
-              setTemperature(other.getTemperature());
+            if (other.getAverageTemperature() != 0) {
+              setAverageTemperature(other.getAverageTemperature());
+            }
+            if (other.getLowTemperature() != 0) {
+              setLowTemperature(other.getLowTemperature());
+            }
+            if (other.getHighTemperature() != 0) {
+              setHighTemperature(other.getHighTemperature());
             }
             if (other.getLowVoltageCell() != 0) {
               setLowVoltageCell(other.getLowVoltageCell());
@@ -3770,41 +3852,105 @@ public final class TelemetryData {
             return this;
           }
 
-          private int temperature_ ;
+          private int averageTemperature_ ;
           /**
-           * <code>int32 temperature = 4;</code>
+           * <code>int32 average_temperature = 4;</code>
            */
-          public int getTemperature() {
-            return temperature_;
+          public int getAverageTemperature() {
+            return averageTemperature_;
           }
           /**
-           * <code>int32 temperature = 4;</code>
+           * <code>int32 average_temperature = 4;</code>
            */
-          public Builder setTemperature(int value) {
+          public Builder setAverageTemperature(int value) {
             
-            temperature_ = value;
+            averageTemperature_ = value;
             onChanged();
             return this;
           }
           /**
-           * <code>int32 temperature = 4;</code>
+           * <code>int32 average_temperature = 4;</code>
            */
-          public Builder clearTemperature() {
+          public Builder clearAverageTemperature() {
             
-            temperature_ = 0;
+            averageTemperature_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private int lowTemperature_ ;
+          /**
+           * <pre>
+           * below only for BMSHP! Value for BMSLP = 0
+           * </pre>
+           *
+           * <code>int32 low_temperature = 5;</code>
+           */
+          public int getLowTemperature() {
+            return lowTemperature_;
+          }
+          /**
+           * <pre>
+           * below only for BMSHP! Value for BMSLP = 0
+           * </pre>
+           *
+           * <code>int32 low_temperature = 5;</code>
+           */
+          public Builder setLowTemperature(int value) {
+            
+            lowTemperature_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <pre>
+           * below only for BMSHP! Value for BMSLP = 0
+           * </pre>
+           *
+           * <code>int32 low_temperature = 5;</code>
+           */
+          public Builder clearLowTemperature() {
+            
+            lowTemperature_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private int highTemperature_ ;
+          /**
+           * <code>int32 high_temperature = 6;</code>
+           */
+          public int getHighTemperature() {
+            return highTemperature_;
+          }
+          /**
+           * <code>int32 high_temperature = 6;</code>
+           */
+          public Builder setHighTemperature(int value) {
+            
+            highTemperature_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>int32 high_temperature = 6;</code>
+           */
+          public Builder clearHighTemperature() {
+            
+            highTemperature_ = 0;
             onChanged();
             return this;
           }
 
           private int lowVoltageCell_ ;
           /**
-           * <code>uint32 low_voltage_cell = 5;</code>
+           * <code>uint32 low_voltage_cell = 7;</code>
            */
           public int getLowVoltageCell() {
             return lowVoltageCell_;
           }
           /**
-           * <code>uint32 low_voltage_cell = 5;</code>
+           * <code>uint32 low_voltage_cell = 7;</code>
            */
           public Builder setLowVoltageCell(int value) {
             
@@ -3813,7 +3959,7 @@ public final class TelemetryData {
             return this;
           }
           /**
-           * <code>uint32 low_voltage_cell = 5;</code>
+           * <code>uint32 low_voltage_cell = 7;</code>
            */
           public Builder clearLowVoltageCell() {
             
@@ -3824,13 +3970,13 @@ public final class TelemetryData {
 
           private int highVoltageCell_ ;
           /**
-           * <code>uint32 high_voltage_cell = 6;</code>
+           * <code>uint32 high_voltage_cell = 8;</code>
            */
           public int getHighVoltageCell() {
             return highVoltageCell_;
           }
           /**
-           * <code>uint32 high_voltage_cell = 6;</code>
+           * <code>uint32 high_voltage_cell = 8;</code>
            */
           public Builder setHighVoltageCell(int value) {
             
@@ -3839,7 +3985,7 @@ public final class TelemetryData {
             return this;
           }
           /**
-           * <code>uint32 high_voltage_cell = 6;</code>
+           * <code>uint32 high_voltage_cell = 8;</code>
            */
           public Builder clearHighVoltageCell() {
             
@@ -9175,7 +9321,7 @@ public final class TelemetryData {
       "\007\n\003ACK\020\000\022\010\n\004STOP\020\001\022\r\n\tCALIBRATE\020\002\022\n\n\006LAU" +
       "NCH\020\003\022\t\n\005RESET\020\004\022\031\n\025SERVICE_PROPULSION_G" +
       "O\020\005\022\033\n\027SERVICE_PROPULSION_STOP\020\006\022\023\n\017NOMI" +
-      "NAL_BRAKING\020\007\"\212\r\n\016ClientToServer\022=\n\nnavi" +
+      "NAL_BRAKING\020\007\"\305\r\n\016ClientToServer\022=\n\nnavi" +
       "gation\030\001 \001(\0132).telemetry_data.ClientToSe" +
       "rver.Navigation\022B\n\rstate_machine\030\002 \001(\0132+" +
       ".telemetry_data.ClientToServer.StateMach" +
@@ -9199,26 +9345,27 @@ public final class TelemetryData {
       "MPLETE\020\007\022\023\n\017FAILURE_STOPPED\020\010\022\013\n\007EXITING" +
       "\020\t\022\014\n\010FINISHED\020\n\032L\n\006Motors\022B\n\rmodule_sta" +
       "tus\030\001 \001(\0162+.telemetry_data.ClientToServe" +
-      "r.ModuleStatus\032\202\003\n\tBatteries\022B\n\rmodule_s" +
+      "r.ModuleStatus\032\275\003\n\tBatteries\022B\n\rmodule_s" +
       "tatus\030\001 \001(\0162+.telemetry_data.ClientToSer" +
       "ver.ModuleStatus\022Q\n\023low_power_batteries\030" +
       "\002 \003(\01324.telemetry_data.ClientToServer.Ba" +
       "tteries.BatteryData\022R\n\024high_power_batter" +
       "ies\030\003 \003(\01324.telemetry_data.ClientToServe" +
-      "r.Batteries.BatteryData\032\211\001\n\013BatteryData\022" +
+      "r.Batteries.BatteryData\032\304\001\n\013BatteryData\022" +
       "\017\n\007voltage\030\001 \001(\r\022\017\n\007current\030\002 \001(\021\022\016\n\006cha" +
-      "rge\030\003 \001(\r\022\023\n\013temperature\030\004 \001(\005\022\030\n\020low_vo" +
-      "ltage_cell\030\005 \001(\r\022\031\n\021high_voltage_cell\030\006 " +
-      "\001(\r\032\267\001\n\007Sensors\022B\n\rmodule_status\030\001 \001(\0162+" +
-      ".telemetry_data.ClientToServer.ModuleSta" +
-      "tus\022;\n\003imu\030\002 \003(\0132..telemetry_data.Client" +
-      "ToServer.Sensors.ImuData\032+\n\007ImuData\022\023\n\013o" +
-      "perational\030\001 \001(\010\022\013\n\003acc\030\002 \003(\002\032\"\n\013Tempera" +
-      "ture\022\023\n\013temperature\030\001 \001(\021\032!\n\017EmergencyBr" +
-      "akes\022\016\n\006brakes\030\001 \003(\010\"D\n\014ModuleStatus\022\t\n\005" +
-      "START\020\000\022\010\n\004INIT\020\001\022\t\n\005READY\020\002\022\024\n\020CRITICAL" +
-      "_FAILURE\020\003B\036\n\rtelemetrydataB\rTelemetryDa" +
-      "tab\006proto3"
+      "rge\030\003 \001(\r\022\033\n\023average_temperature\030\004 \001(\005\022\027" +
+      "\n\017low_temperature\030\005 \001(\005\022\030\n\020high_temperat" +
+      "ure\030\006 \001(\005\022\030\n\020low_voltage_cell\030\007 \001(\r\022\031\n\021h" +
+      "igh_voltage_cell\030\010 \001(\r\032\267\001\n\007Sensors\022B\n\rmo" +
+      "dule_status\030\001 \001(\0162+.telemetry_data.Clien" +
+      "tToServer.ModuleStatus\022;\n\003imu\030\002 \003(\0132..te" +
+      "lemetry_data.ClientToServer.Sensors.ImuD" +
+      "ata\032+\n\007ImuData\022\023\n\013operational\030\001 \001(\010\022\013\n\003a" +
+      "cc\030\002 \003(\002\032\"\n\013Temperature\022\023\n\013temperature\030\001" +
+      " \001(\021\032!\n\017EmergencyBrakes\022\016\n\006brakes\030\001 \003(\010\"" +
+      "D\n\014ModuleStatus\022\t\n\005START\020\000\022\010\n\004INIT\020\001\022\t\n\005" +
+      "READY\020\002\022\024\n\020CRITICAL_FAILURE\020\003B\036\n\rtelemet" +
+      "rydataB\rTelemetryDatab\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -9273,7 +9420,7 @@ public final class TelemetryData {
     internal_static_telemetry_data_ClientToServer_Batteries_BatteryData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_Batteries_BatteryData_descriptor,
-        new java.lang.String[] { "Voltage", "Current", "Charge", "Temperature", "LowVoltageCell", "HighVoltageCell", });
+        new java.lang.String[] { "Voltage", "Current", "Charge", "AverageTemperature", "LowTemperature", "HighTemperature", "LowVoltageCell", "HighVoltageCell", });
     internal_static_telemetry_data_ClientToServer_Sensors_descriptor =
       internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(4);
     internal_static_telemetry_data_ClientToServer_Sensors_fieldAccessorTable = new
