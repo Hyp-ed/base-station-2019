@@ -224,7 +224,6 @@ public class Server implements Runnable {
 
                     try {
                         spaceXSocket.send(packet);
-                        System.out.println("Sent to SpaceX");
                     }
                     catch (IOException e) {
                         System.out.println("Failure sending to SpaceX socket");
@@ -262,7 +261,6 @@ public class Server implements Runnable {
 
             try {
                 spaceXSocket.send(packet);
-                System.out.println("Sent to SpaceX");
             }
             catch (IOException e) {
                 System.out.println("Failure sending to SpaceX socket");
