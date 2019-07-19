@@ -20,6 +20,7 @@ public class Server implements Runnable {
     private static final int PORT = 9090;
     private static final int SPACE_X_PORT = 3000;
     private static final String SPACE_X_IP = "localhost"; // change to actual ip
+    private static final byte teamID = 11; // given to us by SpaceX
 
     private Socket client; // TCP socket to pod
     private DatagramSocket spaceXSocket; // UDP socket to SpaceX
@@ -160,6 +161,10 @@ public class Server implements Runnable {
 
     private class SpaceXSender implements Runnable {
         private ByteBuffer buffer;
+        private byte status;
+        private int acceleration;
+        private int position;
+        private int velocity;
 
         public SpaceXSender() {
             buffer = ByteBuffer.allocate(34); // 34 bytes as specified by SpaceX
@@ -167,32 +172,100 @@ public class Server implements Runnable {
 
         @Override
         public void run() {
-            while (connected) { // need to make sure packets sent between 10Hz and 50Hz
-                byte teamID = 2;
-                byte status = 1;
+            while (connected) {
+                if (msgFromClient != null) {  // receiving messages from pod
+                    switch (msgFromClient.getStateMachine().getCurrentState()) {
+                        case INVALID:
+                            System.out.println("Shouldn't receive this state");
+                            break;
+                        case EMERGENCY_BRAKING:
+                        case FAILURE_STOPPED:
+                            status = 0; // Fault
+                            break;
+                        case IDLE:
+                        case CALIBRATING:
+                        case RUN_COMPLETE:
+                        case FINISHED:
+                            status = 1; // Safe to approach
+                            break;
+                        case READY:
+                            status = 2; // Ready to launch
+                            break;
+                        case ACCELERATING:
+                            status = 3; // Launching
+                            break;
+                        case NOMINAL_BRAKING:
+                            status = 5; // Braking
+                            break;
+                        case EXITING:
+                            status = 6; // Crawling
+                            break;
+                        default:
+                            status = 0; // Default to fault
+                    }
 
-                buffer.put(teamID);
-                buffer.put(status);
-                buffer.putInt(2);
-                buffer.putInt(1);
-                buffer.putInt(2);
-                buffer.putInt(1);
-                buffer.putInt(2);
-                buffer.putInt(1);
-                buffer.putInt(2);
-                buffer.putInt(1);
+                    acceleration = Math.round(msgFromClient.getNavigation().getAcceleration() * 100);  // times 100 for m/s^2 to cm/s^2
+                    position = Math.round(msgFromClient.getNavigation().getDistance() * 100);  // times 100 for m to cm
+                    velocity = Math.round(msgFromClient.getNavigation().getVelocity() * 100);  // times 100 for m/s to cm/s
 
-                byte[] bufferArray = buffer.array();
-                DatagramPacket packet = new DatagramPacket(bufferArray, bufferArray.length, spaceXAddress, SPACE_X_PORT);
+                    buffer.put(teamID);
+                    buffer.put(status);
+                    buffer.putInt(acceleration);  // acceleration
+                    buffer.putInt(position);  // position
+                    buffer.putInt(velocity);  // velocity
+                    buffer.putInt(0);  // battery voltage (optional, set to 0)
+                    buffer.putInt(0);  // battery current (optional, set to 0)
+                    buffer.putInt(0);  // battery temp (optional, set to 0)
+                    buffer.putInt(0);  // pod temp (optional, set to 0)
+                    buffer.putInt(0);  // stripe count (optional, set to 0)
+
+                    byte[] bufferArray = buffer.array();
+                    DatagramPacket packet = new DatagramPacket(bufferArray, bufferArray.length, spaceXAddress, SPACE_X_PORT);
+
+                    try {
+                        spaceXSocket.send(packet);
+                        System.out.println("Sent to SpaceX");
+                    }
+                    catch (IOException e) {
+                        System.out.println("Failure sending to SpaceX socket");
+                    }
+
+                    buffer.clear();
+                }
 
                 try {
-                    spaceXSocket.send(packet);
+                    Thread.sleep(30);
                 }
-                catch (IOException e) {
-                    System.out.println("Failure sending to SpaceX socket");
+                catch (InterruptedException e) {
+                    System.out.println("Error putting thread to sleep while sending to SpaceX");
                 }
+            }
 
-                buffer.clear();
+            // // we've disconnected, send one final frame to SpaceX
+            buffer.clear();
+
+            status = 0;
+
+            buffer.put(teamID);
+            buffer.put(status);  // PUT INTO FAULT STATE
+            buffer.putInt(0);  // acceleration
+            buffer.putInt(0);  // position
+            buffer.putInt(0);  // velocity
+            buffer.putInt(0);  // battery voltage (optional, set to 0)
+            buffer.putInt(0);  // battery current (optional, set to 0)
+            buffer.putInt(0);  // battery temp (optional, set to 0)
+            buffer.putInt(0);  // pod temp (optional, set to 0)
+            buffer.putInt(0);  // stripe count (optional, set to 0)
+
+            byte[] bufferArray = buffer.array();
+            DatagramPacket packet = new DatagramPacket(bufferArray, bufferArray.length, spaceXAddress, SPACE_X_PORT);
+
+            try {
+                spaceXSocket.send(packet);
+                System.out.println("Sent to SpaceX");
+            }
+            catch (IOException e) {
+                System.out.println("Failure sending to SpaceX socket");
             }
         }
     }
