@@ -3156,6 +3156,19 @@ public final class TelemetryData {
          * <code>uint32 high_voltage_cell = 8;</code>
          */
         int getHighVoltageCell();
+
+        /**
+         * <code>repeated uint32 indv_voltage = 9;</code>
+         */
+        java.util.List<java.lang.Integer> getIndvVoltageList();
+        /**
+         * <code>repeated uint32 indv_voltage = 9;</code>
+         */
+        int getIndvVoltageCount();
+        /**
+         * <code>repeated uint32 indv_voltage = 9;</code>
+         */
+        int getIndvVoltage(int index);
       }
       /**
        * Protobuf type {@code telemetry_data.ClientToServer.Batteries.BatteryData}
@@ -3178,6 +3191,7 @@ public final class TelemetryData {
           highTemperature_ = 0;
           lowVoltageCell_ = 0;
           highVoltageCell_ = 0;
+          indvVoltage_ = java.util.Collections.emptyList();
         }
 
         @java.lang.Override
@@ -3244,6 +3258,27 @@ public final class TelemetryData {
                   highVoltageCell_ = input.readUInt32();
                   break;
                 }
+                case 72: {
+                  if (!((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
+                    indvVoltage_ = new java.util.ArrayList<java.lang.Integer>();
+                    mutable_bitField0_ |= 0x00000100;
+                  }
+                  indvVoltage_.add(input.readUInt32());
+                  break;
+                }
+                case 74: {
+                  int length = input.readRawVarint32();
+                  int limit = input.pushLimit(length);
+                  if (!((mutable_bitField0_ & 0x00000100) == 0x00000100) && input.getBytesUntilLimit() > 0) {
+                    indvVoltage_ = new java.util.ArrayList<java.lang.Integer>();
+                    mutable_bitField0_ |= 0x00000100;
+                  }
+                  while (input.getBytesUntilLimit() > 0) {
+                    indvVoltage_.add(input.readUInt32());
+                  }
+                  input.popLimit(limit);
+                  break;
+                }
                 default: {
                   if (!parseUnknownFieldProto3(
                       input, unknownFields, extensionRegistry, tag)) {
@@ -3259,6 +3294,9 @@ public final class TelemetryData {
             throw new com.google.protobuf.InvalidProtocolBufferException(
                 e).setUnfinishedMessage(this);
           } finally {
+            if (((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
+              indvVoltage_ = java.util.Collections.unmodifiableList(indvVoltage_);
+            }
             this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
           }
@@ -3276,6 +3314,7 @@ public final class TelemetryData {
                   telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.class, telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData.Builder.class);
         }
 
+        private int bitField0_;
         public static final int VOLTAGE_FIELD_NUMBER = 1;
         private int voltage_;
         /**
@@ -3352,6 +3391,29 @@ public final class TelemetryData {
           return highVoltageCell_;
         }
 
+        public static final int INDV_VOLTAGE_FIELD_NUMBER = 9;
+        private java.util.List<java.lang.Integer> indvVoltage_;
+        /**
+         * <code>repeated uint32 indv_voltage = 9;</code>
+         */
+        public java.util.List<java.lang.Integer>
+            getIndvVoltageList() {
+          return indvVoltage_;
+        }
+        /**
+         * <code>repeated uint32 indv_voltage = 9;</code>
+         */
+        public int getIndvVoltageCount() {
+          return indvVoltage_.size();
+        }
+        /**
+         * <code>repeated uint32 indv_voltage = 9;</code>
+         */
+        public int getIndvVoltage(int index) {
+          return indvVoltage_.get(index);
+        }
+        private int indvVoltageMemoizedSerializedSize = -1;
+
         private byte memoizedIsInitialized = -1;
         @java.lang.Override
         public final boolean isInitialized() {
@@ -3366,6 +3428,7 @@ public final class TelemetryData {
         @java.lang.Override
         public void writeTo(com.google.protobuf.CodedOutputStream output)
                             throws java.io.IOException {
+          getSerializedSize();
           if (voltage_ != 0) {
             output.writeUInt32(1, voltage_);
           }
@@ -3389,6 +3452,13 @@ public final class TelemetryData {
           }
           if (highVoltageCell_ != 0) {
             output.writeUInt32(8, highVoltageCell_);
+          }
+          if (getIndvVoltageList().size() > 0) {
+            output.writeUInt32NoTag(74);
+            output.writeUInt32NoTag(indvVoltageMemoizedSerializedSize);
+          }
+          for (int i = 0; i < indvVoltage_.size(); i++) {
+            output.writeUInt32NoTag(indvVoltage_.get(i));
           }
           unknownFields.writeTo(output);
         }
@@ -3431,6 +3501,20 @@ public final class TelemetryData {
             size += com.google.protobuf.CodedOutputStream
               .computeUInt32Size(8, highVoltageCell_);
           }
+          {
+            int dataSize = 0;
+            for (int i = 0; i < indvVoltage_.size(); i++) {
+              dataSize += com.google.protobuf.CodedOutputStream
+                .computeUInt32SizeNoTag(indvVoltage_.get(i));
+            }
+            size += dataSize;
+            if (!getIndvVoltageList().isEmpty()) {
+              size += 1;
+              size += com.google.protobuf.CodedOutputStream
+                  .computeInt32SizeNoTag(dataSize);
+            }
+            indvVoltageMemoizedSerializedSize = dataSize;
+          }
           size += unknownFields.getSerializedSize();
           memoizedSize = size;
           return size;
@@ -3463,6 +3547,8 @@ public final class TelemetryData {
               == other.getLowVoltageCell());
           result = result && (getHighVoltageCell()
               == other.getHighVoltageCell());
+          result = result && getIndvVoltageList()
+              .equals(other.getIndvVoltageList());
           result = result && unknownFields.equals(other.unknownFields);
           return result;
         }
@@ -3490,6 +3576,10 @@ public final class TelemetryData {
           hash = (53 * hash) + getLowVoltageCell();
           hash = (37 * hash) + HIGH_VOLTAGE_CELL_FIELD_NUMBER;
           hash = (53 * hash) + getHighVoltageCell();
+          if (getIndvVoltageCount() > 0) {
+            hash = (37 * hash) + INDV_VOLTAGE_FIELD_NUMBER;
+            hash = (53 * hash) + getIndvVoltageList().hashCode();
+          }
           hash = (29 * hash) + unknownFields.hashCode();
           memoizedHashCode = hash;
           return hash;
@@ -3639,6 +3729,8 @@ public final class TelemetryData {
 
             highVoltageCell_ = 0;
 
+            indvVoltage_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000100);
             return this;
           }
 
@@ -3665,6 +3757,8 @@ public final class TelemetryData {
           @java.lang.Override
           public telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData buildPartial() {
             telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData result = new telemetrydata.TelemetryData.ClientToServer.Batteries.BatteryData(this);
+            int from_bitField0_ = bitField0_;
+            int to_bitField0_ = 0;
             result.voltage_ = voltage_;
             result.current_ = current_;
             result.charge_ = charge_;
@@ -3673,6 +3767,12 @@ public final class TelemetryData {
             result.highTemperature_ = highTemperature_;
             result.lowVoltageCell_ = lowVoltageCell_;
             result.highVoltageCell_ = highVoltageCell_;
+            if (((bitField0_ & 0x00000100) == 0x00000100)) {
+              indvVoltage_ = java.util.Collections.unmodifiableList(indvVoltage_);
+              bitField0_ = (bitField0_ & ~0x00000100);
+            }
+            result.indvVoltage_ = indvVoltage_;
+            result.bitField0_ = to_bitField0_;
             onBuilt();
             return result;
           }
@@ -3745,6 +3845,16 @@ public final class TelemetryData {
             if (other.getHighVoltageCell() != 0) {
               setHighVoltageCell(other.getHighVoltageCell());
             }
+            if (!other.indvVoltage_.isEmpty()) {
+              if (indvVoltage_.isEmpty()) {
+                indvVoltage_ = other.indvVoltage_;
+                bitField0_ = (bitField0_ & ~0x00000100);
+              } else {
+                ensureIndvVoltageIsMutable();
+                indvVoltage_.addAll(other.indvVoltage_);
+              }
+              onChanged();
+            }
             this.mergeUnknownFields(other.unknownFields);
             onChanged();
             return this;
@@ -3773,6 +3883,7 @@ public final class TelemetryData {
             }
             return this;
           }
+          private int bitField0_;
 
           private int voltage_ ;
           /**
@@ -3990,6 +4101,72 @@ public final class TelemetryData {
           public Builder clearHighVoltageCell() {
             
             highVoltageCell_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private java.util.List<java.lang.Integer> indvVoltage_ = java.util.Collections.emptyList();
+          private void ensureIndvVoltageIsMutable() {
+            if (!((bitField0_ & 0x00000100) == 0x00000100)) {
+              indvVoltage_ = new java.util.ArrayList<java.lang.Integer>(indvVoltage_);
+              bitField0_ |= 0x00000100;
+             }
+          }
+          /**
+           * <code>repeated uint32 indv_voltage = 9;</code>
+           */
+          public java.util.List<java.lang.Integer>
+              getIndvVoltageList() {
+            return java.util.Collections.unmodifiableList(indvVoltage_);
+          }
+          /**
+           * <code>repeated uint32 indv_voltage = 9;</code>
+           */
+          public int getIndvVoltageCount() {
+            return indvVoltage_.size();
+          }
+          /**
+           * <code>repeated uint32 indv_voltage = 9;</code>
+           */
+          public int getIndvVoltage(int index) {
+            return indvVoltage_.get(index);
+          }
+          /**
+           * <code>repeated uint32 indv_voltage = 9;</code>
+           */
+          public Builder setIndvVoltage(
+              int index, int value) {
+            ensureIndvVoltageIsMutable();
+            indvVoltage_.set(index, value);
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>repeated uint32 indv_voltage = 9;</code>
+           */
+          public Builder addIndvVoltage(int value) {
+            ensureIndvVoltageIsMutable();
+            indvVoltage_.add(value);
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>repeated uint32 indv_voltage = 9;</code>
+           */
+          public Builder addAllIndvVoltage(
+              java.lang.Iterable<? extends java.lang.Integer> values) {
+            ensureIndvVoltageIsMutable();
+            com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                values, indvVoltage_);
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>repeated uint32 indv_voltage = 9;</code>
+           */
+          public Builder clearIndvVoltage() {
+            indvVoltage_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000100);
             onChanged();
             return this;
           }
@@ -9321,7 +9498,7 @@ public final class TelemetryData {
       "\007\n\003ACK\020\000\022\010\n\004STOP\020\001\022\r\n\tCALIBRATE\020\002\022\n\n\006LAU" +
       "NCH\020\003\022\t\n\005RESET\020\004\022\031\n\025SERVICE_PROPULSION_G" +
       "O\020\005\022\033\n\027SERVICE_PROPULSION_STOP\020\006\022\023\n\017NOMI" +
-      "NAL_BRAKING\020\007\"\305\r\n\016ClientToServer\022=\n\nnavi" +
+      "NAL_BRAKING\020\007\"\333\r\n\016ClientToServer\022=\n\nnavi" +
       "gation\030\001 \001(\0132).telemetry_data.ClientToSe" +
       "rver.Navigation\022B\n\rstate_machine\030\002 \001(\0132+" +
       ".telemetry_data.ClientToServer.StateMach" +
@@ -9345,27 +9522,28 @@ public final class TelemetryData {
       "MPLETE\020\007\022\023\n\017FAILURE_STOPPED\020\010\022\013\n\007EXITING" +
       "\020\t\022\014\n\010FINISHED\020\n\032L\n\006Motors\022B\n\rmodule_sta" +
       "tus\030\001 \001(\0162+.telemetry_data.ClientToServe" +
-      "r.ModuleStatus\032\275\003\n\tBatteries\022B\n\rmodule_s" +
+      "r.ModuleStatus\032\323\003\n\tBatteries\022B\n\rmodule_s" +
       "tatus\030\001 \001(\0162+.telemetry_data.ClientToSer" +
       "ver.ModuleStatus\022Q\n\023low_power_batteries\030" +
       "\002 \003(\01324.telemetry_data.ClientToServer.Ba" +
       "tteries.BatteryData\022R\n\024high_power_batter" +
       "ies\030\003 \003(\01324.telemetry_data.ClientToServe" +
-      "r.Batteries.BatteryData\032\304\001\n\013BatteryData\022" +
+      "r.Batteries.BatteryData\032\332\001\n\013BatteryData\022" +
       "\017\n\007voltage\030\001 \001(\r\022\017\n\007current\030\002 \001(\021\022\016\n\006cha" +
       "rge\030\003 \001(\r\022\033\n\023average_temperature\030\004 \001(\005\022\027" +
       "\n\017low_temperature\030\005 \001(\005\022\030\n\020high_temperat" +
       "ure\030\006 \001(\005\022\030\n\020low_voltage_cell\030\007 \001(\r\022\031\n\021h" +
-      "igh_voltage_cell\030\010 \001(\r\032\267\001\n\007Sensors\022B\n\rmo" +
-      "dule_status\030\001 \001(\0162+.telemetry_data.Clien" +
-      "tToServer.ModuleStatus\022;\n\003imu\030\002 \003(\0132..te" +
-      "lemetry_data.ClientToServer.Sensors.ImuD" +
-      "ata\032+\n\007ImuData\022\023\n\013operational\030\001 \001(\010\022\013\n\003a" +
-      "cc\030\002 \003(\002\032\"\n\013Temperature\022\023\n\013temperature\030\001" +
-      " \001(\021\032!\n\017EmergencyBrakes\022\016\n\006brakes\030\001 \003(\010\"" +
-      "D\n\014ModuleStatus\022\t\n\005START\020\000\022\010\n\004INIT\020\001\022\t\n\005" +
-      "READY\020\002\022\024\n\020CRITICAL_FAILURE\020\003B\036\n\rtelemet" +
-      "rydataB\rTelemetryDatab\006proto3"
+      "igh_voltage_cell\030\010 \001(\r\022\024\n\014indv_voltage\030\t" +
+      " \003(\r\032\267\001\n\007Sensors\022B\n\rmodule_status\030\001 \001(\0162" +
+      "+.telemetry_data.ClientToServer.ModuleSt" +
+      "atus\022;\n\003imu\030\002 \003(\0132..telemetry_data.Clien" +
+      "tToServer.Sensors.ImuData\032+\n\007ImuData\022\023\n\013" +
+      "operational\030\001 \001(\010\022\013\n\003acc\030\002 \003(\002\032\"\n\013Temper" +
+      "ature\022\023\n\013temperature\030\001 \001(\021\032!\n\017EmergencyB" +
+      "rakes\022\016\n\006brakes\030\001 \003(\010\"D\n\014ModuleStatus\022\t\n" +
+      "\005START\020\000\022\010\n\004INIT\020\001\022\t\n\005READY\020\002\022\024\n\020CRITICA" +
+      "L_FAILURE\020\003B\036\n\rtelemetrydataB\rTelemetryD" +
+      "atab\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -9420,7 +9598,7 @@ public final class TelemetryData {
     internal_static_telemetry_data_ClientToServer_Batteries_BatteryData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_telemetry_data_ClientToServer_Batteries_BatteryData_descriptor,
-        new java.lang.String[] { "Voltage", "Current", "Charge", "AverageTemperature", "LowTemperature", "HighTemperature", "LowVoltageCell", "HighVoltageCell", });
+        new java.lang.String[] { "Voltage", "Current", "Charge", "AverageTemperature", "LowTemperature", "HighTemperature", "LowVoltageCell", "HighVoltageCell", "IndvVoltage", });
     internal_static_telemetry_data_ClientToServer_Sensors_descriptor =
       internal_static_telemetry_data_ClientToServer_descriptor.getNestedTypes().get(4);
     internal_static_telemetry_data_ClientToServer_Sensors_fieldAccessorTable = new
