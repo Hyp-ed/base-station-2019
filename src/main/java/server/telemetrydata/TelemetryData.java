@@ -142,6 +142,10 @@ public final class TelemetryData {
        * <code>NOMINAL_BRAKING = 7;</code>
        */
       NOMINAL_BRAKING(7),
+      /**
+       * <code>NOMINAL_RETRACT = 8;</code>
+       */
+      NOMINAL_RETRACT(8),
       UNRECOGNIZED(-1),
       ;
 
@@ -177,6 +181,10 @@ public final class TelemetryData {
        * <code>NOMINAL_BRAKING = 7;</code>
        */
       public static final int NOMINAL_BRAKING_VALUE = 7;
+      /**
+       * <code>NOMINAL_RETRACT = 8;</code>
+       */
+      public static final int NOMINAL_RETRACT_VALUE = 8;
 
 
       public final int getNumber() {
@@ -205,6 +213,7 @@ public final class TelemetryData {
           case 5: return SERVICE_PROPULSION_GO;
           case 6: return SERVICE_PROPULSION_STOP;
           case 7: return NOMINAL_BRAKING;
+          case 8: return NOMINAL_RETRACT;
           default: return null;
         }
       }
@@ -9492,58 +9501,58 @@ public final class TelemetryData {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rmessage.proto\022\016telemetry_data\"\333\001\n\016Serv" +
+      "\n\rmessage.proto\022\016telemetry_data\"\360\001\n\016Serv" +
       "erToClient\0227\n\007command\030\001 \001(\0162&.telemetry_" +
-      "data.ServerToClient.Command\"\217\001\n\007Command\022" +
+      "data.ServerToClient.Command\"\244\001\n\007Command\022" +
       "\007\n\003ACK\020\000\022\010\n\004STOP\020\001\022\r\n\tCALIBRATE\020\002\022\n\n\006LAU" +
       "NCH\020\003\022\t\n\005RESET\020\004\022\031\n\025SERVICE_PROPULSION_G" +
       "O\020\005\022\033\n\027SERVICE_PROPULSION_STOP\020\006\022\023\n\017NOMI" +
-      "NAL_BRAKING\020\007\"\333\r\n\016ClientToServer\022=\n\nnavi" +
-      "gation\030\001 \001(\0132).telemetry_data.ClientToSe" +
-      "rver.Navigation\022B\n\rstate_machine\030\002 \001(\0132+" +
-      ".telemetry_data.ClientToServer.StateMach" +
-      "ine\0225\n\006motors\030\003 \001(\0132%.telemetry_data.Cli" +
-      "entToServer.Motors\022;\n\tbatteries\030\004 \001(\0132(." +
-      "telemetry_data.ClientToServer.Batteries\022" +
-      "7\n\007sensors\030\005 \001(\0132&.telemetry_data.Client" +
-      "ToServer.Sensors\022?\n\013temperature\030\006 \001(\0132*." +
-      "telemetry_data.ClientToServer.Temperatur" +
-      "e\022H\n\020emergency_brakes\030\007 \001(\0132..telemetry_" +
-      "data.ClientToServer.EmergencyBrakes\032\212\001\n\n" +
-      "Navigation\022B\n\rmodule_status\030\001 \001(\0162+.tele" +
-      "metry_data.ClientToServer.ModuleStatus\022\020" +
-      "\n\010distance\030\002 \001(\002\022\020\n\010velocity\030\003 \001(\002\022\024\n\014ac" +
-      "celeration\030\004 \001(\002\032\225\002\n\014StateMachine\022H\n\rcur" +
-      "rent_state\030\002 \001(\01621.telemetry_data.Client" +
-      "ToServer.StateMachine.State\"\272\001\n\005State\022\013\n" +
-      "\007INVALID\020\000\022\010\n\004IDLE\020\001\022\017\n\013CALIBRATING\020\002\022\t\n" +
-      "\005READY\020\003\022\020\n\014ACCELERATING\020\004\022\023\n\017NOMINAL_BR" +
-      "AKING\020\005\022\025\n\021EMERGENCY_BRAKING\020\006\022\020\n\014RUN_CO" +
-      "MPLETE\020\007\022\023\n\017FAILURE_STOPPED\020\010\022\013\n\007EXITING" +
-      "\020\t\022\014\n\010FINISHED\020\n\032L\n\006Motors\022B\n\rmodule_sta" +
-      "tus\030\001 \001(\0162+.telemetry_data.ClientToServe" +
-      "r.ModuleStatus\032\323\003\n\tBatteries\022B\n\rmodule_s" +
-      "tatus\030\001 \001(\0162+.telemetry_data.ClientToSer" +
-      "ver.ModuleStatus\022Q\n\023low_power_batteries\030" +
-      "\002 \003(\01324.telemetry_data.ClientToServer.Ba" +
-      "tteries.BatteryData\022R\n\024high_power_batter" +
-      "ies\030\003 \003(\01324.telemetry_data.ClientToServe" +
-      "r.Batteries.BatteryData\032\332\001\n\013BatteryData\022" +
-      "\017\n\007voltage\030\001 \001(\r\022\017\n\007current\030\002 \001(\021\022\016\n\006cha" +
-      "rge\030\003 \001(\r\022\033\n\023average_temperature\030\004 \001(\005\022\027" +
-      "\n\017low_temperature\030\005 \001(\005\022\030\n\020high_temperat" +
-      "ure\030\006 \001(\005\022\030\n\020low_voltage_cell\030\007 \001(\r\022\031\n\021h" +
-      "igh_voltage_cell\030\010 \001(\r\022\024\n\014indv_voltage\030\t" +
-      " \003(\r\032\267\001\n\007Sensors\022B\n\rmodule_status\030\001 \001(\0162" +
-      "+.telemetry_data.ClientToServer.ModuleSt" +
-      "atus\022;\n\003imu\030\002 \003(\0132..telemetry_data.Clien" +
-      "tToServer.Sensors.ImuData\032+\n\007ImuData\022\023\n\013" +
-      "operational\030\001 \001(\010\022\013\n\003acc\030\002 \003(\002\032\"\n\013Temper" +
-      "ature\022\023\n\013temperature\030\001 \001(\021\032!\n\017EmergencyB" +
-      "rakes\022\016\n\006brakes\030\001 \003(\010\"D\n\014ModuleStatus\022\t\n" +
-      "\005START\020\000\022\010\n\004INIT\020\001\022\t\n\005READY\020\002\022\024\n\020CRITICA" +
-      "L_FAILURE\020\003B\036\n\rtelemetrydataB\rTelemetryD" +
-      "atab\006proto3"
+      "NAL_BRAKING\020\007\022\023\n\017NOMINAL_RETRACT\020\010\"\333\r\n\016C" +
+      "lientToServer\022=\n\nnavigation\030\001 \001(\0132).tele" +
+      "metry_data.ClientToServer.Navigation\022B\n\r" +
+      "state_machine\030\002 \001(\0132+.telemetry_data.Cli" +
+      "entToServer.StateMachine\0225\n\006motors\030\003 \001(\013" +
+      "2%.telemetry_data.ClientToServer.Motors\022" +
+      ";\n\tbatteries\030\004 \001(\0132(.telemetry_data.Clie" +
+      "ntToServer.Batteries\0227\n\007sensors\030\005 \001(\0132&." +
+      "telemetry_data.ClientToServer.Sensors\022?\n" +
+      "\013temperature\030\006 \001(\0132*.telemetry_data.Clie" +
+      "ntToServer.Temperature\022H\n\020emergency_brak" +
+      "es\030\007 \001(\0132..telemetry_data.ClientToServer" +
+      ".EmergencyBrakes\032\212\001\n\nNavigation\022B\n\rmodul" +
+      "e_status\030\001 \001(\0162+.telemetry_data.ClientTo" +
+      "Server.ModuleStatus\022\020\n\010distance\030\002 \001(\002\022\020\n" +
+      "\010velocity\030\003 \001(\002\022\024\n\014acceleration\030\004 \001(\002\032\225\002" +
+      "\n\014StateMachine\022H\n\rcurrent_state\030\002 \001(\01621." +
+      "telemetry_data.ClientToServer.StateMachi" +
+      "ne.State\"\272\001\n\005State\022\013\n\007INVALID\020\000\022\010\n\004IDLE\020" +
+      "\001\022\017\n\013CALIBRATING\020\002\022\t\n\005READY\020\003\022\020\n\014ACCELER" +
+      "ATING\020\004\022\023\n\017NOMINAL_BRAKING\020\005\022\025\n\021EMERGENC" +
+      "Y_BRAKING\020\006\022\020\n\014RUN_COMPLETE\020\007\022\023\n\017FAILURE" +
+      "_STOPPED\020\010\022\013\n\007EXITING\020\t\022\014\n\010FINISHED\020\n\032L\n" +
+      "\006Motors\022B\n\rmodule_status\030\001 \001(\0162+.telemet" +
+      "ry_data.ClientToServer.ModuleStatus\032\323\003\n\t" +
+      "Batteries\022B\n\rmodule_status\030\001 \001(\0162+.telem" +
+      "etry_data.ClientToServer.ModuleStatus\022Q\n" +
+      "\023low_power_batteries\030\002 \003(\01324.telemetry_d" +
+      "ata.ClientToServer.Batteries.BatteryData" +
+      "\022R\n\024high_power_batteries\030\003 \003(\01324.telemet" +
+      "ry_data.ClientToServer.Batteries.Battery" +
+      "Data\032\332\001\n\013BatteryData\022\017\n\007voltage\030\001 \001(\r\022\017\n" +
+      "\007current\030\002 \001(\021\022\016\n\006charge\030\003 \001(\r\022\033\n\023averag" +
+      "e_temperature\030\004 \001(\005\022\027\n\017low_temperature\030\005" +
+      " \001(\005\022\030\n\020high_temperature\030\006 \001(\005\022\030\n\020low_vo" +
+      "ltage_cell\030\007 \001(\r\022\031\n\021high_voltage_cell\030\010 " +
+      "\001(\r\022\024\n\014indv_voltage\030\t \003(\r\032\267\001\n\007Sensors\022B\n" +
+      "\rmodule_status\030\001 \001(\0162+.telemetry_data.Cl" +
+      "ientToServer.ModuleStatus\022;\n\003imu\030\002 \003(\0132." +
+      ".telemetry_data.ClientToServer.Sensors.I" +
+      "muData\032+\n\007ImuData\022\023\n\013operational\030\001 \001(\010\022\013" +
+      "\n\003acc\030\002 \003(\002\032\"\n\013Temperature\022\023\n\013temperatur" +
+      "e\030\001 \001(\021\032!\n\017EmergencyBrakes\022\016\n\006brakes\030\001 \003" +
+      "(\010\"D\n\014ModuleStatus\022\t\n\005START\020\000\022\010\n\004INIT\020\001\022" +
+      "\t\n\005READY\020\002\022\024\n\020CRITICAL_FAILURE\020\003B\036\n\rtele" +
+      "metrydataB\rTelemetryDatab\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
